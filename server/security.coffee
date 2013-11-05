@@ -71,6 +71,9 @@ class Security
             if settings.general.debug
                 expresser.logger.info "Security", "Passport: using LDAP authentication."
 
+        # Make sure we have the admin user created.
+        @ensureAdminUser()
+
     # Helper to validate user login. If no user was specified and [settings](settings.html)
     # allow guest access, then log as guest.
     validateUser: (user, password, callback) =>
