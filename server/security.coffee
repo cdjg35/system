@@ -43,16 +43,6 @@ class Security
             else
                 @validateUser {id: user}, false, callback
 
-        # Enable basic HTTP authentication?
-        if settings.passport.basic.enabled
-            httpStrategy = (require "passport-http").BasicStrategy
-
-            @passport.use new httpStrategy (username, password, callback) =>
-                @validateUser username, password, callback
-
-            if settings.general.debug
-                expresser.logger.info "Security", "Passport: using basic HTTP authentication."
-
         # Enable LDAP authentication?
         if settings.passport.ldap.enabled
             ldapStrategy = (require "passport-ldapauth").Strategy
@@ -64,12 +54,27 @@ class Security
                     adminPassword: settings.passport.ldap.adminPassword
                     searchBase: settings.passport.ldap.searchBase
                     searchFilter: settings.passport.ldap.searchFilter
+                    url           : ''
+                    adminDn       : 'uid=cube,ou=robots,ou=users,dc=zalando,dc=net'
+                    adminPassword : 'Sohcae6bieh2gigh7yaeh8ji'
+                    searchBase    : 'ou=users,dc=zalando,dc=net'
+                    searchFilter  : '(uid={{username}})'
 
             @passport.use new ldapStrategy ldapOptions, (profile, callback) =>
                 @validateUser profile, callback
 
             if settings.general.debug
                 expresser.logger.info "Security", "Passport: using LDAP authentication."
+
+        # Enable basic HTTP authentication?
+        if settings.passport.basic.enabled
+            httpStrategy = (require "passport-http").BasicStrategy
+
+            @passport.use new httpStrategy (username, password, callback) =>
+                @validateUser username, password, callback
+
+            if settings.general.debug
+                expresser.logger.info "Security", "Passport: using basic HTTP authentication."
 
         # Make sure we have the admin user created.
         @ensureAdminUser()
@@ -99,6 +104,9 @@ class Security
             if fromCache.cacheExpiryDate.isAfter(moment())
                 return callback null, fromCache
             delete @cachedUsers[user.id]
+
+        if settings.general.debug
+            expresser.logger.info "Security", "validateUser", filter
 
         # Get user from database.
         database.getUser filter, (err, result) =>
