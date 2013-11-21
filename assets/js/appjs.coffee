@@ -257,7 +257,8 @@ SystemApp.setIdleTimer = ->
 
 # Tick the idle timer. This will increase the idleTime value by
 # X milliseconds - value defined at the [Settings](settings.html).
-SystemApp.idleTimerTick = -> SystemApp.idleTime += SystemApp.idleTimerInterval
+SystemApp.idleTimerTick = ->
+    SystemApp.idleTime += SystemApp.idleTimerInterval
 
     # Check if page needs to be refreshed based on the `idleRefreshMinutes`
     # value on the [Settings](settings.html).

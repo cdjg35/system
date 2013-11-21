@@ -34,4 +34,13 @@ class SystemApp.LoginView extends SystemApp.BaseView
 
     # Show helper when user clicks the "forgot credentials" link.
     forgotClick: (e) =>
-        alert 111
+        url = SystemApp.Settings.login.forgotCredentialsUrl
+        if url? and url isnt ""
+            document.location.href = url
+        else
+            alert SystemApp.Messages.contactAdmin
+
+# STARTING
+# -----------------------------------------------------------------------------
+$(document).ready ->
+    SystemApp.loginView = new SystemApp.LoginView()

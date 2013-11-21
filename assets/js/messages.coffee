@@ -11,6 +11,7 @@ SystemApp.Messages =
     auditDataRefresh: "Audit data refresh"
     availableSources: "Available sources..."
     cancel: "Cancel"
+    contactAdmin: "Please contact the system administrators!"
     createItem: "Create item"
     createMaps: "create maps"
     createMapText: "Please enter the new map name..."

@@ -50,6 +50,14 @@ SystemApp.Settings =
         searchDelay: 300
 
 
+    # LOGIN PAGE
+    # ----------------------------------------------------------------------
+    login:
+        # The URL to the "Forgot credentials / password reset" link. For example:
+        # http://mycompany.com/system/forgot-password.html
+        forgotCredentialsUrl: ""
+
+
     # ENTITY DEFINITIONS
     # ----------------------------------------------------------------------
     entityDefinition:
