@@ -30,11 +30,10 @@ class Security
         @cachedUsers = {}
 
         # Only add passowrd protection if enabled on settings.
-        return if not expresser.settings.passport.enabled
+        return if not @getPassportStrategy()?
 
         # User serializer will user the user ID only.
-        @passport.serializeUser (user, callback) =>
-            callback null, user.id
+        @passport.serializeUser (user, callback) => callback null, user.id
 
         # User deserializer will get user details from the database.
         @passport.deserializeUser (user, callback) =>
@@ -45,8 +44,8 @@ class Security
 
         # Enable LDAP authentication?
         if settings.passport.ldap.enabled
+            ldapAuth = require "ldapauth"
             ldapStrategy = (require "passport-ldapauth").Strategy
-
             ldapOptions =
                 server:
                     url: settings.passport.ldap.server
@@ -55,18 +54,17 @@ class Security
                     searchBase: settings.passport.ldap.searchBase
                     searchFilter: settings.passport.ldap.searchFilter
 
-            @passport.use new ldapStrategy ldapOptions, (profile, callback) =>
-                @validateUser profile, callback
-
+            strategy = new ldapStrategy ldapOptions, (profile, callback) => @validateUser profile, callback
+            @passport.use strategy
+            expresser.app.server.use @passport.session()
             expresser.logger.debug "Security", "Passport: using LDAP authentication."
 
         # Enable basic HTTP authentication?
-        if settings.passport.basic.enabled
+        else if settings.passport.basic.enabled
             httpStrategy = (require "passport-http").BasicStrategy
-
-            @passport.use new httpStrategy (username, password, callback) =>
-                @validateUser username, password, callback
-
+            strategy = new httpStrategy (username, password, callback) => @validateUser username, password, callback
+            @passport.use strategy
+            expresser.app.server.use @passport.session()
             expresser.logger.debug "Security", "Passport: using basic HTTP authentication."
 
         # Make sure we have the admin user created.
@@ -75,6 +73,8 @@ class Security
     # Helper to validate user login. If no user was specified and [settings](settings.html)
     # allow guest access, then log as guest.
     validateUser: (user, password, callback) =>
+        expresser.logger.debug "Security", "validateUser", user, password.replace(/./gi, "*")
+
         if not user? or user is "" or user is "guest" or user.id is "guest"
             if settings.security.guestEnabled
                 return callback null, @guestUser
@@ -97,8 +97,6 @@ class Security
             if fromCache.cacheExpiryDate.isAfter(moment())
                 return callback null, fromCache
             delete @cachedUsers[user.id]
-
-        expresser.logger.debug "Security", "validateUser", filter
 
         # Get user from database.
         database.getUser filter, (err, result) =>
@@ -142,6 +140,19 @@ class Security
         return "" if not password? or password is ""
         text = username + "|" + password + "|" + settings.security.userPasswordKey
         return crypto.createHash("sha256").update(text).digest "hex"
+
+
+    # HELPER METHODS
+    # ----------------------------------------------------------------------
+
+    # Returns the current passport strategy by checking the `settings.passport` properties.
+    getPassportStrategy: =>
+        if settings.passport.ldap.enabled
+            return "ldapauth"
+        else if settings.passport.basic.enabled
+            return "basic"
+        return null
+
 
 
 # Singleton implementation

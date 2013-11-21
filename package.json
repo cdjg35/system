@@ -24,6 +24,7 @@
         "async":">= 0.1.23",
         "coffee-script":">= 1.6.2",
         "expresser":">= 0.7.0",
+        "ldapauth": ">= 2.2.2",
         "lodash":">= 1.2.1",
         "moment":">= 2.0.0",
         "passport":">= 0.1.16",

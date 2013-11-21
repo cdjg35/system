@@ -88,8 +88,12 @@
 
     // PASSPORT AND AUTHENTICATION SETTINGS
     "passport": {
-        // Enable passport so the app is protected with user and password.
-        "enabled": true,
+        // Parameters to be passed to the passport module.
+        "params": {
+            "failureRedirect": "/login",
+            "failureFlash": false,
+            "session": true
+        },
         // By default the System App will use basic HTTP authentication.
         "basic": {
             "enabled": true

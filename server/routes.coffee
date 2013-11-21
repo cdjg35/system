@@ -22,29 +22,36 @@ module.exports = (app) ->
     lastModified = null
 
 
+    # AUTH HELPERS
+    # ----------------------------------------------------------------------
+
+    # Ensure authentication by checking request. Return 403 if not.
+    auth = (req, res, next) ->
+        return next() if not security.getPassportStrategy()?
+        return next() if req.isAuthenticated()
+        res.statusCode = 403
+        res.send "Unauthorized"
+
+    # Ensure authentication by checking request. Redirect to /login if not.
+    toLogin = (req, res, next) ->
+        return next() if not security.getPassportStrategy()?
+        return next() if req.isAuthenticated()
+        res.render "Continue"
+        
+
     # MAIN AND ADMIN ROUTES
     # ----------------------------------------------------------------------
 
     # The login page and form.
     getLogin = (req, res) ->
-        options =  getResponseOptions req
+        options = getResponseOptions req
 
         # Render the index page.
         res.render "login", options
 
     # The login validation via post.
     postLogin = (req, res) ->
-        username = req.body.username
-        password = req.body.password
-
-        if not username? or username is "" or not password? or password is ""
-            res.redirect "/login"
-        else
-            security.validateUser username, password, (err, result) ->
-                if err?
-                    res.send "Error: #{JSON.stringify(err)}"
-                else
-                    res.send "Login validated! #{JSON.stringify(result)}"
+        res.redirect "/"
 
     # The main index page.
     getIndex = (req, res) ->
@@ -52,7 +59,7 @@ module.exports = (app) ->
             res.redirect "/login"
             return
 
-        options =  getResponseOptions req
+        options = getResponseOptions req
 
         # Render the index page.
         res.render "index", options
@@ -64,7 +71,7 @@ module.exports = (app) ->
             res.redirect "/login"
             return
 
-        options =  getResponseOptions req
+        options = getResponseOptions req
 
         # Make sure user has admin role.
         if options.roles.admin isnt true
@@ -648,25 +655,21 @@ module.exports = (app) ->
     # ----------------------------------------------------------------------
 
     # Set authentication options.
-    passportOptions = {session: true}
-    passportStrategy = if expresser.settings.passport.ldap.enabled then "ldapauth" else "basic"
+    passportOptions = settings.passport.params
+    passportStrategy = security.getPassportStrategy()
 
     # The login page.
     app.get "/login", getLogin
 
     # The login page post validation.
-    app.post "/login", postLogin
+    app.post "/login", security.passport.authenticate(passportStrategy, passportOptions), postLogin
 
-    # Main index.
-    if expresser.settings.passport.enabled
+    # Bind routes based on passport strategy.
+    if passportStrategy?
         app.get "/", security.passport.authenticate(passportStrategy, passportOptions), getIndex
-    else
-        app.get "/", getIndex
-
-    # Admin area.
-    if expresser.settings.passport.enabled
         app.get "/admin", security.passport.authenticate(passportStrategy, passportOptions), getAdmin
     else
+        app.get "/", getIndex
         app.get "/admin", getAdmin
 
     # Upgrader page.
