@@ -1,7 +1,7 @@
 /*
- * jQuery Foundation Joyride Plugin 2.0.3
+ * jQuery Foundation Joyride Plugin 2.1
  * http://foundation.zurb.com
- * Copyright 2012, ZURB
+ * Copyright 2013, ZURB
  * Free to use under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  */
@@ -12,13 +12,13 @@
     'use strict';
 
     var defaults = {
-            'version'              : '2.0.3',
+            'version'              : '2.1',
             'tipLocation'          : 'bottom',  // 'top' or 'bottom' in relation to parent
             'nubPosition'          : 'auto',    // override on a per tooltip bases
             'scroll'               : true,      // whether to scroll to tips
             'scrollSpeed'          : 300,       // Page scrolling speed in milliseconds
             'timer'                : 0,         // 0 = no timer , all other numbers = timer in milliseconds
-            'autoStart'            : true,      // true or false - false tour starts when restart called
+            'autoStart'            : true,     // true or false - false tour starts when restart called
             'startTimerOnClick'    : true,      // true or false - true requires clicking the first button start the timer
             'startOffset'          : 0,         // the index of the tooltip you want to start on (index of the li)
             'nextButton'           : true,      // true or false to control whether a next button is used
@@ -28,6 +28,7 @@
             'cookieMonster'        : false,     // true or false to control whether cookies are used
             'cookieName'           : 'joyride', // Name the cookie you'll use
             'cookieDomain'         : false,     // Will this cookie be attached to a domain, ie. '.notableapp.com'
+            'cookiePath'           : false,     // Set to '/' if you want the cookie for the whole website
             'localStorage'         : false,     // true or false to control whether localstorage is used
             'localStorageKey'      : 'joyride', // Keyname in localstorage
             'tipContainer'         : 'body',    // Where will the tip be attached
@@ -87,7 +88,6 @@
                         if (!$.isFunction($.cookie)) {
                             settings.cookieMonster = false;
                         }
-
 
                         // generate the tips and insert into dom.
                         if ( (!settings.cookieMonster || !$.cookie(settings.cookieName) ) &&
@@ -477,11 +477,14 @@
                 }
 
                 if (!/body/i.test(settings.$target.selector)) {
+                    var
+                        topAdjustment = settings.tipSettings.tipAdjustmentY ? parseInt(settings.tipSettings.tipAdjustmentY) : 0,
+                        leftAdjustment = settings.tipSettings.tipAdjustmentX ? parseInt(settings.tipSettings.tipAdjustmentX) : 0;
 
                     if (methods.bottom()) {
                         settings.$next_tip.css({
-                            top: (settings.$target.offset().top + nub_height + settings.$target.outerHeight()),
-                            left: settings.$target.offset().left});
+                            top: (settings.$target.offset().top + nub_height + settings.$target.outerHeight() + topAdjustment),
+                            left: settings.$target.offset().left + leftAdjustment});
 
                         if (/right/i.test(settings.tipSettings.nubPosition)) {
                             settings.$next_tip.css('left', settings.$target.offset().left - settings.$next_tip.outerWidth() + settings.$target.outerWidth());
@@ -492,24 +495,24 @@
                     } else if (methods.top()) {
 
                         settings.$next_tip.css({
-                            top: (settings.$target.offset().top - settings.$next_tip.outerHeight() - nub_height),
-                            left: settings.$target.offset().left});
+                            top: (settings.$target.offset().top - settings.$next_tip.outerHeight() - nub_height + topAdjustment),
+                            left: settings.$target.offset().left + leftAdjustment});
 
                         methods.nub_position($nub, settings.tipSettings.nubPosition, 'bottom');
 
                     } else if (methods.right()) {
 
                         settings.$next_tip.css({
-                            top: settings.$target.offset().top,
-                            left: (settings.$target.outerWidth() + settings.$target.offset().left + nub_width)});
+                            top: settings.$target.offset().top + topAdjustment,
+                            left: (settings.$target.outerWidth() + settings.$target.offset().left + nub_width) + leftAdjustment});
 
                         methods.nub_position($nub, settings.tipSettings.nubPosition, 'left');
 
                     } else if (methods.left()) {
 
                         settings.$next_tip.css({
-                            top: settings.$target.offset().top,
-                            left: (settings.$target.offset().left - settings.$next_tip.outerWidth() - nub_width)});
+                            top: settings.$target.offset().top + topAdjustment,
+                            left: (settings.$target.offset().left - settings.$next_tip.outerWidth() - nub_width) + leftAdjustment});
 
                         methods.nub_position($nub, settings.tipSettings.nubPosition, 'right');
 
@@ -822,7 +825,7 @@
 
             end : function () {
                 if (settings.cookieMonster) {
-                    $.cookie(settings.cookieName, 'ridden', { expires: 365, domain: settings.cookieDomain });
+                    $.cookie(settings.cookieName, 'ridden', { expires: 365, domain: settings.cookieDomain, path: settings.cookiePath });
                 }
 
                 if (settings.localStorage) {
@@ -835,9 +838,14 @@
                 if(settings.modal && settings.expose){
                     methods.un_expose();
                 }
+                if (settings.$current_tip) {
+                    settings.$current_tip.hide();
+                }
+                if (settings.$li) {
+                    settings.postStepCallback(settings.$li.index(), settings.$current_tip);
+                    settings.postRideCallback(settings.$li.index(), settings.$current_tip);
+                }
                 $('.joyride-modal-bg').hide();
-                settings.$current_tip.hide();
-                settings.postRideCallback(settings.$li.index(), settings.$current_tip);
             },
 
             jquery_check : function () {
