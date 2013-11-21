@@ -1,36 +1,13 @@
-# System APP
+# System App - App JS
 # -----------------------------------------------------------------------------
 # This is the base app controller.
 
-#= require app.instance.coffee
-
-# LIBS
+# ROUTES
 # -----------------------------------------------------------------------------
-#= require lib/jquery.js
-#= require lib/jquery.localdata.js
-#= require lib/jquery.cookie.js
-#= require lib/jquery.joyride.js
-#= require lib/jquery.tinycolourpicker.js
-#= require lib/jsonpath.js
-#= require lib/lodash.js
-#= require lib/backbone.js
-#= require lib/async.js
-#= require lib/raphael.js
-#= require lib/raphael.link.js
-#= require lib/raphael.group.js
-#= require lib/moment.js
-
-# APP MODULES
-# -----------------------------------------------------------------------------
-#= require settings.coffee
-#= require messages.coffee
-#= require vectors.coffee
-#= require dataUtil.coffee
 #= require routes/appRoutes.coffee
 
-# APP MODELS
+# MODELS
 # -----------------------------------------------------------------------------
-#= require model/base.coffee
 #= require model/entityObject.coffee
 #= require model/entityDefinition.coffee
 #= require model/shape.coffee
@@ -44,7 +21,7 @@
 #= require model/user.coffee
 #= require model/userSettings.coffee
 
-# APP DATA, SOCKETS, TUTORIAL
+# DATA, SOCKETS, TUTORIAL
 # -----------------------------------------------------------------------------
 #= require data.coffee
 #= require sockets.coffee
@@ -52,8 +29,6 @@
 
 # MAIN LAYOUT VIEWS
 # -----------------------------------------------------------------------------
-#= require view/baseView.coffee
-#= require view/overlayView.coffee
 #= require view/menuView.coffee
 #= require view/footerView.coffee
 #= require view/alertView.coffee
@@ -102,19 +77,6 @@
 # -----------------------------------------------------------------------------
 #= require manager.coffee
 
-
-# APP VARIABLES
-# -----------------------------------------------------------------------------
-# The `startDate` tells when the app was started (page loaded).
-SystemApp.startDate = new Date()
-
-
-# ROUTES
-# -----------------------------------------------------------------------------
-# All routes should be defined inside the [Routes](routes.html) file.
-SystemApp.routes = null
-
-
 # EVENT DISPATCHERS
 # -----------------------------------------------------------------------------
 # Holds Backbone objects to dispatch events on a global scope.
@@ -127,14 +89,12 @@ SystemApp.mapEvents = null
 SystemApp.menuEvents = null
 SystemApp.serverEvents = null
 
-
 # IDLE TIMER
 # -----------------------------------------------------------------------------
 # This is used to detect fow how long the app has been idle, so it can execute
 # idle based actions (for example, refresh the browser every 12 hours).
 SystemApp.idleTime = 0
 SystemApp.timerIdleUpdate = null
-
 
 # VIEWS
 # -----------------------------------------------------------------------------
@@ -152,16 +112,6 @@ SystemApp.settingsView = null
 SystemApp.scriptEditorView = null
 SystemApp.startView = null
 SystemApp.variableManagerView = null
-
-
-# DOM CACHE
-# -----------------------------------------------------------------------------
-
-# The "loading" image (DOM) which gets visible whenever the app
-# has any major view state change, and the "debug" notice element.
-SystemApp.$loading = null
-SystemApp.$debug = null
-
 
 # INIT AND DISPOSE
 # -----------------------------------------------------------------------------
@@ -296,7 +246,6 @@ SystemApp.dispose = ->
     SystemApp.startView?.dispose()
     SystemApp.variableManagerView?.dispose()
 
-
 # IDLE TIMER AND ACTIONS
 # -----------------------------------------------------------------------------
 
@@ -308,19 +257,15 @@ SystemApp.setIdleTimer = ->
 
 # Tick the idle timer. This will increase the idleTime value by
 # X milliseconds - value defined at the [Settings](settings.html).
-SystemApp.idleTimerTick = ->
-    SystemApp.idleTime += SystemApp.idleTimerInterval
+SystemApp.idleTimerTick = -> SystemApp.idleTime += SystemApp.idleTimerInterval
 
     # Check if page needs to be refreshed based on the `idleRefreshMinutes`
     # value on the [Settings](settings.html).
     idleMinutes = SystemApp.idleTime / 60000
-    if idleMinutes >= SystemApp.Settings.idleRefreshMinutes
-        SystemApp.routes.refresh()
+    SystemApp.routes.refresh() if idleMinutes >= SystemApp.Settings.idleRefreshMinutes
 
 # Reset the idle time counter by setting the variable `idleTime` to 0.
-SystemApp.resetIdleTime = ->
-    SystemApp.idleTime = 0
-
+SystemApp.resetIdleTime = -> SystemApp.idleTime = 0
 
 # LOADING ICON METHODS
 # -----------------------------------------------------------------------------
@@ -334,7 +279,6 @@ SystemApp.toggleLoading = (enabled) ->
         SystemApp.$loading.fadeIn SystemApp.Settings.general.fadeDelay
     else
         SystemApp.$loading.fadeOut SystemApp.Settings.general.fadeDelay
-
 
 # HELPERS
 # -----------------------------------------------------------------------------
@@ -354,7 +298,6 @@ SystemApp.suppressBackspace = (e) ->
         e.preventDefault()
         e.stopPropagation()
         return false
-
 
 # DEBUGGING AND ERROR LOGGING
 # -----------------------------------------------------------------------------
@@ -377,9 +320,6 @@ SystemApp.onError = (msg, url, line) ->
         console.error "FATAL ERROR!", ex
     return false
 
-
 # STARTING
 # -----------------------------------------------------------------------------
-$(document).ready ->
-    # Init the app.
-    SystemApp.init()
+$(document).ready -> SystemApp.init()

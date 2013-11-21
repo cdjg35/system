@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ADMIN STATUS TAB VIEW</h2>
+        <h2 id="admin-status-tab-view">ADMIN STATUS TAB VIEW</h2>
 
         
       
@@ -493,12 +493,12 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AdminStatusTabView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    $butSave: <span class="literal">null</span>      <span class="comment"># the "Save user" button</span>
-    $userGrid: <span class="literal">null</span>     <span class="comment"># the users grid</span></pre></div>
+    <span class="attribute">$butSave</span>: <span class="literal">null</span>      <span class="comment"># the "Save user" button</span>
+    <span class="attribute">$userGrid</span>: <span class="literal">null</span>     <span class="comment"># the users grid</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -506,7 +506,7 @@
         <p>Init the admin view by settings the DOM and events.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()</pre></div>
         
@@ -515,7 +515,7 @@
         <p>Dispose the menu view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -523,7 +523,7 @@
         <p>Set all DOM elements.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#tab-status"</span></pre></div>
         
       
@@ -531,7 +531,7 @@
         <p>Bind events to DOM.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         console.warn <span class="string">"Events"</span></pre></div>
         
       

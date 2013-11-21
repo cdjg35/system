@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ADMIN VIEW</h2>
+        <h2 id="admin-view">ADMIN VIEW</h2>
 
         
       
@@ -493,16 +493,16 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AdminView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    routes: <span class="literal">null</span>
+    <span class="attribute">routes</span>: <span class="literal">null</span>
 
-    tabUsers: <span class="literal">null</span>  <span class="comment"># the "Users and roles" tab view</span>
-    tabTools: <span class="literal">null</span>  <span class="comment"># the "Tools" tab view</span>
+    <span class="attribute">tabUsers</span>: <span class="literal">null</span>  <span class="comment"># the "Users and roles" tab view</span>
+    <span class="attribute">tabTools</span>: <span class="literal">null</span>  <span class="comment"># the "Tools" tab view</span>
 
-    $menu: <span class="literal">null</span>     <span class="comment"># the menu wrapper on the top</span></pre></div>
+    <span class="attribute">$menu</span>: <span class="literal">null</span>     <span class="comment"># the menu wrapper on the top</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -510,7 +510,7 @@
         <p>Init the admin view by settings the DOM and events.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@tabUsers</span> = <span class="keyword">new</span> SystemApp.AdminUsersTabView()
         <span class="property">@tabTools</span> = <span class="keyword">new</span> SystemApp.AdminToolsTabView()
         <span class="property">@routes</span> = <span class="keyword">new</span> SystemApp.AdminRoutes()
@@ -522,7 +522,7 @@
         <p>Dispose the menu view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -530,7 +530,7 @@
         <p>Set all DOM elements.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#wrapper"</span>
         <span class="property">@$menu</span> = $ <span class="string">"#menu"</span></pre></div>
         

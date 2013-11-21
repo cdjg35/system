@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,14 +483,14 @@
 
       
         
-        <h2>System APP</h2>
+        <h2 id="system-app">System APP</h2>
 
         
       
         
         <p>This is the base app controller.</p>
 <p>= require app.instance.coffee</p>
-<h2>LIBS</h2>
+<h2 id="libs">LIBS</h2>
 
         
       
@@ -503,7 +503,7 @@
 = require lib/backbone.js
 = require lib/async.js
 = require lib/moment.js</p>
-<h2>APP UTILS AND MANAGERS</h2>
+<h2 id="app-utils-and-managers">APP UTILS AND MANAGERS</h2>
 
         
       
@@ -512,7 +512,7 @@
 = require messages.coffee
 = require dataUtil.coffee
 = require routes/adminRoutes.coffee</p>
-<h2>APP MODELS</h2>
+<h2 id="app-models">APP MODELS</h2>
 
         
       
@@ -530,14 +530,14 @@
 = require model/variable.coffee
 = require model/user.coffee
 = require model/userSettings.coffee</p>
-<h2>APP DATA, SOCKETS, TUTORIAL</h2>
+<h2 id="app-data-sockets-tutorial">APP DATA, SOCKETS, TUTORIAL</h2>
 
         
       
         
         <p>= require data.coffee
 = require sockets.coffee</p>
-<h2>MAIN LAYOUT VIEWS</h2>
+<h2 id="main-layout-views">MAIN LAYOUT VIEWS</h2>
 
         
       
@@ -546,7 +546,7 @@
 = require view/adminView.coffee
 = require view/admin/usersTabView.coffee
 = require view/admin/toolsTabView.coffee</p>
-<h2>ROUTES</h2>
+<h2 id="routes">ROUTES</h2>
 
         
       
@@ -558,7 +558,7 @@
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -567,13 +567,13 @@
 load data to the Data object, init the menu and finally init the footer.</p>
 
         
-          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">init</span></span> = -&gt;
+          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">init</span> = -&gt;</span>
     window.onerror = SystemApp.onError
     SystemApp.currentView = <span class="keyword">new</span> SystemApp.AdminView()</pre></div>
         
       
         
-        <h2>HELPERS</h2>
+        <h2 id="helpers">HELPERS</h2>
 
         
       
@@ -581,7 +581,7 @@ load data to the Data object, init the menu and finally init the footer.</p>
         <p>Prevent accidental use of backspace which could trigger a <code>history.back()</code> on the page.</p>
 
         
-          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">suppressBackspace</span></span> = (e) -&gt;
+          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">suppressBackspace</span> = <span class="params">(e)</span> -&gt;</span>
     <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">8</span> <span class="keyword">and</span> <span class="keyword">not</span> <span class="regexp">/input|textarea/i</span>.test(e.target.nodeName)
         e.preventDefault()
         e.stopPropagation()
@@ -589,7 +589,7 @@ load data to the Data object, init the menu and finally init the footer.</p>
         
       
         
-        <h2>DEBUGGING AND ERROR LOGGING</h2>
+        <h2 id="debugging-and-error-logging">DEBUGGING AND ERROR LOGGING</h2>
 
         
       
@@ -597,7 +597,7 @@ load data to the Data object, init the menu and finally init the footer.</p>
         <p>Helper method to log to the console, but only if <code>debug</code> is set to true.</p>
 
         
-          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">consoleLog</span></span> = (method, message, obj) -&gt;
+          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">consoleLog</span> = <span class="params">(method, message, obj)</span> -&gt;</span>
     <span class="keyword">if</span> SystemApp.Settings.general.debug
         <span class="keyword">if</span> obj <span class="keyword">isnt</span> <span class="literal">undefined</span>
             console.log method, message, obj
@@ -610,24 +610,24 @@ load data to the Data object, init the menu and finally init the footer.</p>
 on the footer - <a href="alertView.html">Alert View</a>.</p>
 
         
-          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">onError</span></span> = (msg, url, line) -&gt;
+          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">onError</span> = <span class="params">(msg, url, line)</span> -&gt;</span>
     <span class="keyword">try</span>
         console.error msg, url, line
-        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {title: <span class="string">"ERROR!"</span>, message: <span class="string">"<span class="subst">#{msg}</span> (line <span class="subst">#{line}</span>)"</span>, isError: <span class="literal">true</span>}
+        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {<span class="attribute">title</span>: <span class="string">"ERROR!"</span>, <span class="attribute">message</span>: <span class="string">"<span class="subst">#{msg}</span> (line <span class="subst">#{line}</span>)"</span>, <span class="attribute">isError</span>: <span class="literal">true</span>}
     <span class="keyword">catch</span> ex
         console.error <span class="string">"FATAL ERROR!"</span>, ex
     <span class="keyword">return</span> <span class="literal">false</span></pre></div>
         
       
         
-        <h2>STARTING</h2>
+        <h2 id="starting">STARTING</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>$(document).ready -&gt;
+          <div class='highlight'><pre>$(<span class="built_in">document</span>).ready<span class="function"> -&gt;</span>
     SystemApp.Data.init()
     SystemApp.Sockets.start()
     SystemApp.init()</pre></div>

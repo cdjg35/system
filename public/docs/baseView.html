@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>BASE VIEW</h2>
+        <h2 id="base-view">BASE VIEW</h2>
 
         
       
@@ -499,18 +499,18 @@ some basic features like event triggering and elements disposing.</p>
         <p>Holds the parent view. Please note that the parent view does not necessarily the parent DOM container.</p>
 
         
-          <div class='highlight'><pre>    parentView: <span class="literal">null</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">parentView</span>: <span class="literal">null</span></pre></div>
         
       
         
         <p>DOM elements and variables cache. This is set by calling and passing the selectors to <code>domInit</code>.</p>
 
         
-          <div class='highlight'><pre>    dom: {}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">dom</span>: {}</pre></div>
         
       
         
-        <h2>BASE HELPER METHODS</h2>
+        <h2 id="base-helper-methods">BASE HELPER METHODS</h2>
 
         
       
@@ -518,7 +518,7 @@ some basic features like event triggering and elements disposing.</p>
         <p>Init the view and set the parent view (if the <code>p</code> parameter is passed).</p>
 
         
-          <div class='highlight'><pre>    baseInit: (parent) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">baseInit</span>: <span class="function"><span class="params">(parent)</span> =&gt;</span>
         <span class="property">@parentView</span> = parent <span class="keyword">if</span> parent?</pre></div>
         
       
@@ -526,7 +526,7 @@ some basic features like event triggering and elements disposing.</p>
         <p>Dispose the view element and set it to null.</p>
 
         
-          <div class='highlight'><pre>    baseDispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">baseDispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@stopListening</span>()
 
         <span class="keyword">try</span>
@@ -540,7 +540,7 @@ some basic features like event triggering and elements disposing.</p>
         
       
         
-        <h2>DOM HELPERS</h2>
+        <h2 id="dom-helpers">DOM HELPERS</h2>
 
         
       
@@ -551,7 +551,7 @@ Example:
 <code>view.domInit [&quot;#butCreate&quot;, &quot;#txtCreate&quot;, &quot;.tabs&quot;, &quot;.tab-headers&quot;]</code></p>
 
         
-          <div class='highlight'><pre>    domInit: (arr) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">domInit</span>: <span class="function"><span class="params">(arr)</span> =&gt;</span>
         <span class="property">@addToDom</span> selector <span class="keyword">for</span> selector <span class="keyword">in</span> arr</pre></div>
         
       
@@ -559,7 +559,7 @@ Example:
         <p>Add the specified DOM element(s) to the <code>dom</code> cache.</p>
 
         
-          <div class='highlight'><pre>    addToDom: (selector) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addToDom</span>: <span class="function"><span class="params">(selector)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> selector? <span class="keyword">or</span> selector <span class="keyword">is</span> <span class="string">""</span>
 
         domId = SystemApp.DataUtil.normalize selector, <span class="literal">true</span>
@@ -567,7 +567,7 @@ Example:
         
       
         
-        <h2>UI HELPERS</h2>
+        <h2 id="ui-helpers">UI HELPERS</h2>
 
         
       
@@ -575,7 +575,7 @@ Example:
         <p>Set the window title and append the default app name on it.</p>
 
         
-          <div class='highlight'><pre>    setTitle: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setTitle</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             value = <span class="string">"<span class="subst">#{value}</span> - <span class="subst">#{SystemApp.Settings.general.appTitle}</span>"</span>
         <span class="keyword">else</span>
@@ -584,10 +584,215 @@ Example:
         
       
         
+        <p>Remove a DOM element representing a model from the view. This will add the class &quot;removed&quot;
+and then fade the element out.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">modelElementRemove</span>: <span class="function"><span class="params">(el)</span> =&gt;</span>
+        el.removeClass(<span class="string">"active"</span>).addClass <span class="string">"removed"</span>
+        el.fadeOut SystemApp.Settings.general.fadeRemoveDelay, <span class="function"><span class="params">()</span> -&gt;</span> el.remove()</pre></div>
+        
+      
+        
+        <p>Add the specified class to an element.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">addClass</span>: <span class="function"><span class="params">(el, className)</span> =&gt;</span>
+        el?.addClass className</pre></div>
+        
+      
+        
+        <p>Remove the specified class from the element.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">removeClass</span>: <span class="function"><span class="params">(el, className)</span> =&gt;</span>
+        el?.removeClass className</pre></div>
+        
+      
+        
+        <p>Sort the specified list. The default item selector is the tag <code>li</code>, but you can override this.
+To sort descending, set <code>desc</code> to true.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">sortList</span>: <span class="function"><span class="params">(list, selector, desc)</span> =&gt;</span>
+        selector = <span class="string">"li"</span> <span class="keyword">if</span> <span class="keyword">not</span> selector?
+        desc = <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> desc?
+        items = list.children(selector).get()</pre></div>
+        
+      
+        
+        <p>If <code>desc</code> is true, sort descending.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> desc
+            <span class="function"><span class="title">sorter</span> = <span class="params">(a, b)</span> -&gt;</span>
+                a = $ a
+                b = $ b
+                keyA = a.text()
+                keyB = a.text()
+                <span class="keyword">return</span> -<span class="number">1</span> <span class="keyword">if</span> keyA &gt; keyB
+                <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> keyA &lt; keyB
+                <span class="keyword">return</span> <span class="number">0</span>
+            items.sort sorter
+        <span class="keyword">else</span>
+            items.sort()</pre></div>
+        
+      
+        
+        <p>Reappend each item on its correct position after sorting.</p>
+
+        
+          <div class='highlight'><pre>        $.each items, <span class="function"><span class="params">(i, el)</span> -&gt;</span> list.append el</pre></div>
+        
+      
+        
+        <h2 id="form-helpers">FORM HELPERS</h2>
+
+        
+      
+        
+        <p>Validate the specified DOM field. The callback will receive the field value and trigger
+only if validation is OK. Returns an object {result: true/false, error: &quot;error description if any&quot;}.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">validateField</span>: <span class="function"><span class="params">(field, options, successCallback)</span> =&gt;</span>
+        defaultOptions = {<span class="attribute">required</span>: <span class="literal">true</span>, <span class="attribute">warn</span>: <span class="literal">true</span>, <span class="attribute">refocus</span>: <span class="literal">true</span>, <span class="attribute">type</span>: <span class="string">"string"</span>, <span class="attribute">min</span>: <span class="number">0</span>, <span class="attribute">max</span>: <span class="number">99999999</span>}
+        dataOptions = {}
+        value = $.trim field.val()
+        result = <span class="literal">true</span></pre></div>
+        
+      
+        
+        <p>Check if only callback was passed (so use default options).
+ALso make sure options is an object.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> successCallback? <span class="keyword">and</span> _.isFunction options
+            successCallback = options
+            options = {}
+        <span class="keyword">if</span> <span class="keyword">not</span> options?
+            options = {}</pre></div>
+        
+      
+        
+        <p>Check for the &quot;validation&quot; data on the field.</p>
+
+        
+          <div class='highlight'><pre>        validationData = field.data <span class="string">"validation"</span>
+        <span class="keyword">if</span> validationData?</pre></div>
+        
+      
+        
+        <p>Parse options set via data attribute.</p>
+
+        
+          <div class='highlight'><pre>            <span class="keyword">if</span> _.isString(validationData)
+                props = validationData.split <span class="string">","</span>
+                <span class="keyword">for</span> p <span class="keyword">in</span> props
+                    keyValue = p.split <span class="string">":"</span>
+                    dataOptions[keyValue[<span class="number">0</span>]] = keyValue[<span class="number">1</span>]
+                field.data <span class="string">"validation"</span>, dataOptions
+            <span class="keyword">else</span>
+                dataOptions = validationData</pre></div>
+        
+      
+        
+        <p>Set default options: field required, warn and refocus is failed, string type.</p>
+
+        
+          <div class='highlight'><pre>        options = $.extend defaultOptions, dataOptions, options</pre></div>
+        
+      
+        
+        <p>Field value required?</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="string">""</span> <span class="keyword">and</span> options.required
+            error = SystemApp.Messages.valRequired</pre></div>
+        
+      
+        
+        <p>No special chars allowed?</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">else</span> <span class="keyword">if</span> options.type <span class="keyword">is</span> <span class="string">"nosepcial"</span>
+            regex = <span class="keyword">new</span> RegExp <span class="string">"[`\^=\"&lt;&gt;|]+"</span>
+            <span class="keyword">if</span> regex.test value
+                error = SystemApp.Messages.valNoSpecialChars</pre></div>
+        
+      
+        
+        <p>Should be a number?</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">else</span> <span class="keyword">if</span> options.type <span class="keyword">is</span> <span class="string">"number"</span> <span class="keyword">or</span> options.type <span class="keyword">is</span> <span class="string">"numeric"</span>
+            <span class="keyword">if</span> <span class="keyword">not</span> $.isNumeric value
+                error = SystemApp.Messages.valNumeric
+            <span class="keyword">else</span> <span class="keyword">if</span> value &lt; options.min
+                error = SystemApp.Messages.valLessThanMin.replace <span class="string">"#"</span>, options.min
+            <span class="keyword">else</span> <span class="keyword">if</span> value &gt; options.max
+                error = SystemApp.Messages.valMoreThanMax.replace <span class="string">"#"</span>, options.max</pre></div>
+        
+      
+        
+        <p>Should be a hex colour?</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">else</span> <span class="keyword">if</span> options.type <span class="keyword">is</span> <span class="string">"color"</span> <span class="keyword">or</span> options.type <span class="keyword">is</span> <span class="string">"colour"</span>
+            <span class="keyword">if</span> <span class="keyword">not</span> value.match(<span class="regexp">/^#[a-f0-9]{6}$/gi</span>)?
+                error = SystemApp.Messages.valHexColour</pre></div>
+        
+      
+        
+        <p>Should it be an URL?</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">else</span> <span class="keyword">if</span> options.type <span class="keyword">is</span> <span class="string">"url"</span> <span class="keyword">or</span> options.type <span class="keyword">is</span> <span class="string">"uri"</span>
+            regex = <span class="keyword">new</span> RegExp <span class="string">"^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"</span>
+            <span class="keyword">if</span> <span class="keyword">not</span> regex.test value
+                error = SystemApp.Messages.valUrl</pre></div>
+        
+      
+        
+        <p>Set result to false if there&#39;s an error.</p>
+
+        
+          <div class='highlight'><pre>        result = <span class="literal">false</span> <span class="keyword">if</span> error?</pre></div>
+        
+      
+        
+        <p>Warn and refocus if validation failed.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> result
+            <span class="keyword">if</span> options.warn
+                <span class="property">@warnField</span> field
+            <span class="keyword">if</span> options.refocus
+                field.focus()</pre></div>
+        
+      
+        
+        <p>Callback only if valid.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">else</span> <span class="keyword">if</span> successCallback?
+            successCallback value</pre></div>
+        
+      
+        
+        <p>Debug log.</p>
+
+        
+          <div class='highlight'><pre>        SystemApp.consoleLog <span class="string">"BaseView.validateField"</span>, value, options, result
+
+        <span class="keyword">return</span> {<span class="attribute">result</span>: result, <span class="attribute">error</span>: error}</pre></div>
+        
+      
+        
         <p>Warn the user by blinking the specified field with a red background.</p>
 
         
-          <div class='highlight'><pre>    warnField: (field) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">warnField</span>: <span class="function"><span class="params">(field)</span> =&gt;</span>
         extraMs = SystemApp.Settings.general.elementBlinkInterval / <span class="number">2</span>
         redClass = <span class="string">"error"</span>
 
@@ -603,7 +808,7 @@ Example:
         <p>Show a &quot;saved&quot; message next to the specified field, and fade it out after a few seconds.</p>
 
         
-          <div class='highlight'><pre>    fieldSaved: (field) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fieldSaved</span>: <span class="function"><span class="params">(field)</span> =&gt;</span>
         parent = field.parent()
         parent = parent.parent() <span class="keyword">if</span> parent.hasClass(<span class="string">"toggle"</span>)</pre></div>
         
@@ -644,73 +849,11 @@ but only if a &quot;saved&quot; is not present yet.</p>
         <p>Fade out and then remove from the DOM.</p>
 
         
-          <div class='highlight'><pre>            alert.fadeOut SystemApp.Settings.general.fadeRemoveDelay * <span class="number">2</span>, () -&gt; alert.remove()</pre></div>
+          <div class='highlight'><pre>            alert.fadeOut SystemApp.Settings.general.fadeRemoveDelay * <span class="number">2</span>, <span class="function"><span class="params">()</span> -&gt;</span> alert.remove()</pre></div>
         
       
         
-        <p>Remove a DOM element representing a model from the view. This will add the class &quot;removed&quot;
-and then fade the element out.</p>
-
-        
-          <div class='highlight'><pre>    modelElementRemove: (el) =&gt;
-        el.removeClass(<span class="string">"active"</span>).addClass <span class="string">"removed"</span>
-        el.fadeOut SystemApp.Settings.general.fadeRemoveDelay, () -&gt; el.remove()</pre></div>
-        
-      
-        
-        <p>Add the specified class to an element.</p>
-
-        
-          <div class='highlight'><pre>    addClass: (el, className) =&gt;
-        el?.addClass className</pre></div>
-        
-      
-        
-        <p>Remove the specified class from the element.</p>
-
-        
-          <div class='highlight'><pre>    removeClass: (el, className) =&gt;
-        el?.removeClass className</pre></div>
-        
-      
-        
-        <p>Sort the specified list. The default item selector is the tag <code>li</code>, but you can override this.
-To sort descending, set <code>desc</code> to true.</p>
-
-        
-          <div class='highlight'><pre>    sortList: (list, selector, desc) =&gt;
-        selector = <span class="string">"li"</span> <span class="keyword">if</span> <span class="keyword">not</span> selector?
-        desc = <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> desc?
-        items = list.children(selector).get()</pre></div>
-        
-      
-        
-        <p>If <code>desc</code> is true, sort descending.</p>
-
-        
-          <div class='highlight'><pre>        <span class="keyword">if</span> desc
-            <span class="function"><span class="title">sorter</span></span> = (a, b) -&gt;
-                a = $ a
-                b = $ b
-                keyA = a.text()
-                keyB = a.text()
-                <span class="keyword">return</span> -<span class="number">1</span> <span class="keyword">if</span> keyA &gt; keyB
-                <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> keyA &lt; keyB
-                <span class="keyword">return</span> <span class="number">0</span>
-            items.sort sorter
-        <span class="keyword">else</span>
-            items.sort()</pre></div>
-        
-      
-        
-        <p>Reappend each item on its correct position after sorting.</p>
-
-        
-          <div class='highlight'><pre>        $.each items, (i, el) -&gt; list.append el</pre></div>
-        
-      
-        
-        <h2>MODIFIER KEY HELPERS</h2>
+        <h2 id="modifier-key-helpers">MODIFIER KEY HELPERS</h2>
 
         
       
@@ -719,7 +862,7 @@ To sort descending, set <code>desc</code> to true.</p>
 The default combination is &quot;Ctrl + Left Click&quot;, set on the <a href="settings.html">Settings</a>.</p>
 
         
-          <div class='highlight'><pre>    isEventDelete: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">isEventDelete</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> e?
             <span class="keyword">return</span> <span class="literal">false</span>
         <span class="keyword">return</span> <span class="property">@testModifierEvent</span>(e, SystemApp.Data.userSettings.modifierDelete())</pre></div>
@@ -730,7 +873,7 @@ The default combination is &quot;Ctrl + Left Click&quot;, set on the <a href="se
 The default combination is &quot;Shift + Left Click&quot;, set on the <a href="settings.html">Settings</a>.</p>
 
         
-          <div class='highlight'><pre>    isEventMultiple: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">isEventMultiple</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> e?
             <span class="keyword">return</span> <span class="literal">false</span>
         <span class="keyword">return</span> <span class="property">@testModifierEvent</span>(e, SystemApp.Data.userSettings.modifierMultiple())</pre></div>
@@ -741,7 +884,7 @@ The default combination is &quot;Shift + Left Click&quot;, set on the <a href="s
 The default combination is &quot;Right Click&quot;, set on the <a href="settings.html">Settings</a>.</p>
 
         
-          <div class='highlight'><pre>    isEventToBack: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">isEventToBack</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> e?
             <span class="keyword">return</span> <span class="literal">false</span>
         <span class="keyword">return</span> <span class="property">@testModifierEvent</span>(e, SystemApp.Data.userSettings.modifierToBack())</pre></div>
@@ -751,7 +894,7 @@ The default combination is &quot;Right Click&quot;, set on the <a href="settings
         <p>Test a modifier key combination against a keyboard / mouse event.</p>
 
         
-          <div class='highlight'><pre>    testModifierEvent: (e, modifier) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">testModifierEvent</span>: <span class="function"><span class="params">(e, modifier)</span> =&gt;</span>
         hasLeftClick = modifier.indexOf(<span class="string">"leftclick"</span>) &gt;= <span class="number">0</span>
         hasRightClick = modifier.indexOf(<span class="string">"rightclick"</span>) &gt;= <span class="number">0</span>
         hasCtrl = modifier.indexOf(<span class="string">"ctrl"</span>) &gt;= <span class="number">0</span>

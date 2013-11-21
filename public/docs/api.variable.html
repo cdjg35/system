@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>System API: Variable</h2>
+        <h2 id="system-api-variable">System API: Variable</h2>
 
         
       
@@ -495,7 +495,7 @@
         
       
         
-        <h2>GET</h2>
+        <h2 id="get">GET</h2>
 
         
       
@@ -503,14 +503,14 @@
         <p>Return <a href="variable.html">Variables</a> based on the specified filter.</p>
 
         
-          <div class='highlight'><pre>    get: (filter) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">get</span>: <span class="function"><span class="params">(filter)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Variable.get"</span>, filter
 
         <span class="keyword">return</span> SystemApp.Api.getFromCollection SystemApp.Data.variables, filter</pre></div>
         
       
         
-        <h2>CREATE, UPDATE, DELETE</h2>
+        <h2 id="create-update-delete">CREATE, UPDATE, DELETE</h2>
 
         
       
@@ -518,7 +518,7 @@
         <p>Create a <a href="variable.html">Variable</a> map with the specified properties.</p>
 
         
-          <div class='highlight'><pre>    create: (props) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">create</span>: <span class="function"><span class="params">(props)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Variable.create"</span>, props
 
         variable = SystemApp.Data.variables.create props

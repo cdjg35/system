@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ALERT VIEW</h2>
+        <h2 id="alert-view">ALERT VIEW</h2>
 
         
       
@@ -506,35 +506,35 @@ receives an alert object with the following possible properties:</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AlertView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    serverErrors: []          <span class="comment"># keep a list of errors that happened on the server side</span>
-    queueFooter: []           <span class="comment"># queue of footer alerts to be displayed</span>
-    queueTooltip: []          <span class="comment"># queue of tooltip alerts to be displayed</span>
-    isFooterVisible: <span class="literal">false</span>    <span class="comment"># is the footer alert being displayed at the moment?</span>
-    isTooltipVisible: <span class="literal">false</span>   <span class="comment"># is the tooltip alert being displayed at the moment?</span>
-    lastFooterAlert: <span class="literal">null</span>     <span class="comment"># holds the last footer alert</span></pre></div>
+    <span class="attribute">serverErrors</span>: []          <span class="comment"># keep a list of errors that happened on the server side</span>
+    <span class="attribute">queueFooter</span>: []           <span class="comment"># queue of footer alerts to be displayed</span>
+    <span class="attribute">queueTooltip</span>: []          <span class="comment"># queue of tooltip alerts to be displayed</span>
+    <span class="attribute">isFooterVisible</span>: <span class="literal">false</span>    <span class="comment"># is the footer alert being displayed at the moment?</span>
+    <span class="attribute">isTooltipVisible</span>: <span class="literal">false</span>   <span class="comment"># is the tooltip alert being displayed at the moment?</span>
+    <span class="attribute">lastFooterAlert</span>: <span class="literal">null</span>     <span class="comment"># holds the last footer alert</span></pre></div>
         
       
         
-        <h2>DOM CACHE</h2>
+        <h2 id="dom-cache">DOM CACHE</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    $wrapperFooter: <span class="literal">null</span>   <span class="comment"># the wrapper for the footer alert</span>
-    $titleFooter: <span class="literal">null</span>     <span class="comment"># footer title element</span>
-    $msgFooter: <span class="literal">null</span>       <span class="comment"># footer message span</span>
-    $timeFooter: <span class="literal">null</span>      <span class="comment"># footer timespan element</span>
+          <div class='highlight'><pre>    <span class="attribute">$wrapperFooter</span>: <span class="literal">null</span>   <span class="comment"># the wrapper for the footer alert</span>
+    <span class="attribute">$titleFooter</span>: <span class="literal">null</span>     <span class="comment"># footer title element</span>
+    <span class="attribute">$msgFooter</span>: <span class="literal">null</span>       <span class="comment"># footer message span</span>
+    <span class="attribute">$timeFooter</span>: <span class="literal">null</span>      <span class="comment"># footer timespan element</span>
 
-    $wrapperTooltip: <span class="literal">null</span>  <span class="comment"># the wrapper for the tooltip (overlay) alert</span>
-    $titleTooltip: <span class="literal">null</span>    <span class="comment"># tooltip title element</span>
-    $msgTooltip: <span class="literal">null</span>      <span class="comment"># tooltip message span</span>
-    $timeTooltip: <span class="literal">null</span>     <span class="comment"># tooltip timespan element</span></pre></div>
+    <span class="attribute">$wrapperTooltip</span>: <span class="literal">null</span>  <span class="comment"># the wrapper for the tooltip (overlay) alert</span>
+    <span class="attribute">$titleTooltip</span>: <span class="literal">null</span>    <span class="comment"># tooltip title element</span>
+    <span class="attribute">$msgTooltip</span>: <span class="literal">null</span>      <span class="comment"># tooltip message span</span>
+    <span class="attribute">$timeTooltip</span>: <span class="literal">null</span>     <span class="comment"># tooltip timespan element</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -542,7 +542,7 @@ receives an alert object with the following possible properties:</p>
         <p>Init the alert view control.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()</pre></div>
         
@@ -551,8 +551,8 @@ receives an alert object with the following possible properties:</p>
         <p>Dispose the alert cview control.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
-        $(document).<span class="literal">off</span> <span class="string">"keydown"</span>, <span class="property">@keyDown</span>
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).<span class="literal">off</span> <span class="string">"keydown"</span>, <span class="property">@keyDown</span>
 
         SystemApp.alertEvents.<span class="literal">off</span> <span class="string">"footer"</span>, <span class="property">@showFooter</span>
         SystemApp.alertEvents.<span class="literal">off</span> <span class="string">"tooltip"</span>, <span class="property">@showTooltip</span>
@@ -574,7 +574,7 @@ receives an alert object with the following possible properties:</p>
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@$wrapperFooter</span> = $ <span class="string">"#alert-footer"</span>
         <span class="property">@$titleFooter</span> = <span class="property">@$wrapperFooter</span>.children <span class="string">"label"</span>
         <span class="property">@$msgFooter</span> = <span class="property">@$wrapperFooter</span>.children <span class="string">"span"</span>
@@ -591,8 +591,8 @@ receives an alert object with the following possible properties:</p>
 added and removed from all collections available on the <a href="data.html">data store</a>.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
-        $(document).keydown <span class="property">@keyDown</span>
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).keydown <span class="property">@keyDown</span>
 
         SystemApp.alertEvents.<span class="literal">on</span> <span class="string">"footer"</span>, <span class="property">@showFooter</span>
         SystemApp.alertEvents.<span class="literal">on</span> <span class="string">"tooltip"</span>, <span class="property">@showTooltip</span>
@@ -600,7 +600,7 @@ added and removed from all collections available on the <a href="data.html">data
         
       
         
-        <h2>LISTEN TO MODEL UPDATES</h2>
+        <h2 id="listen-to-model-updates">LISTEN TO MODEL UPDATES</h2>
 
         
       
@@ -610,7 +610,7 @@ or removed from the <a href="data.html">data</a> collections. Set <code>listen</
 listening to these events.</p>
 
         
-          <div class='highlight'><pre>    listenToModels: (listen) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">listenToModels</span>: <span class="function"><span class="params">(listen)</span> =&gt;</span>
         <span class="keyword">for</span> collection <span class="keyword">in</span> SystemApp.Data.allCollections
             collection.<span class="literal">off</span> <span class="string">"add"</span>, <span class="property">@modelAdded</span>
             collection.<span class="literal">off</span> <span class="string">"remove"</span>, <span class="property">@modelRemoved</span>
@@ -627,29 +627,29 @@ listening to these events.</p>
         <p>Listen to model updates.</p>
 
         
-          <div class='highlight'><pre>    modelAdded: (model) =&gt;
-        <span class="property">@showFooter</span> {savedModel: model}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">modelAdded</span>: <span class="function"><span class="params">(model)</span> =&gt;</span>
+        <span class="property">@showFooter</span> {<span class="attribute">savedModel</span>: model}</pre></div>
         
       
         
         <p>Listen to model removals.</p>
 
         
-          <div class='highlight'><pre>    modelRemoved: (model) =&gt;
-        <span class="property">@showFooter</span> {removedModel: model}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">modelRemoved</span>: <span class="function"><span class="params">(model)</span> =&gt;</span>
+        <span class="property">@showFooter</span> {<span class="attribute">removedModel</span>: model}</pre></div>
         
       
         
         <p>Listen to model errors (while saving or fetching from server).</p>
 
         
-          <div class='highlight'><pre>    modelError: (model, xhr) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">modelError</span>: <span class="function"><span class="params">(model, xhr)</span> =&gt;</span>
         message = SystemApp.Messages.errParseModel + <span class="string">" "</span> + xhr.responseText
-        <span class="property">@showFooter</span> {isError: <span class="literal">true</span>, title: model.typeName, message: message}</pre></div>
+        <span class="property">@showFooter</span> {<span class="attribute">isError</span>: <span class="literal">true</span>, <span class="attribute">title</span>: model.typeName, <span class="attribute">message</span>: message}</pre></div>
         
       
         
-        <h2>FOOTER ALERTS</h2>
+        <h2 id="footer-alerts">FOOTER ALERTS</h2>
 
         
       
@@ -657,7 +657,7 @@ listening to these events.</p>
         <p>Shows the specified title and message on the footer area.</p>
 
         
-          <div class='highlight'><pre>    showFooter: (alertObj) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showFooter</span>: <span class="function"><span class="params">(alertObj)</span> =&gt;</span>
         alertObj.timestamp = <span class="keyword">new</span> Date()
 
         <span class="keyword">if</span> <span class="property">@lastFooterAlert</span>?
@@ -681,7 +681,7 @@ listening to these events.</p>
         <p>Get the next footer alert from the queue and display it.</p>
 
         
-          <div class='highlight'><pre>    nextFooter: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">nextFooter</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@isFooterVisible</span> <span class="keyword">or</span> <span class="property">@queueFooter</span>.length &lt; <span class="number">1</span>
             <span class="keyword">return</span>
 
@@ -699,6 +699,8 @@ Otherwise use the <code>title</code> and <code>message</code> properties of the 
           <div class='highlight'><pre>        <span class="keyword">if</span> alertObj.savedModel?
             <span class="keyword">if</span> alertObj.savedModel.text?
                 title = alertObj.savedModel.text()
+            <span class="keyword">else</span> <span class="keyword">if</span> alertObj.savedModel.name?
+                title = alertObj.savedModel.name()
             <span class="keyword">else</span> <span class="keyword">if</span> alertObj.savedModel.friendlyId?
                 title = alertObj.savedModel.friendlyId()
             <span class="keyword">else</span>
@@ -707,6 +709,8 @@ Otherwise use the <code>title</code> and <code>message</code> properties of the 
         <span class="keyword">else</span> <span class="keyword">if</span> alertObj.removedModel?
             <span class="keyword">if</span> alertObj.removedModel.text?
                 title = alertObj.removedModel.text()
+            <span class="keyword">else</span> <span class="keyword">if</span> alertObj.removedModel.name?
+                title = alertObj.removedModel.name()
             <span class="keyword">else</span> <span class="keyword">if</span> alertObj.removedModel.friendlyId?
                 title = alertObj.removedModel.friendlyId()
             <span class="keyword">else</span>
@@ -764,13 +768,13 @@ Otherwise use the <code>title</code> and <code>message</code> properties of the 
         <p>Hide the footer alert and call <code>nextFooter</code> again to check for new alerts.</p>
 
         
-          <div class='highlight'><pre>    hideFooter: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hideFooter</span>:<span class="function"> =&gt;</span>
         <span class="property">@isFooterVisible</span> = <span class="literal">false</span>
         <span class="property">@$wrapperFooter</span>.fadeOut SystemApp.Settings.alert.opacityInterval, <span class="property">@nextFooter</span></pre></div>
         
       
         
-        <h2>TOOLTIP ALERTS</h2>
+        <h2 id="tooltip-alerts">TOOLTIP ALERTS</h2>
 
         
       
@@ -778,7 +782,7 @@ Otherwise use the <code>title</code> and <code>message</code> properties of the 
         <p>Show a tooltip alert.</p>
 
         
-          <div class='highlight'><pre>    showTooltip: (alertObj) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showTooltip</span>: <span class="function"><span class="params">(alertObj)</span> =&gt;</span>
         alertObj.timestamp = <span class="keyword">new</span> Date()</pre></div>
         
       
@@ -800,7 +804,7 @@ Otherwise use the <code>title</code> and <code>message</code> properties of the 
         <p>Get the next tooltip alert from the queue and display it.</p>
 
         
-          <div class='highlight'><pre>    nextTooltip: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">nextTooltip</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@isTooltipVisible</span> <span class="keyword">or</span> <span class="property">@queueTooltip</span>.length &lt; <span class="number">1</span>
             <span class="keyword">return</span>
 
@@ -865,13 +869,13 @@ Otherwise use the <code>title</code> and <code>message</code> properties of the 
         <p>Hide a tooltip alert.</p>
 
         
-          <div class='highlight'><pre>    hideTooltip: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hideTooltip</span>:<span class="function"> =&gt;</span>
         <span class="property">@isTooltipVisible</span> = <span class="literal">false</span>
         <span class="property">@$wrapperTooltip</span>.fadeOut SystemApp.Settings.alert.opacityInterval, <span class="property">@nextTooltip</span></pre></div>
         
       
         
-        <h2>SERVER ALERTS</h2>
+        <h2 id="server-alerts">SERVER ALERTS</h2>
 
         
       
@@ -880,13 +884,13 @@ Otherwise use the <code>title</code> and <code>message</code> properties of the 
 This is triggered using Socket.IO.</p>
 
         
-          <div class='highlight'><pre>    showServerError: (err) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showServerError</span>: <span class="function"><span class="params">(err)</span> =&gt;</span>
         <span class="keyword">if</span> SystemApp.Settings.general.debug
-            <span class="property">@showFooter</span> {isError: <span class="literal">true</span>, title: SystemApp.Messages.server + <span class="string">" "</span> + err.title, message: err.message}</pre></div>
+            <span class="property">@showFooter</span> {<span class="attribute">isError</span>: <span class="literal">true</span>, <span class="attribute">title</span>: SystemApp.Messages.server + <span class="string">" "</span> + err.title, <span class="attribute">message</span>: err.message}</pre></div>
         
       
         
-        <h2>KEYBOARD EVENTS</h2>
+        <h2 id="keyboard-events">KEYBOARD EVENTS</h2>
 
         
       
@@ -894,7 +898,7 @@ This is triggered using Socket.IO.</p>
         <p>When user presses the ESC key, hide the tooltip alert (if there&#39;s one visible).</p>
 
         
-          <div class='highlight'><pre>    keyDown: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">keyDown</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         keyCode = e.keyCode
         <span class="keyword">if</span> keyCode <span class="keyword">is</span> <span class="number">27</span>
             <span class="property">@hideTooltip</span>()</pre></div>

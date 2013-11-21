@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>AUDIT ALERT MODEL</h2>
+        <h2 id="audit-alert-model">AUDIT ALERT MODEL</h2>
 
         
       
@@ -494,17 +494,17 @@ static values.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AuditEvent</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"AuditEvent"</span>
-    defaults:
-        active: <span class="literal">true</span>
+    <span class="attribute">typeName</span>: <span class="string">"AuditEvent"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">active</span>: <span class="literal">true</span>
 
-    relations:
-        actions: SystemApp.EventActionCollection
-        rules: SystemApp.EventRuleCollection</pre></div>
+    <span class="attribute">relations</span>:
+        <span class="attribute">actions</span>: SystemApp.EventActionCollection
+        <span class="attribute">rules</span>: SystemApp.EventRuleCollection</pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -512,7 +512,7 @@ static values.</p>
         <p>Helper to get / set the description of the entity.</p>
 
         
-          <div class='highlight'><pre>    description: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">description</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"description"</span>, value
         <span class="property">@get</span> <span class="string">"description"</span></pre></div>
@@ -522,7 +522,7 @@ static values.</p>
         <p>Helper to get / set the alert rules collection.</p>
 
         
-          <div class='highlight'><pre>    rules: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">rules</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             currentValue = <span class="property">@get</span> <span class="string">"rules"</span>
             <span class="keyword">if</span> currentValue?.typeName?
@@ -539,7 +539,7 @@ static values.</p>
         <p>Helper to get / set the alert actions collection.</p>
 
         
-          <div class='highlight'><pre>    actions: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">actions</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             currentValue = <span class="property">@get</span> <span class="string">"actions"</span>
             <span class="keyword">if</span> currentValue?.typeName?
@@ -556,14 +556,14 @@ static values.</p>
         <p>Helper to get / set the alert active (true or false).</p>
 
         
-          <div class='highlight'><pre>    active: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">active</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"active"</span>, value
         <span class="property">@get</span> <span class="string">"active"</span></pre></div>
         
       
         
-        <h2>METHODS</h2>
+        <h2 id="methods">METHODS</h2>
 
         
       
@@ -572,24 +572,24 @@ static values.</p>
 or an empty array if no rule was matched (so no action to do).</p>
 
         
-          <div class='highlight'><pre>    run: (contextValues) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">run</span>: <span class="function"><span class="params">(contextValues)</span> =&gt;</span>
         matchedRules = []
 
         <span class="keyword">if</span> <span class="property">@active</span>()
-            _.each <span class="property">@rules</span>().models, (rule) =&gt;
+            _.each <span class="property">@rules</span><span class="function"><span class="params">()</span>.<span class="title">models</span>, <span class="params">(rule)</span> =&gt;</span>
                 <span class="keyword">if</span> rule.test(contextValues)
                     matchedRules.push(rule)
 
         <span class="keyword">if</span> matchedRules.length &gt; <span class="number">0</span>
-            <span class="property">@trigger</span> <span class="string">"<span class="subst">#{@id}</span>:enable"</span>, <span class="keyword">this</span>
+            <span class="property">@trigger</span> <span class="string">"<span class="subst">#{<span class="property">@id</span>}</span>:enable"</span>, <span class="keyword">this</span>
         <span class="keyword">else</span>
-            <span class="property">@trigger</span> <span class="string">"<span class="subst">#{@id}</span>:disable"</span>, <span class="keyword">this</span>
+            <span class="property">@trigger</span> <span class="string">"<span class="subst">#{<span class="property">@id</span>}</span>:disable"</span>, <span class="keyword">this</span>
 
         <span class="keyword">return</span> matchedRules</pre></div>
         
       
         
-        <h2>AUDIT ALERT COLLECTION</h2>
+        <h2 id="audit-alert-collection">AUDIT ALERT COLLECTION</h2>
 
         
       
@@ -598,16 +598,16 @@ or an empty array if no rule was matched (so no action to do).</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AuditEventCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"AuditEventCollection"</span>
-    model: SystemApp.AuditEvent
-    url: SystemApp.Settings.auditEvent.url</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"AuditEventCollection"</span>
+    <span class="attribute">model</span>: SystemApp.AuditEvent
+    <span class="attribute">url</span>: SystemApp.Settings.auditEvent.url</pre></div>
         
       
         
         <p>Set the comparator function to order the audit events collection by title.</p>
 
         
-          <div class='highlight'><pre>    comparator: (auditEvent) -&gt; <span class="keyword">return</span> auditEvent.friendlyId()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(auditEvent)</span> -&gt;</span> <span class="keyword">return</span> auditEvent.friendlyId()</pre></div>
         
       
       <div class="fleur">h</div>

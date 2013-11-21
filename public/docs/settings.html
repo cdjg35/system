@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>DEFAULT APP CLIENT SETTINGS</h2>
+        <h2 id="default-app-client-settings">DEFAULT APP CLIENT SETTINGS</h2>
 
         
       
@@ -497,14 +497,14 @@ please edit (or create) the <code>settings.json</code> file on the same director
         
       
         
-        <h2>GENERAL</h2>
+        <h2 id="general">GENERAL</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    general:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">general</span>:</pre></div>
         
       
         
@@ -512,105 +512,105 @@ please edit (or create) the <code>settings.json</code> file on the same director
 If not set, it will be <code>false</code> on production environments and <code>true</code> on all other environments.</p>
 
         
-          <div class='highlight'><pre>        debug: <span class="literal">null</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">debug</span>: <span class="literal">null</span></pre></div>
         
       
         
         <p>Set the profile mode. If true, performance profiles will be triggered automatically.</p>
 
         
-          <div class='highlight'><pre>        profile: <span class="literal">false</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">profile</span>: <span class="literal">false</span></pre></div>
         
       
         
         <p>The title of the app.</p>
 
         
-          <div class='highlight'><pre>        appTitle: <span class="string">"Zalando System"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">appTitle</span>: <span class="string">"Zalando System"</span></pre></div>
         
       
         
         <p>Auto refresh the browser window at the specified time.</p>
 
         
-          <div class='highlight'><pre>        autoRefreshTime: <span class="string">"0700"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">autoRefreshTime</span>: <span class="string">"0700"</span></pre></div>
         
       
         
         <p>The base url where to get JSON data (default is &quot;json/&quot;).</p>
 
         
-          <div class='highlight'><pre>        baseJsonUrl: <span class="string">"json/"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">baseJsonUrl</span>: <span class="string">"json/"</span></pre></div>
         
       
         
         <p>The special key / character used for data bindings.</p>
 
         
-          <div class='highlight'><pre>        dataBindingKey: <span class="string">"#"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">dataBindingKey</span>: <span class="string">"#"</span></pre></div>
         
       
         
         <p>Interval when blinking a form or HTMl field, in milliseconds.</p>
 
         
-          <div class='highlight'><pre>        elementBlinkInterval: <span class="number">150</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">elementBlinkInterval</span>: <span class="number">150</span></pre></div>
         
       
         
         <p>Time in ms to fade in / out when using the show / hide methods of views.</p>
 
         
-          <div class='highlight'><pre>        fadeDelay: <span class="number">200</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">fadeDelay</span>: <span class="number">200</span></pre></div>
         
       
         
         <p>Time in ms to fade out removed elements on the view.</p>
 
         
-          <div class='highlight'><pre>        fadeRemoveDelay: <span class="number">800</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">fadeRemoveDelay</span>: <span class="number">800</span></pre></div>
         
       
         
         <p>Refresh the browser if the page has been idle for more than X minutes.</p>
 
         
-          <div class='highlight'><pre>        idleRefreshMinutes: <span class="number">60</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">idleRefreshMinutes</span>: <span class="number">60</span></pre></div>
         
       
         
         <p>The idle timer interval (tick every X milliseconds).</p>
 
         
-          <div class='highlight'><pre>        idleTimerInterval: <span class="number">60000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">idleTimerInterval</span>: <span class="number">60000</span></pre></div>
         
       
         
         <p>How many milliseconds to compare when checking local storage expiry date.</p>
 
         
-          <div class='highlight'><pre>        localDataLifespan: <span class="number">120000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">localDataLifespan</span>: <span class="number">120000</span></pre></div>
         
       
         
         <p>How many parallels tasks can run by default? For example when refreshing shape labels.</p>
 
         
-          <div class='highlight'><pre>        maxParallelTasks: <span class="number">10</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">maxParallelTasks</span>: <span class="number">10</span></pre></div>
         
       
         
         <p>Pool time to watch for the fetching property of data collections.</p>
 
         
-          <div class='highlight'><pre>        refetchDelay: <span class="number">600</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">refetchDelay</span>: <span class="number">600</span></pre></div>
         
       
         
         <p>The url to the proxy downloader (used to download external files).</p>
 
         
-          <div class='highlight'><pre>        remoteDownloaderUrl: <span class="string">"downloader/"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">remoteDownloaderUrl</span>: <span class="string">"downloader/"</span></pre></div>
         
       
         
@@ -618,7 +618,7 @@ If not set, it will be <code>false</code> on production environments and <code>t
 Please note that all data will ALWAYS be saved locally.</p>
 
         
-          <div class='highlight'><pre>        saveInterval: <span class="number">2000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">saveInterval</span>: <span class="number">2000</span></pre></div>
         
       
         
@@ -626,173 +626,173 @@ Please note that all data will ALWAYS be saved locally.</p>
 the whole model will be sent.</p>
 
         
-          <div class='highlight'><pre>        savePatch: <span class="literal">false</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">savePatch</span>: <span class="literal">false</span></pre></div>
         
       
         
         <p>Delay when using a text field to search, on the EntityListView for example.</p>
 
         
-          <div class='highlight'><pre>        searchDelay: <span class="number">300</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">searchDelay</span>: <span class="number">300</span></pre></div>
         
       
         
-        <h2>ENTITY DEFINITIONS</h2>
+        <h2 id="entity-definitions">ENTITY DEFINITIONS</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    entityDefinition:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">entityDefinition</span>:</pre></div>
         
       
         
         <p>The default URL where to get entities from.</p>
 
         
-          <div class='highlight'><pre>        url: <span class="string">"json/entitydefinition"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">url</span>: <span class="string">"json/entitydefinition"</span></pre></div>
         
       
         
         <p>Maximum allowed refresh interval for entities, in seconds.</p>
 
         
-          <div class='highlight'><pre>        maxRefreshInterval: <span class="number">864000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">maxRefreshInterval</span>: <span class="number">864000</span></pre></div>
         
       
         
         <p>Minimum allowed refresh interval for entities, in seconds.</p>
 
         
-          <div class='highlight'><pre>        minRefreshInterval: <span class="number">30</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">minRefreshInterval</span>: <span class="number">30</span></pre></div>
         
       
         
         <p>The default attribute which defines the ID of entity objects.</p>
 
         
-          <div class='highlight'><pre>        objectIdAttribute: <span class="string">"id"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">objectIdAttribute</span>: <span class="string">"id"</span></pre></div>
         
       
         
         <p>The default attribute which defines the title or name of entity objects.</p>
 
         
-          <div class='highlight'><pre>        objectTitleAttribute: <span class="string">"name"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">objectTitleAttribute</span>: <span class="string">"name"</span></pre></div>
         
       
         
         <p>The default interval to refresh entity objects, in seconds.</p>
 
         
-          <div class='highlight'><pre>        refreshInterval: <span class="number">600</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">refreshInterval</span>: <span class="number">600</span></pre></div>
         
       
         
         <p>Prefix of DOM IDs set on each row representing an item on the EntityDefinitionView.</p>
 
         
-          <div class='highlight'><pre>        rowListPrefix: <span class="string">"list-entitydefinition-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">rowListPrefix</span>: <span class="string">"list-entitydefinition-"</span></pre></div>
         
       
         
         <p>The URL served as proxy between the server and the entity source URL.</p>
 
         
-          <div class='highlight'><pre>        sourceUrlProxy: <span class="string">"json/entitydata/"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">sourceUrlProxy</span>: <span class="string">"json/entitydata/"</span></pre></div>
         
       
         
-        <h2>ENTITY OBJECTS</h2>
+        <h2 id="entity-objects">ENTITY OBJECTS</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    entityObject:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">entityObject</span>:</pre></div>
         
       
         
         <p>The default URL where to get entities from.</p>
 
         
-          <div class='highlight'><pre>        url: <span class="string">"json/entityobject"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">url</span>: <span class="string">"json/entityobject"</span></pre></div>
         
       
         
         <p>The namespace used for data binding.</p>
 
         
-          <div class='highlight'><pre>        bindingNamespace: <span class="string">"obj"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">bindingNamespace</span>: <span class="string">"obj"</span></pre></div>
         
       
         
         <p>The default attribute which defines the ID of entity objects.</p>
 
         
-          <div class='highlight'><pre>        objectIdAttribute: <span class="string">"id"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">objectIdAttribute</span>: <span class="string">"id"</span></pre></div>
         
       
         
         <p>The default interval to refresh entity objects, in seconds.</p>
 
         
-          <div class='highlight'><pre>        refreshInterval: <span class="number">3600</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">refreshInterval</span>: <span class="number">3600</span></pre></div>
         
       
         
         <p>The default attribute which defines the title or name of entity objects.</p>
 
         
-          <div class='highlight'><pre>        objectTitleAttribute: <span class="string">"name"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">objectTitleAttribute</span>: <span class="string">"name"</span></pre></div>
         
       
         
-        <h2>MAP</h2>
+        <h2 id="map">MAP</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    map:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">map</span>:</pre></div>
         
       
         
         <p>The id of the map background element.</p>
 
         
-          <div class='highlight'><pre>        id: <span class="string">"map-bg"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">id</span>: <span class="string">"map-bg"</span></pre></div>
         
       
         
         <p>The url to the map(s) JSON.</p>
 
         
-          <div class='highlight'><pre>        url: <span class="string">"json/map"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">url</span>: <span class="string">"json/map"</span></pre></div>
         
       
         
         <p>The default background color or image.</p>
 
         
-          <div class='highlight'><pre>        background: <span class="string">"#000000"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">background</span>: <span class="string">"#000000"</span></pre></div>
         
       
         
         <p>Shape or link blink internval in ms.</p>
 
         
-          <div class='highlight'><pre>        blinkInterval: <span class="number">50</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">blinkInterval</span>: <span class="number">50</span></pre></div>
         
       
         
         <p>Shape or link blink internval in ms.</p>
 
         
-          <div class='highlight'><pre>        blinkSlowInterval: <span class="number">250</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">blinkSlowInterval</span>: <span class="number">250</span></pre></div>
         
       
         
@@ -800,14 +800,14 @@ the whole model will be sent.</p>
 before it resets to the &quot;selected shape&quot; border style.</p>
 
         
-          <div class='highlight'><pre>        borderUpdatedDelay: <span class="number">1400</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">borderUpdatedDelay</span>: <span class="number">1400</span></pre></div>
         
       
         
         <p>Radius of rounded shape corners. Used only for rounded shapes.</p>
 
         
-          <div class='highlight'><pre>        cornerRadius: <span class="number">8</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">cornerRadius</span>: <span class="number">8</span></pre></div>
         
       
         
@@ -815,7 +815,7 @@ before it resets to the &quot;selected shape&quot; border style.</p>
 separated by commas.</p>
 
         
-          <div class='highlight'><pre>        displayProps: <span class="string">"name,hostname|ip_internal,internal_ip|ip,external_ip,service_ip"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">displayProps</span>: <span class="string">"name,hostname|ip_internal,internal_ip|ip,external_ip,service_ip"</span></pre></div>
         
       
         
@@ -823,140 +823,140 @@ separated by commas.</p>
 of the database) for every user. This is useful particularly on the demo website.</p>
 
         
-          <div class='highlight'><pre>        enableLocalMap: <span class="literal">true</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">enableLocalMap</span>: <span class="literal">true</span></pre></div>
         
       
         
         <p>On the &quot;Entity List&quot; DOM, add this prefix to each entity list item.</p>
 
         
-          <div class='highlight'><pre>        entityListPrefix: <span class="string">"map-entity-list-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">entityListPrefix</span>: <span class="string">"map-entity-list-"</span></pre></div>
         
       
         
         <p>All grid path elements will have this prefix + line number as ID.</p>
 
         
-          <div class='highlight'><pre>        gridIdPrefix: <span class="string">"map-grid-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">gridIdPrefix</span>: <span class="string">"map-grid-"</span></pre></div>
         
       
         
         <p>The default shape width in pixels.</p>
 
         
-          <div class='highlight'><pre>        gridSizeX: <span class="number">18</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">gridSizeX</span>: <span class="number">18</span></pre></div>
         
       
         
         <p>The default shape height in pixels.</p>
 
         
-          <div class='highlight'><pre>        gridSizeY: <span class="number">14</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">gridSizeY</span>: <span class="number">14</span></pre></div>
         
       
         
         <p>The default grid stroke color.</p>
 
         
-          <div class='highlight'><pre>        gridStroke: <span class="string">"#303030"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">gridStroke</span>: <span class="string">"#303030"</span></pre></div>
         
       
         
         <p>The opacity of action icons when mouse is NOT over them.</p>
 
         
-          <div class='highlight'><pre>        icoActionsOpacity: <span class="number">0.4</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">icoActionsOpacity</span>: <span class="number">0.4</span></pre></div>
         
       
         
         <p>Size of the shape action icons (add label, link).</p>
 
         
-          <div class='highlight'><pre>        icoActionsSize: <span class="number">20</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">icoActionsSize</span>: <span class="number">20</span></pre></div>
         
       
         
         <p>The URL to the shape &quot;add label&quot; icon.</p>
 
         
-          <div class='highlight'><pre>        icoAddLabelUrl: <span class="string">"images/ico-shape-label.png"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">icoAddLabelUrl</span>: <span class="string">"images/ico-shape-label.png"</span></pre></div>
         
       
         
         <p>The URL to the shape &quot;linker&quot; icon.</p>
 
         
-          <div class='highlight'><pre>        icoLinkerUrl: <span class="string">"images/ico-shape-link.png"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">icoLinkerUrl</span>: <span class="string">"images/ico-shape-link.png"</span></pre></div>
         
       
         
         <p>The URL to the shape &quot;resizer&quot; icon.</p>
 
         
-          <div class='highlight'><pre>        icoResizeUrl: <span class="string">"images/ico-shape-resize.png"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">icoResizeUrl</span>: <span class="string">"images/ico-shape-resize.png"</span></pre></div>
         
       
         
         <p>The shape label Y offset relative to the parent shape.</p>
 
         
-          <div class='highlight'><pre>        labelOffsetY: <span class="number">22</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">labelOffsetY</span>: <span class="number">22</span></pre></div>
         
       
         
         <p>The default font size for shape labels.</p>
 
         
-          <div class='highlight'><pre>        labelFontSize: <span class="number">12</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">labelFontSize</span>: <span class="number">12</span></pre></div>
         
       
         
         <p>The refresh interval to update shapes, links and label values.</p>
 
         
-          <div class='highlight'><pre>        labelRefreshInterval: <span class="number">5000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">labelRefreshInterval</span>: <span class="number">5000</span></pre></div>
         
       
         
         <p>ID of the local map, if enabled.</p>
 
         
-          <div class='highlight'><pre>        localMapId: <span class="string">"Local"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">localMapId</span>: <span class="string">"Local"</span></pre></div>
         
       
         
         <p>Maximum zoom amount allowed.</p>
 
         
-          <div class='highlight'><pre>        maxZoom: <span class="number">1.80</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">maxZoom</span>: <span class="number">1.80</span></pre></div>
         
       
         
         <p>Minimum grid size in pixels (distance between grid lines).</p>
 
         
-          <div class='highlight'><pre>        minGridSize: <span class="number">10</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">minGridSize</span>: <span class="number">10</span></pre></div>
         
       
         
         <p>Minimum size of shapes when resizing, whereas 3 means shapes can&#39;t be smaller than 2 grid blocks.</p>
 
         
-          <div class='highlight'><pre>        minGridSizeBlocks: <span class="number">3</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">minGridSizeBlocks</span>: <span class="number">3</span></pre></div>
         
       
         
         <p>The minimum map paper size (width and height) in pixels.</p>
 
         
-          <div class='highlight'><pre>        minPaperSize: <span class="number">500</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">minPaperSize</span>: <span class="number">500</span></pre></div>
         
       
         
         <p>Minimum zoom amount allowed.</p>
 
         
-          <div class='highlight'><pre>        minZoom: <span class="number">0.50</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">minZoom</span>: <span class="number">0.50</span></pre></div>
         
       
         
@@ -964,766 +964,765 @@ of the database) for every user. This is useful particularly on the demo website
 value is defined in seconds. Default is 5 minutes.</p>
 
         
-          <div class='highlight'><pre>        isNewInterval: <span class="number">60</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">isNewInterval</span>: <span class="number">60</span></pre></div>
         
       
         
         <p>The opacity of map shapes when dragging.</p>
 
         
-          <div class='highlight'><pre>        opacityDrag: <span class="number">0.32</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacityDrag</span>: <span class="number">0.32</span></pre></div>
         
       
         
         <p>The opacity interval when animating map shapes, in milliseconds.</p>
 
         
-          <div class='highlight'><pre>        opacityInterval: <span class="number">200</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacityInterval</span>: <span class="number">200</span></pre></div>
         
       
         
         <p>The static opacity for map objects.</p>
 
         
-          <div class='highlight'><pre>        opacityStatic: <span class="number">0.9</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacityStatic</span>: <span class="number">0.9</span></pre></div>
         
       
         
         <p>The default map paper X size.</p>
 
         
-          <div class='highlight'><pre>        paperSizeX: <span class="number">1920</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">paperSizeX</span>: <span class="number">1920</span></pre></div>
         
       
         
         <p>The default map paper Y size.</p>
 
         
-          <div class='highlight'><pre>        paperSizeY: <span class="number">1080</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">paperSizeY</span>: <span class="number">1080</span></pre></div>
         
       
         
         <p>The reference (or target) shape shadow color when creating links.</p>
 
         
-          <div class='highlight'><pre>        refShadowColor: <span class="string">"#FFFF33"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">refShadowColor</span>: <span class="string">"#FFFF33"</span></pre></div>
         
       
         
         <p>The default shape shadow color.</p>
 
         
-          <div class='highlight'><pre>        shadowColor: <span class="string">"#FF6633"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">shadowColor</span>: <span class="string">"#FF6633"</span></pre></div>
         
       
         
         <p>Delay to show the shadow (to make sure it will have the correct size after snaping the shape to the grid).</p>
 
         
-          <div class='highlight'><pre>        shadowDelay: <span class="number">90</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">shadowDelay</span>: <span class="number">90</span></pre></div>
         
       
         
         <p>The default shape shadow opacity.</p>
 
         
-          <div class='highlight'><pre>        shadowOpacity: <span class="number">0.75</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">shadowOpacity</span>: <span class="number">0.75</span></pre></div>
         
       
         
         <p>The default shape shadow strength.</p>
 
         
-          <div class='highlight'><pre>        shadowStrength: <span class="number">5</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">shadowStrength</span>: <span class="number">5</span></pre></div>
         
       
         
         <p>The default padding to apply to labels inside shapes (does not include the border).</p>
 
         
-          <div class='highlight'><pre>        labelPadding: <span class="number">1</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">labelPadding</span>: <span class="number">1</span></pre></div>
         
       
         
         <p>The base URL where map thumbnails are located.</p>
 
         
-          <div class='highlight'><pre>        thumbnailBaseUrl: <span class="string">"images/mapthumbs/"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">thumbnailBaseUrl</span>: <span class="string">"images/mapthumbs/"</span></pre></div>
         
       
         
         <p>The maximum age of the map&#39;s thumbnail before it&#39;s allowed to generate a new thumbnail again, in ms.</p>
 
         
-          <div class='highlight'><pre>        thumbnailExpires: <span class="number">60000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">thumbnailExpires</span>: <span class="number">60000</span></pre></div>
         
       
         
         <p>The default shape title color is white.</p>
 
         
-          <div class='highlight'><pre>        titleColor: <span class="string">"#FFFFFF"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">titleColor</span>: <span class="string">"#FFFFFF"</span></pre></div>
         
       
         
         <p>The default shape title shadow color is black.</p>
 
         
-          <div class='highlight'><pre>        titleShadowColor: <span class="string">"#000000"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">titleShadowColor</span>: <span class="string">"#000000"</span></pre></div>
         
       
         
         <p>The shape title Y offset, upwards (so in this case 10 pixels on top of the shape).</p>
 
         
-          <div class='highlight'><pre>        titleOffsetY: <span class="number">10</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">titleOffsetY</span>: <span class="number">10</span></pre></div>
         
       
         
         <p>How many milliseconds to wait before auto hiding the z-index identifiers on shapes.</p>
 
         
-          <div class='highlight'><pre>        zIndexHideTimeout: <span class="number">5000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">zIndexHideTimeout</span>: <span class="number">5000</span></pre></div>
         
       
         
         <p>Zoom step while zooming (0.10 means will zoom in or out 10%).</p>
 
         
-          <div class='highlight'><pre>        zoomStep: <span class="number">0.10</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">zoomStep</span>: <span class="number">0.10</span></pre></div>
         
       
         
         <p>How long to wait before updating labels whem zooming, in milliseconds.</p>
 
         
-          <div class='highlight'><pre>        zoomUpdateDelay: <span class="number">400</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">zoomUpdateDelay</span>: <span class="number">400</span></pre></div>
         
       
         
         <p>Properties to ignore on the shape details tab.</p>
 
         
-          <div class='highlight'><pre>        ignoreDisplayProps: <span class="string">"0,format,background,foreground,fontSize,stroke,strokeWidth,"</span> +
-                            <span class="string">"map_position_x,map_position_y,physical_machine,sizeX,sizeY,roundedCorners,zIndex"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">ignoreDisplayProps</span>: <span class="string">"0,format,background,foreground,fontSize,stroke,strokeWidth,map_position_x,map_position_y,physical_machine,sizeX,sizeY,roundedCorners,zIndex"</span></pre></div>
         
       
         
-        <h2>MAP MOVER</h2>
+        <h2 id="map-mover">MAP MOVER</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    mapMover:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">mapMover</span>:</pre></div>
         
       
         
         <p>The map shapes mover background.</p>
 
         
-          <div class='highlight'><pre>        background: <span class="string">"#77AAFF"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">background</span>: <span class="string">"#77AAFF"</span></pre></div>
         
       
         
         <p>The map shapes mover opacity.</p>
 
         
-          <div class='highlight'><pre>        opacity: <span class="number">0.25</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacity</span>: <span class="number">0.25</span></pre></div>
         
       
         
         <p>The shape shadow color when moving multiple shapes.</p>
 
         
-          <div class='highlight'><pre>        shadowColor: <span class="string">"#77AAFF"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">shadowColor</span>: <span class="string">"#77AAFF"</span></pre></div>
         
       
         
-        <h2>SHAPES</h2>
+        <h2 id="shapes">SHAPES</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    shape:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">shape</span>:</pre></div>
         
       
         
         <p>The default shape background color.</p>
 
         
-          <div class='highlight'><pre>        background: <span class="string">"#060606"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">background</span>: <span class="string">"#060606"</span></pre></div>
         
       
         
         <p>The namespace used for data binding.</p>
 
         
-          <div class='highlight'><pre>        bindingNamespace: <span class="string">"shape"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">bindingNamespace</span>: <span class="string">"shape"</span></pre></div>
         
       
         
         <p>ID of custom shapes.</p>
 
         
-          <div class='highlight'><pre>        customId: <span class="string">"custom"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">customId</span>: <span class="string">"custom"</span></pre></div>
         
       
         
         <p>Text of custom shapes.</p>
 
         
-          <div class='highlight'><pre>        customText: <span class="string">"Custom"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">customText</span>: <span class="string">"Custom"</span></pre></div>
         
       
         
         <p>The default shape format (rect or circle).</p>
 
         
-          <div class='highlight'><pre>        format: <span class="string">"rect"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">format</span>: <span class="string">"rect"</span></pre></div>
         
       
         
         <p>The default label font size.</p>
 
         
-          <div class='highlight'><pre>        fontSize: <span class="number">10</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">fontSize</span>: <span class="number">10</span></pre></div>
         
       
         
         <p>The foreground color user for the shape&#39;s texts.</p>
 
         
-          <div class='highlight'><pre>        foreground: <span class="string">"#FFFFFF"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">foreground</span>: <span class="string">"#FFFFFF"</span></pre></div>
         
       
         
         <p>Use rounded corners?</p>
 
         
-          <div class='highlight'><pre>        roundedCorners: <span class="literal">false</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">roundedCorners</span>: <span class="literal">false</span></pre></div>
         
       
         
         <p>The default shape X size relative to the grid.</p>
 
         
-          <div class='highlight'><pre>        gridViewSizeX: <span class="number">4</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">gridViewSizeX</span>: <span class="number">4</span></pre></div>
         
       
         
         <p>The default shape Y size relative to the grid.</p>
 
         
-          <div class='highlight'><pre>        gridViewSizeY: <span class="number">4</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">gridViewSizeY</span>: <span class="number">4</span></pre></div>
         
       
         
         <p>The default shape opacity.</p>
 
         
-          <div class='highlight'><pre>        opacity: <span class="number">0.9</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacity</span>: <span class="number">0.9</span></pre></div>
         
       
         
         <p>The default shape stroke / border color.</p>
 
         
-          <div class='highlight'><pre>        stroke: <span class="string">"#F0F0F0"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">stroke</span>: <span class="string">"#F0F0F0"</span></pre></div>
         
       
         
         <p>The default shape stroke width.</p>
 
         
-          <div class='highlight'><pre>        strokeWidth: <span class="number">2</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">strokeWidth</span>: <span class="number">2</span></pre></div>
         
       
         
         <p>The default shape title color.</p>
 
         
-          <div class='highlight'><pre>        titleForeground: <span class="string">"#FFFFFF"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">titleForeground</span>: <span class="string">"#FFFFFF"</span></pre></div>
         
       
         
         <p>The default z-index of shapes.</p>
 
         
-          <div class='highlight'><pre>        zIndex: <span class="number">2</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">zIndex</span>: <span class="number">2</span></pre></div>
         
       
         
-        <h2>LINK</h2>
+        <h2 id="link">LINK</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    link:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">link</span>:</pre></div>
         
       
         
         <p>Default arrow size.</p>
 
         
-          <div class='highlight'><pre>        arrowSize: <span class="number">12</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">arrowSize</span>: <span class="number">12</span></pre></div>
         
       
         
         <p>Default source arrow. 0 = no arrow, 1 = filled arrow, 2 = open arrow</p>
 
         
-          <div class='highlight'><pre>        arrowSource: <span class="number">0</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">arrowSource</span>: <span class="number">0</span></pre></div>
         
       
         
         <p>Default target arrow. 0 = no arrow, 1 = filled arrow, 2 = open arrow</p>
 
         
-          <div class='highlight'><pre>        arrowTarget: <span class="number">0</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">arrowTarget</span>: <span class="number">0</span></pre></div>
         
       
         
         <p>The opacity of the circle that appear on shapes to create links.</p>
 
         
-          <div class='highlight'><pre>        creatorOpacity: <span class="number">0.2</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">creatorOpacity</span>: <span class="number">0.2</span></pre></div>
         
       
         
         <p>The new link stroke color.</p>
 
         
-          <div class='highlight'><pre>        creatorStroke: <span class="string">"#FF6666"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">creatorStroke</span>: <span class="string">"#FF6666"</span></pre></div>
         
       
         
         <p>The new link width / strength.</p>
 
         
-          <div class='highlight'><pre>        creatorWidth: <span class="number">2</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">creatorWidth</span>: <span class="number">2</span></pre></div>
         
       
         
         <p>The label font size.</p>
 
         
-          <div class='highlight'><pre>        fontSize: <span class="number">12</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">fontSize</span>: <span class="number">12</span></pre></div>
         
       
         
         <p>The color of the link labels.</p>
 
         
-          <div class='highlight'><pre>        foreground: <span class="string">"#CCEEFF"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">foreground</span>: <span class="string">"#CCEEFF"</span></pre></div>
         
       
         
         <p>The default link label opacity.</p>
 
         
-          <div class='highlight'><pre>        labelOpacity: <span class="number">0.9</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">labelOpacity</span>: <span class="number">0.9</span></pre></div>
         
       
         
         <p>The default link opacity.</p>
 
         
-          <div class='highlight'><pre>        opacity: <span class="number">0.9</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacity</span>: <span class="number">0.9</span></pre></div>
         
       
         
         <p>Are links smooth by default? smooth = true, straight = false.</p>
 
         
-          <div class='highlight'><pre>        smooth: <span class="literal">true</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">smooth</span>: <span class="literal">true</span></pre></div>
         
       
         
         <p>The link stroke color.</p>
 
         
-          <div class='highlight'><pre>        stroke: <span class="string">"#55EE88"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">stroke</span>: <span class="string">"#55EE88"</span></pre></div>
         
       
         
         <p>The link width / strength.</p>
 
         
-          <div class='highlight'><pre>        strokeWidth: <span class="number">3</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">strokeWidth</span>: <span class="number">3</span></pre></div>
         
       
         
         <p>The default z-index of links.</p>
 
         
-          <div class='highlight'><pre>        zIndex: <span class="number">3</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">zIndex</span>: <span class="number">3</span></pre></div>
         
       
         
-        <h2>LABEL EDITING</h2>
+        <h2 id="label-editing">LABEL EDITING</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    labelEdit:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">labelEdit</span>:</pre></div>
         
       
         
         <p>CSS class name of the label edit view wrapper.</p>
 
         
-          <div class='highlight'><pre>        className: <span class="string">"label-edit-view"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">className</span>: <span class="string">"label-edit-view"</span></pre></div>
         
       
         
         <p>If eval fails, show the error message on the textbox for X milliseconds.</p>
 
         
-          <div class='highlight'><pre>        evalErrorTimeout: <span class="number">1500</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">evalErrorTimeout</span>: <span class="number">1500</span></pre></div>
         
       
         
         <p>Minimum size of the edit textbox (textbox size property).</p>
 
         
-          <div class='highlight'><pre>        minTxtSize: <span class="number">45</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">minTxtSize</span>: <span class="number">45</span></pre></div>
         
       
         
         <p>The opacity interval when showing or hiding a labelEditView.</p>
 
         
-          <div class='highlight'><pre>        opacityInterval: <span class="number">200</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacityInterval</span>: <span class="number">200</span></pre></div>
         
       
         
-        <h2>AUDIT DATA</h2>
+        <h2 id="audit-data">AUDIT DATA</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    auditData:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">auditData</span>:</pre></div>
         
       
         
         <p>The url to the audit data(s) JSON.</p>
 
         
-          <div class='highlight'><pre>        url: <span class="string">"json/auditdata"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">url</span>: <span class="string">"json/auditdata"</span></pre></div>
         
       
         
         <p>The namespace used for data binding.</p>
 
         
-          <div class='highlight'><pre>        bindingNamespace: <span class="string">"audit"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">bindingNamespace</span>: <span class="string">"audit"</span></pre></div>
         
       
         
         <p>Alert the user if the data could not be refreshed for 6 times in a row.</p>
 
         
-          <div class='highlight'><pre>        alertOnErrorCount: <span class="number">6</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">alertOnErrorCount</span>: <span class="number">6</span></pre></div>
         
       
         
         <p>Default interval to save the current data, in ms.</p>
 
         
-          <div class='highlight'><pre>        dataSaveInterval: <span class="number">60000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">dataSaveInterval</span>: <span class="number">60000</span></pre></div>
         
       
         
         <p>Round numbers to a maximum number of decimal cases.</p>
 
         
-          <div class='highlight'><pre>        decimalCases: <span class="number">0</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">decimalCases</span>: <span class="number">0</span></pre></div>
         
       
         
         <p>What text to show when an audit data value is still being loaded.</p>
 
         
-          <div class='highlight'><pre>        loadingText: <span class="string">"..."</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">loadingText</span>: <span class="string">"..."</span></pre></div>
         
       
         
         <p>Maximum allowed value for the refreshInterval, in seconds.</p>
 
         
-          <div class='highlight'><pre>        maxRefreshInterval: <span class="number">864000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">maxRefreshInterval</span>: <span class="number">864000</span></pre></div>
         
       
         
         <p>Minimum allowed value for the refreshInterval, in seconds.</p>
 
         
-          <div class='highlight'><pre>        minRefreshInterval: <span class="number">3</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">minRefreshInterval</span>: <span class="number">3</span></pre></div>
         
       
         
         <p>Default interval to refresh the data from its sourceUrl, in ms.</p>
 
         
-          <div class='highlight'><pre>        refreshInterval: <span class="number">5</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">refreshInterval</span>: <span class="number">5</span></pre></div>
         
       
         
         <p>Prefix of DOM IDs set on each row representing an item on the AuditDataManagerView.</p>
 
         
-          <div class='highlight'><pre>        rowListPrefix: <span class="string">"list-auditdata-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">rowListPrefix</span>: <span class="string">"list-auditdata-"</span></pre></div>
         
       
         
         <p>Delay to start the audit data refresh timers when the app is loaded.</p>
 
         
-          <div class='highlight'><pre>        startTimersDelay: <span class="number">2000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">startTimersDelay</span>: <span class="number">2000</span></pre></div>
         
       
         
         <p>Data will be considered outdated after X times the value of its refreshInterval.</p>
 
         
-          <div class='highlight'><pre>        outdatedMultiplier: <span class="number">3</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">outdatedMultiplier</span>: <span class="number">3</span></pre></div>
         
       
         
-        <h2>AUDIT ALERT</h2>
+        <h2 id="audit-alert">AUDIT ALERT</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    auditEvent:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">auditEvent</span>:</pre></div>
         
       
         
         <p>The url to the audit event(s) JSON.</p>
 
         
-          <div class='highlight'><pre>        url: <span class="string">"json/auditevent"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">url</span>: <span class="string">"json/auditevent"</span></pre></div>
         
       
         
         <p>The namespace used for data binding.</p>
 
         
-          <div class='highlight'><pre>        bindingNamespace: <span class="string">"event"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">bindingNamespace</span>: <span class="string">"event"</span></pre></div>
         
       
         
         <p>How many times to blink if no value is specified on the alert action.</p>
 
         
-          <div class='highlight'><pre>        blinkTimes: <span class="number">2</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">blinkTimes</span>: <span class="number">2</span></pre></div>
         
       
         
         <p>The context special key used to test shape or link labels agains an <a href="auditEvent.html">AuditEvent</a>.</p>
 
         
-          <div class='highlight'><pre>        contextSpecialKey: <span class="string">"@"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">contextSpecialKey</span>: <span class="string">"@"</span></pre></div>
         
       
         
         <p>The color to use if no background/border color is specified on the alert action.</p>
 
         
-          <div class='highlight'><pre>        defaultColor: <span class="string">"#FF6666"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">defaultColor</span>: <span class="string">"#FF6666"</span></pre></div>
         
       
         
         <p>Prefix of DOM IDs set on each row representing an item on the EntityDefinitionView.</p>
 
         
-          <div class='highlight'><pre>        rowListPrefix: <span class="string">"list-auditevent-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">rowListPrefix</span>: <span class="string">"list-auditevent-"</span></pre></div>
         
       
         
         <p>The prefix of action rows on the <code>$gridActions</code> grid of the <a href="auditEventManagerView.html">Audit Events View</a>.</p>
 
         
-          <div class='highlight'><pre>        rowActionPrefix: <span class="string">"list-auditevent-action-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">rowActionPrefix</span>: <span class="string">"list-auditevent-action-"</span></pre></div>
         
       
         
         <p>The prefix of rule rows on the <code>$gridRules</code> grid of the <a href="auditEventManagerView.html">Audit Events View</a>.</p>
 
         
-          <div class='highlight'><pre>        rowRulePrefix: <span class="string">"list-auditevent-rule-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">rowRulePrefix</span>: <span class="string">"list-auditevent-rule-"</span></pre></div>
         
       
         
         <p>The checkbox group name (DOM) of the alerts manager for a specific shape.</p>
 
         
-          <div class='highlight'><pre>        shapeCheckboxName: <span class="string">"shape-alerts-enabled"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">shapeCheckboxName</span>: <span class="string">"shape-alerts-enabled"</span></pre></div>
         
       
         
-        <h2>AUDIT ALERT</h2>
+        <h2 id="audit-alert">AUDIT ALERT</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    variable:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">variable</span>:</pre></div>
         
       
         
         <p>The url to the variable(s) JSON.</p>
 
         
-          <div class='highlight'><pre>        url: <span class="string">"json/variable"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">url</span>: <span class="string">"json/variable"</span></pre></div>
         
       
         
         <p>The namespace used for data binding.</p>
 
         
-          <div class='highlight'><pre>        bindingNamespace: <span class="string">"var"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">bindingNamespace</span>: <span class="string">"var"</span></pre></div>
         
       
         
         <p>Prefix of DOM IDs set on each row representing an item on the VariableManagerView.</p>
 
         
-          <div class='highlight'><pre>        rowListPrefix: <span class="string">"list-variable-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">rowListPrefix</span>: <span class="string">"list-variable-"</span></pre></div>
         
       
         
-        <h2>USER SETTINGS</h2>
+        <h2 id="user-settings">USER SETTINGS</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    user:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">user</span>:</pre></div>
         
       
         
         <p>The url to the user&#39;s JSON.</p>
 
         
-          <div class='highlight'><pre>        url: <span class="string">"json/user"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">url</span>: <span class="string">"json/user"</span></pre></div>
         
       
         
         <p>The url to the logged user&#39;s JSON.</p>
 
         
-          <div class='highlight'><pre>        loggedUrl: <span class="string">"json/user/logged"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">loggedUrl</span>: <span class="string">"json/user/logged"</span></pre></div>
         
       
         
         <p>Default key combination to delete shapes and links.</p>
 
         
-          <div class='highlight'><pre>        modifierDelete: <span class="string">"ctrl rightclick"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">modifierDelete</span>: <span class="string">"ctrl rightclick"</span></pre></div>
         
       
         
         <p>Default key combination to select multiple shapes or items.</p>
 
         
-          <div class='highlight'><pre>        modifierMultiple: <span class="string">"shift leftclick"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">modifierMultiple</span>: <span class="string">"shift leftclick"</span></pre></div>
         
       
         
         <p>Default key combination to send shapes and links to the back of the map.</p>
 
         
-          <div class='highlight'><pre>        modifierToBack: <span class="string">"rightclick"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">modifierToBack</span>: <span class="string">"rightclick"</span></pre></div>
         
       
         
         <p>Prefix of each row representing a user on a list or grid.</p>
 
         
-          <div class='highlight'><pre>        rowListPrefix: <span class="string">"list-user-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">rowListPrefix</span>: <span class="string">"list-user-"</span></pre></div>
         
       
         
-        <h2>MENU</h2>
+        <h2 id="menu">MENU</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    menu:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">menu</span>:</pre></div>
         
       
         
         <p>Timeout to hide submenus when mouse leaves them.</p>
 
         
-          <div class='highlight'><pre>        hideTimeout: <span class="number">400</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">hideTimeout</span>: <span class="number">400</span></pre></div>
         
       
         
         <p>Prefix of the ID of submenu items.</p>
 
         
-          <div class='highlight'><pre>        subPrefix: <span class="string">"menu-filter-"</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">subPrefix</span>: <span class="string">"menu-filter-"</span></pre></div>
         
       
         
-        <h2>FOOTER</h2>
+        <h2 id="footer">FOOTER</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    footer:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">footer</span>:</pre></div>
         
       
         
         <p>How long it takes to fade in / out footer information.</p>
 
         
-          <div class='highlight'><pre>        opacityInterval: <span class="number">400</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacityInterval</span>: <span class="number">400</span></pre></div>
         
       
         
-        <h2>ALERT</h2>
+        <h2 id="alert">ALERT</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    alert:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">alert</span>:</pre></div>
         
       
         
         <p>How long should the alerts stay shown.</p>
 
         
-          <div class='highlight'><pre>        hideDelay: <span class="number">3000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">hideDelay</span>: <span class="number">3000</span></pre></div>
         
       
         
         <p>How long it takes to fade in / out alerts.</p>
 
         
-          <div class='highlight'><pre>        opacityInterval: <span class="number">300</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">opacityInterval</span>: <span class="number">300</span></pre></div>
         
       
         
@@ -1731,43 +1730,43 @@ value is defined in seconds. Default is 5 minutes.</p>
 For example if you save a map twice in less than 8 seconds, then just show the alert once.</p>
 
         
-          <div class='highlight'><pre>        similarTimeout: <span class="number">9000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">similarTimeout</span>: <span class="number">9000</span></pre></div>
         
       
         
-        <h2>SOCKET SETTINGS</h2>
+        <h2 id="socket-settings">SOCKET SETTINGS</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    sockets:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">sockets</span>:</pre></div>
         
       
         
         <p>Default &quot;clients:refresh&quot; command is 60 seconds.</p>
 
         
-          <div class='highlight'><pre>        clientRefreshSeconds: <span class="number">60</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">clientRefreshSeconds</span>: <span class="number">60</span></pre></div>
         
       
         
-        <h2>MANAGER SETTINGS</h2>
+        <h2 id="manager-settings">MANAGER SETTINGS</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    manager:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">manager</span>:</pre></div>
         
       
         
         <p>The interval to check entities status.</p>
 
         
-          <div class='highlight'><pre>        checkEntitiesInterval: <span class="number">60000</span></pre></div>
+          <div class='highlight'><pre>        <span class="attribute">checkEntitiesInterval</span>: <span class="number">60000</span></pre></div>
         
       
       <div class="fleur">h</div>

@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>MAPFILTER MODEL</h2>
+        <h2 id="mapfilter-model">MAPFILTER MODEL</h2>
 
         
       
@@ -493,25 +493,25 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">Map</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"Map"</span>
-    defaults:
-        createdByUserId: <span class="literal">null</span>
-        background: SystemApp.Settings.map.background
-        paperSizeX: SystemApp.Settings.map.paperSizeX
-        paperSizeY: SystemApp.Settings.map.paperSizeY
-        gridSizeX: SystemApp.Settings.map.gridSizeX
-        gridSizeY: SystemApp.Settings.map.gridSizeY
-        thumbnailDate: <span class="keyword">new</span> Date(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>)
-        silent: <span class="literal">false</span>
-        isReadOnly: <span class="literal">false</span>
+    <span class="attribute">typeName</span>: <span class="string">"Map"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">createdByUserId</span>: <span class="literal">null</span>
+        <span class="attribute">background</span>: SystemApp.Settings.map.background
+        <span class="attribute">paperSizeX</span>: SystemApp.Settings.map.paperSizeX
+        <span class="attribute">paperSizeY</span>: SystemApp.Settings.map.paperSizeY
+        <span class="attribute">gridSizeX</span>: SystemApp.Settings.map.gridSizeX
+        <span class="attribute">gridSizeY</span>: SystemApp.Settings.map.gridSizeY
+        <span class="attribute">thumbnailDate</span>: <span class="keyword">new</span> Date(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>)
+        <span class="attribute">silent</span>: <span class="literal">false</span>
+        <span class="attribute">isReadOnly</span>: <span class="literal">false</span>
 
-    relations:
-        links: SystemApp.LinkCollection
-        shapes: SystemApp.ShapeCollection</pre></div>
+    <span class="attribute">relations</span>:
+        <span class="attribute">links</span>: SystemApp.LinkCollection
+        <span class="attribute">shapes</span>: SystemApp.ShapeCollection</pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -519,7 +519,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the ID of user who created the map.</p>
 
         
-          <div class='highlight'><pre>    createdByUserId: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createdByUserId</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"createdByUserId"</span>, value
         <span class="property">@get</span> <span class="string">"createdByUserId"</span></pre></div>
@@ -529,9 +529,10 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map name.</p>
 
         
-          <div class='highlight'><pre>    name: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">name</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"name"</span>, value
+            console.warn <span class="string">"new name"</span>, value
         <span class="property">@get</span> <span class="string">"name"</span></pre></div>
         
       
@@ -539,7 +540,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map creation date.</p>
 
         
-          <div class='highlight'><pre>    dateCreated: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dateCreated</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"dateCreated"</span>, value
         <span class="property">@get</span> <span class="string">"dateCreated"</span></pre></div>
@@ -549,7 +550,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map background: a color or image url.</p>
 
         
-          <div class='highlight'><pre>    background: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">background</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"background"</span>, value
         <span class="property">@get</span> <span class="string">"background"</span></pre></div>
@@ -559,7 +560,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map paper X size, in pixels.</p>
 
         
-          <div class='highlight'><pre>    paperSizeX: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">paperSizeX</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"paperSizeX"</span>, value
         <span class="property">@get</span> <span class="string">"paperSizeX"</span></pre></div>
@@ -569,7 +570,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map paper Y size, in pixels.</p>
 
         
-          <div class='highlight'><pre>    paperSizeY: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">paperSizeY</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"paperSizeY"</span>, value
         <span class="property">@get</span> <span class="string">"paperSizeY"</span></pre></div>
@@ -579,7 +580,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map grid X size, in pixels. This represents the distance between vertical lines.</p>
 
         
-          <div class='highlight'><pre>    gridSizeX: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">gridSizeX</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"gridSizeX"</span>, value
         <span class="property">@get</span> <span class="string">"gridSizeX"</span></pre></div>
@@ -589,7 +590,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map grid Y size, in pixels. This represents the distance between horizontal lines.</p>
 
         
-          <div class='highlight'><pre>    gridSizeY: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">gridSizeY</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"gridSizeY"</span>, value
         <span class="property">@get</span> <span class="string">"gridSizeY"</span></pre></div>
@@ -599,7 +600,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map init script.</p>
 
         
-          <div class='highlight'><pre>    initScript: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initScript</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"initScript"</span>, value
         <span class="property">@get</span> <span class="string">"initScript"</span></pre></div>
@@ -609,7 +610,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set map isLocal flag.</p>
 
         
-          <div class='highlight'><pre>    isLocal: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">isLocal</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"isLocal"</span>, value
         <span class="property">@get</span> <span class="string">"isLocal"</span></pre></div>
@@ -619,7 +620,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set map read only flag.</p>
 
         
-          <div class='highlight'><pre>    isReadOnly: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">isReadOnly</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"isReadOnly"</span>, value
         <span class="property">@get</span> <span class="string">"isReadOnly"</span></pre></div>
@@ -629,7 +630,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the map silent mode.</p>
 
         
-          <div class='highlight'><pre>    silent: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">silent</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"silent"</span>, value
         <span class="property">@get</span> <span class="string">"silent"</span></pre></div>
@@ -639,7 +640,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the shapes and their positions on the map. This must set as a <a href="shape.html">ShapeCollection</a>.</p>
 
         
-          <div class='highlight'><pre>    shapes: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapes</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             value = <span class="keyword">new</span> SystemApp.ShapeCollection value <span class="keyword">if</span> <span class="keyword">not</span> value.typeName?
             <span class="property">@set</span> <span class="string">"shapes"</span>, value
@@ -650,7 +651,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the links between shapes on the map. This must set as a <a href="link.html">LinkCollection</a>.</p>
 
         
-          <div class='highlight'><pre>    links: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">links</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             value = <span class="keyword">new</span> SystemApp.LinkCollection value <span class="keyword">if</span> <span class="keyword">not</span> value.typeName?
             <span class="property">@set</span> <span class="string">"links"</span>, value
@@ -661,7 +662,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get / set the last date when the map&#39;s thumbnail was generated.</p>
 
         
-          <div class='highlight'><pre>    thumbnailDate: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">thumbnailDate</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"thumbnailDate"</span>, value
         <span class="property">@get</span> <span class="string">"thumbnailDate"</span></pre></div>
@@ -671,14 +672,14 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get the map&#39;s URL key based on its name: replace all spaces and special characters.</p>
 
         
-          <div class='highlight'><pre>    urlKey: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">urlKey</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@isLocal</span>()
             <span class="keyword">return</span> SystemApp.Settings.map.localMapId
         <span class="keyword">return</span> SystemApp.DataUtil.getUrlKey <span class="property">@name</span>()</pre></div>
         
       
         
-        <h2>LOCAL MAPS</h2>
+        <h2 id="local-maps">LOCAL MAPS</h2>
 
         
       
@@ -686,7 +687,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Helper to get data from local storage and set map as local.</p>
 
         
-          <div class='highlight'><pre>    initLocalMap: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initLocalMap</span>:<span class="function"> =&gt;</span>
         <span class="property">@id</span> = SystemApp.Settings.map.localMapId
         <span class="property">@set</span> <span class="string">"id"</span>, SystemApp.Settings.map.localMapId
         <span class="property">@set</span> <span class="string">"isLocal"</span>, <span class="literal">true</span>
@@ -701,7 +702,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         
       
         
-        <h2>VALIDATE</h2>
+        <h2 id="validate">VALIDATE</h2>
 
         
       
@@ -709,7 +710,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>All validation rules should be put inside this method.</p>
 
         
-          <div class='highlight'><pre>    validate: (attrs) =&gt;</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">validate</span>: <span class="function"><span class="params">(attrs)</span> =&gt;</span></pre></div>
         
       
         
@@ -753,7 +754,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         
       
         
-        <h2>SHAPE AND LINK METHODS</h2>
+        <h2 id="shape-and-link-methods">SHAPE AND LINK METHODS</h2>
 
         
       
@@ -761,7 +762,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Removes a <a href="shape.html">Shape</a> from the <code>shapes</code> collection.</p>
 
         
-          <div class='highlight'><pre>    removeShape: (shape) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeShape</span>: <span class="function"><span class="params">(shape)</span> =&gt;</span>
         <span class="property">@shapes</span>().remove <span class="property">@shapes</span>().get shape.id
         <span class="property">@removeShapeLinks</span> shape
 
@@ -772,8 +773,8 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Removes a all links related to the specified <a href="shape.html">Shape</a> from the <code>links</code> collection.</p>
 
         
-          <div class='highlight'><pre>    removeShapeLinks: (shape) =&gt;
-        _.each <span class="property">@links</span>, (link) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeShapeLinks</span>: <span class="function"><span class="params">(shape)</span> =&gt;</span>
+        _.each <span class="property">@links</span>, <span class="function"><span class="params">(link)</span> =&gt;</span>
             <span class="keyword">if</span> link.sourceId() <span class="keyword">is</span> shape.id <span class="keyword">or</span> link.targetId() <span class="keyword">is</span> shape.id
                 <span class="property">@removeLink</span> link</pre></div>
         
@@ -782,7 +783,7 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Remove a <a href="link.html">Link</a> from the <code>links</code> collection.</p>
 
         
-          <div class='highlight'><pre>    removeLink: (link) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeLink</span>: <span class="function"><span class="params">(link)</span> =&gt;</span>
         <span class="property">@links</span>().remove <span class="property">@links</span>().get link.id
         <span class="property">@save</span>()</pre></div>
         
@@ -791,20 +792,20 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
         <p>Clear all links which have invalid <code>sourceId</code> or <code>targetId</code>.</p>
 
         
-          <div class='highlight'><pre>    clearInvalidLinks: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clearInvalidLinks</span>:<span class="function"> =&gt;</span>
         removeLinks = []
-        _.each <span class="property">@links</span>().models, (link) =&gt;
-            <span class="keyword">if</span> <span class="property">@shapes</span>().where({id: link.sourceId()}).length &lt; <span class="number">1</span> <span class="keyword">or</span> <span class="property">@shapes</span>().where({id: link.targetId()}).length &lt; <span class="number">1</span>
+        _.each <span class="property">@links</span><span class="function"><span class="params">()</span>.<span class="title">models</span>, <span class="params">(link)</span> =&gt;</span>
+            <span class="keyword">if</span> <span class="property">@shapes</span>().where({<span class="attribute">id</span>: link.sourceId()}).length &lt; <span class="number">1</span> <span class="keyword">or</span> <span class="property">@shapes</span>().where({<span class="attribute">id</span>: link.targetId()}).length &lt; <span class="number">1</span>
                 removeLinks.push link.id
 
         <span class="keyword">for</span> linkId <span class="keyword">in</span> removeLinks
-            <span class="property">@links</span>().remove(<span class="property">@links</span>().get linkId, {silent: <span class="literal">true</span>})
+            <span class="property">@links</span>().remove(<span class="property">@links</span>().get linkId, {<span class="attribute">silent</span>: <span class="literal">true</span>})
 
         <span class="property">@save</span>()</pre></div>
         
       
         
-        <h2>MAP COLLECTION</h2>
+        <h2 id="map-collection">MAP COLLECTION</h2>
 
         
       
@@ -813,16 +814,16 @@ and <a href="link.html">Links</a>, and specific sizes and colours.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"MapCollection"</span>
-    model: SystemApp.Map
-    url: SystemApp.Settings.map.url</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"MapCollection"</span>
+    <span class="attribute">model</span>: SystemApp.Map
+    <span class="attribute">url</span>: SystemApp.Settings.map.url</pre></div>
         
       
         
         <p>Set the comparator function to order the maps collection by name.</p>
 
         
-          <div class='highlight'><pre>    comparator: (map) -&gt; <span class="keyword">return</span> map.name()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(map)</span> -&gt;</span> <span class="keyword">return</span> map.name()</pre></div>
         
       
       <div class="fleur">h</div>

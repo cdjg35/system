@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>MAP CONTROLS: EDIT / MAP FILTER PROPERTIES VIEW</h2>
+        <h2 id="map-controls-edit-map-filter-properties-view">MAP CONTROLS: EDIT / MAP FILTER PROPERTIES VIEW</h2>
 
         
       
@@ -495,22 +495,22 @@
         
       
         
-        <h2>DOM ELEMENTS</h2>
+        <h2 id="dom-elements">DOM ELEMENTS</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    $topDescription: <span class="literal">null</span>           <span class="comment"># the "H6" element on top of the tab</span>
-    $attributesDiv: <span class="literal">null</span>            <span class="comment"># the list-div with shape properties (Shape details tab)</span>
-    $linksDiv: <span class="literal">null</span>                 <span class="comment"># the list-div with the shape connections (Shape related tab)</span>
-    $parentAndChildDiv: <span class="literal">null</span>        <span class="comment"># the list-div with the shape parent and child elements (Shape related tab)</span>
-    $eventsDiv: <span class="literal">null</span>                <span class="comment"># the div containing the list of registered / active alerts for the selected shape</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">$topDescription</span>: <span class="literal">null</span>           <span class="comment"># the "H6" element on top of the tab</span>
+    <span class="attribute">$attributesDiv</span>: <span class="literal">null</span>            <span class="comment"># the list-div with shape properties (Shape details tab)</span>
+    <span class="attribute">$linksDiv</span>: <span class="literal">null</span>                 <span class="comment"># the list-div with the shape connections (Shape related tab)</span>
+    <span class="attribute">$parentAndChildDiv</span>: <span class="literal">null</span>        <span class="comment"># the list-div with the shape parent and child elements (Shape related tab)</span>
+    <span class="attribute">$eventsDiv</span>: <span class="literal">null</span>                <span class="comment"># the div containing the list of registered / active alerts for the selected shape</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -518,7 +518,7 @@
         <p>Inits the view. Parent will be the <a href="controlsView.html">Map Controls View</a>.</p>
 
         
-          <div class='highlight'><pre>    initialize: (parent) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>: <span class="function"><span class="params">(parent)</span> =&gt;</span>
         <span class="property">@baseInit</span> parent
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()</pre></div>
@@ -528,8 +528,8 @@
         <p>Dispose the map view edit control.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
-        $(window).unbind <span class="string">"resize"</span>, <span class="property">@resize</span>
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">window</span>).unbind <span class="string">"resize"</span>, <span class="property">@resize</span>
 
         <span class="property">@$attributesDiv</span>.empty()
         <span class="property">@$linksDiv</span>.empty()
@@ -543,7 +543,7 @@
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#map-ctl-tab-inspector"</span>
 
         <span class="property">@$topDescription</span> = <span class="property">@$el</span>.find <span class="string">"h6"</span>
@@ -565,8 +565,8 @@
         <p>Bind events to DOM and other controls.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
-        $(window).resize <span class="property">@resize</span>
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">window</span>).resize <span class="property">@resize</span>
 
         <span class="property">@listenTo</span> SystemApp.Data.auditEvents, <span class="string">"add"</span>, <span class="property">@loadAuditEvent</span>
         <span class="property">@listenTo</span> SystemApp.Data.auditEvents, <span class="string">"remove"</span>, <span class="property">@removeAuditEvent</span>
@@ -577,19 +577,19 @@
         <p>Unbind event listeners from the current <a href="shapeView.html">Shape View</a>.</p>
 
         
-          <div class='highlight'><pre>    clearEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clearEvents</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@currentBoundViews</span>?.linkViews?
-            _.each <span class="property">@currentBoundViews</span>.linkViews, (linkView) =&gt; linkView.model.<span class="literal">off</span> <span class="string">"change"</span>, <span class="property">@bindAllLinks</span>
+            _.each <span class="property">@currentBoundViews</span>.linkViews, <span class="function"><span class="params">(linkView)</span> =&gt;</span> linkView.model.<span class="literal">off</span> <span class="string">"change"</span>, <span class="property">@bindAllLinks</span>
 
         <span class="keyword">if</span> <span class="property">@currentBoundViews</span>?.shapeViews?
-            _.each <span class="property">@currentBoundViews</span>.shapeViews, (shapeView) =&gt; shapeView.model.<span class="literal">off</span> <span class="string">"change"</span>, <span class="property">@bindAllChildItems</span></pre></div>
+            _.each <span class="property">@currentBoundViews</span>.shapeViews, <span class="function"><span class="params">(shapeView)</span> =&gt;</span> shapeView.model.<span class="literal">off</span> <span class="string">"change"</span>, <span class="property">@bindAllChildItems</span></pre></div>
         
       
         
         <p>Enable or disable editing the current shape / link attached events.</p>
 
         
-          <div class='highlight'><pre>    setEnabled: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEnabled</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         fields = [<span class="property">@$eventsDiv</span>, <span class="property">@$eventsDiv</span>.find <span class="string">"input"</span>]
 
         <span class="keyword">if</span> <span class="keyword">not</span> value
@@ -604,13 +604,13 @@ that the <code>$eventsDiv</code> is always visible.
 TODO! Prorperly calculate height considering tabs, headers, paddings etc.</p>
 
         
-          <div class='highlight'><pre>    resize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resize</span>:<span class="function"> =&gt;</span>
         height = <span class="property">@parentView</span>.$el.innerHeight() - <span class="property">@$eventsDiv</span>.outerHeight() - <span class="number">140</span>
         <span class="property">@$attributesDiv</span>.css <span class="string">"max-height"</span>, height</pre></div>
         
       
         
-        <h2>BIND SHAPE / LINK</h2>
+        <h2 id="bind-shape-link">BIND SHAPE / LINK</h2>
 
         
       
@@ -619,7 +619,7 @@ TODO! Prorperly calculate height considering tabs, headers, paddings etc.</p>
 and display its properties / related elements / links / etc.</p>
 
         
-          <div class='highlight'><pre>    bind: (view) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bind</span>: <span class="function"><span class="params">(view)</span> =&gt;</span>
         <span class="property">@currentBoundViews</span> = view
 
         <span class="keyword">if</span> <span class="property">@currentBoundViews</span>?
@@ -628,9 +628,9 @@ and display its properties / related elements / links / etc.</p>
                 <span class="property">@$topDescription</span>.hide()
 
                 <span class="keyword">if</span> <span class="property">@currentBoundViews</span>.linkViews?
-                    _.each <span class="property">@currentBoundViews</span>.linkViews, (linkView) =&gt; linkView.model.<span class="literal">on</span> <span class="string">"change"</span>, <span class="property">@bindAllLinks</span>
+                    _.each <span class="property">@currentBoundViews</span>.linkViews, <span class="function"><span class="params">(linkView)</span> =&gt;</span> linkView.model.<span class="literal">on</span> <span class="string">"change"</span>, <span class="property">@bindAllLinks</span>
                 <span class="keyword">if</span> <span class="property">@currentBoundViews</span>.shapeViews?
-                    _.each <span class="property">@currentBoundViews</span>.shapeViews, (childView) =&gt; childView.model.<span class="literal">on</span> <span class="string">"change"</span>, <span class="property">@bindAllChildItems</span>
+                    _.each <span class="property">@currentBoundViews</span>.shapeViews, <span class="function"><span class="params">(childView)</span> =&gt;</span> childView.model.<span class="literal">on</span> <span class="string">"change"</span>, <span class="property">@bindAllChildItems</span>
             <span class="keyword">else</span></pre></div>
         
       
@@ -669,7 +669,7 @@ and display its properties / related elements / links / etc.</p>
         <p>Show or hide forms depending on what&#39;s selected on the map.</p>
 
         
-          <div class='highlight'><pre>    toggleForms: (visible) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleForms</span>: <span class="function"><span class="params">(visible)</span> =&gt;</span>
         <span class="keyword">if</span> visible
             <span class="property">@$el</span>.find(<span class="string">"h5,.panel"</span>).show()
         <span class="keyword">else</span>
@@ -679,7 +679,7 @@ and display its properties / related elements / links / etc.</p>
         
       
         
-        <h2>INSPECT PROPERTIES</h2>
+        <h2 id="inspect-properties">INSPECT PROPERTIES</h2>
 
         
       
@@ -687,7 +687,7 @@ and display its properties / related elements / links / etc.</p>
         <p>Bind all shape / link attributes to the <code>$attributesDiv</code>.</p>
 
         
-          <div class='highlight'><pre>    bindAllAttributes: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindAllAttributes</span>:<span class="function"> =&gt;</span>
         <span class="property">@$attributesDiv</span>.empty()
 
         <span class="keyword">if</span> <span class="property">@currentBoundViews</span>?.model?.id?
@@ -709,7 +709,7 @@ and display its properties / related elements / links / etc.</p>
 to see if that particular attribute should be ignored.</p>
 
         
-          <div class='highlight'><pre>    bindAttribute: (propValue, propName) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindAttribute</span>: <span class="function"><span class="params">(propValue, propName)</span> =&gt;</span>
         <span class="keyword">if</span> SystemApp.Settings.map.ignoreDisplayProps.indexOf(propName) &gt; <span class="number">0</span>
             <span class="keyword">return</span>
 
@@ -745,7 +745,7 @@ to see if that particular attribute should be ignored.</p>
         
       
         
-        <h2>SHAPE RELATED TAB</h2>
+        <h2 id="shape-related-tab">SHAPE RELATED TAB</h2>
 
         
       
@@ -753,7 +753,7 @@ to see if that particular attribute should be ignored.</p>
         <p>Bind all child items to the &quot;Related&quot; tab.</p>
 
         
-          <div class='highlight'><pre>    bindAllChildItems: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindAllChildItems</span>:<span class="function"> =&gt;</span>
         <span class="property">@$parentAndChildDiv</span>.empty()
         <span class="property">@bindParentDetails</span>()</pre></div>
         
@@ -762,7 +762,7 @@ to see if that particular attribute should be ignored.</p>
         <p>Add a single child entity to the child div, passing the shape view and its unique ID.</p>
 
         
-          <div class='highlight'><pre>    bindChildItem: (item) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindChildItem</span>: <span class="function"><span class="params">(item)</span> =&gt;</span>
         div = $ document.createElement <span class="string">"div"</span>
         name = $ document.createElement <span class="string">"label"</span>
         value = $ document.createElement <span class="string">"span"</span>
@@ -784,7 +784,7 @@ is a <a href="host.html">Host</a>, it will bind details about the <a href="machi
 it is running.</p>
 
         
-          <div class='highlight'><pre>    bindParentDetails: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindParentDetails</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@currentBoundViews</span>?.model?.id?
             <span class="keyword">return</span>
 
@@ -822,13 +822,13 @@ it is running.</p>
 to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
 
         
-          <div class='highlight'><pre>    relatedEntityClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">relatedEntityClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         entity = e.data
         SystemApp.mapEvents.trigger <span class="string">"entitylist:search"</span>, entity.text()</pre></div>
         
       
         
-        <h2>LINKS</h2>
+        <h2 id="links">LINKS</h2>
 
         
       
@@ -836,7 +836,7 @@ to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
         <p>Bind the links tab.</p>
 
         
-          <div class='highlight'><pre>    bindAllLinks: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindAllLinks</span>:<span class="function"> =&gt;</span>
         <span class="property">@$linksDiv</span>.empty()
 
         <span class="keyword">if</span> <span class="property">@currentBoundViews</span>? <span class="keyword">and</span> <span class="property">@currentBoundViews</span>?.linkViews? <span class="keyword">and</span> _.size(<span class="property">@currentBoundViews</span>.linkViews) &gt; <span class="number">0</span>
@@ -847,7 +847,7 @@ to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
         <p>Add a single link to the links div, passing the <a href="linkView.html">Link View</a> and its name.</p>
 
         
-          <div class='highlight'><pre>    bindLink: (linkView) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindLink</span>: <span class="function"><span class="params">(linkView)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> linkView?.model?.id?
             <span class="keyword">return</span>
 
@@ -894,7 +894,7 @@ to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
         
       
         
-        <h2>EVENTS BOTTOM TAB</h2>
+        <h2 id="events-bottom-tab">EVENTS BOTTOM TAB</h2>
 
         
       
@@ -902,7 +902,7 @@ to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
         <p>Load all <a href="auditEvent.html">Audit Events</a> and create the elements on the alerts div.</p>
 
         
-          <div class='highlight'><pre>    loadAllAuditEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">loadAllAuditEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$eventsDiv</span>.empty()
         _.each SystemApp.Data.auditEvents.models, <span class="property">@loadAuditEvent</span></pre></div>
         
@@ -911,7 +911,7 @@ to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
         <p>Add a single <a href="auditEvent.html">AuditEvent</a> to the alerts div.</p>
 
         
-          <div class='highlight'><pre>    loadAuditEvent: (auditEvent) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">loadAuditEvent</span>: <span class="function"><span class="params">(auditEvent)</span> =&gt;</span>
         div = $ document.createElement <span class="string">"div"</span>
         checked = $ document.createElement <span class="string">"input"</span>
         title = $ document.createElement <span class="string">"label"</span>
@@ -936,7 +936,7 @@ to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
         <p>When user deletes an <a href="auditEvent.html">AuditEvent</a>, remove its associated div from the <code>$eventsDiv</code>.</p>
 
         
-          <div class='highlight'><pre>    removeAuditEvent: (auditEvent) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeAuditEvent</span>: <span class="function"><span class="params">(auditEvent)</span> =&gt;</span>
         $(<span class="string">"#"</span> + SystemApp.Settings.auditEvent.shapeCheckboxName + auditEvent.id).parent().remove()</pre></div>
         
       
@@ -944,7 +944,7 @@ to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
         <p>If user changes the title of an <a href="auditEvent.html">AuditEvent</a>, update the corresponding div on <code>$eventsDiv</code>.</p>
 
         
-          <div class='highlight'><pre>    updateAuditEventTitle: (auditEvent) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">updateAuditEventTitle</span>: <span class="function"><span class="params">(auditEvent)</span> =&gt;</span>
         title = auditEvent.id
         $(<span class="string">"#"</span> + SystemApp.Settings.auditEvent.shapeCheckboxName + auditEvent.id).parent().children(<span class="string">"label"</span>).html title</pre></div>
         
@@ -953,7 +953,7 @@ to search for it at the <a href="entityListView.html">Entity List View</a>.</p>
         <p>Check all <a href="auditEvent.html">Audit Events</a> that are attached to the selected <a href="shape.html">Shape</a>.</p>
 
         
-          <div class='highlight'><pre>    bindAllAuditEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindAllAuditEvents</span>:<span class="function"> =&gt;</span>
         checkboxes = <span class="property">@$eventsDiv</span>.find <span class="string">"input"</span>
         checkboxes.prop <span class="string">"checked"</span>, <span class="literal">false</span>
 
@@ -980,7 +980,7 @@ mark the correspondent checkboxes.</p>
 Active alerts will have a small icon next to them, set via a CSS class.</p>
 
         
-          <div class='highlight'><pre>    bindActiveAuditEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindActiveAuditEvents</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@currentBoundViews</span>?
             <span class="keyword">return</span></pre></div>
         
@@ -997,7 +997,7 @@ Active alerts will have a small icon next to them, set via a CSS class.</p>
 
         
           <div class='highlight'><pre>        <span class="keyword">if</span> <span class="property">@currentBoundViews</span>?.labelsView?.activeAuditEvents?
-            _.each <span class="property">@currentBoundViews</span>.labelsView.activeAuditEvents, (auditEvent) =&gt;
+            _.each <span class="property">@currentBoundViews</span>.labelsView.activeAuditEvents, <span class="function"><span class="params">(auditEvent)</span> =&gt;</span>
                 $(<span class="string">"#"</span> + SystemApp.Settings.auditEvent.shapeCheckboxName + auditEvent.id).parent().addClass <span class="string">"active"</span></pre></div>
         
       
@@ -1005,7 +1005,7 @@ Active alerts will have a small icon next to them, set via a CSS class.</p>
         <p>When user (un)check an alert checkbox, update the <a href="shape.html">Shape</a> <code>auditEventIds</code> property.</p>
 
         
-          <div class='highlight'><pre>    eventCheckChange: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">eventCheckChange</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@currentBoundViews</span>?
             <span class="keyword">return</span>
 

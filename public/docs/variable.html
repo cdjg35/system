@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>VARIABLE MODEL</h2>
+        <h2 id="variable-model">VARIABLE MODEL</h2>
 
         
       
@@ -494,14 +494,14 @@ and static values.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">Variable</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"Variable"</span>
-    defaults:
-        code: <span class="literal">null</span>          <span class="comment"># the variable javascript code</span>
-        description: <span class="literal">null</span>   <span class="comment"># the variable description / notes</span></pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"Variable"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">code</span>: <span class="literal">null</span>          <span class="comment"># the variable javascript code</span>
+        <span class="attribute">description</span>: <span class="literal">null</span>   <span class="comment"># the variable description / notes</span></pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -509,7 +509,7 @@ and static values.</p>
         <p>Helper to get / set the variable code.</p>
 
         
-          <div class='highlight'><pre>    code: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">code</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"code"</span>, value
         <span class="property">@get</span> <span class="string">"code"</span></pre></div>
@@ -519,14 +519,14 @@ and static values.</p>
         <p>Helper to get / set the variable description.</p>
 
         
-          <div class='highlight'><pre>    description: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">description</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"description"</span>, value
         <span class="property">@get</span> <span class="string">"description"</span></pre></div>
         
       
         
-        <h2>VARIABLE COLLECTION</h2>
+        <h2 id="variable-collection">VARIABLE COLLECTION</h2>
 
         
       
@@ -535,16 +535,16 @@ and static values.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">VariableCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"VariableCollection"</span>
-    model: SystemApp.Variable
-    url: SystemApp.Settings.variable.url</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"VariableCollection"</span>
+    <span class="attribute">model</span>: SystemApp.Variable
+    <span class="attribute">url</span>: SystemApp.Settings.variable.url</pre></div>
         
       
         
         <p>Set the comparator function to order the variable collection by friendlyId.</p>
 
         
-          <div class='highlight'><pre>    comparator: (variable) -&gt; <span class="keyword">return</span> variable.friendlyId()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(variable)</span> -&gt;</span> <span class="keyword">return</span> variable.friendlyId()</pre></div>
         
       
       <div class="fleur">h</div>

@@ -1,30 +1,13 @@
-# System APP
+# System App - Admin JS
 # -----------------------------------------------------------------------------
-# This is the base app controller.
+# This is the base admin area controller.
 
-#= require app.instance.coffee
-
-# LIBS
+# ROUTES
 # -----------------------------------------------------------------------------
-#= require lib/jquery.js
-#= require lib/jquery.localdata.js
-#= require lib/jquery.cookie.js
-#= require lib/jsonpath.js
-#= require lib/lodash.js
-#= require lib/backbone.js
-#= require lib/async.js
-#= require lib/moment.js
-
-# APP UTILS AND MANAGERS
-# -----------------------------------------------------------------------------
-#= require settings.coffee
-#= require messages.coffee
-#= require dataUtil.coffee
 #= require routes/adminRoutes.coffee
 
-# APP MODELS
+# MODELS
 # -----------------------------------------------------------------------------
-#= require model/base.coffee
 #= require model/entityObject.coffee
 #= require model/entityDefinition.coffee
 #= require model/shape.coffee
@@ -38,24 +21,16 @@
 #= require model/user.coffee
 #= require model/userSettings.coffee
 
-# APP DATA, SOCKETS, TUTORIAL
+# DATA, SOCKETS, TUTORIAL
 # -----------------------------------------------------------------------------
 #= require data.coffee
 #= require sockets.coffee
 
 # MAIN LAYOUT VIEWS
 # -----------------------------------------------------------------------------
-#= require view/baseView.coffee
 #= require view/adminView.coffee
 #= require view/admin/usersTabView.coffee
 #= require view/admin/toolsTabView.coffee
-
-
-# ROUTES
-# -----------------------------------------------------------------------------
-# All routes should be defined inside the [Routes](routes.html) file.
-SystemApp.routes = null
-
 
 # INIT AND DISPOSE
 # -----------------------------------------------------------------------------
@@ -66,7 +41,6 @@ SystemApp.init = ->
     window.onerror = SystemApp.onError
     SystemApp.currentView = new SystemApp.AdminView()
 
-
 # HELPERS
 # -----------------------------------------------------------------------------
 
@@ -76,7 +50,6 @@ SystemApp.suppressBackspace = (e) ->
         e.preventDefault()
         e.stopPropagation()
         return false
-
 
 # DEBUGGING AND ERROR LOGGING
 # -----------------------------------------------------------------------------
@@ -98,7 +71,6 @@ SystemApp.onError = (msg, url, line) ->
     catch ex
         console.error "FATAL ERROR!", ex
     return false
-
 
 # STARTING
 # -----------------------------------------------------------------------------

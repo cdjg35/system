@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>CREATE MAP VIEW</h2>
+        <h2 id="create-map-view">CREATE MAP VIEW</h2>
 
         
       
@@ -494,12 +494,12 @@ clicks a &quot;Create new...&quot; option on the top menu.</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">CreateMapView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">OverlayView</span></span>
 
-    $txtName: <span class="literal">null</span>      <span class="comment"># the text field to enter the new map name</span>
-    $menuItem: <span class="literal">null</span>     <span class="comment"># the top menu DOM element</span></pre></div>
+    <span class="attribute">$txtName</span>: <span class="literal">null</span>      <span class="comment"># the text field to enter the new map name</span>
+    <span class="attribute">$menuItem</span>: <span class="literal">null</span>     <span class="comment"># the top menu DOM element</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -507,7 +507,7 @@ clicks a &quot;Create new...&quot; option on the top menu.</p>
         <p>Init the &quot;Create Map&quot; overlay view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@overlayInit</span> <span class="string">"#map-create-overlay"</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()</pre></div>
@@ -517,7 +517,7 @@ clicks a &quot;Create new...&quot; option on the top menu.</p>
         <p>Clear contents and dispose the view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -525,7 +525,7 @@ clicks a &quot;Create new...&quot; option on the top menu.</p>
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@$txtName</span> = $ <span class="string">"#map-create-overlay-name"</span>
         <span class="property">@$menuItem</span> = $ <span class="string">"#menu-createmap"</span></pre></div>
         
@@ -534,12 +534,12 @@ clicks a &quot;Create new...&quot; option on the top menu.</p>
         <p>Bind events to DOM and other controls.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$txtName</span>.keyup <span class="property">@keyUp</span></pre></div>
         
       
         
-        <h2>SHOW AND HIDE</h2>
+        <h2 id="show-and-hide">SHOW AND HIDE</h2>
 
         
       
@@ -547,8 +547,8 @@ clicks a &quot;Create new...&quot; option on the top menu.</p>
         <p>Hide the view using a fade out effect.</p>
 
         
-          <div class='highlight'><pre>    onHide: =&gt;
-        $(document).unbind <span class="string">"keyup"</span>, <span class="property">@keyUp</span>
+          <div class='highlight'><pre>    <span class="attribute">onHide</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).unbind <span class="string">"keyup"</span>, <span class="property">@keyUp</span>
         SystemApp.footerView.setText <span class="literal">null</span>
         <span class="property">@$el</span>.fadeOut SystemApp.Settings.general.fadeDelay</pre></div>
         
@@ -558,24 +558,24 @@ clicks a &quot;Create new...&quot; option on the top menu.</p>
 If user has no &quot;mapcreate&quot; role, hide the view immediately.</p>
 
         
-          <div class='highlight'><pre>    onShow: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onShow</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> SystemApp.Data.loggedUser.hasRole <span class="string">"mapcreate"</span>
             errorMsg = SystemApp.Messages.errNoPermissionTo.replace <span class="string">"#"</span>, SystemApp.Messages.createMaps
-            SystemApp.alertEvents.trigger <span class="string">"tooltip"</span>, {isError: <span class="literal">true</span>, title: SystemApp.Messages.accessDenied, message: errorMsg}</pre></div>
+            SystemApp.alertEvents.trigger <span class="string">"tooltip"</span>, {<span class="attribute">isError</span>: <span class="literal">true</span>, <span class="attribute">title</span>: SystemApp.Messages.accessDenied, <span class="attribute">message</span>: errorMsg}</pre></div>
         
       
         
         <p>Cancel the view and go to previous screen.</p>
 
         
-          <div class='highlight'><pre>            <span class="function"><span class="title">cancelShow</span></span> = =&gt;
+          <div class='highlight'><pre>            <span class="function"><span class="title">cancelShow</span> = =&gt;</span>
                 <span class="property">@hide</span>()
                 window.history.back()
             setTimeout cancelShow, <span class="number">10</span>
 
             <span class="keyword">return</span>
 
-        $(document).keyup <span class="property">@keyUp</span>
+        $(<span class="built_in">document</span>).keyup <span class="property">@keyUp</span>
         SystemApp.footerView.setText SystemApp.Messages.createMapText
         <span class="property">@$el</span>.fadeIn SystemApp.Settings.general.fadeDelay, <span class="property">@focus</span></pre></div>
         
@@ -594,22 +594,22 @@ If user has no &quot;mapcreate&quot; role, hide the view immediately.</p>
         <p>When user presses a key on the <code>txtName</code> field.</p>
 
         
-          <div class='highlight'><pre>    keyUp: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">keyUp</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> e.which <span class="keyword">is</span> <span class="number">27</span>
             <span class="property">@hide</span> e
 
         <span class="keyword">if</span> e.which <span class="keyword">is</span> <span class="number">13</span>
             newMapName = $.trim <span class="property">@$txtName</span>.val()
-            existing = SystemApp.Data.maps.where {name: newMapName}
+            existing = SystemApp.Data.maps.where {<span class="attribute">name</span>: newMapName}
 
             <span class="keyword">if</span> existing.length &gt; <span class="number">0</span>
                 errTitle = SystemApp.Messages.errCreatingMap
                 errMessage = SystemApp.Messages.errMapNameExists.replace <span class="string">"#"</span>, newMapName
-                SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {title: errTitle, message: errMessage, isError: <span class="literal">true</span>}
+                SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {<span class="attribute">title</span>: errTitle, <span class="attribute">message</span>: errMessage, <span class="attribute">isError</span>: <span class="literal">true</span>}
                 <span class="property">@warnField</span> <span class="property">@$txtName</span>
                 <span class="keyword">return</span>
 
-            map = SystemApp.Data.maps.create {dateCreated: <span class="keyword">new</span> Date(), name: newMapName}
+            map = SystemApp.Data.maps.create {<span class="attribute">dateCreated</span>: <span class="keyword">new</span> Date(), <span class="attribute">name</span>: newMapName}
 
             <span class="property">@hide</span>()</pre></div>
         
@@ -618,7 +618,7 @@ If user has no &quot;mapcreate&quot; role, hide the view immediately.</p>
         <p>Change the URL using the new map key.</p>
 
         
-          <div class='highlight'><pre>            SystemApp.routes.navigate <span class="string">"map/"</span> + map.urlKey(), {trigger: <span class="literal">true</span>}</pre></div>
+          <div class='highlight'><pre>            SystemApp.routes.navigate <span class="string">"map/"</span> + map.urlKey(), {<span class="attribute">trigger</span>: <span class="literal">true</span>}</pre></div>
         
       
       <div class="fleur">h</div>

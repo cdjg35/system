@@ -14,28 +14,30 @@
       <div class="header">
         
           
-          <h1>System App - API Reame</h1>
+          <h1 id="system-app-api-reame">System App - API Reame</h1>
 <p>The System API can be used by scripts and external resources to script maps and
 interact with the System App.</p>
 <p>PLEASE NOTE! The API is still experimental and will probably change till we reach
 version 1.0.0. Any significant updates will be especifically written here
 and on specific code commits.</p>
-<h2>The API basics</h2>
+<h2 id="the-api-basics">The API basics</h2>
 <p>All API methods are abstract wrappers for internal System collections:
 Maps, Shapes, Entities, Audit Data, Audit Events and Variables.
 The exception is the &quot;view&quot; api, which represents the app UI.</p>
 <p>In the vast majority of cases, whilst using the API you&#39;ll be dealing with
 the System&#39;s models implemented using Backbone.js.</p>
 <p>At the moment the API is operated in synchronous mode.</p>
-<h2>Getting data</h2>
-<p>All API wrappers have a <code>get</code> method accepting one <code>filter</code> argument, which can be:
-- The ID of a single element as a string or integer.
-- An object containing keys and values representing properties.
-- A callback filter.</p>
+<h2 id="getting-data">Getting data</h2>
+<p>All API wrappers have a <code>get</code> method accepting one <code>filter</code> argument, which can be:</p>
+<ul>
+<li>The ID of a single element as a string or integer.</li>
+<li>An object containing keys and values representing properties.</li>
+<li>A callback filter.</li>
+</ul>
 <p>The <code>get</code> will ALWAYS return a collection of models, even when only one result is found.
 If nothing was found, the result will be an empty collection. If something goes wrong,
 <code>null</code> will be returned.</p>
-<h4>Samples: how to query data</h4>
+<h4 id="samples-how-to-query-data">Samples: how to query data</h4>
 <ul>
 <li><p>Return the <a href="entityDefinition.html">EntityDefinition</a> with ID &quot;Host&quot;.
 <code>api.Entity.get(&quot;Host&quot;);</code></p>
@@ -48,10 +50,10 @@ If nothing was found, the result will be an empty collection. If something goes 
 api.AuditData.get(filter);</code></pre>
 </li>
 </ul>
-<h2>Inserting and updating</h2>
+<h2 id="inserting-and-updating">Inserting and updating</h2>
 <p>All API wrappers have a <code>create</code> method accepting one <code>props</code> argument, which defines
 the properties of the model to be created.</p>
-<h4>Samples: how to create and update models</h4>
+<h4 id="samples-how-to-create-and-update-models">Samples: how to create and update models</h4>
 <ul>
 <li><p>Create a new <a href="variable.html">Variable</a> with name &quot;CurrentDate&quot; that returns the current date.
 <code>api.Variable.create({name: &quot;CurrentDate&quot;, code: &quot;var now = new Date(); return now.getDate();&quot;});</code></p>
@@ -65,7 +67,7 @@ an <a href="entityObject.html">EntityObject</a> and with size 6x4, around top le
 api.Map.createShape(props);</code></pre>
 </li>
 </ul>
-<h2>Sample map script</h2>
+<h2 id="sample-map-script">Sample map script</h2>
 <p>This will create a map of http hosts divided in 3 segments, having 3 columns of servers per segment.</p>
 <pre><code>// Iterators and general variables.
 var s, h, x, y, c, props;
@@ -160,6 +162,20 @@ y += sizeY + spacingY;
                 <li>
                   <a class="source" href="README_API.html">
                     README_API.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="README.html">
+                    README.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.md
                   </a>
                 </li>
               

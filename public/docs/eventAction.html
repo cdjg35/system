@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ALERT ACTION MODEL</h2>
+        <h2 id="alert-action-model">ALERT ACTION MODEL</h2>
 
         
       
@@ -494,10 +494,10 @@ an alert on the footer.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EventAction</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"EventAction"</span>
-    defaults:
-        actionType: <span class="literal">null</span>    <span class="comment"># the action type can be: blink, colorBg, colorBorder, footerMessage</span>
-        actionValue: <span class="literal">null</span>   <span class="comment"># the value for the action specified above (optional)</span></pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"EventAction"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">actionType</span>: <span class="literal">null</span>    <span class="comment"># the action type can be: blink, colorBg, colorBorder, footerMessage</span>
+        <span class="attribute">actionValue</span>: <span class="literal">null</span>   <span class="comment"># the value for the action specified above (optional)</span></pre></div>
         
       
         
@@ -505,11 +505,11 @@ an alert on the footer.</p>
 was last triggered.</p>
 
         
-          <div class='highlight'><pre>    affectedShapes: <span class="literal">null</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">affectedShapes</span>: <span class="literal">null</span></pre></div>
         
       
         
-        <h2>SYNC</h2>
+        <h2 id="sync">SYNC</h2>
 
         
       
@@ -517,18 +517,18 @@ was last triggered.</p>
         <p>Override the &quot;save&quot; method as we don&#39;t need to sync individual alert actions with the server.</p>
 
         
-          <div class='highlight'><pre>    save: (key, value, options) =&gt; <span class="property">@noSyncSave</span> key, value, options</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">save</span>: <span class="function"><span class="params">(key, value, options)</span> =&gt;</span> <span class="property">@noSyncSave</span> key, value, options</pre></div>
         
       
         
         <p>Override the &quot;destroy&quot; method as we don&#39;t need to sync individual alert actions with the server.</p>
 
         
-          <div class='highlight'><pre>    destroy: (options) =&gt; <span class="property">@noSyncDestroy</span> options</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">destroy</span>: <span class="function"><span class="params">(options)</span> =&gt;</span> <span class="property">@noSyncDestroy</span> options</pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -536,7 +536,7 @@ was last triggered.</p>
         <p>Helper to get / set the action type.</p>
 
         
-          <div class='highlight'><pre>    actionType: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">actionType</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"actionType"</span>, value
         <span class="property">@get</span> <span class="string">"actionType"</span></pre></div>
@@ -546,7 +546,7 @@ was last triggered.</p>
         <p>Helper to get / set the action value.</p>
 
         
-          <div class='highlight'><pre>    actionValue: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">actionValue</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"actionValue"</span>, value
         <span class="property">@get</span> <span class="string">"actionValue"</span></pre></div>
@@ -556,12 +556,12 @@ was last triggered.</p>
         <p>Returns a readable string with the action.</p>
 
         
-          <div class='highlight'><pre>    toString: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toString</span>:<span class="function"> =&gt;</span>
         <span class="property">@actionType</span> + <span class="string">": "</span> + <span class="property">@actionValue</span></pre></div>
         
       
         
-        <h2>EVENT ACTION COLLECTION</h2>
+        <h2 id="event-action-collection">EVENT ACTION COLLECTION</h2>
 
         
       
@@ -570,15 +570,15 @@ was last triggered.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EventActionCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"EventActionCollection"</span>
-    model: SystemApp.EventAction</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"EventActionCollection"</span>
+    <span class="attribute">model</span>: SystemApp.EventAction</pre></div>
         
       
         
         <p>Set the comparator function to order the alert actions collection by action type.</p>
 
         
-          <div class='highlight'><pre>    comparator: (action) -&gt; <span class="keyword">return</span> action.actionType()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(action)</span> -&gt;</span> <span class="keyword">return</span> action.actionType()</pre></div>
         
       
       <div class="fleur">h</div>

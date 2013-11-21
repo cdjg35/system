@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>USER MODEL</h2>
+        <h2 id="user-model">USER MODEL</h2>
 
         
       
@@ -493,17 +493,17 @@ based on the username.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">User</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"User"</span>
-    defaults:
-        displayName: <span class="literal">null</span>   <span class="comment"># the user display name</span>
-        lastAccess: <span class="literal">null</span>    <span class="comment"># last access date and time</span>
-        passwordHash: <span class="literal">null</span>  <span class="comment"># the user password hash</span>
-        roles: []           <span class="comment"># the user roles array</span>
-        username: <span class="literal">null</span>      <span class="comment"># the username</span></pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"User"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">displayName</span>: <span class="literal">null</span>   <span class="comment"># the user display name</span>
+        <span class="attribute">lastAccess</span>: <span class="literal">null</span>    <span class="comment"># last access date and time</span>
+        <span class="attribute">passwordHash</span>: <span class="literal">null</span>  <span class="comment"># the user password hash</span>
+        <span class="attribute">roles</span>: []           <span class="comment"># the user roles array</span>
+        <span class="attribute">username</span>: <span class="literal">null</span>      <span class="comment"># the username</span></pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -511,7 +511,7 @@ based on the username.</p>
         <p>Helper to get / set the user&#39;s display name.</p>
 
         
-          <div class='highlight'><pre>    displayName: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">displayName</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"displayName"</span>, value
         <span class="property">@get</span> <span class="string">"displayName"</span></pre></div>
@@ -521,7 +521,7 @@ based on the username.</p>
         <p>Helper to get / set the user&#39;s last access datetime.</p>
 
         
-          <div class='highlight'><pre>    lastAccess: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">lastAccess</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"lastAccess"</span>, value
         <span class="property">@get</span> <span class="string">"lastAccess"</span></pre></div>
@@ -531,7 +531,7 @@ based on the username.</p>
         <p>Helper to get / set the user&#39;s password hash.</p>
 
         
-          <div class='highlight'><pre>    passwordHash: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">passwordHash</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"passwordHash"</span>, value
         <span class="property">@get</span> <span class="string">"passwordHash"</span></pre></div>
@@ -541,7 +541,7 @@ based on the username.</p>
         <p>Helper to get / set the user roles.</p>
 
         
-          <div class='highlight'><pre>    roles: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">roles</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"roles"</span>, value
         <span class="property">@get</span> <span class="string">"roles"</span></pre></div>
@@ -551,14 +551,14 @@ based on the username.</p>
         <p>Helper to get / set the user&#39;s username.</p>
 
         
-          <div class='highlight'><pre>    username: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">username</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"username"</span>, value
         <span class="property">@get</span> <span class="string">"username"</span></pre></div>
         
       
         
-        <h2>METHODS</h2>
+        <h2 id="methods">METHODS</h2>
 
         
       
@@ -566,14 +566,14 @@ based on the username.</p>
         <p>Check if user has a specific role. Returns true or false.</p>
 
         
-          <div class='highlight'><pre>    hasRole: (role) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hasRole</span>: <span class="function"><span class="params">(role)</span> =&gt;</span>
         admin = <span class="property">@roles</span>().indexOf <span class="string">"admin"</span>
         index = <span class="property">@roles</span>().indexOf role
         <span class="keyword">return</span>  (admin &gt; -<span class="number">1</span>) <span class="keyword">or</span> (index &gt; -<span class="number">1</span>)</pre></div>
         
       
         
-        <h2>USER COLLECTION</h2>
+        <h2 id="user-collection">USER COLLECTION</h2>
 
         
       
@@ -582,16 +582,16 @@ based on the username.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">UserCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"UserCollection"</span>
-    model: SystemApp.User
-    url: SystemApp.Settings.user.url</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"UserCollection"</span>
+    <span class="attribute">model</span>: SystemApp.User
+    <span class="attribute">url</span>: SystemApp.Settings.user.url</pre></div>
         
       
         
         <p>Set the comparator function to order the user collection by username.</p>
 
         
-          <div class='highlight'><pre>    comparator: (user) -&gt; <span class="keyword">return</span> user.us</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(user)</span> -&gt;</span> <span class="keyword">return</span> user.us</pre></div>
         
       
       <div class="fleur">h</div>

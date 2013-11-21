@@ -70,7 +70,7 @@
 
       
         
-        <h2>SERVER SOCKETS</h2>
+        <h2 id="server-sockets">SERVER SOCKETS</h2>
 
         
       
@@ -85,7 +85,7 @@
         <p>Require Expresser.</p>
 
         
-          <div class='highlight'><pre>    expresser = require <span class="string">"expresser"</span>
+          <div class='highlight'><pre>    expresser = <span class="built_in">require</span> <span class="string">"expresser"</span>
     settings = expresser.settings</pre></div>
         
       
@@ -93,13 +93,13 @@
         <p>Init socket connections.</p>
 
         
-          <div class='highlight'><pre>    init: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">init</span>:<span class="function"> =&gt;</span>
         expresser.sockets.listenTo <span class="string">"disconnect"</span>, <span class="property">@onDisconnect</span>
         expresser.sockets.listenTo <span class="string">"clients:refresh"</span>, <span class="property">@onClientsRefresh</span></pre></div>
         
       
         
-        <h2>TRIGGER: ENTITIES AND AUDIT DATA</h2>
+        <h2 id="trigger-entities-and-audit-data">TRIGGER: ENTITIES AND AUDIT DATA</h2>
 
         
       
@@ -107,7 +107,7 @@
         <p>Send updated <a href="entityObject.html">Entity Definition data</a> to the clients.</p>
 
         
-          <div class='highlight'><pre>    sendEntityRefresh: (entityDef) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">sendEntityRefresh</span>: <span class="function"><span class="params">(entityDef)</span> =&gt;</span>
         expresser.sockets.emit <span class="string">"entitydata:refresh"</span>, entityDef</pre></div>
         
       
@@ -115,12 +115,12 @@
         <p>Send updated <a href="auditData.html">AuditData</a> values to the clients.</p>
 
         
-          <div class='highlight'><pre>    sendAuditDataRefresh: (auditData) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">sendAuditDataRefresh</span>: <span class="function"><span class="params">(auditData)</span> =&gt;</span>
         expresser.sockets.emit <span class="string">"auditdata:refresh"</span>, auditData</pre></div>
         
       
         
-        <h2>TRIGGER: SERVER LOGS AND ERRORS</h2>
+        <h2 id="trigger-server-logs-and-errors">TRIGGER: SERVER LOGS AND ERRORS</h2>
 
         
       
@@ -128,13 +128,13 @@
         <p>Send a server error JSON to the clients, containing a title and message.</p>
 
         
-          <div class='highlight'><pre>    sendServerError: (title, errorMessage) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">sendServerError</span>: <span class="function"><span class="params">(title, errorMessage)</span> =&gt;</span>
         errorMessage = <span class="string">"Unknown error"</span> <span class="keyword">if</span> <span class="keyword">not</span> errorMessage?
-        expresser.sockets.emit <span class="string">"server:error"</span>, {title: title, message: errorMessage.toString().replace(<span class="string">":"</span>, <span class="string">" "</span>)}</pre></div>
+        expresser.sockets.emit <span class="string">"server:error"</span>, {<span class="attribute">title</span>: title, <span class="attribute">message</span>: errorMessage.toString().replace(<span class="string">":"</span>, <span class="string">" "</span>)}</pre></div>
         
       
         
-        <h2>LISTEN: CLIENT COMMANDS</h2>
+        <h2 id="listen-client-commands">LISTEN: CLIENT COMMANDS</h2>
 
         
       
@@ -142,7 +142,7 @@
         <p>When user disconnects, emit an event with the new connection count to all clients.</p>
 
         
-          <div class='highlight'><pre>    onDisconnect: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onDisconnect</span>:<span class="function"> =&gt;</span>
         expresser.sockets.emit <span class="string">"server:connectionCounter"</span>, expresser.sockets.getConnectionCount()</pre></div>
         
       
@@ -151,23 +151,23 @@
 to all connected clients so they&#39;ll get the page refreshed.</p>
 
         
-          <div class='highlight'><pre>    onClientsRefresh: (data) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onClientsRefresh</span>: <span class="function"><span class="params">(data)</span> =&gt;</span>
         expresser.sockets.emit <span class="string">"clients:refresh"</span>, data</pre></div>
         
       
         
-        <h2>Singleton implementation</h2>
+        <h2 id="singleton-implementation">Singleton implementation</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>Sockets.<span class="function"><span class="title">getInstance</span></span> = -&gt;
+          <div class='highlight'><pre>Sockets.<span class="function"><span class="title">getInstance</span> = -&gt;</span>
     <span class="property">@instance</span> = <span class="keyword">new</span> Sockets() <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@instance</span>?
     <span class="keyword">return</span> <span class="property">@instance</span>
 
-module.exports = exports = Sockets.getInstance()</pre></div>
+module.<span class="built_in">exports</span> = <span class="built_in">exports</span> = Sockets.getInstance()</pre></div>
         
       
       <div class="fleur">h</div>

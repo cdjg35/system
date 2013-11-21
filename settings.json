@@ -1,11 +1,13 @@
-// All server settings should be defined on this file!
-// These will be appended to the base Expresser Settings class, and some of the
-// Expresser settings might not be defined here (and in this case it will use the default values).
+// All server settings are described on this file. These will be appended to the base
+// Expresser Settings class, and some of the Expresser settings might not be defined
+// here (and in this case it will use the default values).
+//
+// ATTENTION!!! We recommend you to create a settings.development.json on your development
+// machine and a settings.production.json on your live environment. The Settings class will
+// look for these files as well (depending on the NODE_ENV variable). If you edit this
+// settings.json file you might lose changes whenever you pull again from GitHub.
 //
 // For more details on Expresser settings: https://expresser.codeplex.com/wikipage?title=Settings
-//
-// Please note that the System App will also look for `settings.development.json` if running on
-// development environment, and `settings.production.json` if running on production.
 
 {
     // GENERAL SETTINGS
@@ -14,7 +16,10 @@
         "appTitle": "System App",
         // Only set debug = true on development and testing environments!
         // Leaving it null will automatically set to false on production.
-        "debug": null
+        "debug": null,
+        // Set the support email which is displayed and provided to users
+        // in case they need support. For example: system-support@mycompany.com
+        "supportEmail": null
     },
 
     // EXPRESSER APP SETTINGS

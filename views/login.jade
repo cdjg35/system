@@ -1,12 +1,13 @@
 !!! 5
-!= css("app")
+!= css("appcss")
 html
     head
         title #{title}
         link(type="image/x-icon", href="images/favico.png", rel="icon")
         meta(name="apple-mobile-web-app-capable", content="yes")
     body#login
-        h1 #{title} Login
+        div.header
+            h1 #{title} Login
         form(method="POST")
             div
                 label(for="username") Username
@@ -15,4 +16,9 @@ html
                 label(for="password") Password
                 input#password(type="password", name="password", placeholder="password", title="Enter your password (case sensitive!)")
             div
+                a#forgot Forgot credentials?
                 button.identify Validate
+
+        div.about
+            p.
+                This software is based on the System App by Zalando, a free and open source tool.

@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>LINK LABELS VIEW</h2>
+        <h2 id="link-labels-view">LINK LABELS VIEW</h2>
 
         
       
@@ -495,19 +495,19 @@ to 3 editable labels (start, middle, end).</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapLinkLabelsView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    visible: <span class="literal">true</span>                       <span class="comment"># cached variable to check if labels are visible or hidden</span>
-    currentEditingPosition: <span class="literal">null</span>        <span class="comment"># holds the position which is being currently edited (Start, Center. End)</span>
-    labelEditView: <span class="literal">null</span>                 <span class="comment"># holds a [Label Edit View](labelEditView.html), used to change label values</span>
-    svgStart: <span class="literal">null</span>                      <span class="comment"># the label on the start of the link path</span>
-    svgMiddle: <span class="literal">null</span>                     <span class="comment"># the label on the middle of the link path</span>
-    svgEnd: <span class="literal">null</span>                        <span class="comment"># the label on the end of the link path</span>
-    svgIconStart: <span class="literal">null</span>                  <span class="comment"># the icon (used if text is empty) on the start of the link path</span>
-    svgIconMiddle: <span class="literal">null</span>                 <span class="comment"># the icon (used if text is empty) on the middle of the link path</span>
-    svgIconEnd: <span class="literal">null</span>                    <span class="comment"># the icon (used if text is empty) on the end of the link path</span></pre></div>
+    <span class="attribute">visible</span>: <span class="literal">true</span>                       <span class="comment"># cached variable to check if labels are visible or hidden</span>
+    <span class="attribute">currentEditingPosition</span>: <span class="literal">null</span>        <span class="comment"># holds the position which is being currently edited (Start, Center. End)</span>
+    <span class="attribute">labelEditView</span>: <span class="literal">null</span>                 <span class="comment"># holds a [Label Edit View](labelEditView.html), used to change label values</span>
+    <span class="attribute">svgStart</span>: <span class="literal">null</span>                      <span class="comment"># the label on the start of the link path</span>
+    <span class="attribute">svgMiddle</span>: <span class="literal">null</span>                     <span class="comment"># the label on the middle of the link path</span>
+    <span class="attribute">svgEnd</span>: <span class="literal">null</span>                        <span class="comment"># the label on the end of the link path</span>
+    <span class="attribute">svgIconStart</span>: <span class="literal">null</span>                  <span class="comment"># the icon (used if text is empty) on the start of the link path</span>
+    <span class="attribute">svgIconMiddle</span>: <span class="literal">null</span>                 <span class="comment"># the icon (used if text is empty) on the middle of the link path</span>
+    <span class="attribute">svgIconEnd</span>: <span class="literal">null</span>                    <span class="comment"># the icon (used if text is empty) on the end of the link path</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -515,7 +515,7 @@ to 3 editable labels (start, middle, end).</p>
         <p>Init the label edit view and set its parent view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseInit</span>()
         <span class="property">@setEvents</span>()</pre></div>
         
@@ -524,7 +524,7 @@ to 3 editable labels (start, middle, end).</p>
         <p>Base dispose for links labels.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span></pre></div>
         
       
         
@@ -558,7 +558,7 @@ to 3 editable labels (start, middle, end).</p>
         <p>Bind event listeners to the view.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"edit:toggle"</span>, <span class="property">@toggleEdit</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"zoom:in"</span>, <span class="property">@onZoom</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"zoom:out"</span>, <span class="property">@onZoom</span>
@@ -568,7 +568,7 @@ to 3 editable labels (start, middle, end).</p>
         
       
         
-        <h2>HELPER PROPERTIES</h2>
+        <h2 id="helper-properties">HELPER PROPERTIES</h2>
 
         
       
@@ -576,7 +576,7 @@ to 3 editable labels (start, middle, end).</p>
         <p>Return an array with all the SVG elements (labels and icons).</p>
 
         
-          <div class='highlight'><pre>    svgs: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">svgs</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> [<span class="property">@svgStart</span>, <span class="property">@svgMiddle</span>, <span class="property">@svgEnd</span>, <span class="property">@svgIconStart</span>, <span class="property">@svgIconMiddle</span>, <span class="property">@svgIconEnd</span>]</pre></div>
         
       
@@ -584,7 +584,7 @@ to 3 editable labels (start, middle, end).</p>
         <p>Return an array with label SVG elements.</p>
 
         
-          <div class='highlight'><pre>    svgsLabels: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">svgsLabels</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> [<span class="property">@svgStart</span>, <span class="property">@svgMiddle</span>, <span class="property">@svgEnd</span>]</pre></div>
         
       
@@ -592,12 +592,12 @@ to 3 editable labels (start, middle, end).</p>
         <p>Return an array with icon SVG elements.</p>
 
         
-          <div class='highlight'><pre>    svgsIcons: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">svgsIcons</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> [<span class="property">@svgIconStart</span>, <span class="property">@svgIconMiddle</span>, <span class="property">@svgIconEnd</span>]</pre></div>
         
       
         
-        <h2>RENDER AND POSITIONING</h2>
+        <h2 id="render-and-positioning">RENDER AND POSITIONING</h2>
 
         
       
@@ -605,7 +605,7 @@ to 3 editable labels (start, middle, end).</p>
         <p>Render all label SVG elements on the map.</p>
 
         
-          <div class='highlight'><pre>    render: (parent, location) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">render</span>: <span class="function"><span class="params">(parent, location)</span> =&gt;</span>
         <span class="keyword">if</span> parent?
             <span class="property">@parentView</span> = parent
 
@@ -638,7 +638,7 @@ in case the value is empty. The position tells the location of the label related
 to its parent <a href="linkView.html">Link View</a>.</p>
 
         
-          <div class='highlight'><pre>    renderLabel: (value, svg, iconSvg, location) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">renderLabel</span>: <span class="function"><span class="params">(value, svg, iconSvg, location)</span> =&gt;</span>
         x = <span class="number">0</span>
         y = <span class="number">0</span>
         text = value
@@ -720,7 +720,7 @@ before recreating it on a new icon.</p>
           <div class='highlight'><pre>            <span class="keyword">if</span> <span class="keyword">not</span> iconSvg?
                 iconSvg = <span class="property">@parentView</span>.parentView.paper.image SystemApp.Settings.map.icoAddLabelUrl, <span class="number">0</span>, <span class="number">0</span>, iconSize, iconSize
 
-            iconSvg.attr {<span class="string">"x"</span>: x, <span class="string">"y"</span>: y, cursor: <span class="string">"pointer"</span>, opacity: SystemApp.Settings.map.icoActionsOpacity}
+            iconSvg.attr {<span class="string">"x"</span>: x, <span class="string">"y"</span>: y, <span class="attribute">cursor</span>: <span class="string">"pointer"</span>, <span class="attribute">opacity</span>: SystemApp.Settings.map.icoActionsOpacity}
             iconSvg.click <span class="property">@click</span>
             iconSvg.mouseover <span class="property">@iconMouseOver</span>
             iconSvg.mouseout <span class="property">@iconMouseOut</span>
@@ -734,7 +734,7 @@ before recreating it on a new icon.</p>
         <p>Show the link labels and icons.</p>
 
         
-          <div class='highlight'><pre>    show: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">show</span>:<span class="function"> =&gt;</span>
         <span class="property">@visible</span> = <span class="literal">true</span></pre></div>
         
       
@@ -760,7 +760,7 @@ before recreating it on a new icon.</p>
         <p>Hide the link labels and icons.</p>
 
         
-          <div class='highlight'><pre>    hide: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hide</span>:<span class="function"> =&gt;</span>
         <span class="property">@visible</span> = <span class="literal">false</span>
         <span class="property">@currentEditingPosition</span> = <span class="literal">null</span>
 
@@ -773,7 +773,7 @@ before recreating it on a new icon.</p>
         <p>Hide only the icons (where no label text has been defined).</p>
 
         
-          <div class='highlight'><pre>    hideIcons: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hideIcons</span>:<span class="function"> =&gt;</span>
         opacity = {<span class="string">"opacity"</span>: <span class="number">0</span>}
         svgs = <span class="property">@svgsIcons</span>()
         s?.animate(opacity, SystemApp.Settings.map.blinkInterval) <span class="keyword">for</span> s <span class="keyword">in</span> svgs</pre></div>
@@ -783,7 +783,7 @@ before recreating it on a new icon.</p>
         <p>Set the link label positions on the map.</p>
 
         
-          <div class='highlight'><pre>    setPosition: (location) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setPosition</span>: <span class="function"><span class="params">(location)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@visible</span>
 
         iconSize = SystemApp.Settings.map.icoActionsSize
@@ -847,7 +847,7 @@ of 1.5 times the iconSize.</p>
 the selected link on the current <a href="mapView.html">Map View</a>.</p>
 
         
-          <div class='highlight'><pre>    toFront: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toFront</span>:<span class="function"> =&gt;</span>
         svgs = <span class="property">@svgs</span>()
         s?.toFront() <span class="keyword">for</span> s <span class="keyword">in</span> svgs</pre></div>
         
@@ -856,7 +856,7 @@ the selected link on the current <a href="mapView.html">Map View</a>.</p>
         <p>Bring the labels to the back of the current <a href="mapView.html">Map View</a>.</p>
 
         
-          <div class='highlight'><pre>    toBack: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toBack</span>:<span class="function"> =&gt;</span>
         svgs = <span class="property">@svgs</span>()
         s?.toBack() <span class="keyword">for</span> s <span class="keyword">in</span> svgs</pre></div>
         
@@ -866,7 +866,7 @@ the selected link on the current <a href="mapView.html">Map View</a>.</p>
 unless the <code>isCreatingLink</code> property of the <a href="mapView.html">Map View</a> is true.</p>
 
         
-          <div class='highlight'><pre>    iconMouseOver: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">iconMouseOver</span>:<span class="function"> -&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> SystemApp.mapView.isCreatingLink
         <span class="property">@attr</span> {<span class="string">"opacity"</span>: <span class="number">1</span>}</pre></div>
         
@@ -876,7 +876,7 @@ unless the <code>isCreatingLink</code> property of the <a href="mapView.html">Ma
 unless the <code>isCreatingLink</code> property of the <a href="mapView.html">Map View</a> is true.</p>
 
         
-          <div class='highlight'><pre>    iconMouseOut: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">iconMouseOut</span>:<span class="function"> -&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> SystemApp.mapView.isCreatingLink
         <span class="property">@attr</span> {<span class="string">"opacity"</span>: SystemApp.Settings.map.icoActionsOpacity}</pre></div>
         
@@ -885,7 +885,7 @@ unless the <code>isCreatingLink</code> property of the <a href="mapView.html">Ma
         <p>When user put map on &quot;Edit Mode&quot;, show the label icons. If in locked mode, hide them.</p>
 
         
-          <div class='highlight'><pre>    toggleEdit: (enabled) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleEdit</span>: <span class="function"><span class="params">(enabled)</span> =&gt;</span>
         svgs = <span class="property">@svgsIcons</span>()
 
         <span class="keyword">if</span> enabled
@@ -895,7 +895,7 @@ unless the <code>isCreatingLink</code> property of the <a href="mapView.html">Ma
         
       
         
-        <h2>LABEL DATA BINDING</h2>
+        <h2 id="label-data-binding">LABEL DATA BINDING</h2>
 
         
       
@@ -903,7 +903,7 @@ unless the <code>isCreatingLink</code> property of the <a href="mapView.html">Ma
         <p>Set the value of the specified label.</p>
 
         
-          <div class='highlight'><pre>    setLabelValue: (svg, value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setLabelValue</span>: <span class="function"><span class="params">(svg, value)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> svg? <span class="keyword">or</span> <span class="keyword">not</span> value?
             <span class="keyword">return</span>
 
@@ -915,7 +915,7 @@ unless the <code>isCreatingLink</code> property of the <a href="mapView.html">Ma
 the related link labels.</p>
 
         
-          <div class='highlight'><pre>    bindAllLabelsData: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindAllLabelsData</span>:<span class="function"> =&gt;</span>
         <span class="property">@bindLabelData</span> <span class="property">@svgStart</span>, <span class="property">@model</span>.textStart()
         <span class="property">@bindLabelData</span> <span class="property">@svgMiddle</span>, <span class="property">@model</span>.textMiddle()
         <span class="property">@bindLabelData</span> <span class="property">@svgEnd</span>, <span class="property">@model</span>.textEnd()</pre></div>
@@ -926,7 +926,7 @@ the related link labels.</p>
 a <a href="variable.html">Variable</a> and set it to the specified label.</p>
 
         
-          <div class='highlight'><pre>    bindLabelData: (svg, value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindLabelData</span>: <span class="function"><span class="params">(svg, value)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> svg?
             <span class="keyword">return</span>
 
@@ -935,7 +935,7 @@ a <a href="variable.html">Variable</a> and set it to the specified label.</p>
         
       
         
-        <h2>LABEL EDIT</h2>
+        <h2 id="label-edit">LABEL EDIT</h2>
 
         
       
@@ -944,7 +944,7 @@ a <a href="variable.html">Variable</a> and set it to the specified label.</p>
 proceed with removing the label, or show the textbox for edition (call <code>showEditLabel</code>).</p>
 
         
-          <div class='highlight'><pre>    click: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">click</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         src = $ e.target
         data = src.data <span class="string">"labelPosition"</span>
 
@@ -976,7 +976,7 @@ proceed with removing the label, or show the textbox for edition (call <code>sho
 the user can edit or bind values from an <a href="auditData.html">AuditData</a> to the label text.</p>
 
         
-          <div class='highlight'><pre>    showEditLabel: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showEditLabel</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@labelEditView</span>?
             <span class="property">@labelEditView</span> = <span class="keyword">new</span> SystemApp.MapLabelEditView()
             <span class="property">@labelEditView</span>.render <span class="keyword">this</span>
@@ -991,7 +991,7 @@ the user can edit or bind values from an <a href="auditData.html">AuditData</a> 
         <p>Make sure text is never undefined or null!</p>
 
         
-          <div class='highlight'><pre>        text = <span class="property">@model</span>.get <span class="string">"text<span class="subst">#{@currentEditingPosition}</span>"</span>
+          <div class='highlight'><pre>        text = <span class="property">@model</span>.get <span class="string">"text<span class="subst">#{<span class="property">@currentEditingPosition</span>}</span>"</span>
         text = <span class="string">""</span> <span class="keyword">if</span> <span class="keyword">not</span> text?</pre></div>
         
       
@@ -1007,8 +1007,8 @@ the user can edit or bind values from an <a href="auditData.html">AuditData</a> 
 <code>text</code> property of the model.</p>
 
         
-          <div class='highlight'><pre>    saveEditLabel: (view, value) =&gt;
-        <span class="property">@model</span>.set <span class="string">"text<span class="subst">#{@currentEditingPosition}</span>"</span>, value
+          <div class='highlight'><pre>    <span class="attribute">saveEditLabel</span>: <span class="function"><span class="params">(view, value)</span> =&gt;</span>
+        <span class="property">@model</span>.set <span class="string">"text<span class="subst">#{<span class="property">@currentEditingPosition</span>}</span>"</span>, value
         <span class="property">@model</span>.save()
         <span class="property">@parentView</span>.parentView.model.save()
 
@@ -1020,7 +1020,7 @@ the user can edit or bind values from an <a href="auditData.html">AuditData</a> 
         
       
         
-        <h2>TEXT SIZE AND ZOOM</h2>
+        <h2 id="text-size-and-zoom">TEXT SIZE AND ZOOM</h2>
 
         
       
@@ -1030,7 +1030,7 @@ the labels accordingly. Fonts size will increase when zooming out,
 but won&#39;t decrease when zooming in (zoom more than 1).</p>
 
         
-          <div class='highlight'><pre>    onZoom: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onZoom</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@parentView</span>.parentView.currentZoom &lt; <span class="number">1</span>
             <span class="keyword">return</span>
 
@@ -1041,7 +1041,7 @@ but won&#39;t decrease when zooming in (zoom more than 1).</p>
         <p>Set the foreground color ALL labels.</p>
 
         
-          <div class='highlight'><pre>    setAllForeground: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setAllForeground</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@setForeground</span>(svg, <span class="property">@parentView</span>.foreground()) <span class="keyword">for</span> svg <span class="keyword">in</span> [<span class="property">@svgStart</span>, <span class="property">@svgMiddle</span>, <span class="property">@svgEnd</span>]</pre></div>
         
       
@@ -1049,7 +1049,7 @@ but won&#39;t decrease when zooming in (zoom more than 1).</p>
         <p>The the foreground color for the specified label.</p>
 
         
-          <div class='highlight'><pre>    setForeground: (svg, color) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setForeground</span>: <span class="function"><span class="params">(svg, color)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> svg?
             <span class="keyword">return</span>
 
@@ -1060,7 +1060,7 @@ but won&#39;t decrease when zooming in (zoom more than 1).</p>
         <p>Set the font size for ALL labels.</p>
 
         
-          <div class='highlight'><pre>    setAllFontSizes: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setAllFontSizes</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         zoom = <span class="number">1</span>
         zoom = <span class="property">@parentView</span>.parentView.currentZoom <span class="keyword">if</span> <span class="property">@parentView</span>.parentView.currentZoom &gt; <span class="number">1</span>
 
@@ -1075,7 +1075,7 @@ but won&#39;t decrease when zooming in (zoom more than 1).</p>
 the map in or out.</p>
 
         
-          <div class='highlight'><pre>    setFontSize: (svg, fontSize) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setFontSize</span>: <span class="function"><span class="params">(svg, fontSize)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> svg?
             <span class="keyword">return</span>
 

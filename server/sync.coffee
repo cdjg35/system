@@ -46,8 +46,7 @@ class Sync
         if errorCount?
             if errorCount > settings.web.connRestartInterval
                 if moment().valueOf() < errorCount
-                    if settings.general.debug
-                        expresser.logger.warn "Sync.download", "Abort because failed too many times before.", remoteUrl
+                    expresser.logger.warn "Sync.download", "Abort because failed too many times before.", remoteUrl
                     return
                 else
                     delete @errorCounters[remoteUrl]
@@ -165,8 +164,7 @@ class Sync
                         delete @currentDownloads[localFile]
                         delete @errorCounters[remoteUrl]
 
-                        if settings.general.debug
-                            expresser.logger.info "Sync.download", remoteUrl, localFile
+                        expresser.logger.debug "Sync.download", remoteUrl, localFile
 
                     fileWriter.end()
                     fileWriter.destroySoon()

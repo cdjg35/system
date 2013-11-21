@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>MAP CONTROLS: SHAPE DETAILS VIEW</h2>
+        <h2 id="map-controls-shape-details-view">MAP CONTROLS: SHAPE DETAILS VIEW</h2>
 
         
       
@@ -493,39 +493,39 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapControlsShapeTabView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    currentBoundViews: <span class="literal">null</span> <span class="comment"># holds the current shape being shown</span></pre></div>
+    <span class="attribute">currentBoundViews</span>: <span class="literal">null</span> <span class="comment"># holds the current shape being shown</span></pre></div>
         
       
         
-        <h2>DOM ELEMENTS</h2>
+        <h2 id="dom-elements">DOM ELEMENTS</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    $topDescription: <span class="literal">null</span>           <span class="comment"># the "H6" element on top of the tab</span>
-    $txtBackground: <span class="literal">null</span>            <span class="comment"># the "Background" text field</span>
-    $txtForeground: <span class="literal">null</span>            <span class="comment"># the "Label color" text field</span>
-    $txtTitleForeground: <span class="literal">null</span>       <span class="comment"># the "Title color" text field</span>
-    $txtStroke: <span class="literal">null</span>                <span class="comment"># the "Border color" text field</span>
-    $selIcon: <span class="literal">null</span>                  <span class="comment"># the "Icon" select field</span>
-    $selStrokeWidth: <span class="literal">null</span>           <span class="comment"># the "Border width" select field</span>
-    $selFontSize: <span class="literal">null</span>              <span class="comment"># the "Font size" select field</span>
-    $selOpacity: <span class="literal">null</span>               <span class="comment"># the "Opacity" select field</span>
-    $selArrowSource: <span class="literal">null</span>           <span class="comment"># the "Source arrow style" select field</span>
-    $selArrowTarget: <span class="literal">null</span>           <span class="comment"># the "Target arrow style" select field</span>
-    $selOpacity: <span class="literal">null</span>               <span class="comment"># the "Opacity" select field</span>
-    $chkIconFull: <span class="literal">null</span>              <span class="comment"># the "Full size icon" toggle</span>
-    $chkRoundedCorners: <span class="literal">null</span>        <span class="comment"># the "Rounded corners" toggle</span>
-    $chkSmoothLink: <span class="literal">null</span>            <span class="comment"># the "Smooth link" toggle</span>
-    $zIndexDiv: <span class="literal">null</span>                <span class="comment"># the "Stack level/z-index" wrapper</span>
-    $butDeleteShape: <span class="literal">null</span>           <span class="comment"># the "Remove shape" button</span>
-    $butConfirmDeleteShape: <span class="literal">null</span>    <span class="comment"># the "Confirm" button to remove a shape from the map</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">$topDescription</span>: <span class="literal">null</span>           <span class="comment"># the "H6" element on top of the tab</span>
+    <span class="attribute">$txtBackground</span>: <span class="literal">null</span>            <span class="comment"># the "Background" text field</span>
+    <span class="attribute">$txtForeground</span>: <span class="literal">null</span>            <span class="comment"># the "Label color" text field</span>
+    <span class="attribute">$txtTitleForeground</span>: <span class="literal">null</span>       <span class="comment"># the "Title color" text field</span>
+    <span class="attribute">$txtStroke</span>: <span class="literal">null</span>                <span class="comment"># the "Border color" text field</span>
+    <span class="attribute">$selIcon</span>: <span class="literal">null</span>                  <span class="comment"># the "Icon" select field</span>
+    <span class="attribute">$selStrokeWidth</span>: <span class="literal">null</span>           <span class="comment"># the "Border width" select field</span>
+    <span class="attribute">$selFontSize</span>: <span class="literal">null</span>              <span class="comment"># the "Font size" select field</span>
+    <span class="attribute">$selOpacity</span>: <span class="literal">null</span>               <span class="comment"># the "Opacity" select field</span>
+    <span class="attribute">$selArrowSource</span>: <span class="literal">null</span>           <span class="comment"># the "Source arrow style" select field</span>
+    <span class="attribute">$selArrowTarget</span>: <span class="literal">null</span>           <span class="comment"># the "Target arrow style" select field</span>
+    <span class="attribute">$selOpacity</span>: <span class="literal">null</span>               <span class="comment"># the "Opacity" select field</span>
+    <span class="attribute">$chkIconFull</span>: <span class="literal">null</span>              <span class="comment"># the "Full size icon" toggle</span>
+    <span class="attribute">$chkRoundedCorners</span>: <span class="literal">null</span>        <span class="comment"># the "Rounded corners" toggle</span>
+    <span class="attribute">$chkSmoothLink</span>: <span class="literal">null</span>            <span class="comment"># the "Smooth link" toggle</span>
+    <span class="attribute">$zIndexDiv</span>: <span class="literal">null</span>                <span class="comment"># the "Stack level/z-index" wrapper</span>
+    <span class="attribute">$butDeleteShape</span>: <span class="literal">null</span>           <span class="comment"># the "Remove shape" button</span>
+    <span class="attribute">$butConfirmDeleteShape</span>: <span class="literal">null</span>    <span class="comment"># the "Confirm" button to remove a shape from the map</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -533,7 +533,7 @@
         <p>Inits the view. Parent will be the <a href="controlsView.html">Map Controls View</a>.</p>
 
         
-          <div class='highlight'><pre>    initialize: (parent) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>: <span class="function"><span class="params">(parent)</span> =&gt;</span>
         <span class="property">@baseInit</span> parent
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()
@@ -544,7 +544,7 @@
         <p>Dispose the shape details view control.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -552,7 +552,7 @@
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#map-ctl-tab-shape"</span>
 
         <span class="property">@$topDescription</span> = <span class="property">@$el</span>.find <span class="string">"h6"</span>
@@ -608,7 +608,7 @@
         <p>Bind events to DOM and other controls.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"edit:toggle"</span>, <span class="property">@setEnabled</span>
 
         fields = [<span class="property">@$txtBackground</span>, <span class="property">@$txtForeground</span>, <span class="property">@$txtTitleForeground</span>, <span class="property">@$txtStroke</span>]
@@ -637,7 +637,7 @@
         <p>Enable or disable editing the current <a href="shape.html">Shape</a> properties.</p>
 
         
-          <div class='highlight'><pre>    setEnabled: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEnabled</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         fields = [<span class="property">@$selIcon</span>, <span class="property">@$txtBackground</span>, <span class="property">@$txtForeground</span>, <span class="property">@$txtTitleForeground</span>, <span class="property">@$txtStroke</span>, <span class="property">@$selStrokeWidth</span>,
                   <span class="property">@$selFontSize</span>, <span class="property">@$selOpacity</span>, <span class="property">@$selArrowSource</span>, <span class="property">@$selArrowTarget</span>,
                   <span class="property">@$chkRoundedCorners</span>, <span class="property">@$chkSmoothLink</span>, <span class="property">@$zIndexDiv</span>, <span class="property">@$butDeleteShape</span>]
@@ -649,7 +649,7 @@
         
       
         
-        <h2>BINDING AND CLEARING</h2>
+        <h2 id="binding-and-clearing">BINDING AND CLEARING</h2>
 
         
       
@@ -657,9 +657,9 @@
         <p>When the view is first loaded, bind the initial and default values.</p>
 
         
-          <div class='highlight'><pre>    bindInitial: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindInitial</span>:<span class="function"> =&gt;</span>
         <span class="property">@$selIcon</span>.append $(document.createElement <span class="string">"option"</span>).val(<span class="string">"0"</span>).text(SystemApp.Messages.noIcon)
-        _.each SystemApp.Vectors, (item, key) =&gt; <span class="property">@$selIcon</span>.append $(document.createElement <span class="string">"option"</span>).val(key).text(key)</pre></div>
+        _.each SystemApp.Vectors, <span class="function"><span class="params">(item, key)</span> =&gt;</span> <span class="property">@$selIcon</span>.append $(document.createElement <span class="string">"option"</span>).val(key).text(key)</pre></div>
         
       
         
@@ -668,7 +668,7 @@ and display its editable properties. If multiple shapes are bound, show an alert
 will affect all selected shapes.</p>
 
         
-          <div class='highlight'><pre>    bind: (views) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bind</span>: <span class="function"><span class="params">(views)</span> =&gt;</span>
         <span class="property">@currentBoundViews</span> = views
 
         <span class="property">@$butDeleteShape</span>.removeClass <span class="string">"hidden"</span>
@@ -681,7 +681,7 @@ will affect all selected shapes.</p>
         <p>Show or hide forms depending on what&#39;s selected on the map.</p>
 
         
-          <div class='highlight'><pre>    toggleForms: (visible) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleForms</span>: <span class="function"><span class="params">(visible)</span> =&gt;</span>
         <span class="keyword">if</span> visible
             <span class="property">@$el</span>.find(<span class="string">"h5,.panel"</span>).show()
         <span class="keyword">else</span>
@@ -691,7 +691,7 @@ will affect all selected shapes.</p>
         
       
         
-        <h2>SHAPE EDITING TAB</h2>
+        <h2 id="shape-editing-tab">SHAPE EDITING TAB</h2>
 
         
       
@@ -700,7 +700,7 @@ will affect all selected shapes.</p>
 or <a href="link.html">Link</a> to the &quot;Element properties&quot; tab.</p>
 
         
-          <div class='highlight'><pre>    bindProperties: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindProperties</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@currentBoundViews</span>?</pre></div>
         
       
@@ -786,7 +786,7 @@ so user can edit multiple selected elements.</p>
 the pressed key and if it&#39;s Enter, save the value to the model.</p>
 
         
-          <div class='highlight'><pre>    editablePropertyKeyUp: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">editablePropertyKeyUp</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">13</span>
             <span class="property">@editablePropertySave</span> e
             <span class="keyword">return</span>
@@ -803,7 +803,7 @@ the pressed key and if it&#39;s Enter, save the value to the model.</p>
 saves the new value to the current <a href="shape.html">Shape</a> model.</p>
 
         
-          <div class='highlight'><pre>    editablePropertySave: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">editablePropertySave</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@currentBoundViews</span>?
             <span class="keyword">return</span>
 
@@ -812,30 +812,28 @@ saves the new value to the current <a href="shape.html">Shape</a> model.</p>
 
         <span class="keyword">if</span> src.attr(<span class="string">"type"</span>) <span class="keyword">is</span> <span class="string">"checkbox"</span>
             value = src.prop <span class="string">"checked"</span>
+            isValid = <span class="literal">true</span>
         <span class="keyword">else</span>
             value = src.val()
-            <span class="keyword">if</span> <span class="keyword">not</span> isNaN(value)</pre></div>
+            value = parseFloat value <span class="keyword">if</span> <span class="keyword">not</span> isNaN value
+            isValid = <span class="property">@validateField</span>(src).result</pre></div>
         
       
         
-        <p>Make sure numeric values are saved as numbers, not string.</p>
+        <p>Only save if field is validated.</p>
 
         
-          <div class='highlight'><pre>                value = parseFloat value
-
-        <span class="keyword">if</span> value? <span class="keyword">and</span> value <span class="keyword">isnt</span> <span class="string">""</span>
+          <div class='highlight'><pre>        <span class="keyword">if</span> isValid <span class="keyword">and</span> value? <span class="keyword">and</span> value <span class="keyword">isnt</span> <span class="string">""</span>
             <span class="property">@currentBoundViews</span>.model.set propertyName, value
             <span class="property">@currentBoundViews</span>.model.save()
-            <span class="property">@parentView</span>.model.save()
-        <span class="keyword">else</span>
-            src.val <span class="property">@currentBoundViews</span>.model.get propertyName</pre></div>
+            <span class="property">@parentView</span>.model.save()</pre></div>
         
       
         
         <p>When user selects no icon, disable the &quot;full icon&quot; toggle.</p>
 
         
-          <div class='highlight'><pre>    selIconChanged: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">selIconChanged</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@$selIcon</span>.val().toString() <span class="keyword">is</span> <span class="string">"0"</span>
             <span class="property">@$chkIconFull</span>.attr(<span class="string">"disabled"</span>, <span class="string">"disabled"</span>).addClass <span class="string">"disabled"</span>
         <span class="keyword">else</span>
@@ -847,7 +845,7 @@ saves the new value to the current <a href="shape.html">Shape</a> model.</p>
 <a href="shape.html">Shape</a>.</p>
 
         
-          <div class='highlight'><pre>    zIndexSave: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zIndexSave</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.parentView?.editEnabled
             <span class="keyword">return</span>
 
@@ -865,8 +863,8 @@ saves the new value to the current <a href="shape.html">Shape</a> model.</p>
 right next to it so user can confirm the shape removal.</p>
 
         
-          <div class='highlight'><pre>    deleteShapeClick: =&gt;
-        $(document).mouseup <span class="property">@resetDeleteShape</span>
+          <div class='highlight'><pre>    <span class="attribute">deleteShapeClick</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).mouseup <span class="property">@resetDeleteShape</span>
         <span class="property">@$butConfirmDeleteShape</span>.removeClass <span class="string">"hidden"</span></pre></div>
         
       
@@ -874,7 +872,7 @@ right next to it so user can confirm the shape removal.</p>
         <p>User clicks the &quot;Confirm&quot; button, so proceed with shape removal.</p>
 
         
-          <div class='highlight'><pre>    confirmDeleteShapeClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">confirmDeleteShapeClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@currentBoundViews</span>.blinkAndRemove()
         <span class="property">@resetDeleteShape</span> e</pre></div>
         
@@ -884,8 +882,8 @@ right next to it so user can confirm the shape removal.</p>
 while the button is visible, or after user confirms the deletion.</p>
 
         
-          <div class='highlight'><pre>    resetDeleteShape: =&gt;
-        $(document).unbind <span class="string">"mouseup"</span>, <span class="property">@resetDeleteShape</span>
+          <div class='highlight'><pre>    <span class="attribute">resetDeleteShape</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).unbind <span class="string">"mouseup"</span>, <span class="property">@resetDeleteShape</span>
         <span class="property">@$butConfirmDeleteShape</span>.addClass <span class="string">"hidden"</span></pre></div>
         
       

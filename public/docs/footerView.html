@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>FOOTER VIEW</h2>
+        <h2 id="footer-view">FOOTER VIEW</h2>
 
         
       
@@ -493,14 +493,14 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">FooterView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    height: <span class="number">0</span>               <span class="comment"># cached variable that holds the footer height</span>
+    <span class="attribute">height</span>: <span class="number">0</span>               <span class="comment"># cached variable that holds the footer height</span>
 
-    $text: <span class="literal">null</span>             <span class="comment"># the footer dynamic text span</span>
-    $onlineUsers: <span class="literal">null</span>      <span class="comment"># the div with the online user count</span></pre></div>
+    <span class="attribute">$text</span>: <span class="literal">null</span>             <span class="comment"># the footer dynamic text span</span>
+    <span class="attribute">$onlineUsers</span>: <span class="literal">null</span>      <span class="comment"># the div with the online user count</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -508,7 +508,7 @@
         <p>Init the footer view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#footer"</span>
 
         <span class="property">@$text</span> = $ <span class="string">"#footer-text"</span>
@@ -521,12 +521,12 @@
         <p>Dispose the footer view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
         
-        <h2>CURRENT FOOTER</h2>
+        <h2 id="current-footer">CURRENT FOOTER</h2>
 
         
       
@@ -534,7 +534,7 @@
         <p>Set the footer text value.</p>
 
         
-          <div class='highlight'><pre>    setText: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setText</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="property">@$text</span>.html value
 
         <span class="keyword">if</span> value? <span class="keyword">or</span> value <span class="keyword">isnt</span> <span class="string">""</span>
@@ -547,12 +547,12 @@
         <p>Set the online user count.</p>
 
         
-          <div class='highlight'><pre>    setOnlineUsers: (count) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setOnlineUsers</span>: <span class="function"><span class="params">(count)</span> =&gt;</span>
         <span class="property">@$onlineUsers</span>.html count</pre></div>
         
       
         
-        <h2>SHOW AND HIDE</h2>
+        <h2 id="show-and-hide">SHOW AND HIDE</h2>
 
         
       
@@ -560,7 +560,7 @@
         <p>Show (fade in) the footer bar.</p>
 
         
-          <div class='highlight'><pre>    show: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">show</span>:<span class="function"> =&gt;</span>
         <span class="property">@$el</span>.fadeIn SystemApp.Settings.footer.opacityInterval</pre></div>
         
       
@@ -568,7 +568,7 @@
         <p>Hide (fade out) the footer bar.</p>
 
         
-          <div class='highlight'><pre>    hide: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hide</span>:<span class="function"> =&gt;</span>
         <span class="property">@$el</span>.fadeOut SystemApp.Settings.footer.opacityInterval</pre></div>
         
       
