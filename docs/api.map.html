@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>System API: Map</h2>
+        <h2 id="system-api-map">System API: Map</h2>
 
         
       
@@ -499,12 +499,12 @@
 maps are open at the moment.</p>
 
         
-          <div class='highlight'><pre>    current: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">current</span>:<span class="function"> -&gt;</span>
         <span class="keyword">return</span> SystemApp.mapView.model</pre></div>
         
       
         
-        <h2>GET</h2>
+        <h2 id="get">GET</h2>
 
         
       
@@ -512,7 +512,7 @@ maps are open at the moment.</p>
         <p>Return <a href="map.html">maps</a> based on the specified filter.</p>
 
         
-          <div class='highlight'><pre>    get: (filter) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">get</span>: <span class="function"><span class="params">(filter)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Map.get"</span>, filter
 
         <span class="keyword">return</span> SystemApp.Api.getFromCollection SystemApp.Data.maps, filter</pre></div>
@@ -522,7 +522,7 @@ maps are open at the moment.</p>
         <p>Get the list of shapes available on the current <a href="map.html">Map</a>.</p>
 
         
-          <div class='highlight'><pre>    getShapes: (filter) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">getShapes</span>: <span class="function"><span class="params">(filter)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Map.getShapes"</span>, filter
 
         map = SystemApp.Api.Map.current()</pre></div>
@@ -538,7 +538,7 @@ maps are open at the moment.</p>
         
       
         
-        <h2>CREATE, UPDATE, DELETE</h2>
+        <h2 id="create-update-delete">CREATE, UPDATE, DELETE</h2>
 
         
       
@@ -546,7 +546,7 @@ maps are open at the moment.</p>
         <p>Create a <a href="map.html">Map</a> with the specified properties.</p>
 
         
-          <div class='highlight'><pre>    create: (props) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">create</span>: <span class="function"><span class="params">(props)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Map.create"</span>, props
 
         map = SystemApp.Data.maps.create props
@@ -557,7 +557,7 @@ maps are open at the moment.</p>
         <p>Create and add a <a href="shape.html">Shape</a> to the current map and return its model.</p>
 
         
-          <div class='highlight'><pre>    createShape: (props) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">createShape</span>: <span class="function"><span class="params">(props)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Map.addShape"</span>, props
 
         map = SystemApp.Api.Map.current()</pre></div>
@@ -573,7 +573,7 @@ maps are open at the moment.</p>
         
       
         
-        <h2>VIEW METHODS</h2>
+        <h2 id="view-methods">VIEW METHODS</h2>
 
         
       
@@ -581,7 +581,7 @@ maps are open at the moment.</p>
         <p>Force refresh all map labels.</p>
 
         
-          <div class='highlight'><pre>    refreshLabels: () -&gt;
+          <div class='highlight'><pre>    <span class="attribute">refreshLabels</span>: <span class="function"><span class="params">()</span> -&gt;</span>
         SystemApp.mapView.refreshLabels()</pre></div>
         
       

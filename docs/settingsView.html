@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>SETTINGS VIEW</h2>
+        <h2 id="settings-view">SETTINGS VIEW</h2>
 
         
       
@@ -493,21 +493,21 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">SettingsView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">OverlayView</span></span>
 
-    $chkFullscreen: <span class="literal">null</span>             <span class="comment"># the start maximized checkbox</span>
-    $chkAutoRefresh: <span class="literal">null</span>           <span class="comment"># the autorefresh checkbox</span>
-    $chkDebug: <span class="literal">null</span>                 <span class="comment"># the debug checkbox</span>
-    $debugNote: <span class="literal">null</span>                <span class="comment"># the debug performance note</span>
-    $modifierDelete: <span class="literal">null</span>           <span class="comment"># the "Delete" modifier keys div</span>
-    $modifierMultiple: <span class="literal">null</span>         <span class="comment"># the "Multiple" modifier keys div</span>
-    $modifierToBack: <span class="literal">null</span>           <span class="comment"># the "To Back" modifier keys div</span>
-    $localStorageDiv: <span class="literal">null</span>          <span class="comment"># the local storage contents wrapper</span>
-    $localStorageClearBut: <span class="literal">null</span>     <span class="comment"># the "Clear local storage" button</span>
-    $serverErrorsDiv: <span class="literal">null</span>          <span class="comment"># the server errors contents wrapper</span>
-    $serverErrorsClearBut: <span class="literal">null</span>     <span class="comment"># the "Clear server errors" button</span></pre></div>
+    <span class="attribute">$chkFullscreen</span>: <span class="literal">null</span>             <span class="comment"># the start maximized checkbox</span>
+    <span class="attribute">$chkAutoRefresh</span>: <span class="literal">null</span>           <span class="comment"># the autorefresh checkbox</span>
+    <span class="attribute">$chkDebug</span>: <span class="literal">null</span>                 <span class="comment"># the debug checkbox</span>
+    <span class="attribute">$debugNote</span>: <span class="literal">null</span>                <span class="comment"># the debug performance note</span>
+    <span class="attribute">$modifierDelete</span>: <span class="literal">null</span>           <span class="comment"># the "Delete" modifier keys div</span>
+    <span class="attribute">$modifierMultiple</span>: <span class="literal">null</span>         <span class="comment"># the "Multiple" modifier keys div</span>
+    <span class="attribute">$modifierToBack</span>: <span class="literal">null</span>           <span class="comment"># the "To Back" modifier keys div</span>
+    <span class="attribute">$localStorageDiv</span>: <span class="literal">null</span>          <span class="comment"># the local storage contents wrapper</span>
+    <span class="attribute">$localStorageClearBut</span>: <span class="literal">null</span>     <span class="comment"># the "Clear local storage" button</span>
+    <span class="attribute">$serverErrorsDiv</span>: <span class="literal">null</span>          <span class="comment"># the server errors contents wrapper</span>
+    <span class="attribute">$serverErrorsClearBut</span>: <span class="literal">null</span>     <span class="comment"># the "Clear server errors" button</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -515,7 +515,7 @@
         <p>Init the Settings overlay view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@overlayInit</span> <span class="string">"#settings"</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()</pre></div>
@@ -525,7 +525,7 @@
         <p>Dispose the Settings overlay view and set the frame source to blank.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -533,7 +533,7 @@
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@$menuItem</span> = $ <span class="string">"#menu-settings"</span>
 
         <span class="property">@$chkFullscreen</span> = $ <span class="string">"#settings-chk-fullscreen"</span>
@@ -555,7 +555,7 @@
         <p>Bind events to the DOM.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$chkFullscreen</span>.click <span class="property">@toggleMapFullscreen</span>
         <span class="property">@$chkAutoRefresh</span>.click <span class="property">@toggleMapAutoRefresh</span>
         <span class="property">@$chkDebug</span>.click <span class="property">@toggleDebug</span>
@@ -567,7 +567,7 @@
         
       
         
-        <h2>OPTIONS</h2>
+        <h2 id="options">OPTIONS</h2>
 
         
       
@@ -575,7 +575,7 @@
         <p>Bind options and general user settings to the view.</p>
 
         
-          <div class='highlight'><pre>    bindOptions: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindOptions</span>:<span class="function"> =&gt;</span>
         <span class="property">@$chkFullscreen</span>.prop <span class="string">"checked"</span>, SystemApp.Data.userSettings.mapFullscreen()
         <span class="property">@$chkAutoRefresh</span>.prop <span class="string">"checked"</span>, SystemApp.Data.userSettings.mapAutoRefresh()
         <span class="property">@$chkDebug</span>.prop <span class="string">"checked"</span>, SystemApp.Settings.general.debug
@@ -587,7 +587,7 @@
         <p>When user check/uncheck the &quot;start maximized&quot; map option.</p>
 
         
-          <div class='highlight'><pre>    toggleMapFullscreen: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleMapFullscreen</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         SystemApp.Data.userSettings.mapFullscreen <span class="property">@$chkFullscreen</span>.prop <span class="string">"checked"</span></pre></div>
         
       
@@ -595,7 +595,7 @@
         <p>When user check/uncheck the &quot;auto refresh data&quot; map option.</p>
 
         
-          <div class='highlight'><pre>    toggleMapAutoRefresh: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleMapAutoRefresh</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         SystemApp.Data.userSettings.mapAutoRefresh <span class="property">@$chkAutoRefresh</span>.prop <span class="string">"checked"</span></pre></div>
         
       
@@ -603,7 +603,7 @@
         <p>When user check/uncheck the &quot;enable debug mode&quot; option.</p>
 
         
-          <div class='highlight'><pre>    toggleDebug: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleDebug</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         value = <span class="property">@$chkDebug</span>.prop <span class="string">"checked"</span>
         SystemApp.toggleDebug value</pre></div>
         
@@ -619,7 +619,7 @@
         
       
         
-        <h2>MODIFIER KEYS</h2>
+        <h2 id="modifier-keys">MODIFIER KEYS</h2>
 
         
       
@@ -627,7 +627,7 @@
         <p>Bind the current set of modifier keys from local storage. If no</p>
 
         
-          <div class='highlight'><pre>    bindModifierKeys: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindModifierKeys</span>:<span class="function"> =&gt;</span>
         <span class="property">@parseModifierKeys</span> <span class="property">@$modifierDelete</span>, SystemApp.Data.userSettings.modifierDelete()
         <span class="property">@parseModifierKeys</span> <span class="property">@$modifierMultiple</span>, SystemApp.Data.userSettings.modifierMultiple()
         <span class="property">@parseModifierKeys</span> <span class="property">@$modifierToBack</span>, SystemApp.Data.userSettings.modifierToBack()</pre></div>
@@ -637,7 +637,7 @@
         <p>Parse a combination of modifier keys and highlight the matched div&#39;s elements.</p>
 
         
-          <div class='highlight'><pre>    parseModifierKeys: (div, combination) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">parseModifierKeys</span>: <span class="function"><span class="params">(div, combination)</span> =&gt;</span>
         keys = combination.replace(<span class="string">"  "</span>, <span class="string">" "</span>).split <span class="string">" "</span>
         div.find(<span class="string">".active"</span>).removeClass <span class="string">"active"</span>
         div.find(<span class="string">".<span class="subst">#{k}</span>"</span>).addClass(<span class="string">"active"</span>) <span class="keyword">for</span> k <span class="keyword">in</span> keys</pre></div>
@@ -649,7 +649,7 @@
 TODO! Refactor this handler to prevent duplicates, then edit the UserSettings accordingly.</p>
 
         
-          <div class='highlight'><pre>    modifierClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">modifierClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">return</span>;
 
         src = $ e.target
@@ -694,7 +694,7 @@ classe names, excluding the <code>.active</code> class and trimmed down.</p>
         
       
         
-        <h2>LOCAL STORAGE</h2>
+        <h2 id="local-storage">LOCAL STORAGE</h2>
 
         
       
@@ -702,7 +702,7 @@ classe names, excluding the <code>.active</code> class and trimmed down.</p>
         <p>Bind the local storage contents to the <code>@$localStorageDiv</code>.</p>
 
         
-          <div class='highlight'><pre>    bindLocalStorage: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindLocalStorage</span>:<span class="function"> =&gt;</span>
         <span class="property">@$localStorageDiv</span>.html JSON.stringify(JSON.parse(localStorage.localData), <span class="literal">null</span>, <span class="number">4</span>)</pre></div>
         
       
@@ -710,14 +710,14 @@ classe names, excluding the <code>.active</code> class and trimmed down.</p>
         <p>Clear the local storage. Ask the user if he really wants to proceed, first.</p>
 
         
-          <div class='highlight'><pre>    clearLocalStorage: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clearLocalStorage</span>:<span class="function"> =&gt;</span>
         $.localData.flush()
         <span class="property">@$localStorageDiv</span>.html <span class="string">"CLEARED!"</span>
         SystemApp.Data.userSettings.save()</pre></div>
         
       
         
-        <h2>SERVER ERRORS</h2>
+        <h2 id="server-errors">SERVER ERRORS</h2>
 
         
       
@@ -725,11 +725,11 @@ classe names, excluding the <code>.active</code> class and trimmed down.</p>
         <p>Bind the server errors array to the <code>@$serverErrorsDiv</code>.</p>
 
         
-          <div class='highlight'><pre>    bindServerErrors: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindServerErrors</span>:<span class="function"> =&gt;</span>
         result = <span class="string">""</span>
         errorList = SystemApp.Sockets.serverErrors
 
-        _.each errorList, (err) -&gt;
+        _.each errorList, <span class="function"><span class="params">(err)</span> -&gt;</span>
             time = err.timestamp.toTimeString()
             sep = time.indexOf <span class="string">"("</span>
             time = time.substring(<span class="number">0</span>, sep - <span class="number">1</span>) <span class="keyword">if</span> sep &gt; <span class="number">0</span>
@@ -742,13 +742,13 @@ classe names, excluding the <code>.active</code> class and trimmed down.</p>
         <p>Clear the server errors list.</p>
 
         
-          <div class='highlight'><pre>    clearServerErrors: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clearServerErrors</span>:<span class="function"> =&gt;</span>
         SystemApp.alertView.serverErrors = []
         <span class="property">@$serverLogDiv</span>.html <span class="string">"CLEARED!"</span></pre></div>
         
       
         
-        <h2>SHOW AND HIDE</h2>
+        <h2 id="show-and-hide">SHOW AND HIDE</h2>
 
         
       
@@ -757,7 +757,7 @@ classe names, excluding the <code>.active</code> class and trimmed down.</p>
 to populate the <code>$serverErrorsDiv</code>.</p>
 
         
-          <div class='highlight'><pre>    onShow: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onShow</span>:<span class="function"> =&gt;</span>
         SystemApp.serverEvents.<span class="literal">off</span> <span class="string">"error"</span>, <span class="property">@bindServerErrors</span>
         SystemApp.serverEvents.<span class="literal">on</span> <span class="string">"error"</span>, <span class="property">@bindServerErrors</span>
 
@@ -771,7 +771,7 @@ to populate the <code>$serverErrorsDiv</code>.</p>
         <p>When view gets hidden, stop listening to the &quot;server:error&quot; events.</p>
 
         
-          <div class='highlight'><pre>    onHide: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onHide</span>:<span class="function"> =&gt;</span>
         SystemApp.serverEvents.<span class="literal">off</span> <span class="string">"error"</span>, <span class="property">@bindServerErrors</span></pre></div>
         
       

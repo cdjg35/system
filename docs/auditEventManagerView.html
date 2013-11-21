@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>AUDIT EVENT MANAGER VIEW</h2>
+        <h2 id="audit-event-manager-view">AUDIT EVENT MANAGER VIEW</h2>
 
         
       
@@ -493,20 +493,20 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AuditEventManagerView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">OverlayView</span></span>
 
-    $txtCreate: <span class="literal">null</span>         <span class="comment"># the text input used to create a new audit event</span>
-    $butCreate: <span class="literal">null</span>         <span class="comment"># the button used to create a new audit event</span>
-    $txtDescription: <span class="literal">null</span>    <span class="comment"># the "Description" textbox when editing the audit event</span>
-    $chkActive: <span class="literal">null</span>         <span class="comment"># the "Active" checkbox when editing the audit event</span>
-    $gridRules: <span class="literal">null</span>         <span class="comment"># the right grid containing the current's event rules</span>
-    $gridActions: <span class="literal">null</span>       <span class="comment"># the right grid containing the current's event actions</span>
-    $rowAddRule: <span class="literal">null</span>        <span class="comment"># the last rules row, containing the "Add rule" fields</span>
-    $rowAddAction: <span class="literal">null</span>      <span class="comment"># the last actions row, containing the "Add action" fields</span>
-    $icoAddRule: <span class="literal">null</span>        <span class="comment"># the "Add" icon on the right of the add RULE row</span>
-    $icoAddAction: <span class="literal">null</span>      <span class="comment"># the "Add" icon on the right of the add ACTION row</span></pre></div>
+    <span class="attribute">$txtCreate</span>: <span class="literal">null</span>         <span class="comment"># the text input used to create a new audit event</span>
+    <span class="attribute">$butCreate</span>: <span class="literal">null</span>         <span class="comment"># the button used to create a new audit event</span>
+    <span class="attribute">$txtDescription</span>: <span class="literal">null</span>    <span class="comment"># the "Description" textbox when editing the audit event</span>
+    <span class="attribute">$chkActive</span>: <span class="literal">null</span>         <span class="comment"># the "Active" checkbox when editing the audit event</span>
+    <span class="attribute">$gridRules</span>: <span class="literal">null</span>         <span class="comment"># the right grid containing the current's event rules</span>
+    <span class="attribute">$gridActions</span>: <span class="literal">null</span>       <span class="comment"># the right grid containing the current's event actions</span>
+    <span class="attribute">$rowAddRule</span>: <span class="literal">null</span>        <span class="comment"># the last rules row, containing the "Add rule" fields</span>
+    <span class="attribute">$rowAddAction</span>: <span class="literal">null</span>      <span class="comment"># the last actions row, containing the "Add action" fields</span>
+    <span class="attribute">$icoAddRule</span>: <span class="literal">null</span>        <span class="comment"># the "Add" icon on the right of the add RULE row</span>
+    <span class="attribute">$icoAddAction</span>: <span class="literal">null</span>      <span class="comment"># the "Add" icon on the right of the add ACTION row</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -514,7 +514,7 @@
         <p>Init the Audit Events overlay view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@currentSettings</span> = SystemApp.Settings.auditEvent
         <span class="property">@overlayInit</span> <span class="string">"#auditevents"</span>
         <span class="property">@setDom</span>()
@@ -525,7 +525,7 @@
         <p>Dispose the Audit Events view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -533,7 +533,7 @@
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@$menuItem</span> = $ <span class="string">"#menu-auditevents"</span>
         <span class="property">@$modelsList</span> = $ <span class="string">"#auditevents-list"</span>
         <span class="property">@$txtCreate</span> = $ <span class="string">"#auditevents-txt-create"</span>
@@ -555,7 +555,7 @@
         <p>Bind events to the DOM.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$butCreate</span>.click <span class="property">@createEventClick</span>
         <span class="property">@$txtCreate</span>.keyup <span class="property">@createEventKeyUp</span>
 
@@ -571,7 +571,7 @@
         
       
         
-        <h2>AUDIT EVENTS LIST</h2>
+        <h2 id="audit-events-list">AUDIT EVENTS LIST</h2>
 
         
       
@@ -580,7 +580,7 @@
 and emptying the data grids.</p>
 
         
-          <div class='highlight'><pre>    clear: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clear</span>:<span class="function"> =&gt;</span>
         <span class="property">@model</span> = <span class="literal">null</span>
         <span class="property">@$modelsList</span>.empty()
         <span class="property">@clearTextInputs</span>()
@@ -593,7 +593,7 @@ and emptying the data grids.</p>
         <p>Clear only the text input fields.</p>
 
         
-          <div class='highlight'><pre>    clearTextInputs: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clearTextInputs</span>:<span class="function"> =&gt;</span>
         <span class="property">@$txtCreate</span>.val <span class="string">""</span></pre></div>
         
       
@@ -601,13 +601,13 @@ and emptying the data grids.</p>
         <p>Bind all <a href="auditEvent.html">AuditEvent</a> from the <a href="data.html">data store</a>.</p>
 
         
-          <div class='highlight'><pre>    bindAuditEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindAuditEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@clear</span>()
         <span class="property">@addToModelsList</span> item <span class="keyword">for</span> item <span class="keyword">in</span> SystemApp.Data.auditEvents.models</pre></div>
         
       
         
-        <h2>CREATING AUDIT EVENTS</h2>
+        <h2 id="creating-audit-events">CREATING AUDIT EVENTS</h2>
 
         
       
@@ -616,7 +616,7 @@ and emptying the data grids.</p>
 collection with the title entered at the <code>$txtCreate</code> field.</p>
 
         
-          <div class='highlight'><pre>    createEventClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createEventClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         newId = <span class="property">@$txtCreate</span>.val()</pre></div>
         
       
@@ -630,7 +630,7 @@ collection with the title entered at the <code>$txtCreate</code> field.</p>
         <span class="keyword">else</span>
             newId = SystemApp.DataUtil.normalize newId, <span class="literal">true</span>
 
-        SystemApp.Data.auditEvents.create {friendlyId: newId}, {wait: <span class="literal">true</span>}
+        SystemApp.Data.auditEvents.create {<span class="attribute">friendlyId</span>: newId}, {<span class="attribute">wait</span>: <span class="literal">true</span>}
         <span class="property">@clearTextInputs</span>()</pre></div>
         
       
@@ -639,13 +639,13 @@ collection with the title entered at the <code>$txtCreate</code> field.</p>
 event on the <code>$butCreate</code>.</p>
 
         
-          <div class='highlight'><pre>    createEventKeyUp: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createEventKeyUp</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">13</span>
             <span class="property">@$butCreate</span>.click()</pre></div>
         
       
         
-        <h2>AUDIT EVENT PROPERTIES</h2>
+        <h2 id="audit-event-properties">AUDIT EVENT PROPERTIES</h2>
 
         
       
@@ -653,7 +653,7 @@ event on the <code>$butCreate</code>.</p>
         <p>Bind entity properties and refresh the shape template.</p>
 
         
-          <div class='highlight'><pre>    onBindModel: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onBindModel</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>?
             <span class="property">@$txtDescription</span>.val <span class="property">@model</span>.description()
             <span class="property">@$chkActive</span>.prop <span class="string">"checked"</span>, <span class="property">@model</span>.active()
@@ -663,7 +663,7 @@ event on the <code>$butCreate</code>.</p>
         
       
         
-        <h2>RULES</h2>
+        <h2 id="rules">RULES</h2>
 
         
       
@@ -672,7 +672,7 @@ event on the <code>$butCreate</code>.</p>
 whenever the user clicks / selects an <a href="auditEvent.html">AuditEvent</a> on the <code>$gridAlerts</code>.</p>
 
         
-          <div class='highlight'><pre>    bindRules: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindRules</span>:<span class="function"> =&gt;</span>
         <span class="property">@$gridRules</span>.empty()
 
         <span class="keyword">if</span> <span class="property">@model</span>?
@@ -691,7 +691,7 @@ whenever the user clicks / selects an <a href="auditEvent.html">AuditEvent</a> o
         <p>Add a single <a href="eventRule.html">Alert Rule</a> to the <code>$gridRules</code>.</p>
 
         
-          <div class='highlight'><pre>    addRuleToGrid: (rule) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addRuleToGrid</span>: <span class="function"><span class="params">(rule)</span> =&gt;</span>
         row = $(document.createElement <span class="string">"div"</span>)
         row.attr <span class="string">"id"</span>, SystemApp.Settings.auditEvent.rowRulePrefix + rule.id
         row.data <span class="string">"DataItem"</span>, rule
@@ -738,7 +738,7 @@ whenever the user clicks / selects an <a href="auditEvent.html">AuditEvent</a> o
         <p>Remove the specified rule from the <code>$gridRules</code>.</p>
 
         
-          <div class='highlight'><pre>    removeRuleFromGrid: (rule) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeRuleFromGrid</span>: <span class="function"><span class="params">(rule)</span> =&gt;</span>
         $(<span class="string">"#"</span> + SystemApp.Settings.auditEvent.rowRulePrefix + rule.id).remove()
         <span class="property">@model</span>?.save()</pre></div>
         
@@ -748,7 +748,7 @@ whenever the user clicks / selects an <a href="auditEvent.html">AuditEvent</a> o
 to the <code>model</code> rules collection.</p>
 
         
-          <div class='highlight'><pre>    createRuleClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createRuleClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         row = $(e.currentTarget).parent()
         source = row.children <span class="string">".source"</span>
         target = row.children <span class="string">".target"</span>
@@ -792,13 +792,13 @@ to the <code>model</code> rules collection.</p>
 it will force a <code>click</code> event on the row&#39;s add icon.</p>
 
         
-          <div class='highlight'><pre>    createRuleKeyUp: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createRuleKeyUp</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">13</span>
             <span class="property">@$icoAddRule</span>.click()</pre></div>
         
       
         
-        <h2>ACTIONS</h2>
+        <h2 id="actions">ACTIONS</h2>
 
         
       
@@ -807,7 +807,7 @@ it will force a <code>click</code> event on the row&#39;s add icon.</p>
 whenever the user clicks / selects an <a href="auditEvent.html">AuditEvent</a> on the <code>$gridAlerts</code>.</p>
 
         
-          <div class='highlight'><pre>    bindActions: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindActions</span>:<span class="function"> =&gt;</span>
         <span class="property">@$gridActions</span>.empty()
 
         <span class="keyword">if</span> <span class="property">@model</span>?
@@ -826,7 +826,7 @@ whenever the user clicks / selects an <a href="auditEvent.html">AuditEvent</a> o
         <p>Add a single <a href="eventAction.html">Alert Action</a> to the <code>$gridActions</code>.</p>
 
         
-          <div class='highlight'><pre>    addActionToGrid: (action) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addActionToGrid</span>: <span class="function"><span class="params">(action)</span> =&gt;</span>
         row = $(document.createElement <span class="string">"div"</span>)
         row.attr <span class="string">"id"</span>, SystemApp.Settings.auditEvent.rowActionPrefix + action.id
         row.data <span class="string">"DataItem"</span>, action
@@ -862,7 +862,7 @@ whenever the user clicks / selects an <a href="auditEvent.html">AuditEvent</a> o
         <p>Remove the specified action from the <code>$gridActions</code>.</p>
 
         
-          <div class='highlight'><pre>    removeActionFromGrid: (action) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeActionFromGrid</span>: <span class="function"><span class="params">(action)</span> =&gt;</span>
         $(<span class="string">"#"</span> + SystemApp.Settings.auditEvent.rowActionPrefix + action.id).remove()
         <span class="property">@model</span>?.save()</pre></div>
         
@@ -872,7 +872,7 @@ whenever the user clicks / selects an <a href="auditEvent.html">AuditEvent</a> o
 to the <code>model</code> actions collection.</p>
 
         
-          <div class='highlight'><pre>    createActionClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createActionClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         row = $(e.currentTarget).parent()
         type = row.children <span class="string">".type"</span>
         value = row.children <span class="string">".value"</span>
@@ -902,13 +902,13 @@ to the <code>model</code> actions collection.</p>
 it will force a <code>click</code> event on the row&#39;s add icon.</p>
 
         
-          <div class='highlight'><pre>    createActionKeyUp: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createActionKeyUp</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">13</span>
             <span class="property">@$icoAddAction</span>.click()</pre></div>
         
       
         
-        <h2>SAVE AND DELETE</h2>
+        <h2 id="save-and-delete">SAVE AND DELETE</h2>
 
         
       
@@ -916,7 +916,7 @@ it will force a <code>click</code> event on the row&#39;s add icon.</p>
         <p>Create a &quot;delete icon&quot; on the DOM and append it to the specified row.</p>
 
         
-          <div class='highlight'><pre>    appendDeleteIcon: (item, row) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">appendDeleteIcon</span>: <span class="function"><span class="params">(item, row)</span> =&gt;</span>
         delIcon = $(document.createElement <span class="string">"div"</span>)
         delIcon.attr <span class="string">"title"</span>, SystemApp.Messages.tooltipDeleteItem
         delIcon.addClass <span class="string">"delete"</span>
@@ -926,7 +926,7 @@ it will force a <code>click</code> event on the row&#39;s add icon.</p>
         
       
         
-        <h2>SHOW AND HIDE</h2>
+        <h2 id="show-and-hide">SHOW AND HIDE</h2>
 
         
       
@@ -934,10 +934,10 @@ it will force a <code>click</code> event on the row&#39;s add icon.</p>
         <p>Bind the <code>keyUp</code> event when overlay is shown.</p>
 
         
-          <div class='highlight'><pre>    onShow: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onShow</span>:<span class="function"> =&gt;</span>
         <span class="property">@bindAuditEvents</span>()
 
-        $(document).keyup <span class="property">@hasModelListKeyUp</span>
+        $(<span class="built_in">document</span>).keyup <span class="property">@hasModelListKeyUp</span>
         <span class="property">@listenTo</span> SystemApp.Data.auditEvents, <span class="string">"add"</span>, <span class="property">@addToModelsList</span>
         <span class="property">@listenTo</span> SystemApp.Data.auditEvents, <span class="string">"remove"</span>, <span class="property">@removeFromModelsList</span></pre></div>
         
@@ -947,8 +947,8 @@ it will force a <code>click</code> event on the row&#39;s add icon.</p>
 and remove the <code>keyUp</code> from the document.</p>
 
         
-          <div class='highlight'><pre>    onHide: =&gt;
-        $(document).unbind <span class="string">"keyup"</span>, <span class="property">@hasModelListKeyUp</span>
+          <div class='highlight'><pre>    <span class="attribute">onHide</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).unbind <span class="string">"keyup"</span>, <span class="property">@hasModelListKeyUp</span>
         <span class="property">@stopListening</span>()
 
         <span class="property">@model</span>?.save()

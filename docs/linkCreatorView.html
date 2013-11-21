@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>LINK VIEW</h2>
+        <h2 id="link-view">LINK VIEW</h2>
 
         
       
@@ -493,13 +493,13 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapLinkCreatorView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">MapLinkView</span></span>
 
-    source: <span class="literal">null</span>        <span class="comment"># the source view (usually got from mapView)</span>
-    target: <span class="literal">null</span>        <span class="comment"># the target view (usually got from the mapView)</span>
-    svgConnector: <span class="literal">null</span>  <span class="comment"># the svg connector element that follows the mouse (a ghost "copy" of the source shape)</span></pre></div>
+    <span class="attribute">source</span>: <span class="literal">null</span>        <span class="comment"># the source view (usually got from mapView)</span>
+    <span class="attribute">target</span>: <span class="literal">null</span>        <span class="comment"># the target view (usually got from the mapView)</span>
+    <span class="attribute">svgConnector</span>: <span class="literal">null</span>  <span class="comment"># the svg connector element that follows the mouse (a ghost "copy" of the source shape)</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -507,7 +507,7 @@
         <p>Init the link creator view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span> = <span class="literal">null</span></pre></div>
         
       
@@ -515,7 +515,7 @@
         <p>Dispose the link creator view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>?.remove()
         <span class="property">@svgConnector</span>?.remove()
 
@@ -526,7 +526,7 @@
         
       
         
-        <h2>RENDER AND ANIMATE</h2>
+        <h2 id="render-and-animate">RENDER AND ANIMATE</h2>
 
         
       
@@ -534,7 +534,7 @@
         <p>Render the link creator on the map passing the source <a href="shapeView.html">Shape View</a>.</p>
 
         
-          <div class='highlight'><pre>    render: (parentView) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">render</span>: <span class="function"><span class="params">(parentView)</span> =&gt;</span>
         x = parentView.x()
         y = parentView.y()
         stroke = SystemApp.Settings.link.creatorStroke
@@ -566,7 +566,7 @@ to set the source <a href="shapeView.html">shape view</a> and the parent
         width = SystemApp.Settings.link.creatorWidth
         text = SystemApp.Messages.newLink
         smooth = SystemApp.Settings.link.smooth
-        options = {stroke: stroke, width: width, labelStroke: stroke, text: text, smooth: smooth}</pre></div>
+        options = {<span class="attribute">stroke</span>: stroke, <span class="attribute">width</span>: width, <span class="attribute">labelStroke</span>: stroke, <span class="attribute">text</span>: text, <span class="attribute">smooth</span>: smooth}</pre></div>
         
       
         
@@ -582,11 +582,11 @@ top left position, so we still need to add half the width of the source
 shape plus half the width of the connector itself.</p>
 
         
-          <div class='highlight'><pre>    setPosition: (posX, posY) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setPosition</span>: <span class="function"><span class="params">(posX, posY)</span> =&gt;</span>
         posX = posX + <span class="property">@source</span>.width() - SystemApp.Settings.map.icoActionsSize / <span class="number">2</span>
         posY = posY + SystemApp.Settings.map.icoActionsSize / <span class="number">2</span>
 
-        pos = { cx: posX, cy: posY }
+        pos = { <span class="attribute">cx</span>: posX, <span class="attribute">cy</span>: posY }
 
         <span class="property">@svgConnector</span>.attr pos
 

@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>System API: Entity</h2>
+        <h2 id="system-api-entity">System API: Entity</h2>
 
         
       
@@ -496,7 +496,7 @@ and their objects.</p>
         
       
         
-        <h2>GET</h2>
+        <h2 id="get">GET</h2>
 
         
       
@@ -504,7 +504,7 @@ and their objects.</p>
         <p>Return <a href="entityDefinition.html">Entity Definitions</a> based on the specified filter.</p>
 
         
-          <div class='highlight'><pre>    get: (filter) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">get</span>: <span class="function"><span class="params">(filter)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Entity.get"</span>, filter
 
         <span class="keyword">return</span> SystemApp.Api.getFromCollection(SystemApp.Data.entities, filter)</pre></div>
@@ -517,7 +517,7 @@ Please note: the filter applies to the data (objects), not the entity definition
 The <code>entityDef</code> can be either an instance or the ID of an <a href="entityDefinition.html">Entity Definition</a></p>
 
         
-          <div class='highlight'><pre>    getObjects: (entityDef, filter) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">getObjects</span>: <span class="function"><span class="params">(entityDef, filter)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Entity.getObjects"</span>, filter
 
         <span class="keyword">if</span> <span class="keyword">not</span> entityDef?
@@ -533,7 +533,7 @@ The <code>entityDef</code> can be either an instance or the ID of an <a href="en
         
       
         
-        <h2>CREATE, UPDATE, DELETE</h2>
+        <h2 id="create-update-delete">CREATE, UPDATE, DELETE</h2>
 
         
       
@@ -541,7 +541,7 @@ The <code>entityDef</code> can be either an instance or the ID of an <a href="en
         <p>Create an <a href="entityDefinition.html">Entity Definition</a> map with the specified properties.</p>
 
         
-          <div class='highlight'><pre>    create: (props) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">create</span>: <span class="function"><span class="params">(props)</span> -&gt;</span>
         SystemApp.Api.log <span class="string">"Entity.create"</span>, props
 
         entity = SystemApp.Data.entities.create props

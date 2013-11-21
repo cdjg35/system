@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>MENU VIEW</h2>
+        <h2 id="menu-view">MENU VIEW</h2>
 
         
       
@@ -494,25 +494,25 @@ settings, audit data, alerts and help overlay.</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MenuView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    height: <span class="number">0</span>                   <span class="comment"># cached variable that holds the header height</span>
-    timerHideMenu: <span class="literal">null</span>         <span class="comment"># timer to hide the menu after X milliseconds.</span>
+    <span class="attribute">height</span>: <span class="number">0</span>                   <span class="comment"># cached variable that holds the header height</span>
+    <span class="attribute">timerHideMenu</span>: <span class="literal">null</span>         <span class="comment"># timer to hide the menu after X milliseconds.</span>
 
-    $allMenus: <span class="literal">null</span>             <span class="comment"># helper array containing all the menu items</span>
-    $menuCreateMap: <span class="literal">null</span>        <span class="comment"># the "Create map" menu item</span>
-    $menuMaps: <span class="literal">null</span>             <span class="comment"># the "Available maps" menu item</span>
-    $menuEntities: <span class="literal">null</span>         <span class="comment"># the "Entities" menu item</span>
-    $menuVariables: <span class="literal">null</span>        <span class="comment"># the "Variables" menu item</span>
-    $menuAuditData: <span class="literal">null</span>        <span class="comment"># the "Audit Data" menu item</span>
-    $menuAuditEvents: <span class="literal">null</span>      <span class="comment"># the "Audit Events" menu item</span>
-    $menuSettings: <span class="literal">null</span>         <span class="comment"># the "Settings" menu item</span>
-    $menuHelp: <span class="literal">null</span>             <span class="comment"># the "Help" menu item</span>
-    $subMenuItems: <span class="literal">null</span>         <span class="comment"># the div containing all sub menu items (which represents maps)</span>
-    $localMapLink: <span class="literal">null</span>         <span class="comment"># represents the link to the "My Local Map"</span>
-    $currentSub: <span class="literal">null</span>           <span class="comment"># current selected map (sub-menu div)</span></pre></div>
+    <span class="attribute">$allMenus</span>: <span class="literal">null</span>             <span class="comment"># helper array containing all the menu items</span>
+    <span class="attribute">$menuCreateMap</span>: <span class="literal">null</span>        <span class="comment"># the "Create map" menu item</span>
+    <span class="attribute">$menuMaps</span>: <span class="literal">null</span>             <span class="comment"># the "Available maps" menu item</span>
+    <span class="attribute">$menuEntities</span>: <span class="literal">null</span>         <span class="comment"># the "Entities" menu item</span>
+    <span class="attribute">$menuVariables</span>: <span class="literal">null</span>        <span class="comment"># the "Variables" menu item</span>
+    <span class="attribute">$menuAuditData</span>: <span class="literal">null</span>        <span class="comment"># the "Audit Data" menu item</span>
+    <span class="attribute">$menuAuditEvents</span>: <span class="literal">null</span>      <span class="comment"># the "Audit Events" menu item</span>
+    <span class="attribute">$menuSettings</span>: <span class="literal">null</span>         <span class="comment"># the "Settings" menu item</span>
+    <span class="attribute">$menuHelp</span>: <span class="literal">null</span>             <span class="comment"># the "Help" menu item</span>
+    <span class="attribute">$subMenuItems</span>: <span class="literal">null</span>         <span class="comment"># the div containing all sub menu items (which represents maps)</span>
+    <span class="attribute">$localMapLink</span>: <span class="literal">null</span>         <span class="comment"># represents the link to the "My Local Map"</span>
+    <span class="attribute">$currentSub</span>: <span class="literal">null</span>           <span class="comment"># current selected map (sub-menu div)</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -521,7 +521,7 @@ settings, audit data, alerts and help overlay.</p>
 submenu list with all available maps.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()
 
@@ -532,7 +532,7 @@ submenu list with all available maps.</p>
         <p>Dispose the menu view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@$menuMaps</span>.unbind <span class="string">"click"</span>
         <span class="property">@$menuMaps</span>.unbind <span class="string">"mouseover"</span>
         <span class="property">@$menuMaps</span>.unbind <span class="string">"mouseout"</span>
@@ -546,7 +546,7 @@ submenu list with all available maps.</p>
         <p>Set all DOM elements.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#menu"</span>
 
         <span class="property">@$menuCreateMap</span> = $ <span class="string">"#menu-createmap"</span>
@@ -570,7 +570,7 @@ submenu list with all available maps.</p>
         <p>Bind events to DOM and sub views.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$menuCreateMap</span>.click <span class="string">"click:createmap"</span>, <span class="property">@menuClick</span>
         <span class="property">@$menuMaps</span>.click <span class="string">"click:maps"</span>, <span class="property">@menuClick</span>
         <span class="property">@$menuEntities</span>.click <span class="string">"click:entities"</span>, <span class="property">@menuClick</span>
@@ -585,7 +585,7 @@ submenu list with all available maps.</p>
         <p>Make sure submenu with maps is hidden when user clicks the &quot;Maps...&quot; option.</p>
 
         
-          <div class='highlight'><pre>        <span class="property">@$menuMaps</span>.click () =&gt; <span class="property">@toggleSubMenu</span> <span class="literal">false</span></pre></div>
+          <div class='highlight'><pre>        <span class="property">@$menuMaps</span>.click <span class="function"><span class="params">()</span> =&gt;</span> <span class="property">@toggleSubMenu</span> <span class="literal">false</span></pre></div>
         
       
         
@@ -611,7 +611,7 @@ submenu list with all available maps.</p>
         
       
         
-        <h2>MAP MENU AND SUBMENUS</h2>
+        <h2 id="map-menu-and-submenus">MAP MENU AND SUBMENUS</h2>
 
         
       
@@ -620,7 +620,7 @@ submenu list with all available maps.</p>
 set the &quot;Maps&quot; menu to active.</p>
 
         
-          <div class='highlight'><pre>    onMapLoad: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onMapLoad</span>:<span class="function"> =&gt;</span>
         <span class="property">@setActiveMenu</span> <span class="property">@$menuMaps</span></pre></div>
         
       
@@ -628,7 +628,7 @@ set the &quot;Maps&quot; menu to active.</p>
         <p>Add the &quot;My Local Map&quot; to the maps list. This will be triggered only if the <code>enableLocalMap</code> setting is true.</p>
 
         
-          <div class='highlight'><pre>    createSubLocalMap: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createSubLocalMap</span>:<span class="function"> =&gt;</span>
         map = <span class="keyword">new</span> SystemApp.Map()
         map.initLocalMap()
 
@@ -641,7 +641,7 @@ a <a href="map.html">Map</a>. If firstBind is true, it means the menu hasn&#39;t
 otherwise it&#39;s a newly created <a href="map.html">Map</a> being added.</p>
 
         
-          <div class='highlight'><pre>    createSubMap: (map) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createSubMap</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
         <span class="keyword">if</span> map.<span class="literal">on</span>?
             map.<span class="literal">on</span> <span class="string">"change"</span>, <span class="property">@updateMapInfo</span>
             map.<span class="literal">on</span> <span class="string">"destroy"</span>, <span class="property">@removeSubMap</span></pre></div>
@@ -705,7 +705,7 @@ otherwise it&#39;s a newly created <a href="map.html">Map</a> being added.</p>
 an item is removed from the main <a href="data.html">Map Collection</a>.</p>
 
         
-          <div class='highlight'><pre>    removeSubMap: (map) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeSubMap</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
         <span class="keyword">try</span>
             map.<span class="literal">off</span>()
             element = $ <span class="string">"#"</span> + SystemApp.Settings.menu.subPrefix + map.id
@@ -721,7 +721,7 @@ If e.data is the source element, then show the submenu items
 which have that specific data type (datacenter, or machine, or host, or view...).</p>
 
         
-          <div class='highlight'><pre>    showSubMaps: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showSubMaps</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@$menuMaps</span>.hasClass <span class="string">"active"</span>
             <span class="property">@toggleSubMenu</span> <span class="literal">false</span>
             <span class="keyword">return</span>
@@ -745,7 +745,7 @@ which have that specific data type (datacenter, or machine, or host, or view...)
         <p>Show or hide the submenu items div, depending on the parameter <code>show</code>.</p>
 
         
-          <div class='highlight'><pre>    toggleSubMenu: (show) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleSubMenu</span>: <span class="function"><span class="params">(show)</span> =&gt;</span>
         <span class="keyword">if</span> show? <span class="keyword">and</span> show
             <span class="property">@$menuMaps</span>.addClass <span class="string">"hover"</span>
             <span class="property">@$subMenuItems</span>.show()
@@ -758,7 +758,7 @@ which have that specific data type (datacenter, or machine, or host, or view...)
         <p>Sort the items on the map submenu.</p>
 
         
-          <div class='highlight'><pre>    sortSubMenu: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">sortSubMenu</span>:<span class="function"> =&gt;</span>
         <span class="property">@sortList</span> <span class="property">@$subMenuItems</span>, <span class="string">"a"</span>
 
         <span class="keyword">if</span> <span class="property">@$localMapLink</span>?
@@ -766,7 +766,7 @@ which have that specific data type (datacenter, or machine, or host, or view...)
         
       
         
-        <h2>MAP INTERACTIONS</h2>
+        <h2 id="map-interactions">MAP INTERACTIONS</h2>
 
         
       
@@ -775,7 +775,7 @@ which have that specific data type (datacenter, or machine, or host, or view...)
 and hide all submenus.</p>
 
         
-          <div class='highlight'><pre>    menuClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">menuClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@toggleSubMenu</span> <span class="literal">false</span>
         SystemApp.menuEvents.trigger e.data</pre></div>
         
@@ -784,7 +784,7 @@ and hide all submenus.</p>
         <p>Set the active menu item by making it look like a selected tab.</p>
 
         
-          <div class='highlight'><pre>    setActiveMenu: (menu) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setActiveMenu</span>: <span class="function"><span class="params">(menu)</span> =&gt;</span>
         item.removeClass(<span class="string">"active"</span>) <span class="keyword">for</span> item <span class="keyword">in</span> <span class="property">@$allMenus</span>
         menu.addClass <span class="string">"active"</span></pre></div>
         
@@ -793,7 +793,7 @@ and hide all submenus.</p>
         <p>Set the current active (highlighted) map on the menu.</p>
 
         
-          <div class='highlight'><pre>    setActiveMap: (map) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setActiveMap</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
         sub = $ <span class="string">"#<span class="subst">#{SystemApp.Settings.menu.subPrefix}</span><span class="subst">#{map.id}</span>"</span>
         <span class="property">@$currentSub</span>?.removeClass <span class="string">"active"</span>
         <span class="property">@$currentSub</span> = sub
@@ -808,7 +808,7 @@ and hide all submenus.</p>
 has its name changed by the server or by the user.</p>
 
         
-          <div class='highlight'><pre>    updateMapInfo: (map) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">updateMapInfo</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
         link = $(<span class="string">"#"</span> + SystemApp.Settings.menu.subPrefix + map.id)
         link.html map.name()
         link.attr <span class="string">"href"</span>, <span class="string">"#map/"</span> + map.urlKey()</pre></div>

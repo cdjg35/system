@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>MAP CONTROLS: ENTITY LIST VIEW</h2>
+        <h2 id="map-controls-entity-list-view">MAP CONTROLS: ENTITY LIST VIEW</h2>
 
         
       
@@ -494,15 +494,15 @@ map. The overlay is shown only when the map is in edit mode.</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapControlsEntitiesTabView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    $list: <span class="literal">null</span>             <span class="comment"># the "Ul" element containing the entity items</span>
-    $txtSearch: <span class="literal">null</span>        <span class="comment"># the "Search" input field</span>
-    $shapeDragger: <span class="literal">null</span>     <span class="comment"># represents a copy of the current shape being dragged to the map</span>
+    <span class="attribute">$list</span>: <span class="literal">null</span>             <span class="comment"># the "Ul" element containing the entity items</span>
+    <span class="attribute">$txtSearch</span>: <span class="literal">null</span>        <span class="comment"># the "Search" input field</span>
+    <span class="attribute">$shapeDragger</span>: <span class="literal">null</span>     <span class="comment"># represents a copy of the current shape being dragged to the map</span>
 
-    timerSearch: <span class="literal">null</span>       <span class="comment"># holds the timer to trigger the `search` method</span></pre></div>
+    <span class="attribute">timerSearch</span>: <span class="literal">null</span>       <span class="comment"># holds the timer to trigger the `search` method</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -510,7 +510,7 @@ map. The overlay is shown only when the map is in edit mode.</p>
         <p>Inits the view. Parent will be the <a href="controlsView.html">Map Controls View</a>.</p>
 
         
-          <div class='highlight'><pre>    initialize: (parent) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>: <span class="function"><span class="params">(parent)</span> =&gt;</span>
         <span class="property">@baseInit</span> parent
 
         <span class="property">@mapView</span> = parent.parentView
@@ -525,7 +525,7 @@ map. The overlay is shown only when the map is in edit mode.</p>
         <p>Dispose the view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@timerSearch</span> = <span class="literal">null</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
@@ -534,7 +534,7 @@ map. The overlay is shown only when the map is in edit mode.</p>
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#map-ctl-tab-entities"</span>
         <span class="property">@$list</span> = <span class="property">@$el</span>.children <span class="string">"ul"</span>
         <span class="property">@$txtSearch</span> = $ <span class="string">"#map-entity-list-search"</span></pre></div>
@@ -544,8 +544,8 @@ map. The overlay is shown only when the map is in edit mode.</p>
         <p>Bind events to DOM and other controls.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
-        $(window).resize <span class="property">@resize</span>
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">window</span>).resize <span class="property">@resize</span>
 
         <span class="property">@$txtSearch</span>.focus <span class="property">@searchFocus</span>
         <span class="property">@$txtSearch</span>.blur <span class="property">@searchBlur</span>
@@ -572,7 +572,7 @@ map. The overlay is shown only when the map is in edit mode.</p>
         <p>Enable or disable adding shapes to the current <a href="map.html">Map</a>.</p>
 
         
-          <div class='highlight'><pre>    setEnabled: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEnabled</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         formElements = [<span class="property">@$list</span>]
 
         <span class="keyword">if</span> <span class="keyword">not</span> value
@@ -587,7 +587,7 @@ map. The overlay is shown only when the map is in edit mode.</p>
         <p>Toggles the visibility on or off, using a fade effect.</p>
 
         
-          <div class='highlight'><pre>    toggleVisibility: (visible) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleVisibility</span>: <span class="function"><span class="params">(visible)</span> =&gt;</span>
         <span class="keyword">if</span> visible
             <span class="property">@$el</span>.fadeIn SystemApp.Settings.map.opacityInterval
         <span class="keyword">else</span>
@@ -598,12 +598,12 @@ map. The overlay is shown only when the map is in edit mode.</p>
         <p>When window has loaded or resized, set the height to the parent&#39;s height.</p>
 
         
-          <div class='highlight'><pre>    resize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resize</span>:<span class="function"> =&gt;</span>
         <span class="property">@$list</span>.css <span class="string">"height"</span>, <span class="property">@$el</span>.parent().innerHeight() - <span class="number">74</span></pre></div>
         
       
         
-        <h2>ENTITY SYNC</h2>
+        <h2 id="entity-sync">ENTITY SYNC</h2>
 
         
       
@@ -613,7 +613,7 @@ global <a href="data.html">data</a>, parse it and add its <a href="entityObject.
 to the <code>$list</code>.</p>
 
         
-          <div class='highlight'><pre>    entityAdded: (entityDef) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">entityAdded</span>: <span class="function"><span class="params">(entityDef)</span> =&gt;</span>
         <span class="property">@listenTo</span> entityDef, <span class="string">"change:data"</span>, <span class="property">@entityDataChanged</span>
         <span class="property">@listenTo</span> entityDef.data(), <span class="string">"add"</span>, <span class="property">@entityDataAdded</span>
         <span class="property">@listenTo</span> entityDef.data(), <span class="string">"remove"</span>, <span class="property">@entityDataRemoved</span>
@@ -629,7 +629,7 @@ to the <code>$list</code>.</p>
 the <code>$list</code>.</p>
 
         
-          <div class='highlight'><pre>    entityRemoved: (entityDef) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">entityRemoved</span>: <span class="function"><span class="params">(entityDef)</span> =&gt;</span>
         <span class="property">@stopListening</span> entityDef.data()
         className = entityDef.friendlyId().toLowerCase()
         $(<span class="string">".<span class="subst">#{className}</span>"</span>).remove()</pre></div>
@@ -653,7 +653,7 @@ This will effectively remove and re-add all entity objects to the list.
 Do not proceed if a shape is being dragged at the moment.</p>
 
         
-          <div class='highlight'><pre>    entityDataChanged: (entityDef) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">entityDataChanged</span>: <span class="function"><span class="params">(entityDef)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@$shapeDragger</span>?
             SystemApp.consoleLog <span class="string">"MapControlsEntitiesTabView.entityDataChanged"</span>, <span class="string">"Canceled because a shape is being dragged!"</span>, entityDef.friendlyId()
             <span class="keyword">return</span>
@@ -670,7 +670,7 @@ Do not proceed if a shape is being dragged at the moment.</p>
 to the <code>$list</code>.</p>
 
         
-          <div class='highlight'><pre>    entityDataAdded: (entityObject) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">entityDataAdded</span>: <span class="function"><span class="params">(entityObject)</span> =&gt;</span>
         <span class="property">@addToList</span> entityObject</pre></div>
         
       
@@ -679,13 +679,13 @@ to the <code>$list</code>.</p>
 from the <code>$list</code>.</p>
 
         
-          <div class='highlight'><pre>    entityDataRemoved: (entityObject) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">entityDataRemoved</span>: <span class="function"><span class="params">(entityObject)</span> =&gt;</span>
         li = $ SystemApp.Settings.map.entityListPrefix + entityObject.entityDefinitionId() + <span class="string">"-"</span> + entityObject.id
         li.remove()</pre></div>
         
       
         
-        <h2>BINDING AND OPTIONS</h2>
+        <h2 id="binding-and-options">BINDING AND OPTIONS</h2>
 
         
       
@@ -693,7 +693,7 @@ from the <code>$list</code>.</p>
         <p>Removes all entity objects from the <code>$list</code>.</p>
 
         
-          <div class='highlight'><pre>    clear: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clear</span>:<span class="function"> =&gt;</span>
         <span class="property">@$list</span>.empty()</pre></div>
         
       
@@ -702,7 +702,7 @@ from the <code>$list</code>.</p>
 current map&#39;s shapes collection, and set the entity count.</p>
 
         
-          <div class='highlight'><pre>    bindMap: (map) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindMap</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
         <span class="property">@model</span> = map
         <span class="property">@resize</span>()
         <span class="property">@resetListCount</span>()
@@ -718,7 +718,7 @@ current map&#39;s shapes collection, and set the entity count.</p>
 is NOT bound to any entity, thus its values are totally customizable.</p>
 
         
-          <div class='highlight'><pre>    addCustomShapeToList: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addCustomShapeToList</span>:<span class="function"> =&gt;</span>
         li = $(document.createElement <span class="string">"li"</span>)
         li.attr <span class="string">"id"</span>, SystemApp.Settings.map.entityListPrefix + <span class="string">"0"</span>
         li.html SystemApp.Settings.shape.customText
@@ -741,7 +741,7 @@ is NOT bound to any entity, thus its values are totally customizable.</p>
         <p>Bind a single entity to the <code>$list</code> element.</p>
 
         
-          <div class='highlight'><pre>    addToList: (obj) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addToList</span>: <span class="function"><span class="params">(obj)</span> =&gt;</span>
         obj = obj.model <span class="keyword">if</span> obj.model?
         definitionId = obj.entityDefinitionId()
         definitionId = SystemApp.Settings.shape.customId <span class="keyword">if</span> <span class="keyword">not</span> definitionId?
@@ -780,7 +780,7 @@ is NOT bound to any entity, thus its values are totally customizable.</p>
         <p>Add a list item to the <code>$list</code> entitiies list, and fade it into view.</p>
 
         
-          <div class='highlight'><pre>    addListItem: (li) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addListItem</span>: <span class="function"><span class="params">(li)</span> =&gt;</span>
         li.css <span class="string">"display"</span>, <span class="string">"none"</span>
         li.mousedown <span class="property">@dragStart</span>
         <span class="property">@$list</span>.append li
@@ -793,7 +793,7 @@ Return the default &quot;Custom Shape&quot; list item in case no items are found
 specified <a href="shape.html">Shape</a>.</p>
 
         
-          <div class='highlight'><pre>    getSpanCountElement: (shape) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getSpanCountElement</span>: <span class="function"><span class="params">(shape)</span> =&gt;</span>
         entityDefId = shape.entityDefinitionId()
         entityObjId = shape.entityObjectId()
 
@@ -808,9 +808,9 @@ specified <a href="shape.html">Shape</a>.</p>
 item, and reset their values to the correct count based on the current map.</p>
 
         
-          <div class='highlight'><pre>    resetListCount: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resetListCount</span>:<span class="function"> =&gt;</span>
         <span class="property">@$list</span>.find(<span class="string">"li &gt; span.count"</span>).html <span class="string">""</span>
-        _.each <span class="property">@model</span>.shapes().models, (shape) =&gt; <span class="property">@updateListCount</span> shape</pre></div>
+        _.each <span class="property">@model</span>.shapes<span class="function"><span class="params">()</span>.<span class="title">models</span>, <span class="params">(shape)</span> =&gt;</span> <span class="property">@updateListCount</span> shape</pre></div>
         
       
         
@@ -818,7 +818,7 @@ item, and reset their values to the correct count based on the current map.</p>
 its &quot;count&quot; to the current value + 1 on the <code>$list</code>.</p>
 
         
-          <div class='highlight'><pre>    updateListCount: (shape, subtract) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">updateListCount</span>: <span class="function"><span class="params">(shape, subtract)</span> =&gt;</span>
         spanCount = <span class="property">@getSpanCountElement</span> shape</pre></div>
         
       
@@ -858,7 +858,7 @@ its &quot;count&quot; to the current value + 1 on the <code>$list</code>. If no 
 consider it being a Custom Shape.</p>
 
         
-          <div class='highlight'><pre>    increaseListCount: (shape) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">increaseListCount</span>: <span class="function"><span class="params">(shape)</span> =&gt;</span>
         <span class="property">@updateListCount</span> shape</pre></div>
         
       
@@ -868,7 +868,7 @@ its &quot;count&quot; to the current value - 1 on the <code>$list</code>. If no 
 consider it being a Custom Shape.</p>
 
         
-          <div class='highlight'><pre>    subtractListCount: (shape) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">subtractListCount</span>: <span class="function"><span class="params">(shape)</span> =&gt;</span>
         <span class="property">@updateListCount</span> shape, <span class="literal">true</span></pre></div>
         
       
@@ -877,7 +877,7 @@ consider it being a Custom Shape.</p>
 shape will be added on that specific position on the map.</p>
 
         
-          <div class='highlight'><pre>    addShapeToMap: (entityObj, x, y) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addShapeToMap</span>: <span class="function"><span class="params">(entityObj, x, y)</span> =&gt;</span>
         viewBox = <span class="property">@mapView</span>.getViewBox()
 
         shapeOptions = {}
@@ -929,7 +929,7 @@ shape will be added on that specific position on the map.</p>
         
       
         
-        <h2>DRAGGING SHAPES</h2>
+        <h2 id="dragging-shapes">DRAGGING SHAPES</h2>
 
         
       
@@ -937,7 +937,7 @@ shape will be added on that specific position on the map.</p>
         <p>When user starts dragging a shape from the <code>$list</code>, clone it to the <code>$shapeDragger</code> variable.</p>
 
         
-          <div class='highlight'><pre>    dragStart: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dragStart</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@mapView</span>.editEnabled <span class="keyword">or</span> <span class="keyword">not</span> <span class="property">@mapView</span>.model?
             <span class="keyword">return</span></pre></div>
         
@@ -978,15 +978,15 @@ shape will be added on that specific position on the map.</p>
 
         <span class="property">@dragMove</span> e
 
-        $(window).mousemove <span class="property">@dragMove</span>
-        $(window).mouseup <span class="property">@dragStop</span></pre></div>
+        $(<span class="built_in">window</span>).mousemove <span class="property">@dragMove</span>
+        $(<span class="built_in">window</span>).mouseup <span class="property">@dragStop</span></pre></div>
         
       
         
         <p>When user is moving the mouse while dragging a shape, set its absolute position.</p>
 
         
-          <div class='highlight'><pre>    dragMove: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dragMove</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@$shapeDragger</span>.css <span class="string">"left"</span>, e.pageX - <span class="number">1</span>
         <span class="property">@$shapeDragger</span>.css <span class="string">"top"</span>, e.pageY - <span class="number">1</span>
 
@@ -1000,9 +1000,9 @@ a SVG element (which means, to the map). If so, call the <code>addShapeToMap</co
 Finally destroy the <code>$shapeDragger</code>.</p>
 
         
-          <div class='highlight'><pre>    dragStop: (e) =&gt;
-        $(window).unbind <span class="string">"mousemove"</span>, <span class="property">@dragMove</span>
-        $(window).unbind <span class="string">"mouseup"</span>, <span class="property">@dragStop</span>
+          <div class='highlight'><pre>    <span class="attribute">dragStop</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
+        $(<span class="built_in">window</span>).unbind <span class="string">"mousemove"</span>, <span class="property">@dragMove</span>
+        $(<span class="built_in">window</span>).unbind <span class="string">"mouseup"</span>, <span class="property">@dragStop</span>
 
         entity = <span class="property">@$shapeDragger</span>.data <span class="string">"entity"</span>
         <span class="property">@$shapeDragger</span>?.remove()
@@ -1025,12 +1025,12 @@ Finally destroy the <code>$shapeDragger</code>.</p>
 this making it an invalid shape.</p>
 
         
-          <div class='highlight'><pre>    dragCancel: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dragCancel</span>:<span class="function"> =&gt;</span>
         <span class="property">@dragStop</span> <span class="literal">false</span></pre></div>
         
       
         
-        <h2>SEARCH AND FILTER</h2>
+        <h2 id="search-and-filter">SEARCH AND FILTER</h2>
 
         
       
@@ -1038,7 +1038,7 @@ this making it an invalid shape.</p>
         <p>When the search input field gets focus, remove its watermark (if there&#39;s one).</p>
 
         
-          <div class='highlight'><pre>    searchFocus: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">searchFocus</span>:<span class="function"> =&gt;</span>
         value = <span class="property">@$txtSearch</span>.val()
 
         <span class="keyword">if</span> value <span class="keyword">is</span> SystemApp.Messages.searchWatermark
@@ -1050,7 +1050,7 @@ this making it an invalid shape.</p>
         <p>When the search input field lots focus, add a watermark in case its text value is empty.</p>
 
         
-          <div class='highlight'><pre>    searchBlur: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">searchBlur</span>:<span class="function"> =&gt;</span>
         value = <span class="property">@$txtSearch</span>.val()
 
         <span class="keyword">if</span> value.replace(<span class="string">" "</span>, <span class="string">""</span>) <span class="keyword">is</span> <span class="string">""</span>
@@ -1064,7 +1064,7 @@ defined on the <a href="settings.html">Settings</a>. Pressing the Esc key
 will clear the search text field.</p>
 
         
-          <div class='highlight'><pre>    prepareSearch: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">prepareSearch</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">27</span>
             <span class="property">@$txtSearch</span>.val <span class="string">""</span>
 
@@ -1077,7 +1077,7 @@ will clear the search text field.</p>
 The &quot;Custom shape...&quot; is always shown on the results.</p>
 
         
-          <div class='highlight'><pre>    search: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">search</span>:<span class="function"> =&gt;</span>
         <span class="property">@timerSearch</span> = <span class="literal">null</span>
         value = <span class="property">@$txtSearch</span>.val()
         items = <span class="property">@$list</span>.children <span class="string">"li"</span></pre></div>
@@ -1120,7 +1120,7 @@ and &gt;4 will show all entities which are added more than 4 times to the map.</
             prop = value.substring <span class="number">0</span>, i
             value = value.substring i + <span class="number">1</span>
 
-        _.each items, (li) =&gt;
+        _.each items, <span class="function"><span class="params">(li)</span> =&gt;</span>
             li = $ li
             display = <span class="string">"block"</span>
             entity = li.data <span class="string">"entity"</span>

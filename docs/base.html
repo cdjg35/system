@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>BASE MODEL</h2>
+        <h2 id="base-model">BASE MODEL</h2>
 
         
       
@@ -493,21 +493,21 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">Model</span></span>
 
-    typeName: <span class="literal">null</span></pre></div>
+    <span class="attribute">typeName</span>: <span class="literal">null</span></pre></div>
         
       
         
         <p>When was it last saved?</p>
 
         
-          <div class='highlight'><pre>    lastSave: <span class="keyword">new</span> Date(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>)</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">lastSave</span>: <span class="keyword">new</span> Date(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>)</pre></div>
         
       
         
         <p>If model is syncing with server, property fetching will be true.</p>
 
         
-          <div class='highlight'><pre>    fetching: <span class="literal">false</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">fetching</span>: <span class="literal">false</span></pre></div>
         
       
         
@@ -516,11 +516,11 @@ properties of the model and it will send the changes to the server
 all at once after a few milliseconds.</p>
 
         
-          <div class='highlight'><pre>    timerSave: <span class="literal">null</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">timerSave</span>: <span class="literal">null</span></pre></div>
         
       
         
-        <h2>COMMON PROPERTIES</h2>
+        <h2 id="common-properties">COMMON PROPERTIES</h2>
 
         
       
@@ -528,7 +528,7 @@ all at once after a few milliseconds.</p>
         <p>Get or set the model&#39;s active property.</p>
 
         
-          <div class='highlight'><pre>    active: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">active</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"active"</span>, value
         <span class="property">@get</span> <span class="string">"active"</span></pre></div>
@@ -538,7 +538,7 @@ all at once after a few milliseconds.</p>
         <p>Get or set the model&#39;s friendly ID (updateable by the user, and different from the fixed &quot;id&quot;).</p>
 
         
-          <div class='highlight'><pre>    friendlyId: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">friendlyId</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"friendlyId"</span>, value
 
@@ -554,7 +554,7 @@ all at once after a few milliseconds.</p>
         
       
         
-        <h2>ID AND URL HELPERS</h2>
+        <h2 id="id-and-url-helpers">ID AND URL HELPERS</h2>
 
         
       
@@ -562,7 +562,7 @@ all at once after a few milliseconds.</p>
         <p>Set a new entity ID, based on current date and an extra 2 random characters.</p>
 
         
-          <div class='highlight'><pre>    generateId: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">generateId</span>:<span class="function"> =&gt;</span>
         chars = <span class="string">"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"</span>
         today = <span class="keyword">new</span> Date()
         result = today.valueOf().toString <span class="number">16</span>
@@ -578,7 +578,7 @@ all at once after a few milliseconds.</p>
         <p>Return the model&#39;s ID to be used on the local storage.</p>
 
         
-          <div class='highlight'><pre>    localId: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">localId</span>:<span class="function"> =&gt;</span>
         result = <span class="property">@typeName</span>
         result += <span class="property">@id</span> <span class="keyword">if</span> <span class="property">@id</span>?
         <span class="keyword">return</span> result</pre></div>
@@ -589,7 +589,7 @@ all at once after a few milliseconds.</p>
 append it to the end of the URL.</p>
 
         
-          <div class='highlight'><pre>    url: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">url</span>:<span class="function"> =&gt;</span>
         t = SystemApp.Settings.general.baseJsonUrl + <span class="property">@typeName</span>.toLowerCase()
 
         <span class="keyword">if</span> <span class="property">@id</span>? <span class="keyword">and</span> <span class="property">@id</span> <span class="keyword">isnt</span> <span class="string">""</span>
@@ -599,7 +599,7 @@ append it to the end of the URL.</p>
         
       
         
-        <h2>PARSE AND TOJSON</h2>
+        <h2 id="parse-and-tojson">PARSE AND TOJSON</h2>
 
         
       
@@ -607,7 +607,7 @@ append it to the end of the URL.</p>
         <p>Initialize the model, make sure its nested models and collections are created.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@relations</span>?
 
         <span class="keyword">for</span> key <span class="keyword">of</span> <span class="property">@relations</span>
@@ -620,7 +620,7 @@ append it to the end of the URL.</p>
         <p>If model has <code>relations</code> set, transform the data to proper models or collections.</p>
 
         
-          <div class='highlight'><pre>    parse: (response) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">parse</span>: <span class="function"><span class="params">(response)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@relations</span>?
             <span class="keyword">return</span> response
 
@@ -665,7 +665,7 @@ then update its value. Otherwise create a new model / collection.</p>
         <p>If model has <code>relations</code> set, transform sub models and collections to JSON.</p>
 
         
-          <div class='highlight'><pre>    toJSON: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toJSON</span>:<span class="function"> =&gt;</span>
         result = _.clone <span class="property">@attributes</span>
 
         <span class="keyword">if</span> <span class="property">@relations</span>?
@@ -676,7 +676,7 @@ then update its value. Otherwise create a new model / collection.</p>
         
       
         
-        <h2>FETCH DATA</h2>
+        <h2 id="fetch-data">FETCH DATA</h2>
 
         
       
@@ -686,7 +686,7 @@ fetching new data from server, and cancel fetching if collection
 is being fetched already.</p>
 
         
-          <div class='highlight'><pre>    fetch: (options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetch</span>: <span class="function"><span class="params">(options)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="property">@fetching</span>
         <span class="property">@fetching</span> = <span class="literal">true</span>
 
@@ -713,7 +713,7 @@ later inside <code>fetchSuccess</code> and <code>fetchError</code>.</p>
         <p>Fetch data from local storage, using jquery.localData plugin.</p>
 
         
-          <div class='highlight'><pre>    fetchLocal: (options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetchLocal</span>: <span class="function"><span class="params">(options)</span> =&gt;</span>
         <span class="property">@fetching</span> = <span class="literal">true</span>
 
         options = {} <span class="keyword">if</span> <span class="keyword">not</span> options?
@@ -745,7 +745,7 @@ later inside <code>fetchSuccess</code> and <code>fetchError</code>.</p>
         <p>When <code>fetch</code> is successful, set <code>fetching</code> to false.</p>
 
         
-          <div class='highlight'><pre>    fetchSuccess: (model, resp, options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetchSuccess</span>: <span class="function"><span class="params">(model, resp, options)</span> =&gt;</span>
         <span class="property">@fetching</span> = <span class="literal">false</span>
 
         options.successCallback? model, resp, options
@@ -757,7 +757,7 @@ later inside <code>fetchSuccess</code> and <code>fetchError</code>.</p>
 and log to the console if debugging is enabled.</p>
 
         
-          <div class='highlight'><pre>    fetchError: (model, xhr, options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetchError</span>: <span class="function"><span class="params">(model, xhr, options)</span> =&gt;</span>
         <span class="property">@fetching</span> = <span class="literal">false</span>
 
         options.errorCallback? model, xhr, options
@@ -765,7 +765,7 @@ and log to the console if debugging is enabled.</p>
         
       
         
-        <h2>SAVING DATA</h2>
+        <h2 id="saving-data">SAVING DATA</h2>
 
         
       
@@ -776,7 +776,7 @@ in a row by using a timer to delay the remote save call.
 Cancel the save is the model is currently being refreshed.</p>
 
         
-          <div class='highlight'><pre>    save: (key, val, options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">save</span>: <span class="function"><span class="params">(key, val, options)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="property">@fetching</span></pre></div>
         
       
@@ -795,7 +795,7 @@ Just make sure <code>options</code> is properly set.</p>
                 clearTimeout <span class="property">@timerSave</span>
                 <span class="property">@timerSave</span> = <span class="literal">null</span>
 
-            callback = () =&gt; <span class="property">@saveRemote</span> options
+            <span class="function"><span class="title">callback</span> = <span class="params">()</span> =&gt;</span> <span class="property">@saveRemote</span> options
             <span class="property">@timerSave</span> = setTimeout callback, SystemApp.Settings.general.saveInterval</pre></div>
         
       
@@ -803,7 +803,7 @@ Just make sure <code>options</code> is properly set.</p>
         <p>Save model data to the local storage using jquery.localData plugin.</p>
 
         
-          <div class='highlight'><pre>    saveLocal: (key, val, options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">saveLocal</span>: <span class="function"><span class="params">(key, val, options)</span> =&gt;</span>
         $.localData.set <span class="property">@localId</span>(), <span class="property">@toJSON</span>()
         options?.success? <span class="keyword">this</span>, <span class="property">@attributes</span>, options</pre></div>
         
@@ -814,7 +814,7 @@ If no options are passed, created one, and set the
 <code>success</code> and <code>error</code> callbacks.</p>
 
         
-          <div class='highlight'><pre>    saveRemote: (options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">saveRemote</span>: <span class="function"><span class="params">(options)</span> =&gt;</span>
         <span class="property">@timerSave</span> = <span class="literal">null</span>
 
         options = {} <span class="keyword">if</span> <span class="keyword">not</span> options?
@@ -888,7 +888,7 @@ Important: this will only work for first level nesting!!!</p>
 storage data for this model, if there&#39;s one.</p>
 
         
-          <div class='highlight'><pre>    saveSuccess: (model, resp, options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">saveSuccess</span>: <span class="function"><span class="params">(model, resp, options)</span> =&gt;</span>
         <span class="property">@lastSave</span> = <span class="keyword">new</span> Date()
         <span class="property">@deleteLocal</span>()
 
@@ -900,7 +900,7 @@ storage data for this model, if there&#39;s one.</p>
         <p>Callback when the <code>save</code> is not completed successfully or had an error.</p>
 
         
-          <div class='highlight'><pre>    saveError: (model, xhr, options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">saveError</span>: <span class="function"><span class="params">(model, xhr, options)</span> =&gt;</span>
         <span class="property">@saveLocal</span>()
 
         options.errorCallback? model, xhr, options
@@ -911,12 +911,12 @@ storage data for this model, if there&#39;s one.</p>
         <p>Delete model data from local storage.</p>
 
         
-          <div class='highlight'><pre>    deleteLocal: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteLocal</span>:<span class="function"> =&gt;</span>
         $.localData.del <span class="property">@localId</span>()</pre></div>
         
       
         
-        <h2>NO SYNCING METHODS</h2>
+        <h2 id="no-syncing-methods">NO SYNCING METHODS</h2>
 
         
       
@@ -925,7 +925,7 @@ storage data for this model, if there&#39;s one.</p>
 the model with the server.</p>
 
         
-          <div class='highlight'><pre>    noSyncSave: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">noSyncSave</span>:<span class="function"> =&gt;</span>
         <span class="property">@generateId</span>() <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@id</span>? <span class="keyword">or</span> <span class="property">@id</span> <span class="keyword">is</span> <span class="string">""</span></pre></div>
         
       
@@ -934,12 +934,12 @@ the model with the server.</p>
 without syncing anything with the server.</p>
 
         
-          <div class='highlight'><pre>    noSyncDestroy: (options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">noSyncDestroy</span>: <span class="function"><span class="params">(options)</span> =&gt;</span>
         <span class="property">@trigger</span> <span class="string">"destroy"</span>, <span class="keyword">this</span>, <span class="property">@collection</span>, options</pre></div>
         
       
         
-        <h2>BASE COLLECTION</h2>
+        <h2 id="base-collection">BASE COLLECTION</h2>
 
         
       
@@ -949,14 +949,14 @@ without syncing anything with the server.</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span> <span class="keyword">extends</span> <span class="title">Backbone</span>.<span class="title">Collection</span></span>
 
-    typeName: <span class="literal">null</span></pre></div>
+    <span class="attribute">typeName</span>: <span class="literal">null</span></pre></div>
         
       
         
         <p>When was it last saved?</p>
 
         
-          <div class='highlight'><pre>    lastSave: <span class="keyword">new</span> Date(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>)</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">lastSave</span>: <span class="keyword">new</span> Date(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>)</pre></div>
         
       
         
@@ -964,7 +964,7 @@ without syncing anything with the server.</p>
 Used to delay binding data to views while still loading.</p>
 
         
-          <div class='highlight'><pre>    fetching: <span class="literal">false</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">fetching</span>: <span class="literal">false</span></pre></div>
         
       
         
@@ -974,11 +974,11 @@ errors and problems (if any!) and <code>results</code> the final result.
 IMPORTANT: this property will always cleared after called!!!</p>
 
         
-          <div class='highlight'><pre>    onFetchCallback: <span class="literal">null</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">onFetchCallback</span>: <span class="literal">null</span></pre></div>
         
       
         
-        <h2>ID HELPERS</h2>
+        <h2 id="id-helpers">ID HELPERS</h2>
 
         
       
@@ -986,14 +986,14 @@ IMPORTANT: this property will always cleared after called!!!</p>
         <p>Return the collection&#39;s ID to be used on the local storage.</p>
 
         
-          <div class='highlight'><pre>    localId: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">localId</span>:<span class="function"> =&gt;</span>
         result = <span class="property">@typeName</span>
         result += <span class="property">@id</span> <span class="keyword">if</span> <span class="property">@id</span>?
         <span class="keyword">return</span> result</pre></div>
         
       
         
-        <h2>FETCH DATA</h2>
+        <h2 id="fetch-data">FETCH DATA</h2>
 
         
       
@@ -1003,7 +1003,7 @@ fetching new data from server, and cancel fetching if collection
 is being fetched already.</p>
 
         
-          <div class='highlight'><pre>    fetch: (options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetch</span>: <span class="function"><span class="params">(options)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="property">@fetching</span>
         <span class="property">@fetching</span> = <span class="literal">true</span></pre></div>
         
@@ -1027,7 +1027,7 @@ is being fetched already.</p>
         <p>Fetch data from local storage, using jquery.localData plugin.</p>
 
         
-          <div class='highlight'><pre>    fetchLocal: (options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetchLocal</span>: <span class="function"><span class="params">(options)</span> =&gt;</span>
         <span class="property">@fetching</span> = <span class="literal">true</span>
 
         options = {} <span class="keyword">if</span> <span class="keyword">not</span> options?
@@ -1060,7 +1060,7 @@ is being fetched already.</p>
         <p>When <code>fetch</code> is successful, set <code>fetching</code> to false.</p>
 
         
-          <div class='highlight'><pre>    fetchSuccess: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetchSuccess</span>:<span class="function"> =&gt;</span>
         <span class="property">@fetching</span> = <span class="literal">false</span></pre></div>
         
       
@@ -1078,7 +1078,7 @@ is being fetched already.</p>
 and log to the console if debugging is enabled.</p>
 
         
-          <div class='highlight'><pre>    fetchError: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetchError</span>:<span class="function"> =&gt;</span>
         <span class="property">@fetching</span> = <span class="literal">false</span></pre></div>
         
       
@@ -1097,12 +1097,12 @@ and log to the console if debugging is enabled.</p>
         <p>Delete collection data from local storage.</p>
 
         
-          <div class='highlight'><pre>    deleteLocal: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteLocal</span>:<span class="function"> =&gt;</span>
         $.localData.del <span class="property">@localId</span>()</pre></div>
         
       
         
-        <h2>CLEAR DATA</h2>
+        <h2 id="clear-data">CLEAR DATA</h2>
 
         
       
@@ -1111,13 +1111,13 @@ and log to the console if debugging is enabled.</p>
 and save the parent model if there&#39;s one.</p>
 
         
-          <div class='highlight'><pre>    clear: =&gt;
-        _.each <span class="property">@models</span>, (item) -&gt; item.destroy() <span class="keyword">if</span> item?
+          <div class='highlight'><pre>    <span class="attribute">clear</span>:<span class="function"> =&gt;</span>
+        _.each <span class="property">@models</span>, <span class="function"><span class="params">(item)</span> -&gt;</span> item.destroy() <span class="keyword">if</span> item?
         <span class="property">@parentModel</span>.save() <span class="keyword">if</span> <span class="property">@parentModel</span>?</pre></div>
         
       
         
-        <h2>NO SYNCING METHODS</h2>
+        <h2 id="no-syncing-methods">NO SYNCING METHODS</h2>
 
         
       
@@ -1126,7 +1126,7 @@ and save the parent model if there&#39;s one.</p>
 the collection models directly with the server.</p>
 
         
-          <div class='highlight'><pre>    noSyncCreate: (model, options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">noSyncCreate</span>: <span class="function"><span class="params">(model, options)</span> =&gt;</span>
         options = (<span class="keyword">if</span> options <span class="keyword">then</span> _.clone(options) <span class="keyword">else</span> {})
 
         model = <span class="property">@_prepareModel</span>(model, options)
@@ -1144,7 +1144,7 @@ the collection models directly with the server.</p>
         
       
         
-        <h2>EXTRA HELPERS</h2>
+        <h2 id="extra-helpers">EXTRA HELPERS</h2>
 
         
       
@@ -1152,7 +1152,7 @@ the collection models directly with the server.</p>
         <p>Return an array containing all models which were changed since last sync.</p>
 
         
-          <div class='highlight'><pre>    changedModels: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">changedModels</span>:<span class="function"> =&gt;</span>
         result = []
         <span class="keyword">for</span> m <span class="keyword">in</span> <span class="property">@models</span>
             <span class="keyword">if</span> m.hasChanged()
@@ -1164,8 +1164,8 @@ the collection models directly with the server.</p>
         <p>Get a specific model by its friendlyId. If no item is found, return null.</p>
 
         
-          <div class='highlight'><pre>    getByFriendlyId: (value) =&gt;
-        result = <span class="property">@where</span> {friendlyId: value}
+          <div class='highlight'><pre>    <span class="attribute">getByFriendlyId</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
+        result = <span class="property">@where</span> {<span class="attribute">friendlyId</span>: value}
 
         <span class="keyword">if</span> result.length &gt; <span class="number">0</span>
             <span class="keyword">return</span> result[<span class="number">0</span>]

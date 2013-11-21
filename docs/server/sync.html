@@ -70,7 +70,7 @@
 
       
         
-        <h2>SERVER SYNC</h2>
+        <h2 id="server-sync">SERVER SYNC</h2>
 
         
       
@@ -85,7 +85,7 @@
         <p>Require Expresser.</p>
 
         
-          <div class='highlight'><pre>    expresser = require <span class="string">"expresser"</span>
+          <div class='highlight'><pre>    expresser = <span class="built_in">require</span> <span class="string">"expresser"</span>
     settings = expresser.settings</pre></div>
         
       
@@ -93,17 +93,19 @@
         <p>Required modules.</p>
 
         
-          <div class='highlight'><pre>    fs = require <span class="string">"fs"</span>
-    http = require <span class="string">"http"</span>
-    moment = require <span class="string">"moment"</span>
-    url = require <span class="string">"url"</span></pre></div>
+          <div class='highlight'><pre>    fs = <span class="built_in">require</span> <span class="string">"fs"</span>
+    http = <span class="built_in">require</span> <span class="string">"http"</span>
+    https = <span class="built_in">require</span> <span class="string">"https"</span>
+    moment = <span class="built_in">require</span> <span class="string">"moment"</span>
+    sockets = <span class="built_in">require</span> <span class="string">"./sockets.coffee"</span>
+    url = <span class="built_in">require</span> <span class="string">"url"</span></pre></div>
         
       
         
         <p>Holds a copy of all files being downloaded.</p>
 
         
-          <div class='highlight'><pre>    currentDownloads: {}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">currentDownloads</span>: {}</pre></div>
         
       
         
@@ -112,7 +114,7 @@ If a download throws errors too many times, it will cancel all downloads for
 that specific URL for a brief period of time.</p>
 
         
-          <div class='highlight'><pre>    errorCounters: {}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">errorCounters</span>: {}</pre></div>
         
       
         
@@ -121,7 +123,7 @@ Do not proceed if <code>remoteUrl</code> is not valid, or if the file is already
 downloaded at the moment.</p>
 
         
-          <div class='highlight'><pre>    download: (remoteUrl, localFile, callback, contentType) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">download</span>: <span class="function"><span class="params">(remoteUrl, localFile, callback, contentType)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> remoteUrl?
             expresser.logger.warn <span class="string">"Download aborted, remoteUrl is not defined."</span>, localFile
             <span class="keyword">return</span>
@@ -160,7 +162,7 @@ only after some time (defined by the <code>connRestartInterval</code> web settin
 of the same file at the same time.</p>
 
         
-          <div class='highlight'><pre>        <span class="property">@currentDownloads</span>[localFile] = {url: remoteUrl, date: now}</pre></div>
+          <div class='highlight'><pre>        <span class="property">@currentDownloads</span>[localFile] = {<span class="attribute">url</span>: remoteUrl, <span class="attribute">date</span>: now}</pre></div>
         
       
         
@@ -188,15 +190,24 @@ it to the content type header.</p>
         
           <div class='highlight'><pre>        errorMessage = <span class="literal">null</span>
         urlInfo = url.parse remoteUrl
-        options = {host: urlInfo.hostname, port: urlInfo.port, path: urlInfo.path, headers: headers}</pre></div>
+        options =
+            <span class="attribute">host</span>: urlInfo.hostname
+            <span class="attribute">hostname</span>: urlInfo.hostname
+            <span class="attribute">port</span>: urlInfo.port
+            <span class="attribute">path</span>: urlInfo.path
+            <span class="attribute">headers</span>: headers
+            <span class="attribute">rejectUnauthorized</span>: <span class="literal">false</span></pre></div>
         
       
         
         <p>Make sure port is 443 for https, if left undefined.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> remoteUrl.indexOf(<span class="string">"https"</span>) <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> urlInfo.port?
-            options.port = <span class="number">443</span></pre></div>
+          <div class='highlight'><pre>        <span class="keyword">if</span> remoteUrl.indexOf(<span class="string">"https"</span>) <span class="keyword">is</span> <span class="number">0</span>
+            options.port = <span class="number">443</span> <span class="keyword">if</span> <span class="keyword">not</span> urlInfo.port?
+            httpHandler = https
+        <span class="keyword">else</span>
+            httpHandler = http</pre></div>
         
       
         
@@ -220,7 +231,7 @@ only if no credentials were passed directly on the URL.</p>
         <p>Helper function to proccess and notify the user about download errors.</p>
 
         
-          <div class='highlight'><pre>        <span class="function"><span class="title">downloadError</span></span> = (error) =&gt;
+          <div class='highlight'><pre>        <span class="function"><span class="title">downloadError</span> = <span class="params">(error)</span> =&gt;</span>
             counter = <span class="property">@errorCounters</span>[remoteUrl]</pre></div>
         
       
@@ -271,7 +282,7 @@ the value specified on the <code>connRestartInterval</code> web setting.</p>
           <div class='highlight'><pre>            <span class="property">@currentDownloads</span>[localFile] = <span class="literal">null</span>
             <span class="keyword">delete</span> <span class="property">@currentDownloads</span>[localFile]
 
-        req = http.get options, (response) =&gt;
+        req = httpHandler.get options, <span class="function"><span class="params">(response)</span> =&gt;</span>
 
             localFileTemp = localFile + <span class="string">".download"</span></pre></div>
         
@@ -283,7 +294,7 @@ with the download. Otherwise proceed and listen to the <code>data</code> and <co
         
           <div class='highlight'><pre>            <span class="keyword">if</span> response.statusCode <span class="keyword">isnt</span> <span class="number">200</span> <span class="keyword">and</span> response.statusCode <span class="keyword">isnt</span> <span class="number">304</span>
 
-                downloadError {code: response.statusCode, message: <span class="string">"Server returned an unexpected status code."</span>}
+                downloadError {<span class="attribute">code</span>: response.statusCode, <span class="attribute">message</span>: <span class="string">"Server returned an unexpected status code."</span>}
 
             <span class="keyword">else</span></pre></div>
         
@@ -295,11 +306,11 @@ download has finished and the file is totally written.</p>
         
           <div class='highlight'><pre>                fileWriter = fs.createWriteStream localFileTemp, {<span class="string">"flags"</span>: <span class="string">"w+"</span>}
 
-                response.addListener <span class="string">"data"</span>, (data) =&gt;
+                response.addListener <span class="string">"data"</span>, <span class="function"><span class="params">(data)</span> =&gt;</span>
                     fileWriter.write data
 
-                response.addListener <span class="string">"end"</span>, () =&gt;
-                    fileWriter.addListener <span class="string">"close"</span>, () =&gt;</pre></div>
+                response.addListener <span class="string">"end"</span>, <span class="function"><span class="params">()</span> =&gt;</span>
+                    fileWriter.addListener <span class="string">"close"</span>, <span class="function"><span class="params">()</span> =&gt;</span></pre></div>
         
       
         
@@ -350,23 +361,23 @@ download has finished and the file is totally written.</p>
         <p>Unhandled error, call the downloadError helper.</p>
 
         
-          <div class='highlight'><pre>        req.<span class="literal">on</span> <span class="string">"error"</span>, (error) =&gt;
+          <div class='highlight'><pre>        req.<span class="literal">on</span> <span class="string">"error"</span>, <span class="function"><span class="params">(error)</span> =&gt;</span>
             downloadError error</pre></div>
         
       
         
-        <h2>Singleton implementation</h2>
+        <h2 id="singleton-implementation">Singleton implementation</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>Sync.<span class="function"><span class="title">getInstance</span></span> = -&gt;
+          <div class='highlight'><pre>Sync.<span class="function"><span class="title">getInstance</span> = -&gt;</span>
     <span class="property">@instance</span> = <span class="keyword">new</span> Sync() <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@instance</span>?
     <span class="keyword">return</span> <span class="property">@instance</span>
 
-module.exports = exports = Sync.getInstance()</pre></div>
+module.<span class="built_in">exports</span> = <span class="built_in">exports</span> = Sync.getInstance()</pre></div>
         
       
       <div class="fleur">h</div>

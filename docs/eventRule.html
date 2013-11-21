@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ALERT RULE MODEL</h2>
+        <h2 id="alert-rule-model">ALERT RULE MODEL</h2>
 
         
       
@@ -495,15 +495,15 @@ or a static value. Alert rules are meant to be used inside
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EventRule</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"EventRule"</span>
-    defaults:
-        source: <span class="literal">null</span>        <span class="comment"># the source value or audit data path to compare</span>
-        target: <span class="literal">null</span>        <span class="comment"># the target value or audit data path to be compared</span>
-        comparator: <span class="literal">null</span>    <span class="comment"># the comparator symbol, can be one of these: &lt; . &lt;= . &gt; . &gt;= . == . !=</span></pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"EventRule"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">source</span>: <span class="literal">null</span>        <span class="comment"># the source value or audit data path to compare</span>
+        <span class="attribute">target</span>: <span class="literal">null</span>        <span class="comment"># the target value or audit data path to be compared</span>
+        <span class="attribute">comparator</span>: <span class="literal">null</span>    <span class="comment"># the comparator symbol, can be one of these: &lt; . &lt;= . &gt; . &gt;= . == . !=</span></pre></div>
         
       
         
-        <h2>SYNC</h2>
+        <h2 id="sync">SYNC</h2>
 
         
       
@@ -511,18 +511,18 @@ or a static value. Alert rules are meant to be used inside
         <p>Override the &quot;save&quot; method as we don&#39;t need to sync individual alert rules with the server.</p>
 
         
-          <div class='highlight'><pre>    save: (key, value, options) =&gt; <span class="property">@noSyncSave</span> key, value, options</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">save</span>: <span class="function"><span class="params">(key, value, options)</span> =&gt;</span> <span class="property">@noSyncSave</span> key, value, options</pre></div>
         
       
         
         <p>Override the &quot;destroy&quot; method as we don&#39;t need to sync individual alert rules with the server.</p>
 
         
-          <div class='highlight'><pre>    destroy: (options) =&gt; <span class="property">@noSyncDestroy</span> options</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">destroy</span>: <span class="function"><span class="params">(options)</span> =&gt;</span> <span class="property">@noSyncDestroy</span> options</pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -530,7 +530,7 @@ or a static value. Alert rules are meant to be used inside
         <p>Helper to get / set the source value.</p>
 
         
-          <div class='highlight'><pre>    source: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">source</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"source"</span>, value
         <span class="property">@get</span> <span class="string">"source"</span></pre></div>
@@ -540,7 +540,7 @@ or a static value. Alert rules are meant to be used inside
         <p>Helper to get / set the target value.</p>
 
         
-          <div class='highlight'><pre>    target: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">target</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"target"</span>, value
         <span class="property">@get</span> <span class="string">"target"</span></pre></div>
@@ -550,14 +550,14 @@ or a static value. Alert rules are meant to be used inside
         <p>Helper to get / set the comparator symbol.</p>
 
         
-          <div class='highlight'><pre>    comparator: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"comparator"</span>, value
         <span class="property">@get</span> <span class="string">"comparator"</span></pre></div>
         
       
         
-        <h2>METHODS</h2>
+        <h2 id="methods">METHODS</h2>
 
         
       
@@ -567,7 +567,7 @@ have context values (prefix @, going from @1 to @5). Return true or false based 
 source value, target value, and the comparator used.</p>
 
         
-          <div class='highlight'><pre>    test: (contextValues) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">test</span>: <span class="function"><span class="params">(contextValues)</span> =&gt;</span>
         sourceValue = <span class="property">@source</span>()
         targetValue = <span class="property">@target</span>()
         comparator = <span class="property">@comparator</span>()
@@ -643,7 +643,7 @@ label values.</p>
         
       
         
-        <h2>EVENT RULE COLLECTION</h2>
+        <h2 id="event-rule-collection">EVENT RULE COLLECTION</h2>
 
         
       
@@ -652,15 +652,15 @@ label values.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EventRuleCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"EventRuleCollection"</span>
-    model: SystemApp.EventRule</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"EventRuleCollection"</span>
+    <span class="attribute">model</span>: SystemApp.EventRule</pre></div>
         
       
         
         <p>Set the comparator function to order the alert rules collection by source value.</p>
 
         
-          <div class='highlight'><pre>    comparator: (rule) -&gt; <span class="keyword">return</span> rule.source()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(rule)</span> -&gt;</span> <span class="keyword">return</span> rule.source()</pre></div>
         
       
       <div class="fleur">h</div>

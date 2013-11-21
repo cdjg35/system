@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>SCRIPT EDIT VIEW</h2>
+        <h2 id="script-edit-view">SCRIPT EDIT VIEW</h2>
 
         
       
@@ -494,17 +494,17 @@ only to edit <a href="map.html">map</a> <code>initScript</code>.</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">ScriptEditorView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">OverlayView</span></span>
 
-    $txtScriptValue: <span class="literal">null</span>   <span class="comment"># the textarea with the current script value</span>
-    $info: <span class="literal">null</span>             <span class="comment"># the info text shown above the textarea</span>
-    $butSave: <span class="literal">null</span>          <span class="comment"># the button used to save the script</span>
-    $errorMsg: <span class="literal">null</span>         <span class="comment"># placeholder to show validation error messages</span>
+    <span class="attribute">$txtScriptValue</span>: <span class="literal">null</span>   <span class="comment"># the textarea with the current script value</span>
+    <span class="attribute">$info</span>: <span class="literal">null</span>             <span class="comment"># the info text shown above the textarea</span>
+    <span class="attribute">$butSave</span>: <span class="literal">null</span>          <span class="comment"># the button used to save the script</span>
+    <span class="attribute">$errorMsg</span>: <span class="literal">null</span>         <span class="comment"># placeholder to show validation error messages</span>
 
-    propertyName: <span class="literal">null</span>      <span class="comment"># the property which should be updated with the script value, for example a map initScript.</span>
-    timerHideError: <span class="literal">null</span>    <span class="comment"># cached timer to hide the error message</span></pre></div>
+    <span class="attribute">propertyName</span>: <span class="literal">null</span>      <span class="comment"># the property which should be updated with the script value, for example a map initScript.</span>
+    <span class="attribute">timerHideError</span>: <span class="literal">null</span>    <span class="comment"># cached timer to hide the error message</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -512,7 +512,7 @@ only to edit <a href="map.html">map</a> <code>initScript</code>.</p>
         <p>Init the script edit view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@overlayInit</span> <span class="string">"#script-editor"</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()
@@ -523,7 +523,7 @@ only to edit <a href="map.html">map</a> <code>initScript</code>.</p>
         <p>Dispose the script edit view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -531,7 +531,7 @@ only to edit <a href="map.html">map</a> <code>initScript</code>.</p>
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@$txtScriptValue</span> = $ <span class="string">"#script-editor-value"</span>
         <span class="property">@$info</span> = $ <span class="string">"#script-editor-info"</span>
         <span class="property">@$butSave</span> = $ <span class="string">"#script-editor-but-save"</span>
@@ -543,7 +543,7 @@ only to edit <a href="map.html">map</a> <code>initScript</code>.</p>
 whenever any input field value gets changed.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$butSave</span>.click <span class="property">@saveScriptValue</span></pre></div>
         
       
@@ -551,7 +551,7 @@ whenever any input field value gets changed.</p>
         <p>Set the model and property name to which the script editor should save a script.</p>
 
         
-          <div class='highlight'><pre>    bind: (model, propertyName) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bind</span>: <span class="function"><span class="params">(model, propertyName)</span> =&gt;</span>
         <span class="property">@stopListening</span> <span class="property">@model</span> <span class="keyword">if</span> <span class="property">@model</span>?
 
         <span class="property">@model</span> = model
@@ -563,7 +563,7 @@ whenever any input field value gets changed.</p>
         
       
         
-        <h2>HELPER PROPERTIES</h2>
+        <h2 id="helper-properties">HELPER PROPERTIES</h2>
 
         
       
@@ -571,14 +571,14 @@ whenever any input field value gets changed.</p>
         <p>Helper to get / set the current value of <code>$txtScriptValue</code>.</p>
 
         
-          <div class='highlight'><pre>    currentValue: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">currentValue</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@$txtScriptValue</span>.val value
         <span class="property">@$txtScriptValue</span>.val()</pre></div>
         
       
         
-        <h2>VALIDATE AND SAVE</h2>
+        <h2 id="validate-and-save">VALIDATE AND SAVE</h2>
 
         
       
@@ -587,7 +587,7 @@ whenever any input field value gets changed.</p>
 For example when using this view to edit a <a href="map.html">map</a> <code>initScript</code>.</p>
 
         
-          <div class='highlight'><pre>    saveScriptValue: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">saveScriptValue</span>:<span class="function"> =&gt;</span>
         code = <span class="property">@currentValue</span>()
         valMessage = SystemApp.DataUtil.validateEval code</pre></div>
         
@@ -615,7 +615,7 @@ For example when using this view to edit a <a href="map.html">map</a> <code>init
         <p>If script vaildation fails, show a message to the user.</p>
 
         
-          <div class='highlight'><pre>    showError: (message) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showError</span>: <span class="function"><span class="params">(message)</span> =&gt;</span>
         <span class="property">@warnField</span> <span class="property">@$txtScriptValue</span>
 
         <span class="property">@$errorMsg</span>.html message
@@ -634,13 +634,13 @@ For example when using this view to edit a <a href="map.html">map</a> <code>init
         <p>Hide the error message and clear the <code>timerHideError</code> timeout.</p>
 
         
-          <div class='highlight'><pre>    hideError: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hideError</span>:<span class="function"> =&gt;</span>
         <span class="property">@timerHideError</span> = <span class="literal">null</span>
         <span class="property">@$errorMsg</span>.hide()</pre></div>
         
       
         
-        <h1>SHOW AND HIDE</h1>
+        <h1 id="show-and-hide">SHOW AND HIDE</h1>
 <hr>
 
         
@@ -650,7 +650,7 @@ For example when using this view to edit a <a href="map.html">map</a> <code>init
 stop listening to the current <code>model</code> first, if there&#39;s one.</p>
 
         
-          <div class='highlight'><pre>    onShow: (model, propertyName) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onShow</span>: <span class="function"><span class="params">(model, propertyName)</span> =&gt;</span>
         <span class="property">@bind</span> model, propertyName</pre></div>
         
       
@@ -658,7 +658,7 @@ stop listening to the current <code>model</code> first, if there&#39;s one.</p>
         <p>Stop listening to events when the overlay is closed.</p>
 
         
-          <div class='highlight'><pre>    onHide: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onHide</span>:<span class="function"> =&gt;</span>
         <span class="property">@stopListening</span>()
         <span class="property">@model</span> = <span class="literal">null</span>
         <span class="property">@propertyName</span> = <span class="literal">null</span></pre></div>

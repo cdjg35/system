@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ENTITY OBJECT MODEL</h2>
+        <h2 id="entity-object-model">ENTITY OBJECT MODEL</h2>
 
         
       
@@ -493,13 +493,13 @@ are represented by a <a href="entityDefinition.html">EntityDefinition</a> model.
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EntityObject</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"EntityObject"</span>
-    defaults:
-        entityDefinitonId: <span class="literal">null</span></pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"EntityObject"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">entityDefinitonId</span>: <span class="literal">null</span></pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -507,7 +507,7 @@ are represented by a <a href="entityDefinition.html">EntityDefinition</a> model.
         <p>Helper to get / set the entity definition ID.</p>
 
         
-          <div class='highlight'><pre>    entityDefinitionId: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">entityDefinitionId</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="literal">null</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@collection</span>?
         <span class="keyword">return</span> <span class="property">@collection</span>.parentModel.friendlyId()</pre></div>
         
@@ -516,7 +516,7 @@ are represented by a <a href="entityDefinition.html">EntityDefinition</a> model.
         <p>Helper to get / set the entity definition ID.</p>
 
         
-          <div class='highlight'><pre>    title: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">title</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="string">""</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@collection</span>?.parentModel?
 
         entityDef = <span class="property">@collection</span>.parentModel
@@ -557,7 +557,7 @@ Otherwise return the result itself.</p>
         
       
         
-        <h2>ENTITY COLLECTION</h2>
+        <h2 id="entity-collection">ENTITY COLLECTION</h2>
 
         
       
@@ -566,8 +566,8 @@ Otherwise return the result itself.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EntityObjectCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"EntityObjectCollection"</span>
-    model: SystemApp.EntityObject</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"EntityObjectCollection"</span>
+    <span class="attribute">model</span>: SystemApp.EntityObject</pre></div>
         
       
         
@@ -575,7 +575,7 @@ Otherwise return the result itself.</p>
 property <code>sourceUrl</code>. If not parent model was set, return a generic &quot;for-all&quot; URL.</p>
 
         
-          <div class='highlight'><pre>    url: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">url</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@parentModel</span>?
             <span class="keyword">return</span> SystemApp.Settings.entityObject.url + <span class="string">"/"</span> + <span class="property">@parentModel</span>.friendlyId()
         <span class="keyword">else</span>
@@ -586,7 +586,7 @@ property <code>sourceUrl</code>. If not parent model was set, return a generic &
         <p>Set the comparator function to order the entity objects by title.</p>
 
         
-          <div class='highlight'><pre>    comparator: (shape) -&gt; <span class="keyword">return</span> shape.title()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(shape)</span> -&gt;</span> <span class="keyword">return</span> shape.title()</pre></div>
         
       
       <div class="fleur">h</div>

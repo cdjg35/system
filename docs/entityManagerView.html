@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ENTITY MANAGER VIEW</h2>
+        <h2 id="entity-manager-view">ENTITY MANAGER VIEW</h2>
 
         
       
@@ -493,28 +493,28 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EntityManagerView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">OverlayView</span></span>
 
-    $txtCreate: <span class="literal">null</span>                <span class="comment"># the text input used to create a new entity definition</span>
-    $butCreate: <span class="literal">null</span>                <span class="comment"># the button used to create a new entity definition</span>
-    $txtDescription: <span class="literal">null</span>           <span class="comment"># the "Description" textbox when editing an entity definition</span>
-    $txtSourceUrl: <span class="literal">null</span>             <span class="comment"># the "Source URL" textbox when editing an entity definition</span>
-    $txtRefresh: <span class="literal">null</span>               <span class="comment"># the "Refresh interval" textbox when editing an entity definition</span>
-    $txtIdAttribute: <span class="literal">null</span>           <span class="comment"># the "Object's ID attribute" textbox when editing an entity definition</span>
-    $txtTitleAttribute: <span class="literal">null</span>        <span class="comment"># the "Object's Title attribute" textbox when editing an entity definition</span>
-    $txtShapeSizeX: <span class="literal">null</span>            <span class="comment"># the shape template "Size X" textbox</span>
-    $txtShapeSizeY: <span class="literal">null</span>            <span class="comment"># the shape template "Size Y" textbox</span>
-    $txtShapeBackground: <span class="literal">null</span>       <span class="comment"># the shape template "Background" textbox</span>
-    $txtShapeForeground: <span class="literal">null</span>       <span class="comment"># the shape template "Label colour" textbox</span>
-    $txtShapeTitleForeground: <span class="literal">null</span>  <span class="comment"># the shape template "Title foreground" textbox</span>
-    $txtShapeStroke: <span class="literal">null</span>           <span class="comment"># the shape template "Border colour" textbox</span>
-    $cboShapeStrokeWidth: <span class="literal">null</span>      <span class="comment"># the shape template "Border width" combobox</span>
-    $cboShapeFontSize: <span class="literal">null</span>         <span class="comment"># the shape template "Font size" combobox</span>
-    $cboShapeOpacity: <span class="literal">null</span>          <span class="comment"># the shape template "Opacity" combobox</span>
-    $chkShapeRoundedCorners: <span class="literal">null</span>   <span class="comment"># the shape template "Rounded corners" checkbox</span>
-    $shapePreview: <span class="literal">null</span>             <span class="comment"># the shape template preview</span></pre></div>
+    <span class="attribute">$txtCreate</span>: <span class="literal">null</span>                <span class="comment"># the text input used to create a new entity definition</span>
+    <span class="attribute">$butCreate</span>: <span class="literal">null</span>                <span class="comment"># the button used to create a new entity definition</span>
+    <span class="attribute">$txtDescription</span>: <span class="literal">null</span>           <span class="comment"># the "Description" textbox when editing an entity definition</span>
+    <span class="attribute">$txtSourceUrl</span>: <span class="literal">null</span>             <span class="comment"># the "Source URL" textbox when editing an entity definition</span>
+    <span class="attribute">$txtRefresh</span>: <span class="literal">null</span>               <span class="comment"># the "Refresh interval" textbox when editing an entity definition</span>
+    <span class="attribute">$txtIdAttribute</span>: <span class="literal">null</span>           <span class="comment"># the "Object's ID attribute" textbox when editing an entity definition</span>
+    <span class="attribute">$txtTitleAttribute</span>: <span class="literal">null</span>        <span class="comment"># the "Object's Title attribute" textbox when editing an entity definition</span>
+    <span class="attribute">$txtShapeSizeX</span>: <span class="literal">null</span>            <span class="comment"># the shape template "Size X" textbox</span>
+    <span class="attribute">$txtShapeSizeY</span>: <span class="literal">null</span>            <span class="comment"># the shape template "Size Y" textbox</span>
+    <span class="attribute">$txtShapeBackground</span>: <span class="literal">null</span>       <span class="comment"># the shape template "Background" textbox</span>
+    <span class="attribute">$txtShapeForeground</span>: <span class="literal">null</span>       <span class="comment"># the shape template "Label colour" textbox</span>
+    <span class="attribute">$txtShapeTitleForeground</span>: <span class="literal">null</span>  <span class="comment"># the shape template "Title foreground" textbox</span>
+    <span class="attribute">$txtShapeStroke</span>: <span class="literal">null</span>           <span class="comment"># the shape template "Border colour" textbox</span>
+    <span class="attribute">$cboShapeStrokeWidth</span>: <span class="literal">null</span>      <span class="comment"># the shape template "Border width" combobox</span>
+    <span class="attribute">$cboShapeFontSize</span>: <span class="literal">null</span>         <span class="comment"># the shape template "Font size" combobox</span>
+    <span class="attribute">$cboShapeOpacity</span>: <span class="literal">null</span>          <span class="comment"># the shape template "Opacity" combobox</span>
+    <span class="attribute">$chkShapeRoundedCorners</span>: <span class="literal">null</span>   <span class="comment"># the shape template "Rounded corners" checkbox</span>
+    <span class="attribute">$shapePreview</span>: <span class="literal">null</span>             <span class="comment"># the shape template preview</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -522,7 +522,7 @@
         <p>Init the Entity Manager overlay view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@currentSettings</span> = SystemApp.Settings.entityDefinition
         <span class="property">@overlayInit</span> <span class="string">"#entitymanager"</span>
         <span class="property">@setDom</span>()
@@ -533,7 +533,7 @@
         <p>Dispose the Entity Manager view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -541,7 +541,7 @@
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@$menuItem</span> = $ <span class="string">"#menu-entities"</span>
         <span class="property">@$modelsList</span> = $ <span class="string">"#entitymanager-list"</span>
         <span class="property">@$txtCreate</span> = $ <span class="string">"#entitymanager-txt-create"</span>
@@ -595,7 +595,7 @@
 whenever any input field value gets changed.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$butCreate</span>.click <span class="property">@createEntityClick</span>
         <span class="property">@$txtCreate</span>.keyup <span class="property">@createEntityKeyUp</span>
 
@@ -618,7 +618,7 @@ whenever any input field value gets changed.</p>
         
       
         
-        <h2>ENTITY LIST</h2>
+        <h2 id="entity-list">ENTITY LIST</h2>
 
         
       
@@ -627,7 +627,7 @@ whenever any input field value gets changed.</p>
 and emptying the <code>$modelsList</code>.</p>
 
         
-          <div class='highlight'><pre>    clear: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clear</span>:<span class="function"> =&gt;</span>
         <span class="property">@model</span> = <span class="literal">null</span>
         <span class="property">@$modelsList</span>.empty()
         <span class="property">@clearTextInputs</span>()</pre></div>
@@ -637,7 +637,7 @@ and emptying the <code>$modelsList</code>.</p>
         <p>Clear the text input fields.</p>
 
         
-          <div class='highlight'><pre>    clearTextInputs: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clearTextInputs</span>:<span class="function"> =&gt;</span>
         <span class="property">@$txtCreate</span>.val <span class="string">""</span></pre></div>
         
       
@@ -645,13 +645,13 @@ and emptying the <code>$modelsList</code>.</p>
         <p>Bind all <a href="entityDefinition.html">EntityDefinitions</a> from the <a href="data.html">data store</a>.</p>
 
         
-          <div class='highlight'><pre>    bindEntities: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindEntities</span>:<span class="function"> =&gt;</span>
         <span class="property">@clear</span>()
         <span class="property">@addToModelsList</span> item <span class="keyword">for</span> item <span class="keyword">in</span> SystemApp.Data.entities.models</pre></div>
         
       
         
-        <h2>CREATING ENTITIES</h2>
+        <h2 id="creating-entities">CREATING ENTITIES</h2>
 
         
       
@@ -660,7 +660,7 @@ and emptying the <code>$modelsList</code>.</p>
 <a href="data.html">Data.entities</a> and move focus to the properties form.</p>
 
         
-          <div class='highlight'><pre>    createEntityClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createEntityClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         newId = <span class="property">@$txtCreate</span>.val()</pre></div>
         
       
@@ -674,7 +674,7 @@ and emptying the <code>$modelsList</code>.</p>
         <span class="keyword">else</span>
             newId = SystemApp.DataUtil.normalize newId, <span class="literal">true</span>
 
-        SystemApp.Data.entities.create {friendlyId: newId}, {wait: <span class="literal">true</span>}
+        SystemApp.Data.entities.create {<span class="attribute">friendlyId</span>: newId}, {<span class="attribute">wait</span>: <span class="literal">true</span>}
         <span class="property">@clearTextInputs</span>()</pre></div>
         
       
@@ -683,13 +683,13 @@ and emptying the <code>$modelsList</code>.</p>
 event on the <code>$butCreate</code>.</p>
 
         
-          <div class='highlight'><pre>    createEntityKeyUp: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">createEntityKeyUp</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">13</span>
             <span class="property">@$butCreate</span>.click()</pre></div>
         
       
         
-        <h2>PROPERTIES AND SHAPE TEMPLATE</h2>
+        <h2 id="properties-and-shape-template">PROPERTIES AND SHAPE TEMPLATE</h2>
 
         
       
@@ -697,7 +697,7 @@ event on the <code>$butCreate</code>.</p>
         <p>Bind entity properties and refresh the shape template.</p>
 
         
-          <div class='highlight'><pre>    onBindModel: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onBindModel</span>:<span class="function"> =&gt;</span>
         <span class="property">@bindEntityProperties</span>()
         <span class="property">@bindShapeProperties</span>()</pre></div>
         
@@ -714,7 +714,7 @@ event on the <code>$butCreate</code>.</p>
 <a href="entityDefinition.html">Entity Definition</a> to the form.</p>
 
         
-          <div class='highlight'><pre>    bindEntityProperties: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindEntityProperties</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@model</span>?
 
         <span class="property">@$txtDescription</span>.val <span class="property">@model</span>.description()
@@ -728,7 +728,7 @@ event on the <code>$butCreate</code>.</p>
         <p>Bind the shape template properties for the selected <a href="entityDefinition.html">Entity Definition</a>.</p>
 
         
-          <div class='highlight'><pre>    bindShapeProperties: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindShapeProperties</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@model</span>?
 
         <span class="property">@$txtShapeSizeX</span>.val <span class="property">@model</span>.shapeSizeX()
@@ -748,7 +748,7 @@ event on the <code>$butCreate</code>.</p>
 If not entity is being edited, hide the shape template preview.</p>
 
         
-          <div class='highlight'><pre>    updateShapeTemplate: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">updateShapeTemplate</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@model</span>?
             <span class="property">@$shapePreview</span>.hide()
             <span class="keyword">return</span>
@@ -760,9 +760,9 @@ If not entity is being edited, hide the shape template preview.</p>
 
         shapeCss =
             <span class="string">"background"</span>: <span class="property">@model</span>.shapeBackground()
-            <span class="string">"border"</span>: <span class="string">"<span class="subst">#{@model.shapeStrokeWidth()}</span>px solid <span class="subst">#{@model.shapeStroke()}</span>"</span>
+            <span class="string">"border"</span>: <span class="string">"<span class="subst">#{<span class="property">@model</span>.shapeStrokeWidth()}</span>px solid <span class="subst">#{<span class="property">@model</span>.shapeStroke()}</span>"</span>
             <span class="string">"border-radius"</span>: borderRadius
-            <span class="string">"font-size"</span>: <span class="string">"<span class="subst">#{@model.shapeFontSize()}</span>px"</span>
+            <span class="string">"font-size"</span>: <span class="string">"<span class="subst">#{<span class="property">@model</span>.shapeFontSize()}</span>px"</span>
             <span class="string">"height"</span>: <span class="property">@model</span>.shapeSizeY() * SystemApp.Settings.map.gridSizeY - <span class="property">@model</span>.shapeStrokeWidth()
             <span class="string">"opacity"</span>: <span class="property">@model</span>.shapeOpacity()
             <span class="string">"width"</span>: <span class="property">@model</span>.shapeSizeX() * SystemApp.Settings.map.gridSizeX - <span class="property">@model</span>.shapeStrokeWidth()
@@ -778,11 +778,11 @@ If not entity is being edited, hide the shape template preview.</p>
         <span class="property">@$shapePreview</span>.children(<span class="string">"label"</span>).css titleCss
         <span class="property">@$shapePreview</span>.children(<span class="string">"span"</span>).css labelCss
 
-        <span class="function"><span class="title">moveToCenter</span></span> = (i, label) -&gt;
+        <span class="function"><span class="title">moveToCenter</span> = <span class="params">(i, label)</span> -&gt;</span>
             label = $(label)
             label.css <span class="string">"margin-left"</span>, label.outerWidth() / <span class="number">2</span> * -<span class="number">1</span> + <span class="string">"px"</span>
 
-        <span class="function"><span class="title">moveToMiddle</span></span> = (i, label) -&gt;
+        <span class="function"><span class="title">moveToMiddle</span> = <span class="params">(i, label)</span> -&gt;</span>
             label = $(label)
             label.css <span class="string">"margin-top"</span>, label.outerHeight() / <span class="number">2</span> * -<span class="number">1</span> + <span class="string">"px"</span>
 
@@ -791,7 +791,7 @@ If not entity is being edited, hide the shape template preview.</p>
         
       
         
-        <h2>UPDATING SHAPE PROPERTIES</h2>
+        <h2 id="updating-shape-properties">UPDATING SHAPE PROPERTIES</h2>
 
         
       
@@ -800,13 +800,13 @@ If not entity is being edited, hide the shape template preview.</p>
 and save the new value by calling the generic <code>inputOnChange</code>.</p>
 
         
-          <div class='highlight'><pre>    inputOnChangeShape: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">inputOnChangeShape</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@inputOnChange</span> e
         <span class="property">@updateShapeTemplate</span>()</pre></div>
         
       
         
-        <h2>SHOW AND HIDE</h2>
+        <h2 id="show-and-hide">SHOW AND HIDE</h2>
 
         
       
@@ -814,10 +814,10 @@ and save the new value by calling the generic <code>inputOnChange</code>.</p>
         <p>Bind the <code>keyUp</code> event when overlay is shown.</p>
 
         
-          <div class='highlight'><pre>    onShow: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onShow</span>:<span class="function"> =&gt;</span>
         <span class="property">@bindEntities</span>()
 
-        $(document).keyup <span class="property">@hasModelListKeyUp</span>
+        $(<span class="built_in">document</span>).keyup <span class="property">@hasModelListKeyUp</span>
         <span class="property">@listenTo</span> SystemApp.Data.entities, <span class="string">"add"</span>, <span class="property">@addToModelsList</span>
         <span class="property">@listenTo</span> SystemApp.Data.entities, <span class="string">"remove"</span>, <span class="property">@removeFromModelsList</span></pre></div>
         
@@ -827,8 +827,8 @@ and save the new value by calling the generic <code>inputOnChange</code>.</p>
 and remove the <code>keyUp</code> from the document.</p>
 
         
-          <div class='highlight'><pre>    onHide: =&gt;
-        $(document).unbind <span class="string">"keyup"</span>, <span class="property">@hasModelListKeyUp</span>
+          <div class='highlight'><pre>    <span class="attribute">onHide</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).unbind <span class="string">"keyup"</span>, <span class="property">@hasModelListKeyUp</span>
         <span class="property">@stopListening</span>()
 
         <span class="property">@model</span>?.save()

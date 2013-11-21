@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>System DATA</h2>
+        <h2 id="system-data">System DATA</h2>
 
         
       
@@ -493,13 +493,13 @@
         
           <div class='highlight'><pre>SystemApp.Data =
 
-    autoUpdateEnabled: <span class="literal">false</span>
-    timerRefreshLabels: <span class="literal">null</span>
-    timerSaveUserSettings: <span class="literal">null</span></pre></div>
+    <span class="attribute">autoUpdateEnabled</span>: <span class="literal">false</span>
+    <span class="attribute">timerRefreshLabels</span>: <span class="literal">null</span>
+    <span class="attribute">timerSaveUserSettings</span>: <span class="literal">null</span></pre></div>
         
       
         
-        <h2>COLLECTIONS</h2>
+        <h2 id="collections">COLLECTIONS</h2>
 
         
       
@@ -507,31 +507,31 @@
         <p>The logged <a href="user.html">user</a> and the user&#39;s settings.</p>
 
         
-          <div class='highlight'><pre>    loggedUser: <span class="keyword">new</span> SystemApp.User()
-    userSettings: <span class="keyword">new</span> SystemApp.UserSettings()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">loggedUser</span>: <span class="keyword">new</span> SystemApp.User()
+    <span class="attribute">userSettings</span>: <span class="keyword">new</span> SystemApp.UserSettings()</pre></div>
         
       
         
         <p>Holds the global collections for entities, maps, variables, events etc.</p>
 
         
-          <div class='highlight'><pre>    auditData: <span class="keyword">new</span> SystemApp.AuditDataCollection()
-    auditEvents: <span class="keyword">new</span> SystemApp.AuditEventCollection()
-    entities: <span class="keyword">new</span> SystemApp.EntityDefinitionCollection()
-    maps: <span class="keyword">new</span> SystemApp.MapCollection()
-    users: <span class="keyword">new</span> SystemApp.UserCollection()
-    variables: <span class="keyword">new</span> SystemApp.VariableCollection()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">auditData</span>: <span class="keyword">new</span> SystemApp.AuditDataCollection()
+    <span class="attribute">auditEvents</span>: <span class="keyword">new</span> SystemApp.AuditEventCollection()
+    <span class="attribute">entities</span>: <span class="keyword">new</span> SystemApp.EntityDefinitionCollection()
+    <span class="attribute">maps</span>: <span class="keyword">new</span> SystemApp.MapCollection()
+    <span class="attribute">users</span>: <span class="keyword">new</span> SystemApp.UserCollection()
+    <span class="attribute">variables</span>: <span class="keyword">new</span> SystemApp.VariableCollection()</pre></div>
         
       
         
         <p>Helper array to iterate through all collections.</p>
 
         
-          <div class='highlight'><pre>    allCollections: []</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">allCollections</span>: []</pre></div>
         
       
         
-        <h2>LOADING FROM SERVER</h2>
+        <h2 id="loading-from-server">LOADING FROM SERVER</h2>
 
         
       
@@ -540,7 +540,7 @@
 While loading, the <code>fetching</code> property of collections will be set true.</p>
 
         
-          <div class='highlight'><pre>    init: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">init</span>:<span class="function"> -&gt;</span>
         <span class="property">@loggedUser</span>.url = SystemApp.Settings.user.loggedUrl
         <span class="property">@loggedUser</span>.fetch()
         <span class="property">@userSettings</span>.fetch()
@@ -556,7 +556,7 @@ While loading, the <code>fetching</code> property of collections will be set tru
         <p>Set event listerners related to the app&#39;s data.</p>
 
         
-          <div class='highlight'><pre>    setEvents: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> -&gt;</span>
         <span class="property">@auditData</span>.<span class="literal">off</span> <span class="string">"sync"</span>, <span class="property">@startTimers</span>
         <span class="property">@auditData</span>.<span class="literal">on</span> <span class="string">"sync"</span>, <span class="property">@startTimers</span>
         <span class="property">@userSettings</span>.<span class="literal">off</span> <span class="string">"change"</span>, <span class="property">@saveUserSettings</span>
@@ -570,24 +570,24 @@ While loading, the <code>fetching</code> property of collections will be set tru
         <p>Fetch all collections in parallel.</p>
 
         
-          <div class='highlight'><pre>    fetch: -&gt;
-        <span class="function"><span class="title">taskEntities</span></span> = (callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetch</span>:<span class="function"> -&gt;</span>
+        <span class="function"><span class="title">taskEntities</span> = <span class="params">(callback)</span> =&gt;</span>
             <span class="property">@entities</span>.onFetchCallback = callback
             <span class="property">@entities</span>.fetch()
 
-        <span class="function"><span class="title">taskAuditData</span></span> = (callback) =&gt;
+        <span class="function"><span class="title">taskAuditData</span> = <span class="params">(callback)</span> =&gt;</span>
             <span class="property">@auditData</span>.onFetchCallback = callback
             <span class="property">@auditData</span>.fetch()
 
-        <span class="function"><span class="title">taskAuditEvents</span></span> = (callback) =&gt;
+        <span class="function"><span class="title">taskAuditEvents</span> = <span class="params">(callback)</span> =&gt;</span>
             <span class="property">@auditEvents</span>.onFetchCallback = callback
             <span class="property">@auditEvents</span>.fetch()
 
-        <span class="function"><span class="title">taskVariables</span></span> = (callback) =&gt;
+        <span class="function"><span class="title">taskVariables</span> = <span class="params">(callback)</span> =&gt;</span>
             <span class="property">@variables</span>.onFetchCallback = callback
             <span class="property">@variables</span>.fetch()
 
-        <span class="function"><span class="title">taskMaps</span></span> = (callback) =&gt;
+        <span class="function"><span class="title">taskMaps</span> = <span class="params">(callback)</span> =&gt;</span>
             <span class="property">@maps</span>.onFetchCallback = callback
             <span class="property">@maps</span>.fetch()</pre></div>
         
@@ -604,7 +604,7 @@ While loading, the <code>fetching</code> property of collections will be set tru
         <p>Triggered after all data has loaded successfully.</p>
 
         
-          <div class='highlight'><pre>    fetchFinished: (err, results) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">fetchFinished</span>: <span class="function"><span class="params">(err, results)</span> -&gt;</span>
         SystemApp.consoleLog <span class="string">"Data.load"</span>, <span class="string">"Error loading data."</span>, err <span class="keyword">if</span> err?
         SystemApp.dataEvents?.trigger <span class="string">"load"</span></pre></div>
         
@@ -622,7 +622,7 @@ While loading, the <code>fetching</code> property of collections will be set tru
         
       
         
-        <h2>DATA PERSISTENCE</h2>
+        <h2 id="data-persistence">DATA PERSISTENCE</h2>
 
         
       
@@ -630,7 +630,7 @@ While loading, the <code>fetching</code> property of collections will be set tru
         <p>Saves all collections to the database (or local storage if network is down).</p>
 
         
-          <div class='highlight'><pre>    save: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">save</span>:<span class="function"> -&gt;</span>
         <span class="property">@entities</span>.save()
         <span class="property">@auditData</span>.save()
         <span class="property">@auditEvents</span>.save()
@@ -638,14 +638,14 @@ While loading, the <code>fetching</code> property of collections will be set tru
         <span class="property">@maps</span>.save()
         <span class="property">@userSettings</span>.save()
 
-        SystemApp.alertEvents?.trigger <span class="string">"footer"</span>, {title: SystemApp.Messages.dataSaved, message: SystemApp.Messages.okDataSavedLocally}</pre></div>
+        SystemApp.alertEvents?.trigger <span class="string">"footer"</span>, {<span class="attribute">title</span>: SystemApp.Messages.dataSaved, <span class="attribute">message</span>: SystemApp.Messages.okDataSavedLocally}</pre></div>
         
       
         
         <p>Auto save user settings to local storage whenever any of its properties gets updated.</p>
 
         
-          <div class='highlight'><pre>    saveUserSettings: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">saveUserSettings</span>:<span class="function"> -&gt;</span>
         <span class="keyword">if</span> SystemApp.Data.timerSaveUserSettings?
             clearTimeout SystemApp.Data.timerSaveUserSettings
             SystemApp.Data.timerSaveUserSettings = <span class="literal">null</span>
@@ -657,7 +657,7 @@ While loading, the <code>fetching</code> property of collections will be set tru
         
       
         
-        <h2>AUTOREFRESH TIMERS</h2>
+        <h2 id="autorefresh-timers">AUTOREFRESH TIMERS</h2>
 
         
       
@@ -665,7 +665,7 @@ While loading, the <code>fetching</code> property of collections will be set tru
         <p>Start the auto refreshing timers for <a href="auditData.html">AuditData</a> and normal entities.</p>
 
         
-          <div class='highlight'><pre>    startTimers: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">startTimers</span>:<span class="function"> -&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> SystemApp.Data.autoUpdateEnabled
 
         SystemApp.consoleLog <span class="string">"Data.startTimers"</span>, <span class="string">"Auto Refresh Timers: STARTED"</span>
@@ -685,7 +685,7 @@ While loading, the <code>fetching</code> property of collections will be set tru
         <p>Stop and cancel the auto refreshing timers to update [Shape Labels]</p>
 
         
-          <div class='highlight'><pre>    stopTimers: (doNotLog) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">stopTimers</span>: <span class="function"><span class="params">(doNotLog)</span> -&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> doNotLog
             SystemApp.consoleLog <span class="string">"Data.stopTimers"</span>, <span class="string">"Auto Refresh Timers: STOPPED"</span>
 

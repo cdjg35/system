@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>MAP VIEW</h2>
+        <h2 id="map-view">MAP VIEW</h2>
 
         
       
@@ -493,53 +493,53 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    paper: <span class="literal">null</span>                 <span class="comment"># the Raphael paper object</span>
-    paperBg: <span class="literal">null</span>               <span class="comment"># the paper background object or color string</span>
-    selectedShapes: <span class="literal">null</span>        <span class="comment"># collection of selected [Shape Views](shapeView.html) on the map</span>
-    hoverShape: <span class="literal">null</span>            <span class="comment"># the current shape pointed by the mouse</span>
-    lastPressedKey: <span class="literal">null</span>        <span class="comment"># the last keyboard key pressed by the user</span>
+    <span class="attribute">paper</span>: <span class="literal">null</span>                 <span class="comment"># the Raphael paper object</span>
+    <span class="attribute">paperBg</span>: <span class="literal">null</span>               <span class="comment"># the paper background object or color string</span>
+    <span class="attribute">selectedShapes</span>: <span class="literal">null</span>        <span class="comment"># collection of selected [Shape Views](shapeView.html) on the map</span>
+    <span class="attribute">hoverShape</span>: <span class="literal">null</span>            <span class="comment"># the current shape pointed by the mouse</span>
+    <span class="attribute">lastPressedKey</span>: <span class="literal">null</span>        <span class="comment"># the last keyboard key pressed by the user</span>
 
-    zIndexMax: <span class="number">100</span>              <span class="comment"># the maximum z-index of an element inside the map</span>
-    currentZoom: <span class="number">1</span>              <span class="comment"># current map zoom</span>
-    currentPanX: <span class="number">0</span>              <span class="comment"># current pan X position</span>
-    currentPanY: <span class="number">0</span>              <span class="comment"># current pan Y position</span>
-    mousePosX: <span class="number">0</span>                <span class="comment"># current or last mouse X position</span>
-    mousePosY: <span class="number">0</span>                <span class="comment"># current or last mouse Y position</span>
-    mapDivWidth: <span class="number">0</span>              <span class="comment"># cached value of the map DIV width</span>
-    mapDivHeight: <span class="number">0</span>             <span class="comment"># cached value of the map DIV height</span>
-    overrideShapeTitle: <span class="literal">null</span>    <span class="comment"># override the value / property name displayed of the shape's title</span>
+    <span class="attribute">zIndexMax</span>: <span class="number">100</span>              <span class="comment"># the maximum z-index of an element inside the map</span>
+    <span class="attribute">currentZoom</span>: <span class="number">1</span>              <span class="comment"># current map zoom</span>
+    <span class="attribute">currentPanX</span>: <span class="number">0</span>              <span class="comment"># current pan X position</span>
+    <span class="attribute">currentPanY</span>: <span class="number">0</span>              <span class="comment"># current pan Y position</span>
+    <span class="attribute">mousePosX</span>: <span class="number">0</span>                <span class="comment"># current or last mouse X position</span>
+    <span class="attribute">mousePosY</span>: <span class="number">0</span>                <span class="comment"># current or last mouse Y position</span>
+    <span class="attribute">mapDivWidth</span>: <span class="number">0</span>              <span class="comment"># cached value of the map DIV width</span>
+    <span class="attribute">mapDivHeight</span>: <span class="number">0</span>             <span class="comment"># cached value of the map DIV height</span>
+    <span class="attribute">overrideShapeTitle</span>: <span class="literal">null</span>    <span class="comment"># override the value / property name displayed of the shape's title</span>
 
-    editEnabled: <span class="literal">false</span>          <span class="comment"># is the map in edit mode?</span>
-    isPanning: <span class="literal">false</span>            <span class="comment"># true if user is moving the map, otherwise false</span>
-    isCreatingLink: <span class="literal">false</span>       <span class="comment"># when creating new links (dragging the link connector), this will be set to true</span>
-    isLinksVisible: <span class="literal">true</span>        <span class="comment"># are links visible or hidden on the map?</span>
+    <span class="attribute">editEnabled</span>: <span class="literal">false</span>          <span class="comment"># is the map in edit mode?</span>
+    <span class="attribute">isPanning</span>: <span class="literal">false</span>            <span class="comment"># true if user is moving the map, otherwise false</span>
+    <span class="attribute">isCreatingLink</span>: <span class="literal">false</span>       <span class="comment"># when creating new links (dragging the link connector), this will be set to true</span>
+    <span class="attribute">isLinksVisible</span>: <span class="literal">true</span>        <span class="comment"># are links visible or hidden on the map?</span>
 
-    controlsView: <span class="literal">null</span>          <span class="comment"># a [Controls View](controlsView.html) to control and interact with map</span>
-    shapesMoverView: <span class="literal">null</span>       <span class="comment"># a [Shapes Mover View](shapesMoverView.html) to move multiple shapes at once</span>
-    stackGroups: <span class="literal">null</span>           <span class="comment"># holds 9 SVG "groups" elements, used to control shape's z-index</span>
-    shapeViews: <span class="literal">null</span>            <span class="comment"># holds current map's ([Shape Views](shapeView.html))</span>
-    linkViews: <span class="literal">null</span>             <span class="comment"># holds current map's ([Link Views](linkView.html))</span>
-    gridLines: <span class="literal">null</span>             <span class="comment"># array, holds all grid lines (when toggled on)</span>
+    <span class="attribute">controlsView</span>: <span class="literal">null</span>          <span class="comment"># a [Controls View](controlsView.html) to control and interact with map</span>
+    <span class="attribute">shapesMoverView</span>: <span class="literal">null</span>       <span class="comment"># a [Shapes Mover View](shapesMoverView.html) to move multiple shapes at once</span>
+    <span class="attribute">stackGroups</span>: <span class="literal">null</span>           <span class="comment"># holds 9 SVG "groups" elements, used to control shape's z-index</span>
+    <span class="attribute">shapeViews</span>: <span class="literal">null</span>            <span class="comment"># holds current map's ([Shape Views](shapeView.html))</span>
+    <span class="attribute">linkViews</span>: <span class="literal">null</span>             <span class="comment"># holds current map's ([Link Views](linkView.html))</span>
+    <span class="attribute">gridLines</span>: <span class="literal">null</span>             <span class="comment"># array, holds all grid lines (when toggled on)</span>
 
-    timerAfterZoom: <span class="literal">null</span>        <span class="comment"># timer to trigger the `afterZoomSet` method</span></pre></div>
+    <span class="attribute">timerAfterZoom</span>: <span class="literal">null</span>        <span class="comment"># timer to trigger the `afterZoomSet` method</span></pre></div>
         
       
         
-        <h2>DOM ELEMENTS</h2>
+        <h2 id="dom-elements">DOM ELEMENTS</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>    $footer: <span class="literal">null</span>          <span class="comment"># the map footer wrapper</span>
-    $footerName: <span class="literal">null</span>      <span class="comment"># the map name span (2)</span>
-    $footerShape: <span class="literal">null</span>     <span class="comment"># the map current shape span (3)</span>
-    $panningIcon: <span class="literal">null</span>     <span class="comment"># icon shown when map is panning / moving</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">$footer</span>: <span class="literal">null</span>          <span class="comment"># the map footer wrapper</span>
+    <span class="attribute">$footerName</span>: <span class="literal">null</span>      <span class="comment"># the map name span (2)</span>
+    <span class="attribute">$footerShape</span>: <span class="literal">null</span>     <span class="comment"># the map current shape span (3)</span>
+    <span class="attribute">$panningIcon</span>: <span class="literal">null</span>     <span class="comment"># icon shown when map is panning / moving</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -547,7 +547,7 @@
         <p>Init the map view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@setDom</span>()
         <span class="property">@setPaper</span>()
         <span class="property">@setEvents</span>()</pre></div>
@@ -572,9 +572,9 @@
         <p>Clear the current map view, footer, and unbind all events.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
-        $(document).unbind <span class="string">"mouseup"</span>, <span class="property">@mouseUp</span>
-        $(document).unbind <span class="string">"keydown"</span>, <span class="property">@keyDown</span>
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).unbind <span class="string">"mouseup"</span>, <span class="property">@mouseUp</span>
+        $(<span class="built_in">document</span>).unbind <span class="string">"keydown"</span>, <span class="property">@keyDown</span>
 
         <span class="property">@clear</span>()
 
@@ -593,7 +593,7 @@
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#map"</span>
         <span class="property">@$footer</span> = $ <span class="string">"#footer-maps"</span>
         <span class="property">@$footerName</span> = $ <span class="string">"#footer-maps-name"</span>
@@ -605,7 +605,7 @@
         <p>Bind events to the global app events, DOM elements and objects.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"url:reset"</span>, <span class="property">@resetUrl</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"background:toggle"</span>, <span class="property">@toggleBackground</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"edit:toggle"</span>, <span class="property">@toggleEdit</span>
@@ -621,8 +621,8 @@
         <p>Handle document events.</p>
 
         
-          <div class='highlight'><pre>        $(document).bind <span class="string">"mouseup"</span>, <span class="property">@mouseUp</span>
-        $(document).bind <span class="string">"keydown"</span>, <span class="property">@keyDown</span></pre></div>
+          <div class='highlight'><pre>        $(<span class="built_in">document</span>).bind <span class="string">"mouseup"</span>, <span class="property">@mouseUp</span>
+        $(<span class="built_in">document</span>).bind <span class="string">"keydown"</span>, <span class="property">@keyDown</span></pre></div>
         
       
         
@@ -640,7 +640,7 @@
         <p>Set the Raphael/SVG paper and its properties.</p>
 
         
-          <div class='highlight'><pre>    setPaper: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setPaper</span>:<span class="function"> =&gt;</span>
         width = SystemApp.Settings.map.paperSizeX
         height = SystemApp.Settings.map.paperSizeY
 
@@ -652,12 +652,12 @@
         <p>Count how many shapes are selected.</p>
 
         
-          <div class='highlight'><pre>    countSelectedShapes: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">countSelectedShapes</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> Object.keys(<span class="property">@selectedShapes</span>).length</pre></div>
         
       
         
-        <h2>RENDER THE CURRENT MAP</h2>
+        <h2 id="render-the-current-map">RENDER THE CURRENT MAP</h2>
 
         
       
@@ -665,7 +665,7 @@
         <p>Clear the map (usually called when user changes the current <a href="map.html">Map</a>).</p>
 
         
-          <div class='highlight'><pre>    clear: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clear</span>:<span class="function"> =&gt;</span>
         <span class="property">@$el</span>.find(<span class="string">".label-edit-view"</span>).remove()</pre></div>
         
       
@@ -704,7 +704,7 @@
         <span class="property">@clearShapes</span>()
         <span class="property">@clearLinks</span>()
 
-        _.each <span class="property">@stackGroups</span>, (group) -&gt; group.remove()
+        _.each <span class="property">@stackGroups</span>, <span class="function"><span class="params">(group)</span> -&gt;</span> group.remove()
         <span class="property">@stackGroups</span> = {}</pre></div>
         
       
@@ -719,8 +719,8 @@
         <p>CLear (remove!) all shapes on the map.</p>
 
         
-          <div class='highlight'><pre>    clearShapes: =&gt;
-        _.each <span class="property">@shapeViews</span>, (view) -&gt; view.dispose()
+          <div class='highlight'><pre>    <span class="attribute">clearShapes</span>:<span class="function"> =&gt;</span>
+        _.each <span class="property">@shapeViews</span>, <span class="function"><span class="params">(view)</span> -&gt;</span> view.dispose()
         <span class="property">@shapeViews</span> = {}</pre></div>
         
       
@@ -728,8 +728,8 @@
         <p>CLear (remove!) all links on the map.</p>
 
         
-          <div class='highlight'><pre>    clearLinks: =&gt;
-        _.each <span class="property">@linkViews</span>, (view) -&gt; view.dispose()
+          <div class='highlight'><pre>    <span class="attribute">clearLinks</span>:<span class="function"> =&gt;</span>
+        _.each <span class="property">@linkViews</span>, <span class="function"><span class="params">(view)</span> -&gt;</span> view.dispose()
         <span class="property">@linkViews</span> = {}</pre></div>
         
       
@@ -737,7 +737,7 @@
         <p>Unselect all selected shapes (if any).</p>
 
         
-          <div class='highlight'><pre>    clearSelectedShapes: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">clearSelectedShapes</span>:<span class="function"> =&gt;</span>
         count = <span class="number">0</span>
         <span class="keyword">for</span> modelId, view <span class="keyword">of</span> <span class="property">@selectedShapes</span>
             view.unhighlight()
@@ -759,7 +759,7 @@
         <p>Bind a <a href="map.html">Map</a> to the map. this will reset the map state!</p>
 
         
-          <div class='highlight'><pre>    bind: (map) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bind</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
         console.profile <span class="string">"MapView.bind"</span> <span class="keyword">if</span> SystemApp.Settings.general.profile
         SystemApp.consoleLog <span class="string">"MapView.bind"</span>, <span class="string">"<span class="subst">#{map.name()}</span>, <span class="subst">#{map.shapes().length}</span> shapes, <span class="subst">#{map.links().length}</span> links"</span>
 
@@ -853,7 +853,7 @@
         <p>Bind event listeners to the current <a href="map.html">Map</a>.</p>
 
         
-          <div class='highlight'><pre>    bindEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@listenTo</span> <span class="property">@model</span>, <span class="string">"sync"</span>, <span class="property">@mapSaved</span>
         <span class="property">@listenTo</span> <span class="property">@model</span>, <span class="string">"destroy"</span>, <span class="property">@mapRemoved</span>
 
@@ -876,13 +876,13 @@
         <p>Set the paper background, which can be a URL to an image or a solid color.</p>
 
         
-          <div class='highlight'><pre>    bindBg: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindBg</span>:<span class="function"> =&gt;</span>
         <span class="property">@paperBg</span> = <span class="property">@model</span>.background()
 
         <span class="keyword">if</span> <span class="property">@paperBg</span> <span class="keyword">isnt</span> <span class="literal">undefined</span> <span class="keyword">and</span> <span class="property">@paperBg</span>.indexOf(<span class="string">"."</span>) &gt; <span class="number">0</span>
-            <span class="property">@paperBg</span> = <span class="property">@paper</span>.image <span class="string">"images/<span class="subst">#{@paperBg}</span>"</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="property">@paper</span>.width, <span class="property">@paper</span>.height
+            <span class="property">@paperBg</span> = <span class="property">@paper</span>.image <span class="string">"images/<span class="subst">#{<span class="property">@paperBg</span>}</span>"</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="property">@paper</span>.width, <span class="property">@paper</span>.height
         <span class="keyword">else</span>
-            <span class="property">@paperBg</span> = <span class="property">@paper</span>.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="property">@paper</span>.width, <span class="property">@paper</span>.height).attr {fill: <span class="property">@paperBg</span>}
+            <span class="property">@paperBg</span> = <span class="property">@paper</span>.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="property">@paper</span>.width, <span class="property">@paper</span>.height).attr {<span class="attribute">fill</span>: <span class="property">@paperBg</span>}
 
         <span class="property">@paperBg</span>.node.id = SystemApp.Settings.map.id</pre></div>
         
@@ -891,7 +891,7 @@
         <p>Create the map groups using raphael.group.js plugin.</p>
 
         
-          <div class='highlight'><pre>    bindGroups: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindGroups</span>:<span class="function"> =&gt;</span>
         i = <span class="number">1</span>
         <span class="keyword">while</span> i &lt; <span class="number">10</span>
             <span class="property">@stackGroups</span>[i] = <span class="property">@paper</span>.group()
@@ -903,7 +903,7 @@
 triggers an reset event.</p>
 
         
-          <div class='highlight'><pre>    resetShapes: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resetShapes</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@model</span>?
 
         <span class="property">@clearShapes</span>()
@@ -915,7 +915,7 @@ triggers an reset event.</p>
 triggers an reset event.</p>
 
         
-          <div class='highlight'><pre>    resetLinks: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resetLinks</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@model</span>?
 
         <span class="property">@clearLinks</span>()
@@ -928,17 +928,17 @@ triggers an reset event.</p>
 to reflect the selected shape&#39;s active alerts. Refresh will be aborted if user is panning the map.</p>
 
         
-          <div class='highlight'><pre>    refreshLabels: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">refreshLabels</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="property">@isPanning</span>
 
-        _.each <span class="property">@shapeViews</span>, (view) -&gt; view.labelsView.bindAllLabelsData()
-        _.each <span class="property">@linkViews</span>, (view) -&gt; view.labelsView.bindAllLabelsData()
+        _.each <span class="property">@shapeViews</span>, <span class="function"><span class="params">(view)</span> -&gt;</span> view.labelsView.bindAllLabelsData()
+        _.each <span class="property">@linkViews</span>, <span class="function"><span class="params">(view)</span> -&gt;</span> view.labelsView.bindAllLabelsData()
 
         <span class="property">@controlsView</span>.inspectorTabView.bindActiveAuditEvents()</pre></div>
         
       
         
-        <h2>MAP EVENTS</h2>
+        <h2 id="map-events">MAP EVENTS</h2>
 
         
       
@@ -946,7 +946,7 @@ to reflect the selected shape&#39;s active alerts. Refresh will be aborted if us
         <p>Save the current <code>filter</code> to the remote server.</p>
 
         
-          <div class='highlight'><pre>    saveMap: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">saveMap</span>:<span class="function"> =&gt;</span>
         <span class="property">@model</span>.save() <span class="keyword">if</span> <span class="property">@editEnabled</span> <span class="keyword">and</span> <span class="property">@model</span>.hasChanged()</pre></div>
         
       
@@ -954,24 +954,24 @@ to reflect the selected shape&#39;s active alerts. Refresh will be aborted if us
         <p>Display an alert whenever the current map has been saved to the server.</p>
 
         
-          <div class='highlight'><pre>    mapSaved: (map) =&gt;
-        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {savedModel: map}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">mapSaved</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
+        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {<span class="attribute">savedModel</span>: map}</pre></div>
         
       
         
         <p>When user deletes (destroy) the current <a href="map.html">Map</a>, refresh the browser.</p>
 
         
-          <div class='highlight'><pre>    mapRemoved: (map) =&gt;
-        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {removedModel: map}
+          <div class='highlight'><pre>    <span class="attribute">mapRemoved</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
+        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {<span class="attribute">removedModel</span>: map}
         SystemApp.toggleLoading <span class="literal">true</span>
 
-        <span class="function"><span class="title">reloadPage</span></span> = -&gt; window.open <span class="string">"/"</span>, <span class="string">"_self"</span>
+        <span class="function"><span class="title">reloadPage</span> = -&gt;</span> window.open <span class="string">"/"</span>, <span class="string">"_self"</span>
         setTimeout reloadPage, <span class="number">1000</span></pre></div>
         
       
         
-        <h2>BINDING MAP SHAPES</h2>
+        <h2 id="binding-map-shapes">BINDING MAP SHAPES</h2>
 
         
       
@@ -979,7 +979,7 @@ to reflect the selected shape&#39;s active alerts. Refresh will be aborted if us
         <p>Bind the current map&#39;s shapes (a <a href="shape.html">ShapeCollection</a>) to the view.</p>
 
         
-          <div class='highlight'><pre>    bindShapes: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindShapes</span>:<span class="function"> =&gt;</span>
         <span class="property">@addShape</span> item <span class="keyword">for</span> item <span class="keyword">in</span> <span class="property">@model</span>.shapes().models
         <span class="property">@bindLinks</span>()
         <span class="property">@toggleGridLines</span> <span class="property">@editEnabled</span></pre></div>
@@ -991,10 +991,10 @@ and add it to the map. Make sure we don&#39;t add orphan shapes by checking if t
 an ID present.</p>
 
         
-          <div class='highlight'><pre>    addShape: (shape, collection) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addShape</span>: <span class="function"><span class="params">(shape, collection)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> shape.id? <span class="keyword">or</span> shape.id <span class="keyword">is</span> <span class="string">""</span>
 
-        view = <span class="keyword">new</span> SystemApp.MapShapeView {model: shape}
+        view = <span class="keyword">new</span> SystemApp.MapShapeView {<span class="attribute">model</span>: shape}
         view.bindEntityObject()
         view.render <span class="keyword">this</span>
 
@@ -1021,7 +1021,7 @@ unless map <code>silent</code> is true which means it might have been added via 
         <p>Removes a shape from the map and delete its value from the <code>shapeViews</code>.</p>
 
         
-          <div class='highlight'><pre>    removeShape: (model) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeShape</span>: <span class="function"><span class="params">(model)</span> =&gt;</span>
         view = <span class="property">@shapeViews</span>[model.id]
 
         <span class="property">@removeFromSelected</span> view
@@ -1034,8 +1034,8 @@ unless map <code>silent</code> is true which means it might have been added via 
         <p>Unbind all shapes from the map.</p>
 
         
-          <div class='highlight'><pre>    unbindShapes: =&gt;
-        _.each <span class="property">@shapeViews</span>, (view) =&gt; view.dispose()
+          <div class='highlight'><pre>    <span class="attribute">unbindShapes</span>:<span class="function"> =&gt;</span>
+        _.each <span class="property">@shapeViews</span>, <span class="function"><span class="params">(view)</span> =&gt;</span> view.dispose()
         <span class="property">@shapeViews</span> = {}</pre></div>
         
       
@@ -1045,7 +1045,7 @@ elements on the map. When holding &quot;Ctrl&quot;, the <code>multiple</code> ar
 added to the selected list. Otherwise it will clear the list and add the element as the only selected.</p>
 
         
-          <div class='highlight'><pre>    addToSelected: (view, multiple) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addToSelected</span>: <span class="function"><span class="params">(view, multiple)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> view?.model?
 
         <span class="property">@clearSelectedShapes</span>()
@@ -1085,7 +1085,7 @@ Otherwise show the shape&#39;s title text.</p>
 the list of selected elements.</p>
 
         
-          <div class='highlight'><pre>    removeFromSelected: (view) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeFromSelected</span>: <span class="function"><span class="params">(view)</span> =&gt;</span>
         <span class="property">@selectedShapes</span>[view.model.id]?.unhighlight()
         <span class="keyword">delete</span> <span class="property">@selectedShapes</span>[view.model.id]</pre></div>
         
@@ -1103,7 +1103,7 @@ the list of selected elements.</p>
         <p>Set the current shape at which mouse is pointing. This is mainly used when creating links between shapes.</p>
 
         
-          <div class='highlight'><pre>    setHoverShape: (shapeView) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setHoverShape</span>: <span class="function"><span class="params">(shapeView)</span> =&gt;</span>
         <span class="property">@hoverShape</span> = shapeView</pre></div>
         
       
@@ -1111,7 +1111,7 @@ the list of selected elements.</p>
         <p>Set the property to be displayed inside the map shapes.</p>
 
         
-          <div class='highlight'><pre>    setOverrideShapeTitle: (prop) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setOverrideShapeTitle</span>: <span class="function"><span class="params">(prop)</span> =&gt;</span>
         SystemApp.consoleLog <span class="string">"MapView.setOverrideShapeTitle"</span>, prop</pre></div>
         
       
@@ -1124,11 +1124,11 @@ entity object namespace before its value.</p>
             prop = <span class="string">"<span class="subst">#{SystemApp.Settings.general.dataBindingKey}</span><span class="subst">#{SystemApp.Settings.entityObject.bindingNamespace}</span>.<span class="subst">#{prop}</span>"</span>
 
         <span class="property">@overrideShapeTitle</span> = prop
-        _.each <span class="property">@shapeViews</span>, (view) =&gt; view.labelsView.refreshTitle()</pre></div>
+        _.each <span class="property">@shapeViews</span>, <span class="function"><span class="params">(view)</span> =&gt;</span> view.labelsView.refreshTitle()</pre></div>
         
       
         
-        <h2>BINDING MAP LINKS</h2>
+        <h2 id="binding-map-links">BINDING MAP LINKS</h2>
 
         
       
@@ -1136,7 +1136,7 @@ entity object namespace before its value.</p>
         <p>Bind shape links to the map.</p>
 
         
-          <div class='highlight'><pre>    bindLinks: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindLinks</span>:<span class="function"> =&gt;</span>
         <span class="property">@addLink</span> item <span class="keyword">for</span> item <span class="keyword">in</span> <span class="property">@model</span>.links().models</pre></div>
         
       
@@ -1144,7 +1144,7 @@ entity object namespace before its value.</p>
         <p>Add a single link to the map.</p>
 
         
-          <div class='highlight'><pre>    addLink: (item, collection) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addLink</span>: <span class="function"><span class="params">(item, collection)</span> =&gt;</span>
         sourceView = <span class="property">@shapeViews</span>[item.sourceId()]
         targetView = <span class="property">@shapeViews</span>[item.targetId()]</pre></div>
         
@@ -1155,7 +1155,7 @@ entity object namespace before its value.</p>
         
           <div class='highlight'><pre>        <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> sourceView? <span class="keyword">or</span> <span class="keyword">not</span> targetView?
 
-        view = <span class="keyword">new</span> SystemApp.MapLinkView {model: item}
+        view = <span class="keyword">new</span> SystemApp.MapLinkView {<span class="attribute">model</span>: item}
         <span class="property">@linkViews</span>[item.id] = view
 
         view.render <span class="keyword">this</span>
@@ -1176,7 +1176,7 @@ so set <code>save</code> to true, and save the <a href="map.html">Current Map</a
         <p>Remove a link from the map.</p>
 
         
-          <div class='highlight'><pre>    removeLink: (link) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeLink</span>: <span class="function"><span class="params">(link)</span> =&gt;</span>
         <span class="keyword">delete</span> <span class="property">@linkViews</span>[link.id]
         <span class="property">@model</span>.save()</pre></div>
         
@@ -1185,8 +1185,8 @@ so set <code>save</code> to true, and save the <a href="map.html">Current Map</a
         <p>Unbind element links from map</p>
 
         
-          <div class='highlight'><pre>    unbindLinks: =&gt;
-        _.each <span class="property">@linkViews</span>, (view) =&gt; view.dispose()
+          <div class='highlight'><pre>    <span class="attribute">unbindLinks</span>:<span class="function"> =&gt;</span>
+        _.each <span class="property">@linkViews</span>, <span class="function"><span class="params">(view)</span> =&gt;</span> view.dispose()
         <span class="property">@linkViews</span> = {}</pre></div>
         
       
@@ -1194,13 +1194,13 @@ so set <code>save</code> to true, and save the <a href="map.html">Current Map</a
         <p>Get all <a href="linkView.html">Link Views</a> related to the specified shape.</p>
 
         
-          <div class='highlight'><pre>    getLinkViewsForShape: (shape) =&gt;
-        <span class="keyword">return</span> _.filter <span class="property">@linkViews</span>, (linkView) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getLinkViewsForShape</span>: <span class="function"><span class="params">(shape)</span> =&gt;</span>
+        <span class="keyword">return</span> _.filter <span class="property">@linkViews</span>, <span class="function"><span class="params">(linkView)</span> =&gt;</span>
             linkView.model.sourceId() <span class="keyword">is</span> shape.id <span class="keyword">or</span> linkView.model.targetId() <span class="keyword">is</span> shape.id</pre></div>
         
       
         
-        <h2>MAP CONTROLS</h2>
+        <h2 id="map-controls">MAP CONTROLS</h2>
 
         
       
@@ -1208,7 +1208,7 @@ so set <code>save</code> to true, and save the <a href="map.html">Current Map</a
         <p>User has clicked the mouse and started panning (moving) the map around.</p>
 
         
-          <div class='highlight'><pre>    panningStart: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">panningStart</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@$panningIcon</span>.mousemove <span class="property">@panningMove</span>
         <span class="property">@$el</span>.css <span class="string">"cursor"</span>, <span class="string">"move"</span>
 
@@ -1223,7 +1223,7 @@ so set <code>save</code> to true, and save the <a href="map.html">Current Map</a
 Please note that it is NOT possible to go outside the map bounds.</p>
 
         
-          <div class='highlight'><pre>    panningMove: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">panningMove</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@currentPanX</span> -= (e.pageX - <span class="property">@mousePosX</span>) * <span class="property">@currentZoom</span>
         <span class="property">@currentPanY</span> -= (e.pageY - <span class="property">@mousePosY</span>) * <span class="property">@currentZoom</span>
         sumWidth = <span class="property">@mapDivWidth</span> - <span class="property">@controlsView</span>.width</pre></div>
@@ -1267,7 +1267,7 @@ that grid lines are always visible.</p>
         <p>User has finished panning (moving) the map when mouse button is released.</p>
 
         
-          <div class='highlight'><pre>    panningEnd: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">panningEnd</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@$panningIcon</span>.unbind <span class="string">"mousemove"</span>
         <span class="property">@$panningIcon</span>.css <span class="string">"display"</span>, <span class="string">"none"</span>
         <span class="property">@$el</span>.css <span class="string">"cursor"</span>, <span class="string">"default"</span>
@@ -1282,7 +1282,7 @@ that grid lines are always visible.</p>
         <p>Helper to get the paper <code>viewBox</code> object.</p>
 
         
-          <div class='highlight'><pre>    getViewBox: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getViewBox</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="property">@paper</span>.canvas.viewBox.baseVal</pre></div>
         
       
@@ -1291,7 +1291,7 @@ that grid lines are always visible.</p>
 The max and min zoom values are defined on the <a href="settings.html">Settings</a>.</p>
 
         
-          <div class='highlight'><pre>    setViewBox: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setViewBox</span>:<span class="function"> =&gt;</span>
         <span class="property">@currentZoom</span> = SystemApp.Settings.map.minZoom <span class="keyword">if</span> <span class="property">@currentZoom</span> &lt; SystemApp.Settings.map.minZoom
         <span class="property">@currentZoom</span> = SystemApp.Settings.map.maxZoom <span class="keyword">if</span> <span class="property">@currentZoom</span> &gt; SystemApp.Settings.map.maxZoom
 
@@ -1310,7 +1310,7 @@ The max and min zoom values are defined on the <a href="settings.html">Settings<
         <p>Zoom in, with optional <code>amount</code> parameter.</p>
 
         
-          <div class='highlight'><pre>    zoomIn: (amount) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zoomIn</span>: <span class="function"><span class="params">(amount)</span> =&gt;</span>
         amount = SystemApp.Settings.map.zoomStep <span class="keyword">if</span> <span class="keyword">not</span> amount?
         <span class="property">@zoomSet</span> <span class="property">@currentZoom</span> - amount</pre></div>
         
@@ -1319,7 +1319,7 @@ The max and min zoom values are defined on the <a href="settings.html">Settings<
         <p>Zoom out, with optional <code>amount</code> parameter.</p>
 
         
-          <div class='highlight'><pre>    zoomOut: (amount) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zoomOut</span>: <span class="function"><span class="params">(amount)</span> =&gt;</span>
         amount = SystemApp.Settings.map.zoomStep <span class="keyword">if</span> <span class="keyword">not</span> amount?
         <span class="property">@zoomSet</span> <span class="property">@currentZoom</span> + amount</pre></div>
         
@@ -1329,7 +1329,7 @@ The max and min zoom values are defined on the <a href="settings.html">Settings<
 Save zoom to the <a href="userSettings.html">user settings</a>.</p>
 
         
-          <div class='highlight'><pre>    zoomSet: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zoomSet</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="property">@currentZoom</span> = value
         <span class="property">@setViewBox</span>()
 
@@ -1343,7 +1343,7 @@ Save zoom to the <a href="userSettings.html">user settings</a>.</p>
 the <a href="userSettings.html">user settings</a>, to achieve better performance.</p>
 
         
-          <div class='highlight'><pre>    afterZoomSet: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">afterZoomSet</span>:<span class="function"> =&gt;</span>
         SystemApp.Data.userSettings.mapZoom <span class="property">@currentZoom</span>
         SystemApp.mapEvents.trigger <span class="string">"zoom:set"</span>
 
@@ -1354,7 +1354,7 @@ the <a href="userSettings.html">user settings</a>, to achieve better performance
         <p>Toggle the <code>editEnabled</code> on or off.</p>
 
         
-          <div class='highlight'><pre>    toggleEdit: (enabled) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleEdit</span>: <span class="function"><span class="params">(enabled)</span> =&gt;</span>
         <span class="property">@editEnabled</span> = enabled
         <span class="property">@toggleGridLines</span> enabled</pre></div>
         
@@ -1363,7 +1363,7 @@ the <a href="userSettings.html">user settings</a>, to achieve better performance
         <p>Toggle the map background image (represented by the <code>paperBg</code> element, if there&#39;s one).</p>
 
         
-          <div class='highlight'><pre>    toggleBackground: (enabled) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleBackground</span>: <span class="function"><span class="params">(enabled)</span> =&gt;</span>
         <span class="keyword">if</span> enabled
             <span class="property">@paperBg</span>.show()
         <span class="keyword">else</span>
@@ -1376,10 +1376,10 @@ Please note that hiding links means setting their opacity to a very low value,
 so they&#39;re almost invisible but not totally hidden.</p>
 
         
-          <div class='highlight'><pre>    toggleLinks: (enabled) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleLinks</span>: <span class="function"><span class="params">(enabled)</span> =&gt;</span>
         <span class="property">@isLinksVisible</span> = enabled
 
-        _.each <span class="property">@linkViews</span>, (linkView) -&gt;
+        _.each <span class="property">@linkViews</span>, <span class="function"><span class="params">(linkView)</span> -&gt;</span>
             <span class="keyword">if</span> <span class="keyword">not</span> linkView?
                 <span class="keyword">return</span>
             <span class="keyword">if</span> enabled
@@ -1393,7 +1393,7 @@ so they&#39;re almost invisible but not totally hidden.</p>
 edit mode, and off when not editable.</p>
 
         
-          <div class='highlight'><pre>    toggleGridLines: (enabled) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleGridLines</span>: <span class="function"><span class="params">(enabled)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@model</span>?
             <span class="keyword">return</span>
 
@@ -1425,7 +1425,7 @@ edit mode, and off when not editable.</p>
         <p>Send the map background and grid lines to back of the paper.</p>
 
         
-          <div class='highlight'><pre>    toBack: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toBack</span>:<span class="function"> =&gt;</span>
         <span class="property">@gridLines</span>.toBack()
         <span class="property">@paperBg</span>.toBack()</pre></div>
         
@@ -1435,7 +1435,7 @@ edit mode, and off when not editable.</p>
 are defined on the <a href="settings.html">Settings</a>.</p>
 
         
-          <div class='highlight'><pre>    setShapePosition: (view, x, y, save) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setShapePosition</span>: <span class="function"><span class="params">(view, x, y, save)</span> =&gt;</span>
         save = <span class="literal">true</span> <span class="keyword">if</span> <span class="keyword">not</span> save?
         view.setPosition x * <span class="property">@model</span>.gridSizeX(), y * <span class="property">@model</span>.gridSizeY(), save</pre></div>
         
@@ -1445,7 +1445,7 @@ are defined on the <a href="settings.html">Settings</a>.</p>
 value set in its model&#39;s <code>zIndex</code> property.</p>
 
         
-          <div class='highlight'><pre>    regroupElement: (view) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">regroupElement</span>: <span class="function"><span class="params">(view)</span> =&gt;</span>
         svgs = view.svgs()
 
         <span class="keyword">for</span> svg <span class="keyword">in</span> svgs
@@ -1458,16 +1458,16 @@ value set in its model&#39;s <code>zIndex</code> property.</p>
         
       
         
-        <p>Get a <a href="entityListView.html">Shape}(shape.html) object with the first x/y free position on the map grid.
+        <p>Get a [Shape}(shape.html) object with the first x/y free position on the map grid.
 This method is called to position the shapes when they&#39;re added from
-the [Entity List View</a> overlay.</p>
+the <a href="entityListView.html">Entity List View</a> overlay.</p>
 
         
-          <div class='highlight'><pre>    getFirstAvailableShape: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getFirstAvailableShape</span>:<span class="function"> =&gt;</span>
         x = <span class="number">0</span>
         y = <span class="number">0</span>
 
-        _.each <span class="property">@shapeViews</span>, (view) =&gt;
+        _.each <span class="property">@shapeViews</span>, <span class="function"><span class="params">(view)</span> =&gt;</span>
             posX = view.x()
             posY = view.y()
 
@@ -1477,19 +1477,19 @@ the [Entity List View</a> overlay.</p>
             <span class="keyword">if</span> posY - y &lt; SystemApp.Settings.map.gridSizeY
                 y += SystemApp.Settings.map.gridSizeY
 
-        <span class="keyword">return</span> <span class="keyword">new</span> SystemApp.Shape {x: x / SystemApp.Settings.map.gridSizeX, y: y / SystemApp.Settings.map.gridSizeY}</pre></div>
+        <span class="keyword">return</span> <span class="keyword">new</span> SystemApp.Shape {<span class="attribute">x</span>: x / SystemApp.Settings.map.gridSizeX, <span class="attribute">y</span>: y / SystemApp.Settings.map.gridSizeY}</pre></div>
         
       
         
         <p>Blink the selected <a href="shapeView.html">Shape</a> on the map.</p>
 
         
-          <div class='highlight'><pre>    blinkSelectedShapes: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">blinkSelectedShapes</span>:<span class="function"> =&gt;</span>
         view.blink() <span class="keyword">for</span> modelId, view <span class="keyword">of</span> <span class="property">@selectedShapes</span></pre></div>
         
       
         
-        <h2>KEYBOARD EVENTS</h2>
+        <h2 id="keyboard-events">KEYBOARD EVENTS</h2>
 
         
       
@@ -1498,7 +1498,7 @@ the [Entity List View</a> overlay.</p>
 and pressing &quot;Esc&quot; twice will unselect the any selected shapes.</p>
 
         
-          <div class='highlight'><pre>    keyDown: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">keyDown</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         keyCode = e.keyCode</pre></div>
         
       
@@ -1549,7 +1549,7 @@ and pressing &quot;Esc&quot; twice will unselect the any selected shapes.</p>
         
       
         
-        <h2>MOUSE EVENTS</h2>
+        <h2 id="mouse-events">MOUSE EVENTS</h2>
 
         
       
@@ -1557,7 +1557,7 @@ and pressing &quot;Esc&quot; twice will unselect the any selected shapes.</p>
         <p>Triggered when user clicks the map. If clicking with left button, prepares map to pan.</p>
 
         
-          <div class='highlight'><pre>    mouseDown: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">mouseDown</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         src = e.target
         targetId = src.id</pre></div>
         
@@ -1603,7 +1603,7 @@ and pressing &quot;Esc&quot; twice will unselect the any selected shapes.</p>
 then pan the map with the amount of pixels from the mouse down location.</p>
 
         
-          <div class='highlight'><pre>    mouseMove: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">mouseMove</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@isPanning</span>
             <span class="property">@panningMove</span> e</pre></div>
         
@@ -1613,7 +1613,7 @@ then pan the map with the amount of pixels from the mouse down location.</p>
 and restore the default mouse cursor.</p>
 
         
-          <div class='highlight'><pre>    mouseUp: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">mouseUp</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@isPanning</span>
             <span class="property">@panningEnd</span> e</pre></div>
         
@@ -1622,7 +1622,7 @@ and restore the default mouse cursor.</p>
         <p>Triggered when user scrolls the mouse wheel. Scrolling will change the map zoom.</p>
 
         
-          <div class='highlight'><pre>    mouseWheel: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">mouseWheel</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@isPanning</span>
             <span class="keyword">return</span>
 
@@ -1641,7 +1641,7 @@ and restore the default mouse cursor.</p>
         <p>Triggered when user right click the map. This will cancel the default context menu.</p>
 
         
-          <div class='highlight'><pre>    contextMenu: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">contextMenu</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="literal">false</span></pre></div>
         
       
@@ -1649,7 +1649,7 @@ and restore the default mouse cursor.</p>
         <p>Triggered when user double clicks the map. This will reset the map position to top left corner.</p>
 
         
-          <div class='highlight'><pre>    doubleClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">doubleClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         src = e.target
 
         <span class="keyword">if</span> src?.tagname <span class="keyword">isnt</span> <span class="string">"rect"</span> <span class="keyword">and</span> src?.tagname <span class="keyword">isnt</span> <span class="string">"path"</span>
@@ -1666,7 +1666,7 @@ and restore the default mouse cursor.</p>
         
       
         
-        <h2>MAP PROPERTY CHANGES</h2>
+        <h2 id="map-property-changes">MAP PROPERTY CHANGES</h2>
 
         
       
@@ -1674,7 +1674,7 @@ and restore the default mouse cursor.</p>
         <p>Triggered when the current <a href="map.html">Map</a> <code>name</code> has changed.</p>
 
         
-          <div class='highlight'><pre>    nameChanged: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">nameChanged</span>:<span class="function"> =&gt;</span>
         <span class="property">@model</span>.save()
 
         <span class="property">@setFooterName</span> <span class="property">@model</span>.name()</pre></div>
@@ -1684,7 +1684,7 @@ and restore the default mouse cursor.</p>
         <p>Triggered when the current <a href="map.html">Map</a> <code>paperSizeX</code> or <code>paperSizeY</code> has changed.</p>
 
         
-          <div class='highlight'><pre>    paperSizeChanged: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">paperSizeChanged</span>:<span class="function"> =&gt;</span>
         <span class="property">@model</span>.save()
 
         <span class="property">@paper</span>.setSize <span class="property">@model</span>.paperSizeX(), <span class="property">@model</span>.paperSizeY()
@@ -1697,20 +1697,20 @@ and restore the default mouse cursor.</p>
         <p>Triggered when the current <a href="map.html">Map</a> <code>gridSizeX</code> or <code>gridSizeY</code> has changed.</p>
 
         
-          <div class='highlight'><pre>    gridSizeChanged: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">gridSizeChanged</span>:<span class="function"> =&gt;</span>
         <span class="property">@model</span>.save()
 
         <span class="property">@toggleGridLines</span> <span class="literal">true</span>
         <span class="property">@clearSelectedShapes</span>()
 
-        _.each <span class="property">@shapeViews</span>, (shapeView) =&gt; shapeView.resetDimensions()
-        _.each <span class="property">@linkViews</span>, (linkView) =&gt; linkView.drag()
+        _.each <span class="property">@shapeViews</span>, <span class="function"><span class="params">(shapeView)</span> =&gt;</span> shapeView.resetDimensions()
+        _.each <span class="property">@linkViews</span>, <span class="function"><span class="params">(linkView)</span> =&gt;</span> linkView.drag()
 
         <span class="property">@setViewBox</span>()</pre></div>
         
       
         
-        <h2>AUDIT DATA AND ALERTS</h2>
+        <h2 id="audit-data-and-alerts">AUDIT DATA AND ALERTS</h2>
 
         
       
@@ -1719,8 +1719,8 @@ and restore the default mouse cursor.</p>
 the whole page.</p>
 
         
-          <div class='highlight'><pre>    auditDataRemoved: (auditData) =&gt;
-        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {removedModel: auditData}
+          <div class='highlight'><pre>    <span class="attribute">auditDataRemoved</span>: <span class="function"><span class="params">(auditData)</span> =&gt;</span>
+        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {<span class="attribute">removedModel</span>: auditData}
         _.delay location.reload, SystemApp.Settings.general.refetchDelay</pre></div>
         
       
@@ -1729,20 +1729,20 @@ the whole page.</p>
 all registered <a href="auditEvent.html">Audit Events</a>.</p>
 
         
-          <div class='highlight'><pre>    auditDataRefresh: (auditData) =&gt;
-        _.each SystemApp.Data.auditEvents.models, (alert) -&gt; alert.run()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">auditDataRefresh</span>: <span class="function"><span class="params">(auditData)</span> =&gt;</span>
+        _.each SystemApp.Data.auditEvents.models, <span class="function"><span class="params">(alert)</span> -&gt;</span> alert.run()</pre></div>
         
       
         
         <p>Trigger a &quot;footer message&quot; action.</p>
 
         
-          <div class='highlight'><pre>    auditEventFooterMessage: (alertObj, action, matchedRules) =&gt;
-        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {title: <span class="string">"ALERT!!!"</span>, message: action.actionValue(), isError: <span class="literal">true</span>}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">auditEventFooterMessage</span>: <span class="function"><span class="params">(alertObj, action, matchedRules)</span> =&gt;</span>
+        SystemApp.alertEvents.trigger <span class="string">"footer"</span>, {<span class="attribute">title</span>: <span class="string">"ALERT!!!"</span>, <span class="attribute">message</span>: action.actionValue(), <span class="attribute">isError</span>: <span class="literal">true</span>}</pre></div>
         
       
         
-        <h2>URL AND FOOTER PROPERTIES</h2>
+        <h2 id="url-and-footer-properties">URL AND FOOTER PROPERTIES</h2>
 
         
       
@@ -1752,19 +1752,19 @@ an open overlay, so we can properly keep track of page history.
 This will NOT trigger the backbone route event - it only updates the URL.</p>
 
         
-          <div class='highlight'><pre>    resetUrl: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resetUrl</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>?
-            SystemApp.routes.navigate <span class="string">"map/"</span> + <span class="property">@model</span>.urlKey(), {trigger: <span class="literal">false</span>}
+            SystemApp.routes.navigate <span class="string">"map/"</span> + <span class="property">@model</span>.urlKey(), {<span class="attribute">trigger</span>: <span class="literal">false</span>}
             SystemApp.consoleLog <span class="string">"MapView.resetUrl"</span>, <span class="string">"Current map's URL: "</span> + <span class="property">@model</span>.urlKey()
         <span class="keyword">else</span>
-            SystemApp.routes.navigate <span class="string">""</span>, {trigger: <span class="literal">false</span>}</pre></div>
+            SystemApp.routes.navigate <span class="string">""</span>, {<span class="attribute">trigger</span>: <span class="literal">false</span>}</pre></div>
         
       
         
         <p>Bind the map name to the footer.</p>
 
         
-          <div class='highlight'><pre>    setFooterName: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setFooterName</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="property">@$footerName</span>.html value
         <span class="property">@$footerShape</span>.empty()</pre></div>
         
@@ -1773,13 +1773,13 @@ This will NOT trigger the backbone route event - it only updates the URL.</p>
         <p>Show the current selected shape name on the footer.</p>
 
         
-          <div class='highlight'><pre>    setFooterShape: (shape) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setFooterShape</span>: <span class="function"><span class="params">(shape)</span> =&gt;</span>
         shape = SystemApp.Messages.noShapeSelected <span class="keyword">if</span> shape <span class="keyword">is</span> <span class="literal">undefined</span> <span class="keyword">or</span> shape <span class="keyword">is</span> <span class="literal">null</span> <span class="keyword">or</span> shape <span class="keyword">is</span> <span class="string">""</span>
         <span class="property">@$footerShape</span>.html shape</pre></div>
         
       
         
-        <h2>THUMBNAILS</h2>
+        <h2 id="thumbnails">THUMBNAILS</h2>
 
         
       
@@ -1788,7 +1788,7 @@ This will NOT trigger the backbone route event - it only updates the URL.</p>
 This WON&#39;T happen for local maps.</p>
 
         
-          <div class='highlight'><pre>    generateThumbnail: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">generateThumbnail</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="property">@model</span>.isLocal()
 
         now = <span class="keyword">new</span> Date()
@@ -1823,12 +1823,12 @@ This WON&#39;T happen for local maps.</p>
         svgData = svgData.replace <span class="regexp">/&lt;(image)[^&gt;]*&gt;[^&lt;]*(&lt;\/image&gt;)/ig</span>, <span class="string">""</span>
 
         $.ajax
-            url: SystemApp.Settings.map.thumbnailBaseUrl + <span class="property">@model</span>.id
-            cache: <span class="literal">false</span>
-            dataType: <span class="string">"json"</span>
-            type: <span class="string">"POST"</span>
-            data:
-                svg: svgData</pre></div>
+            <span class="attribute">url</span>: SystemApp.Settings.map.thumbnailBaseUrl + <span class="property">@model</span>.id
+            <span class="attribute">cache</span>: <span class="literal">false</span>
+            <span class="attribute">dataType</span>: <span class="string">"json"</span>
+            <span class="attribute">type</span>: <span class="string">"POST"</span>
+            <span class="attribute">data</span>:
+                <span class="attribute">svg</span>: svgData</pre></div>
         
       
       <div class="fleur">h</div>

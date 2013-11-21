@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ADMIN TOOLS TAB VIEW</h2>
+        <h2 id="admin-tools-tab-view">ADMIN TOOLS TAB VIEW</h2>
 
         
       
@@ -493,11 +493,11 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AdminToolsTabView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    $butRefresh: <span class="literal">null</span>   <span class="comment"># the "Refresh clients" button</span></pre></div>
+    <span class="attribute">$butRefresh</span>: <span class="literal">null</span>   <span class="comment"># the "Refresh clients" button</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -505,7 +505,7 @@
         <p>Init the user tab view by settings the DOM and events.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()</pre></div>
         
@@ -514,7 +514,7 @@
         <p>Dispose the menu view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -522,7 +522,7 @@
         <p>Set all DOM elements.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#tab-tools"</span>
         <span class="property">@$butRefresh</span> = $ <span class="string">"#tools-but-refresh"</span></pre></div>
         
@@ -531,12 +531,12 @@
         <p>Bind events to DOM.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$butRefresh</span>.click <span class="property">@refreshClients</span></pre></div>
         
       
         
-        <h2>TOOLS</h2>
+        <h2 id="tools">TOOLS</h2>
 
         
       
@@ -544,7 +544,7 @@
         <p>Trigger a command to force refresh all client windows (browsers).</p>
 
         
-          <div class='highlight'><pre>    refreshClients: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">refreshClients</span>:<span class="function"> =&gt;</span>
         SystemApp.Sockets.sendClientsRefresh()</pre></div>
         
       

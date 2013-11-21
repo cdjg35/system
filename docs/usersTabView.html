@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ADMIN USERS TAB VIEW</h2>
+        <h2 id="admin-users-tab-view">ADMIN USERS TAB VIEW</h2>
 
         
       
@@ -493,19 +493,19 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AdminUsersTabView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    $txtDisplayName: <span class="literal">null</span>       <span class="comment"># the "display name" text field</span>
-    $txtUsername: <span class="literal">null</span>          <span class="comment"># the "username" text field</span>
-    $txtPassword: <span class="literal">null</span>          <span class="comment"># the "password" tet field</span>
-    $txtPasswordConfirm: <span class="literal">null</span>   <span class="comment"># the "confirm password" text field</span>
-    $chkRoles: <span class="literal">null</span>             <span class="comment"># the "roles" checkboxes</span>
-    $butSave: <span class="literal">null</span>              <span class="comment"># the "Save user" button</span>
-    $userGrid: <span class="literal">null</span>             <span class="comment"># the users grid</span>
+    <span class="attribute">$txtDisplayName</span>: <span class="literal">null</span>       <span class="comment"># the "display name" text field</span>
+    <span class="attribute">$txtUsername</span>: <span class="literal">null</span>          <span class="comment"># the "username" text field</span>
+    <span class="attribute">$txtPassword</span>: <span class="literal">null</span>          <span class="comment"># the "password" tet field</span>
+    <span class="attribute">$txtPasswordConfirm</span>: <span class="literal">null</span>   <span class="comment"># the "confirm password" text field</span>
+    <span class="attribute">$chkRoles</span>: <span class="literal">null</span>             <span class="comment"># the "roles" checkboxes</span>
+    <span class="attribute">$butSave</span>: <span class="literal">null</span>              <span class="comment"># the "Save user" button</span>
+    <span class="attribute">$userGrid</span>: <span class="literal">null</span>             <span class="comment"># the users grid</span>
 
-    selectedUser: <span class="literal">null</span>          <span class="comment"># the user beind edited at the moment</span></pre></div>
+    <span class="attribute">selectedUser</span>: <span class="literal">null</span>          <span class="comment"># the user beind edited at the moment</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -513,7 +513,7 @@
         <p>Init the user tab view by settings the DOM and events.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()
 
@@ -525,7 +525,7 @@
         <p>Dispose the menu view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -533,7 +533,7 @@
         <p>Set all DOM elements.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#tab-users"</span>
 
         <span class="property">@$txtDisplayName</span> = $ <span class="string">"#user-txt-display-name"</span>
@@ -550,17 +550,17 @@
         <p>Bind events to DOM.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@listenTo</span> SystemApp.Data.users, <span class="string">"add"</span>, <span class="property">@addUserToGrid</span>
         <span class="property">@listenTo</span> SystemApp.Data.users, <span class="string">"remove"</span>, <span class="property">@removeUserFromGrid</span>
 
         <span class="property">@$butSave</span>.click <span class="property">@saveUser</span>
 
-        $(document).keyup <span class="property">@keyUp</span></pre></div>
+        $(<span class="built_in">document</span>).keyup <span class="property">@keyUp</span></pre></div>
         
       
         
-        <h2>EDITING USERS</h2>
+        <h2 id="editing-users">EDITING USERS</h2>
 
         
       
@@ -568,7 +568,7 @@
         <p>Bind the current selected <a href="user.html">user</a> to the editing form.</p>
 
         
-          <div class='highlight'><pre>    bindUserForm: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindUserForm</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@selectedUser</span>?
             <span class="property">@$txtDisplayName</span>.val <span class="string">""</span>
             <span class="property">@$txtUsername</span>.val <span class="string">""</span>
@@ -591,7 +591,7 @@
         <p>When user clicks the &quot;Save user&quot; button, validate the form and save.</p>
 
         
-          <div class='highlight'><pre>    saveUser: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">saveUser</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         displayName = $.trim <span class="property">@$txtDisplayName</span>.val()
         username = $.trim <span class="property">@$txtUsername</span>.val()
         password = $.trim <span class="property">@$txtPassword</span>.val()
@@ -634,12 +634,12 @@
         <p>Create model with specified attributes.</p>
 
         
-          <div class='highlight'><pre>        props = {displayName: displayName, username: username, password: password, roles: roles}
-        user = SystemApp.Data.users.create props, {wait: <span class="literal">true</span>}</pre></div>
+          <div class='highlight'><pre>        props = {<span class="attribute">displayName</span>: displayName, <span class="attribute">username</span>: username, <span class="attribute">password</span>: password, <span class="attribute">roles</span>: roles}
+        user = SystemApp.Data.users.create props, {<span class="attribute">wait</span>: <span class="literal">true</span>}</pre></div>
         
       
         
-        <h2>USERS GRID</h2>
+        <h2 id="users-grid">USERS GRID</h2>
 
         
       
@@ -647,8 +647,8 @@
         <p>When a new user is added to the users collection.</p>
 
         
-          <div class='highlight'><pre>    addUserToGrid: (user) =&gt;
-        props = {displayName: user.displayName(), username: user.username(), roles: user.roles().join(<span class="string">", "</span>)}
+          <div class='highlight'><pre>    <span class="attribute">addUserToGrid</span>: <span class="function"><span class="params">(user)</span> =&gt;</span>
+        props = {<span class="attribute">displayName</span>: user.displayName(), <span class="attribute">username</span>: user.username(), <span class="attribute">roles</span>: user.roles().join(<span class="string">", "</span>)}
         row = _.template $(<span class="string">"#template-user-grid-row"</span>).html(), props
         row = $ row</pre></div>
         
@@ -679,7 +679,7 @@
         <p>When a user is removed from the users collection.</p>
 
         
-          <div class='highlight'><pre>    removeUserFromGrid: (user) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeUserFromGrid</span>: <span class="function"><span class="params">(user)</span> =&gt;</span>
         row = $(<span class="string">"#"</span> + SystemApp.Settings.user.rowListPrefix + user.id)
         <span class="property">@modelElementRemove</span> row</pre></div>
         
@@ -688,7 +688,7 @@
         <p>Bind registered users to the users grid.</p>
 
         
-          <div class='highlight'><pre>    bindUsers: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindUsers</span>:<span class="function"> =&gt;</span>
         <span class="property">@$userGrid</span>.empty()
         <span class="property">@addUserToGrid</span>(user) <span class="keyword">for</span> user <span class="keyword">in</span> SystemApp.Data.users.models</pre></div>
         
@@ -698,7 +698,7 @@
 to the top form so it can be edited.</p>
 
         
-          <div class='highlight'><pre>    editClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">editClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@selectedUser</span>?
             $(<span class="string">"#"</span> + SystemApp.Settings.user.rowListPrefix + <span class="property">@selectedUser</span>.id).removeClass <span class="string">"active"</span></pre></div>
         
@@ -724,7 +724,7 @@ to the top form so it can be edited.</p>
 remove the user from the database and the row from the <code>$userGrid</code>.</p>
 
         
-          <div class='highlight'><pre>    deleteClick: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         e.preventDefault()
         e.stopPropagation()
 
@@ -743,7 +743,7 @@ from the <a href="data.html">data store</a>.</p>
         
       
         
-        <h2>HELPER METHODS</h2>
+        <h2 id="helper-methods">HELPER METHODS</h2>
 
         
       
@@ -752,7 +752,7 @@ from the <a href="data.html">data store</a>.</p>
 editing user details or deleting a user.</p>
 
         
-          <div class='highlight'><pre>    keyUp: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">keyUp</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         keyCode = e.keyCode
 
         <span class="keyword">if</span> keyCode <span class="keyword">is</span> <span class="number">27</span>

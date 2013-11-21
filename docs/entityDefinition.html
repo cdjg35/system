@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>ENTITY DEFINITION MODEL</h2>
+        <h2 id="entity-definition-model">ENTITY DEFINITION MODEL</h2>
 
         
       
@@ -493,30 +493,30 @@ are represented by the <a href="entityObject.html">EntityObject</a> model.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EntityDefinition</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"EntityDefinition"</span>
-    defaults:
-        objectIdAttribute: SystemApp.Settings.entityDefinition.objectIdAttribute
-        objectTitleAttribute: SystemApp.Settings.entityDefinition.objectTitleAttribute
-        refreshInterval: SystemApp.Settings.entityDefinition.refreshInterval
-        shapeBackground: SystemApp.Settings.shape.background
-        shapeFormat: SystemApp.Settings.shape.format
-        shapeFontSize: SystemApp.Settings.shape.fontSize
-        shapeForeground: SystemApp.Settings.shape.foreground
-        shapeOpacity: SystemApp.Settings.map.opacityStatic
-        shapeRoundedCorners: SystemApp.Settings.shape.roundedCorners
-        shapeSizeX: SystemApp.Settings.shape.gridViewSizeX
-        shapeSizeY: SystemApp.Settings.shape.gridViewSizeY
-        shapeStroke: SystemApp.Settings.shape.stroke
-        shapeStrokeWidth: SystemApp.Settings.shape.strokeWidth
-        shapeTitleForeground: SystemApp.Settings.shape.titleForeground
-        shapeZIndex: SystemApp.Settings.shape.zIndex
+    <span class="attribute">typeName</span>: <span class="string">"EntityDefinition"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">objectIdAttribute</span>: SystemApp.Settings.entityDefinition.objectIdAttribute
+        <span class="attribute">objectTitleAttribute</span>: SystemApp.Settings.entityDefinition.objectTitleAttribute
+        <span class="attribute">refreshInterval</span>: SystemApp.Settings.entityDefinition.refreshInterval
+        <span class="attribute">shapeBackground</span>: SystemApp.Settings.shape.background
+        <span class="attribute">shapeFormat</span>: SystemApp.Settings.shape.format
+        <span class="attribute">shapeFontSize</span>: SystemApp.Settings.shape.fontSize
+        <span class="attribute">shapeForeground</span>: SystemApp.Settings.shape.foreground
+        <span class="attribute">shapeOpacity</span>: SystemApp.Settings.map.opacityStatic
+        <span class="attribute">shapeRoundedCorners</span>: SystemApp.Settings.shape.roundedCorners
+        <span class="attribute">shapeSizeX</span>: SystemApp.Settings.shape.gridViewSizeX
+        <span class="attribute">shapeSizeY</span>: SystemApp.Settings.shape.gridViewSizeY
+        <span class="attribute">shapeStroke</span>: SystemApp.Settings.shape.stroke
+        <span class="attribute">shapeStrokeWidth</span>: SystemApp.Settings.shape.strokeWidth
+        <span class="attribute">shapeTitleForeground</span>: SystemApp.Settings.shape.titleForeground
+        <span class="attribute">shapeZIndex</span>: SystemApp.Settings.shape.zIndex
 
-    relations:
-        data: SystemApp.EntityObjectCollection</pre></div>
+    <span class="attribute">relations</span>:
+        <span class="attribute">data</span>: SystemApp.EntityObjectCollection</pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -525,7 +525,7 @@ are represented by the <a href="entityObject.html">EntityObject</a> model.</p>
 If a collection is already set, only updated its models.</p>
 
         
-          <div class='highlight'><pre>    data: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">data</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             currentValue = <span class="property">@get</span> <span class="string">"data"</span>
             <span class="keyword">if</span> currentValue?.typeName?
@@ -542,7 +542,7 @@ If a collection is already set, only updated its models.</p>
         <p>Helper to get / set the description of the entity.</p>
 
         
-          <div class='highlight'><pre>    description: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">description</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"description"</span>, value
         <span class="property">@get</span> <span class="string">"description"</span></pre></div>
@@ -552,7 +552,7 @@ If a collection is already set, only updated its models.</p>
         <p>Helper to get / set the id attribute.</p>
 
         
-          <div class='highlight'><pre>    objectIdAttribute: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">objectIdAttribute</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"objectIdAttribute"</span>, value
         <span class="property">@get</span> <span class="string">"objectIdAttribute"</span></pre></div>
@@ -564,7 +564,7 @@ More than one value can be set, separated by commas.
 For example: &quot;name,title,details&quot;</p>
 
         
-          <div class='highlight'><pre>    objectTitleAttribute: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">objectTitleAttribute</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"objectTitleAttribute"</span>, value
         <span class="property">@get</span> <span class="string">"objectTitleAttribute"</span></pre></div>
@@ -574,7 +574,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the refresh interval.</p>
 
         
-          <div class='highlight'><pre>    refreshInterval: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">refreshInterval</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"refreshInterval"</span>, value
         <span class="property">@get</span> <span class="string">"refreshInterval"</span></pre></div>
@@ -584,14 +584,14 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the entity data source URL.</p>
 
         
-          <div class='highlight'><pre>    sourceUrl: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">sourceUrl</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"sourceUrl"</span>, value
         <span class="property">@get</span> <span class="string">"sourceUrl"</span></pre></div>
         
       
         
-        <h2>SHAPE TEMPLATE PROPERTIES</h2>
+        <h2 id="shape-template-properties">SHAPE TEMPLATE PROPERTIES</h2>
 
         
       
@@ -599,7 +599,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape template background.</p>
 
         
-          <div class='highlight'><pre>    shapeBackground: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeBackground</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeBackground"</span>, value
         <span class="property">@get</span> <span class="string">"shapeBackground"</span></pre></div>
@@ -609,7 +609,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape template font size.</p>
 
         
-          <div class='highlight'><pre>    shapeFontSize: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeFontSize</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeFontSize"</span>, value
         <span class="property">@get</span> <span class="string">"shapeFontSize"</span></pre></div>
@@ -619,7 +619,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape template label colour.</p>
 
         
-          <div class='highlight'><pre>    shapeForeground: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeForeground</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeForeground"</span>, value
         <span class="property">@get</span> <span class="string">"shapeForeground"</span></pre></div>
@@ -629,7 +629,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape icon.</p>
 
         
-          <div class='highlight'><pre>    shapeIcon: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeIcon</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeIcon"</span>, value
         <span class="property">@get</span> <span class="string">"shapeIcon"</span></pre></div>
@@ -639,7 +639,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape opacity (0.0 to 1.0).</p>
 
         
-          <div class='highlight'><pre>    shapeOpacity: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeOpacity</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeOpacity"</span>, value
         <span class="property">@get</span> <span class="string">"shapeOpacity"</span></pre></div>
@@ -649,7 +649,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape rounded corners (true or false).</p>
 
         
-          <div class='highlight'><pre>    shapeRoundedCorners: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeRoundedCorners</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeRoundedCorners"</span>, value
         <span class="property">@get</span> <span class="string">"shapeRoundedCorners"</span></pre></div>
@@ -659,7 +659,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape template size X.</p>
 
         
-          <div class='highlight'><pre>    shapeSizeX: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeSizeX</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeSizeX"</span>, value
         <span class="property">@get</span> <span class="string">"shapeSizeX"</span></pre></div>
@@ -669,7 +669,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape template size Y.</p>
 
         
-          <div class='highlight'><pre>    shapeSizeY: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeSizeY</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeSizeY"</span>, value
         <span class="property">@get</span> <span class="string">"shapeSizeY"</span></pre></div>
@@ -679,7 +679,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape template border colour.</p>
 
         
-          <div class='highlight'><pre>    shapeStroke: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeStroke</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeStroke"</span>, value
         <span class="property">@get</span> <span class="string">"shapeStroke"</span></pre></div>
@@ -689,7 +689,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape template border width.</p>
 
         
-          <div class='highlight'><pre>    shapeStrokeWidth: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeStrokeWidth</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeStrokeWidth"</span>, value
         <span class="property">@get</span> <span class="string">"shapeStrokeWidth"</span></pre></div>
@@ -699,7 +699,7 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape template title colour.</p>
 
         
-          <div class='highlight'><pre>    shapeTitleForeground: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeTitleForeground</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeTitleForeground"</span>, value
         <span class="property">@get</span> <span class="string">"shapeTitleForeground"</span></pre></div>
@@ -709,14 +709,14 @@ For example: &quot;name,title,details&quot;</p>
         <p>Helper to get / set the shape z-index / stack lavel.</p>
 
         
-          <div class='highlight'><pre>    shapeZIndex: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">shapeZIndex</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"shapeZIndex"</span>, value
         <span class="property">@get</span> <span class="string">"shapeZIndex"</span></pre></div>
         
       
         
-        <h2>METHODS</h2>
+        <h2 id="methods">METHODS</h2>
 
         
       
@@ -726,14 +726,14 @@ For example: &quot;name,title,details&quot;</p>
 Only fetch external data if there&#39;s a URL specified.</p>
 
         
-          <div class='highlight'><pre>    refreshData: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">refreshData</span>:<span class="function"> =&gt;</span>
         url = <span class="property">@sourceUrl</span>()
         <span class="keyword">if</span> url? <span class="keyword">and</span> url.length &gt; <span class="number">0</span>
-            <span class="property">@data</span>().fetch {update: <span class="literal">true</span>}</pre></div>
+            <span class="property">@data</span>().fetch {<span class="attribute">update</span>: <span class="literal">true</span>}</pre></div>
         
       
         
-        <h2>ENTITY COLLECTION</h2>
+        <h2 id="entity-collection">ENTITY COLLECTION</h2>
 
         
       
@@ -742,16 +742,16 @@ Only fetch external data if there&#39;s a URL specified.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">EntityDefinitionCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"EntityDefinitionCollection"</span>
-    model: SystemApp.EntityDefinition
-    url: SystemApp.Settings.entityDefinition.url</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"EntityDefinitionCollection"</span>
+    <span class="attribute">model</span>: SystemApp.EntityDefinition
+    <span class="attribute">url</span>: SystemApp.Settings.entityDefinition.url</pre></div>
         
       
         
         <p>Set the comparator function to order the entity definitions by friendlyId.</p>
 
         
-          <div class='highlight'><pre>    comparator: (entityDef) -&gt; <span class="keyword">return</span> entityDef.friendlyId()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(entityDef)</span> -&gt;</span> <span class="keyword">return</span> entityDef.friendlyId()</pre></div>
         
       
       <div class="fleur">h</div>

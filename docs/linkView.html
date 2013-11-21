@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>LINK VIEW</h2>
+        <h2 id="link-view">LINK VIEW</h2>
 
         
       
@@ -493,18 +493,18 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapLinkView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    visible: <span class="literal">true</span>          <span class="comment"># cached variable to check if link is currently visible</span>
-    labelsView: <span class="literal">null</span>       <span class="comment"># holds the 3 editable / dynamic labels of the link</span>
-    svg: <span class="literal">null</span>              <span class="comment"># the link svg object (raphael.link.js)</span>
-    svgSourceArrow: <span class="literal">null</span>   <span class="comment"># the svg arrow pointing to the source element (optional)</span>
-    svgTargetArrow: <span class="literal">null</span>   <span class="comment"># the svg arrow pointing to the target element (optional)</span>
-    source: <span class="literal">null</span>           <span class="comment"># the source view (usually taken from the parentView)</span>
-    target: <span class="literal">null</span>           <span class="comment"># the target view (usually taken from the parentView)</span>
-    blinking: <span class="literal">false</span>        <span class="comment"># is it blinking?</span></pre></div>
+    <span class="attribute">visible</span>: <span class="literal">true</span>          <span class="comment"># cached variable to check if link is currently visible</span>
+    <span class="attribute">labelsView</span>: <span class="literal">null</span>       <span class="comment"># holds the 3 editable / dynamic labels of the link</span>
+    <span class="attribute">svg</span>: <span class="literal">null</span>              <span class="comment"># the link svg object (raphael.link.js)</span>
+    <span class="attribute">svgSourceArrow</span>: <span class="literal">null</span>   <span class="comment"># the svg arrow pointing to the source element (optional)</span>
+    <span class="attribute">svgTargetArrow</span>: <span class="literal">null</span>   <span class="comment"># the svg arrow pointing to the target element (optional)</span>
+    <span class="attribute">source</span>: <span class="literal">null</span>           <span class="comment"># the source view (usually taken from the parentView)</span>
+    <span class="attribute">target</span>: <span class="literal">null</span>           <span class="comment"># the target view (usually taken from the parentView)</span>
+    <span class="attribute">blinking</span>: <span class="literal">false</span>        <span class="comment"># is it blinking?</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -512,7 +512,7 @@
         <p>Initialize the link view and bind model events.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"zoom:in"</span>, <span class="property">@onZoom</span>
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"zoom:out"</span>, <span class="property">@onZoom</span>
 
@@ -526,7 +526,7 @@
         <p>Dispose the link view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@unhighlight</span>()
 
         <span class="property">@labelsView</span>?.dispose()
@@ -540,7 +540,7 @@
         
       
         
-        <h2>HELPER PROPERTIES</h2>
+        <h2 id="helper-properties">HELPER PROPERTIES</h2>
 
         
       
@@ -548,7 +548,7 @@
         <p>Return an array with all the SVG elements for this link.</p>
 
         
-          <div class='highlight'><pre>    svgs: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">svgs</span>:<span class="function"> =&gt;</span>
         result = [<span class="property">@svg</span>.svgLine]
         result.push svg <span class="keyword">for</span> svg <span class="keyword">in</span> <span class="property">@labelsView</span>.svgs() <span class="keyword">if</span> <span class="property">@labelsView</span>?
 
@@ -556,7 +556,7 @@
         
       
         
-        <h2>RENDER AND ANIMATE</h2>
+        <h2 id="render-and-animate">RENDER AND ANIMATE</h2>
 
         
       
@@ -566,20 +566,20 @@ curved line, otherwise a straight one. You can also pass a parentView
 to attach this link to.</p>
 
         
-          <div class='highlight'><pre>    render: (parentView) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">render</span>: <span class="function"><span class="params">(parentView)</span> =&gt;</span>
         <span class="property">@parentView</span> = parentView <span class="keyword">if</span> parentView?.shapeViews?
 
         source = <span class="property">@parentView</span>.shapeViews[<span class="property">@model</span>.sourceId()]
         target = <span class="property">@parentView</span>.shapeViews[<span class="property">@model</span>.targetId()]
 
         options =
-            arrowSize: SystemApp.Settings.link.arrowSize
-            arrowSource: <span class="property">@model</span>.arrowSource()
-            arrowTarget: <span class="property">@model</span>.arrowTarget()
-            opacity: <span class="property">@model</span>.opacity()
-            smooth: <span class="property">@model</span>.smooth()
-            stroke: <span class="property">@model</span>.stroke()
-            width: <span class="property">@model</span>.strokeWidth()
+            <span class="attribute">arrowSize</span>: SystemApp.Settings.link.arrowSize
+            <span class="attribute">arrowSource</span>: <span class="property">@model</span>.arrowSource()
+            <span class="attribute">arrowTarget</span>: <span class="property">@model</span>.arrowTarget()
+            <span class="attribute">opacity</span>: <span class="property">@model</span>.opacity()
+            <span class="attribute">smooth</span>: <span class="property">@model</span>.smooth()
+            <span class="attribute">stroke</span>: <span class="property">@model</span>.stroke()
+            <span class="attribute">width</span>: <span class="property">@model</span>.strokeWidth()
 
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@svg</span>?
             options.onClick = <span class="property">@lineClick</span>
@@ -589,7 +589,7 @@ to attach this link to.</p>
             <span class="property">@parentView</span>.paper.link <span class="property">@svg</span>, options
 
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@labelsView</span>?
-            <span class="property">@labelsView</span> = <span class="keyword">new</span> SystemApp.MapLinkLabelsView {model: <span class="property">@model</span>}
+            <span class="property">@labelsView</span> = <span class="keyword">new</span> SystemApp.MapLinkLabelsView {<span class="attribute">model</span>: <span class="property">@model</span>}
 
         <span class="property">@labelsView</span>.render <span class="keyword">this</span>
 
@@ -600,7 +600,7 @@ to attach this link to.</p>
         <p>Remove the link from the map and dispose its contents.</p>
 
         
-          <div class='highlight'><pre>    removeFromMap: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeFromMap</span>:<span class="function"> =&gt;</span>
         <span class="property">@dispose</span>()
         <span class="property">@model</span>.destroy()</pre></div>
         
@@ -609,7 +609,7 @@ to attach this link to.</p>
         <p>Blink and remove the link (so the user gets the attention of what&#39;s being removed).</p>
 
         
-          <div class='highlight'><pre>    blinkAndRemove: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">blinkAndRemove</span>:<span class="function"> =&gt;</span>
         <span class="property">@blink</span> <span class="number">2</span>, <span class="property">@removeFromMap</span></pre></div>
         
       
@@ -618,7 +618,7 @@ to attach this link to.</p>
 mouse button and on the current modifier keys for the user.</p>
 
         
-          <div class='highlight'><pre>    lineClick: (e) =&gt;</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">lineClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span></pre></div>
         
       
         
@@ -635,7 +635,7 @@ mouse button and on the current modifier keys for the user.</p>
         <p>Send the link to the back of the current <a href="r.html">Map View</a>.</p>
 
         
-          <div class='highlight'><pre>    toBack: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toBack</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.toBack()
         <span class="property">@parentView</span>.toBack()</pre></div>
         
@@ -644,7 +644,7 @@ mouse button and on the current modifier keys for the user.</p>
         <p>Send the link to the front of the current <a href="mapView.html">Map View</a>.</p>
 
         
-          <div class='highlight'><pre>    toFront: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toFront</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.toFront()</pre></div>
         
       
@@ -652,7 +652,7 @@ mouse button and on the current modifier keys for the user.</p>
         <p>Show the link on the map using a &quot;fade in&quot; effect.</p>
 
         
-          <div class='highlight'><pre>    show: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">show</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.show SystemApp.Settings.map.blinkInterval
         <span class="property">@labelsView</span>.show()
         <span class="property">@visible</span> = <span class="literal">true</span></pre></div>
@@ -662,7 +662,7 @@ mouse button and on the current modifier keys for the user.</p>
         <p>Hide the link on the map using a &quot;fade out&quot; effect.</p>
 
         
-          <div class='highlight'><pre>    hide: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hide</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.hide SystemApp.Settings.map.blinkInterval
         <span class="property">@labelsView</span>.hide()
         <span class="property">@visible</span> = <span class="literal">false</span></pre></div>
@@ -672,7 +672,7 @@ mouse button and on the current modifier keys for the user.</p>
         <p>Fade the link opacity to 0.1, so it&#39;s almost hidden.</p>
 
         
-          <div class='highlight'><pre>    semiHide: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">semiHide</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.semiHide SystemApp.Settings.map.blinkInterval
         <span class="property">@labelsView</span>.hide()
         <span class="property">@visible</span> = <span class="literal">false</span></pre></div>
@@ -682,21 +682,21 @@ mouse button and on the current modifier keys for the user.</p>
         <p>Make the link smooth (curved) if the parameter <code>enabled</code> is true, or straight if false.</p>
 
         
-          <div class='highlight'><pre>    smooth: (enabled) =&gt;
-        <span class="property">@parentView</span>.paper.link <span class="property">@svg</span>, {smooth: enabled}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">smooth</span>: <span class="function"><span class="params">(enabled)</span> =&gt;</span>
+        <span class="property">@parentView</span>.paper.link <span class="property">@svg</span>, {<span class="attribute">smooth</span>: enabled}</pre></div>
         
       
         
         <p>Set the link drag handler.</p>
 
         
-          <div class='highlight'><pre>    drag: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">drag</span>:<span class="function"> =&gt;</span>
         <span class="property">@parentView</span>.paper.link <span class="property">@svg</span>
         <span class="property">@labelsView</span>?.setPosition()</pre></div>
         
       
         
-        <h2>VIEW UPDATE EVENTS</h2>
+        <h2 id="view-update-events">VIEW UPDATE EVENTS</h2>
 
         
       
@@ -704,7 +704,7 @@ mouse button and on the current modifier keys for the user.</p>
         <p>Update the stroke (color and width) of the link.</p>
 
         
-          <div class='highlight'><pre>    setStroke: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setStroke</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.svgLine.attr {<span class="string">"stroke"</span>: <span class="property">@model</span>.stroke(), <span class="string">"stroke-width"</span>: <span class="property">@model</span>.strokeWidth()}
         _.delay <span class="property">@strokeUpdatedBackToSelected</span>, SystemApp.Settings.map.borderUpdatedDelay</pre></div>
         
@@ -713,7 +713,7 @@ mouse button and on the current modifier keys for the user.</p>
         <p>Update the zIndex the link by changing its position under the DOM tree.</p>
 
         
-          <div class='highlight'><pre>    setZIndex: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setZIndex</span>:<span class="function"> =&gt;</span>
         <span class="property">@parentView</span>.regroupElement <span class="keyword">this</span></pre></div>
         
       
@@ -723,7 +723,7 @@ the link label accordingly. Font size will increase when zooming out,
 but won&#39;t decrease when zooming in (zoom more than 1).</p>
 
         
-          <div class='highlight'><pre>    onZoom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onZoom</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@parentView</span>.currentZoom &lt; <span class="number">1</span>
             <span class="keyword">return</span>
 
@@ -741,13 +741,13 @@ shape is still selected, then set its border back to the &quot;selected&quot; st
 by calling the <code>highlight</code> method.</p>
 
         
-          <div class='highlight'><pre>    strokeUpdatedBackToSelected: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">strokeUpdatedBackToSelected</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@parentView</span>.currentShape?.model.id <span class="keyword">is</span> <span class="property">@model</span>.id
             <span class="property">@highlight</span>()</pre></div>
         
       
         
-        <h2>SHADOW AND HIGHLIGHT</h2>
+        <h2 id="shadow-and-highlight">SHADOW AND HIGHLIGHT</h2>
 
         
       
@@ -756,7 +756,7 @@ by calling the <code>highlight</code> method.</p>
 If times is 1 and the <code>callback</code> is specified, call it when it has finished blinking.</p>
 
         
-          <div class='highlight'><pre>    blink: (times, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">blink</span>: <span class="function"><span class="params">(times, callback)</span> =&gt;</span>
         times = <span class="number">2</span> <span class="keyword">if</span> <span class="keyword">not</span> times?
         extraMs = <span class="number">15</span>
 
@@ -770,7 +770,7 @@ If times is 1 and the <code>callback</code> is specified, call it when it has fi
         <p>Create a shadow behind the link, with optional color and strength.</p>
 
         
-          <div class='highlight'><pre>    highlight: (color, strength) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">highlight</span>: <span class="function"><span class="params">(color, strength)</span> =&gt;</span>
         color = SystemApp.Settings.map.shadowColor <span class="keyword">if</span> <span class="keyword">not</span> color?
         strength = SystemApp.Settings.map.shadowStrength <span class="keyword">if</span> <span class="keyword">not</span> strength?
 
@@ -781,7 +781,7 @@ If times is 1 and the <code>callback</code> is specified, call it when it has fi
         <p>Remove the shadow from the link (if there&#39;s one present).</p>
 
         
-          <div class='highlight'><pre>    unhighlight: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">unhighlight</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>?.svgLine.attr {<span class="string">"stroke"</span>: <span class="property">@model</span>.stroke(), <span class="string">"stroke-width"</span>: <span class="property">@model</span>.strokeWidth()}</pre></div>
         
       

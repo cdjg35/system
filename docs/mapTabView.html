@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>MAP CONTROLS: OPTIONS VIEW</h2>
+        <h2 id="map-controls-options-view">MAP CONTROLS: OPTIONS VIEW</h2>
 
         
       
@@ -493,28 +493,28 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapControlsMapTabView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    timerHideZIndex: <span class="literal">null</span>           <span class="comment"># a timer to auto hide the z-index after user clicked the "Identify z-index" button</span>
+    <span class="attribute">timerHideZIndex</span>: <span class="literal">null</span>           <span class="comment"># a timer to auto hide the z-index after user clicked the "Identify z-index" button</span>
 
-    $txtName: <span class="literal">null</span>            <span class="comment"># the "Name" textbox</span>
-    $txtPaperSizeX: <span class="literal">null</span>      <span class="comment"># the "X" paper size textbox</span>
-    $txtPaperSizeY: <span class="literal">null</span>      <span class="comment"># the "Y" paper size textbox</span>
-    $txtGridSizeX: <span class="literal">null</span>       <span class="comment"># the "X" grid size textbox</span>
-    $txtGridSizeY: <span class="literal">null</span>       <span class="comment"># the "Y" grid size textbox</span>
-    $butDelete: <span class="literal">null</span>          <span class="comment"># the "Delete map" button</span>
-    $butConfirmDelete: <span class="literal">null</span>   <span class="comment"># the "Confirm delete!!!" button, appears after user clicks "Delete map"</span>
+    <span class="attribute">$txtName</span>: <span class="literal">null</span>            <span class="comment"># the "Name" textbox</span>
+    <span class="attribute">$txtPaperSizeX</span>: <span class="literal">null</span>      <span class="comment"># the "X" paper size textbox</span>
+    <span class="attribute">$txtPaperSizeY</span>: <span class="literal">null</span>      <span class="comment"># the "Y" paper size textbox</span>
+    <span class="attribute">$txtGridSizeX</span>: <span class="literal">null</span>       <span class="comment"># the "X" grid size textbox</span>
+    <span class="attribute">$txtGridSizeY</span>: <span class="literal">null</span>       <span class="comment"># the "Y" grid size textbox</span>
+    <span class="attribute">$butDelete</span>: <span class="literal">null</span>          <span class="comment"># the "Delete map" button</span>
+    <span class="attribute">$butConfirmDelete</span>: <span class="literal">null</span>   <span class="comment"># the "Confirm delete!!!" button, appears after user clicks "Delete map"</span>
 
-    $selDisplayProps: <span class="literal">null</span>          <span class="comment"># the property select box that holds all available shape display properties</span>
-    $chkShowLinks: <span class="literal">null</span>             <span class="comment"># the "Show links" checkbox</span>
-    $zoomSpan: <span class="literal">null</span>                 <span class="comment"># the zoom span</span>
-    $zoomIn: <span class="literal">null</span>                   <span class="comment"># the zoom in icon</span>
-    $zoomOut: <span class="literal">null</span>                  <span class="comment"># the zoom out icon</span>
-    $butInitScript: <span class="literal">null</span>            <span class="comment"># the init script button</span>
-    $butZIndexIdentify: <span class="literal">null</span>        <span class="comment"># the "Identify z-index" button</span>
-    $butExportSvg: <span class="literal">null</span>             <span class="comment"># the "Export to SVG" button</span></pre></div>
+    <span class="attribute">$selDisplayProps</span>: <span class="literal">null</span>          <span class="comment"># the property select box that holds all available shape display properties</span>
+    <span class="attribute">$chkShowLinks</span>: <span class="literal">null</span>             <span class="comment"># the "Show links" checkbox</span>
+    <span class="attribute">$zoomSpan</span>: <span class="literal">null</span>                 <span class="comment"># the zoom span</span>
+    <span class="attribute">$zoomIn</span>: <span class="literal">null</span>                   <span class="comment"># the zoom in icon</span>
+    <span class="attribute">$zoomOut</span>: <span class="literal">null</span>                  <span class="comment"># the zoom out icon</span>
+    <span class="attribute">$butInitScript</span>: <span class="literal">null</span>            <span class="comment"># the init script button</span>
+    <span class="attribute">$butZIndexIdentify</span>: <span class="literal">null</span>        <span class="comment"># the "Identify z-index" button</span>
+    <span class="attribute">$butExportSvg</span>: <span class="literal">null</span>             <span class="comment"># the "Export to SVG" button</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -522,7 +522,7 @@
         <p>Inits the view. Parent will be the <a href="controlsView.html">Map Controls View</a>.</p>
 
         
-          <div class='highlight'><pre>    initialize: (parent) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>: <span class="function"><span class="params">(parent)</span> =&gt;</span>
         <span class="property">@baseInit</span> parent
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()
@@ -534,7 +534,7 @@
         <p>Dispose the map tab view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -542,7 +542,7 @@
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setElement</span> $ <span class="string">"#map-ctl-tab-map"</span>
 
         <span class="property">@$txtName</span> = $ <span class="string">"#map-ctl-name"</span>
@@ -567,7 +567,7 @@
         <p>Bind events to DOM and other controls.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         <span class="property">@$txtName</span>.blur <span class="property">@setName</span>
         <span class="property">@$txtPaperSizeX</span>.blur <span class="property">@setPaperSizeX</span>
         <span class="property">@$txtPaperSizeY</span>.blur <span class="property">@setPaperSizeY</span>
@@ -594,13 +594,13 @@
 saved on the browser&#39;s local storage.</p>
 
         
-          <div class='highlight'><pre>    bindInitialState: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindInitialState</span>:<span class="function"> =&gt;</span>
         <span class="property">@$selDisplayProps</span>.val SystemApp.Data.userSettings.mapOverrideShapeTitle()
         <span class="property">@$chkShowLinks</span>.prop <span class="string">"checked"</span>, SystemApp.Data.userSettings.mapShowLinks()</pre></div>
         
       
         
-        <h2>HELPER PROPERTIES</h2>
+        <h2 id="helper-properties">HELPER PROPERTIES</h2>
 
         
       
@@ -608,7 +608,7 @@ saved on the browser&#39;s local storage.</p>
         <p>Get the text of the current selected &quot;Display property&quot;.</p>
 
         
-          <div class='highlight'><pre>    currentDisplayProperty: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">currentDisplayProperty</span>:<span class="function"> =&gt;</span>
         (<span class="property">@$selDisplayProps</span>.find <span class="string">"option:selected"</span>).val()</pre></div>
         
       
@@ -616,12 +616,12 @@ saved on the browser&#39;s local storage.</p>
         <p>Is the &quot;Show links&quot; checkbox on?</p>
 
         
-          <div class='highlight'><pre>    isLinksVisible: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">isLinksVisible</span>:<span class="function"> =&gt;</span>
         <span class="property">@$chkShowLinks</span>.prop <span class="string">"checked"</span></pre></div>
         
       
         
-        <h2>EVENTS</h2>
+        <h2 id="events">EVENTS</h2>
 
         
       
@@ -629,7 +629,7 @@ saved on the browser&#39;s local storage.</p>
         <p>Triggered whenever user changes the current shape&#39;s title property.</p>
 
         
-          <div class='highlight'><pre>    onDisplayPropsChange: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onDisplayPropsChange</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         val = <span class="property">@currentDisplayProperty</span>()
         SystemApp.mapEvents.trigger <span class="string">"shapes:overridetitle"</span>, val
         SystemApp.Data.userSettings.mapOverrideShapeTitle val</pre></div>
@@ -639,7 +639,7 @@ saved on the browser&#39;s local storage.</p>
         <p>Triggered whenever user toggles the &quot;Show links&quot; on or off.</p>
 
         
-          <div class='highlight'><pre>    onShowLinksChange: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onShowLinksChange</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         val = <span class="property">@isLinksVisible</span>()
         SystemApp.mapEvents.trigger <span class="string">"links:toggle"</span>, val
         SystemApp.Data.userSettings.mapShowLinks val</pre></div>
@@ -649,7 +649,7 @@ saved on the browser&#39;s local storage.</p>
         <p>When user clicks on the zoom icons, trigger the zoom event on the <code>mapEvents</code> dispatcher.</p>
 
         
-          <div class='highlight'><pre>    onZoom: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onZoom</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         SystemApp.mapEvents.trigger <span class="string">"zoom:<span class="subst">#{e.data}</span>"</span></pre></div>
         
       
@@ -657,77 +657,68 @@ saved on the browser&#39;s local storage.</p>
         <p>Trigger whenever the current <a href="map.html">Map</a> name has changed.</p>
 
         
-          <div class='highlight'><pre>    setName: =&gt;
-        value = <span class="property">@$txtName</span>.val()
-
-        <span class="property">@model</span>.name value <span class="keyword">if</span> value.length &gt; <span class="number">0</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">setName</span>:<span class="function"> =&gt;</span>
+        <span class="keyword">if</span> <span class="property">@validateField</span>(<span class="property">@$txtName</span>, <span class="property">@model</span>.name).result
+            <span class="property">@model</span>.save()
+            SystemApp.routes.navigate <span class="string">"map/"</span> + <span class="property">@model</span>.urlKey(), {<span class="attribute">trigger</span>: <span class="literal">false</span>}</pre></div>
         
       
         
         <p>Triggered whenever the current <a href="map.html">Map</a> <code>paperSizeX</code> has changed, <code>$txtPaperSizeX</code> onBlur event.</p>
 
         
-          <div class='highlight'><pre>    setPaperSizeX: =&gt;
-        <span class="property">@setSize</span> <span class="property">@$txtPaperSizeX</span>, <span class="property">@model</span>.paperSizeX, SystemApp.Settings.map.minPaperSize</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">setPaperSizeX</span>:<span class="function"> =&gt;</span>
+        <span class="property">@setSize</span> <span class="property">@$txtPaperSizeX</span>, SystemApp.Settings.map.minPaperSize, <span class="property">@model</span>.paperSizeX</pre></div>
         
       
         
         <p>Triggered whenever the current <a href="map.html">Map</a> <code>paperSizeY</code> has changed, <code>$txtPaperSizeY</code> onBlur event.</p>
 
         
-          <div class='highlight'><pre>    setPaperSizeY: =&gt;
-        <span class="property">@setSize</span> <span class="property">@$txtPaperSizeY</span>, <span class="property">@model</span>.paperSizeY, SystemApp.Settings.map.minPaperSize</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">setPaperSizeY</span>:<span class="function"> =&gt;</span>
+        <span class="property">@setSize</span> <span class="property">@$txtPaperSizeY</span>, SystemApp.Settings.map.minPaperSize, <span class="property">@model</span>.paperSizeY</pre></div>
         
       
         
         <p>Triggered whenever the current <a href="map.html">Map</a> <code>gridSizeX</code> has changed, <code>$txtGridSizeX</code> onBlur event.</p>
 
         
-          <div class='highlight'><pre>    setGridSizeX: =&gt;
-        <span class="property">@setSize</span> <span class="property">@$txtGridSizeX</span>, <span class="property">@model</span>.gridSizeX, SystemApp.Settings.map.minGridSize</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">setGridSizeX</span>:<span class="function"> =&gt;</span>
+        <span class="property">@setSize</span> <span class="property">@$txtGridSizeX</span>, SystemApp.Settings.map.minGridSize, <span class="property">@model</span>.gridSizeX</pre></div>
         
       
         
         <p>Triggered whenever the current <a href="map.html">Map</a> <code>gridSizeY</code> has changed, <code>$txtGridSizeY</code> onBlur event.</p>
 
         
-          <div class='highlight'><pre>    setGridSizeY: =&gt;
-        <span class="property">@setSize</span> <span class="property">@$txtGridSizeY</span>, <span class="property">@model</span>.gridSizeY, SystemApp.Settings.map.minGridSize</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">setGridSizeY</span>:<span class="function"> =&gt;</span>
+        <span class="property">@setSize</span> <span class="property">@$txtGridSizeY</span>, SystemApp.Settings.map.minGridSize, <span class="property">@model</span>.gridSizeY</pre></div>
+        
+      
+        
+        <p>Update one of the current <a href="map.html">Map</a> sizes, which can be paperSizeX, paperSizeY,
+gridSizeX or gridSizeY. A text input field, property callback and the minimum accepted
+value must be passed.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">setSize</span>: <span class="function"><span class="params">(field, minValue, callback)</span> =&gt;</span>
+        <span class="keyword">if</span> <span class="property">@validateField</span>(field, {<span class="attribute">type</span>: <span class="string">"number"</span>, <span class="attribute">min</span>: minValue}, callback).result
+            <span class="property">@model</span>.save()</pre></div>
         
       
         
         <p>Sets the &quot;zoom&quot; span, to display the current <a href="mapView.html">Map View</a> zoom level.</p>
 
         
-          <div class='highlight'><pre>    setZoomLabel: (zoomLevel) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setZoomLabel</span>: <span class="function"><span class="params">(zoomLevel)</span> =&gt;</span>
         <span class="property">@$zoomSpan</span>.html <span class="string">"Zoom "</span> + (<span class="number">1</span> / zoomLevel).toFixed(<span class="number">2</span>)</pre></div>
-        
-      
-        
-        <p>Update one of the current <a href="map.html">Map</a> sizes, which can be paperSizeX, paperSizeY,
-gridSizeX or gridSizeY. A text input field, property name and the minimum accepted
-value must be passed. <em>Internal use only!</em></p>
-
-        
-          <div class='highlight'><pre>    setSize: (textField, propertyName, minValue) =&gt;
-        size = textField.val()
-
-        <span class="keyword">if</span> $.isNumeric size
-            size = Math.round size
-        <span class="keyword">else</span>
-            size = propertyName()
-            textField.val size
-
-        size = minValue <span class="keyword">if</span> size &lt; minValue
-
-        propertyName size</pre></div>
         
       
         
         <p>Enable or disable editing the current <a href="map.html">Map</a> settings.</p>
 
         
-          <div class='highlight'><pre>    setEnabled: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEnabled</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         formElements = [<span class="property">@$el</span>, <span class="property">@$txtName</span>, <span class="property">@$txtPaperSizeX</span>, <span class="property">@$txtPaperSizeY</span>,
                         <span class="property">@$txtGridSizeX</span>, <span class="property">@$txtGridSizeY</span>,
                         <span class="property">@$butInitScript</span>, <span class="property">@$butDelete</span>]
@@ -741,7 +732,7 @@ value must be passed. <em>Internal use only!</em></p>
         
       
         
-        <h2>BINDIND AND OPTIONS</h2>
+        <h2 id="bindind-and-options">BINDIND AND OPTIONS</h2>
 
         
       
@@ -749,7 +740,7 @@ value must be passed. <em>Internal use only!</em></p>
         <p>Bind map to the control.</p>
 
         
-          <div class='highlight'><pre>    bindMap: (map) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindMap</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
         <span class="property">@model</span> = map
         <span class="property">@$txtName</span>.val map.name()
         <span class="property">@$txtPaperSizeX</span>.val map.paperSizeX()
@@ -763,7 +754,7 @@ value must be passed. <em>Internal use only!</em></p>
 what&#39;s displayed on the title of the shapes on the map).</p>
 
         
-          <div class='highlight'><pre>    bindDisplayProps: (displayProps) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindDisplayProps</span>: <span class="function"><span class="params">(displayProps)</span> =&gt;</span>
         <span class="property">@$selDisplayProps</span>.empty()
 
         option = $(document.createElement <span class="string">"option"</span>)
@@ -804,13 +795,13 @@ For example name,hostname,server_name could all mean the name of the entity.</p>
         <p>Open the <a href="scriptEditorView.html">script editor</a> to edit the map&#39;s init script.</p>
 
         
-          <div class='highlight'><pre>    showInitScript: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showInitScript</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>?
             SystemApp.routes.openScriptEditor <span class="property">@model</span>, <span class="string">"initScript"</span></pre></div>
         
       
         
-        <h2>EXPORT AND Z-INDEX</h2>
+        <h2 id="export-and-z-index">EXPORT AND Z-INDEX</h2>
 
         
       
@@ -820,7 +811,7 @@ shapes. The z-index texts will get hidden after a few seconds, or if the user
 presses the &quot;Esc&quot; key.</p>
 
         
-          <div class='highlight'><pre>    zIndexIdentify: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zIndexIdentify</span>:<span class="function"> =&gt;</span>
         SystemApp.mapEvents.trigger <span class="string">"zindex:toggle"</span>, <span class="literal">true</span>
 
         <span class="keyword">if</span> <span class="property">@timerHideZIndex</span>?
@@ -829,7 +820,7 @@ presses the &quot;Esc&quot; key.</p>
 
         <span class="property">@timerHideZIndex</span> = setTimeout <span class="property">@zIndexHide</span>, SystemApp.Settings.map.zIndexHideTimeout
 
-        $(document).keydown <span class="property">@zIndexKeyDown</span></pre></div>
+        $(<span class="built_in">document</span>).keydown <span class="property">@zIndexKeyDown</span></pre></div>
         
       
         
@@ -837,7 +828,7 @@ presses the &quot;Esc&quot; key.</p>
 &quot;Esc&quot; key to hide the z-index identifiers.</p>
 
         
-          <div class='highlight'><pre>    zIndexKeyDown: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zIndexKeyDown</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@zIndexHide</span>() <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">27</span></pre></div>
         
       
@@ -845,8 +836,8 @@ presses the &quot;Esc&quot; key.</p>
         <p>Triggers the event to hide the z-index identifiers.</p>
 
         
-          <div class='highlight'><pre>    zIndexHide: =&gt;
-        $(document).unbind <span class="string">"keydown"</span>, <span class="property">@zIndexHide</span>
+          <div class='highlight'><pre>    <span class="attribute">zIndexHide</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).unbind <span class="string">"keydown"</span>, <span class="property">@zIndexHide</span>
 
         <span class="keyword">if</span> <span class="property">@timerHideZIndex</span>?
             clearTimeout <span class="property">@timerHideZIndex</span>
@@ -859,7 +850,7 @@ presses the &quot;Esc&quot; key.</p>
         <p>Export to current <a href="mapView.html">Map View</a> to a SVG image on a new browser window.</p>
 
         
-          <div class='highlight'><pre>    exportToSvg: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">exportToSvg</span>:<span class="function"> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@model</span>?
 
         newWindow = window.open <span class="string">"about:blank"</span>, <span class="string">"ExportSVG"</span>
@@ -867,13 +858,13 @@ presses the &quot;Esc&quot; key.</p>
         newWindow.document.write <span class="property">@parentView</span>.parentView.$el.html()
         newWindow.document.execCommand <span class="string">"SaveAs"</span>, <span class="literal">true</span>
 
-        $(newWindow).keyup (e) -&gt; <span class="keyword">this</span>.close() <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">27</span>
+        $<span class="function"><span class="params">(newWindow)</span>.<span class="title">keyup</span> <span class="params">(e)</span> -&gt;</span> this.close() <span class="keyword">if</span> e.keyCode <span class="keyword">is</span> <span class="number">27</span>
 
         <span class="keyword">return</span></pre></div>
         
       
         
-        <h2>DELETE MAP</h2>
+        <h2 id="delete-map">DELETE MAP</h2>
 
         
       
@@ -883,8 +874,8 @@ button. Map will be deleted only if user confirms
 clicking the second button!</p>
 
         
-          <div class='highlight'><pre>    askDeleteMap: =&gt;
-        $(document).mouseup <span class="property">@resetDelete</span>
+          <div class='highlight'><pre>    <span class="attribute">askDeleteMap</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).mouseup <span class="property">@resetDelete</span>
         <span class="property">@$butConfirmDelete</span>.removeClass <span class="string">"hidden"</span></pre></div>
         
       
@@ -892,7 +883,7 @@ clicking the second button!</p>
         <p>When user clicks the &quot;Confirm delete&quot; button, proceed with map deletion.</p>
 
         
-          <div class='highlight'><pre>    confirmDeleteMap: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">confirmDeleteMap</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@model</span>.destroy()
         <span class="property">@resetDelete</span> e</pre></div>
         
@@ -902,8 +893,8 @@ clicking the second button!</p>
 while the button is visible, or after user confirms the deletion.</p>
 
         
-          <div class='highlight'><pre>    resetDelete: =&gt;
-        $(document).unbind <span class="string">"mouseup"</span>, <span class="property">@resetDelete</span>
+          <div class='highlight'><pre>    <span class="attribute">resetDelete</span>:<span class="function"> =&gt;</span>
+        $(<span class="built_in">document</span>).unbind <span class="string">"mouseup"</span>, <span class="property">@resetDelete</span>
         <span class="property">@$butConfirmDelete</span>.addClass <span class="string">"hidden"</span></pre></div>
         
       

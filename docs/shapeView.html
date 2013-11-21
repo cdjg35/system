@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>SHAPE VIEW</h2>
+        <h2 id="shape-view">SHAPE VIEW</h2>
 
         
       
@@ -493,26 +493,26 @@
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">MapShapeView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseView</span></span>
 
-    linkViews: <span class="literal">null</span>         <span class="comment"># holds the temporary link views when moving / editing shapes around</span>
-    labelsView: <span class="literal">null</span>        <span class="comment"># holds the 5 editable / dynamic labels of the shape</span>
-    linkCreatorView: <span class="literal">null</span>   <span class="comment"># holds the link creator view, in case user is linking this shape to another</span>
-    svg: <span class="literal">null</span>               <span class="comment"># the main svg element for this shape</span>
-    svgIcon: <span class="literal">null</span>           <span class="comment"># the custom svg icon / background of the shape</span>
-    svgLinker: <span class="literal">null</span>         <span class="comment"># the svg "link" icon that appears on the center of the shape</span>
-    svgResizer: <span class="literal">null</span>        <span class="comment"># the svg "resize" icon that appears on the bottom right corner of the shape</span>
-    svgZIndex: <span class="literal">null</span>         <span class="comment"># a svg text displaying the current z-index value of the shape</span>
-    ox: <span class="number">0</span>                   <span class="comment"># temporary X coordinates</span>
-    oy: <span class="number">0</span>                   <span class="comment"># temporary Y coordinates</span>
-    ow: <span class="number">0</span>                   <span class="comment"># temporary shape width when resizing</span>
-    oh: <span class="number">0</span>                   <span class="comment"># temporary shape height when resizing</span>
-    ix: <span class="number">0</span>                   <span class="comment"># initial X coordinates before dragging</span>
-    iy: <span class="number">0</span>                   <span class="comment"># initial Y coordinates before dragging</span>
-    resizing: <span class="literal">false</span>         <span class="comment"># is the shape being resized?</span>
-    dragging: <span class="literal">false</span>         <span class="comment"># is the shape dragging?</span></pre></div>
+    <span class="attribute">linkViews</span>: <span class="literal">null</span>         <span class="comment"># holds the temporary link views when moving / editing shapes around</span>
+    <span class="attribute">labelsView</span>: <span class="literal">null</span>        <span class="comment"># holds the 5 editable / dynamic labels of the shape</span>
+    <span class="attribute">linkCreatorView</span>: <span class="literal">null</span>   <span class="comment"># holds the link creator view, in case user is linking this shape to another</span>
+    <span class="attribute">svg</span>: <span class="literal">null</span>               <span class="comment"># the main svg element for this shape</span>
+    <span class="attribute">svgIcon</span>: <span class="literal">null</span>           <span class="comment"># the custom svg icon / background of the shape</span>
+    <span class="attribute">svgLinker</span>: <span class="literal">null</span>         <span class="comment"># the svg "link" icon that appears on the center of the shape</span>
+    <span class="attribute">svgResizer</span>: <span class="literal">null</span>        <span class="comment"># the svg "resize" icon that appears on the bottom right corner of the shape</span>
+    <span class="attribute">svgZIndex</span>: <span class="literal">null</span>         <span class="comment"># a svg text displaying the current z-index value of the shape</span>
+    <span class="attribute">ox</span>: <span class="number">0</span>                   <span class="comment"># temporary X coordinates</span>
+    <span class="attribute">oy</span>: <span class="number">0</span>                   <span class="comment"># temporary Y coordinates</span>
+    <span class="attribute">ow</span>: <span class="number">0</span>                   <span class="comment"># temporary shape width when resizing</span>
+    <span class="attribute">oh</span>: <span class="number">0</span>                   <span class="comment"># temporary shape height when resizing</span>
+    <span class="attribute">ix</span>: <span class="number">0</span>                   <span class="comment"># initial X coordinates before dragging</span>
+    <span class="attribute">iy</span>: <span class="number">0</span>                   <span class="comment"># initial Y coordinates before dragging</span>
+    <span class="attribute">resizing</span>: <span class="literal">false</span>         <span class="comment"># is the shape being resized?</span>
+    <span class="attribute">dragging</span>: <span class="literal">false</span>         <span class="comment"># is the shape dragging?</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -520,7 +520,7 @@
         <p>Base init for all shapes. Binds a background color change event to itself.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@linkViews</span> = <span class="keyword">new</span> Object()
 
         <span class="property">@listenTo</span> SystemApp.mapEvents, <span class="string">"edit:toggle"</span>, <span class="property">@toggleEdit</span>
@@ -545,7 +545,7 @@
         <p>Base dispose for all shapes.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@unhighlight</span>()
 
         <span class="property">@labelsView</span>?.dispose()
@@ -556,7 +556,7 @@
         <span class="property">@svgZIndex</span>?.remove()
         <span class="property">@svgIcon</span>.remove()
 
-        _.each <span class="property">@linkViews</span>, (view) -&gt; view.removeFromMap()
+        _.each <span class="property">@linkViews</span>, <span class="function"><span class="params">(view)</span> -&gt;</span> view.removeFromMap()
 
         <span class="property">@linkCreatorView</span> = <span class="literal">null</span>
         <span class="property">@svg</span> = <span class="literal">null</span>
@@ -570,7 +570,7 @@
         
       
         
-        <h2>HELPER PROPERTIES</h2>
+        <h2 id="helper-properties">HELPER PROPERTIES</h2>
 
         
       
@@ -579,7 +579,7 @@
 labels, icons and shadows.</p>
 
         
-          <div class='highlight'><pre>    svgs: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">svgs</span>:<span class="function"> =&gt;</span>
         result = [<span class="property">@svg</span>, <span class="property">@svgIcon</span>, <span class="property">@svgLinker</span>, <span class="property">@svgResizer</span>]
         result.push svg <span class="keyword">for</span> svg <span class="keyword">in</span> <span class="property">@labelsView</span>.svgs() <span class="keyword">if</span> <span class="property">@labelsView</span>?
 
@@ -590,7 +590,7 @@ labels, icons and shadows.</p>
         <p>Helper to get the X position on the shape.</p>
 
         
-          <div class='highlight'><pre>    x: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">x</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>.format() <span class="keyword">is</span> <span class="string">"circle"</span>
             <span class="keyword">return</span> <span class="property">@svg</span>.attr <span class="string">"cx"</span>
         <span class="keyword">else</span>
@@ -601,7 +601,7 @@ labels, icons and shadows.</p>
         <p>Helper to get the Y position on the shape.</p>
 
         
-          <div class='highlight'><pre>    y: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">y</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>.format() <span class="keyword">is</span> <span class="string">"circle"</span>
             <span class="keyword">return</span> <span class="property">@svg</span>.attr <span class="string">"cy"</span>
         <span class="keyword">else</span>
@@ -612,15 +612,15 @@ labels, icons and shadows.</p>
         <p>Helper to get the X and Y of the center / middle of the shape.</p>
 
         
-          <div class='highlight'><pre>    centerPoint: =&gt;
-        <span class="keyword">return</span> {x: <span class="property">@x</span>() + <span class="property">@width</span>() / <span class="number">2</span>, y: <span class="property">@y</span>() + <span class="property">@height</span>() / <span class="number">2</span>}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">centerPoint</span>:<span class="function"> =&gt;</span>
+        <span class="keyword">return</span> {<span class="attribute">x</span>: <span class="property">@x</span>() + <span class="property">@width</span>() / <span class="number">2</span>, <span class="attribute">y</span>: <span class="property">@y</span>() + <span class="property">@height</span>() / <span class="number">2</span>}</pre></div>
         
       
         
         <p>Helper to get the Y position on the shape&#39;s title.</p>
 
         
-          <div class='highlight'><pre>    titleY: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">titleY</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>.format() <span class="keyword">is</span> <span class="string">"circle"</span>
             <span class="keyword">return</span> <span class="property">@svgLabel</span>.attr <span class="string">"cy"</span>
         <span class="keyword">else</span>
@@ -631,7 +631,7 @@ labels, icons and shadows.</p>
         <p>Helper to get the shape width.</p>
 
         
-          <div class='highlight'><pre>    width: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">width</span>:<span class="function"> =&gt;</span>
         v = <span class="property">@svg</span>?.attrs.width
         v = <span class="property">@model</span>.sizeX() * <span class="property">@parentView</span>.model.gridSizeX() <span class="keyword">if</span> v <span class="keyword">is</span> <span class="literal">undefined</span> <span class="keyword">or</span> v &lt; <span class="number">1</span>
         <span class="keyword">return</span> v</pre></div>
@@ -641,14 +641,14 @@ labels, icons and shadows.</p>
         <p>Helper to get the shape height.</p>
 
         
-          <div class='highlight'><pre>    height: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">height</span>:<span class="function"> =&gt;</span>
         v = <span class="property">@svg</span>?.attrs.height
         v = <span class="property">@model</span>.sizeY() * <span class="property">@parentView</span>.model.gridSizeY() <span class="keyword">if</span> v <span class="keyword">is</span> <span class="literal">undefined</span> <span class="keyword">or</span> v &lt; <span class="number">1</span>
         <span class="keyword">return</span> v</pre></div>
         
       
         
-        <h2>VIEW UPDATE EVENTS</h2>
+        <h2 id="view-update-events">VIEW UPDATE EVENTS</h2>
 
         
       
@@ -657,7 +657,7 @@ labels, icons and shadows.</p>
 on its <a href="shape.html">shape model</a>.</p>
 
         
-          <div class='highlight'><pre>    bindEntityObject: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindEntityObject</span>:<span class="function"> =&gt;</span>
         definitionId = <span class="property">@model</span>.entityDefinitionId()
         objectId = <span class="property">@model</span>.entityObjectId()
 
@@ -678,14 +678,14 @@ on its <a href="shape.html">shape model</a>.</p>
           <div class='highlight'><pre>        entityObj = entityDef.data().get objectId
         <span class="property">@model</span>.entityObject = entityObj
 
-        SystemApp.consoleLog <span class="string">"MapShapeView.bindEntityObject"</span>, <span class="string">"<span class="subst">#{definitionId}</span>-<span class="subst">#{objectId}</span>"</span>, <span class="string">"Shape ID <span class="subst">#{@model.id}</span>"</span></pre></div>
+        SystemApp.consoleLog <span class="string">"MapShapeView.bindEntityObject"</span>, <span class="string">"<span class="subst">#{definitionId}</span>-<span class="subst">#{objectId}</span>"</span>, <span class="string">"Shape ID <span class="subst">#{<span class="property">@model</span>.id}</span>"</span></pre></div>
         
       
         
         <p>Filter the related <code>mapView</code> links and set the <code>tempLinkViews</code> property.</p>
 
         
-          <div class='highlight'><pre>    setLinkViews: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setLinkViews</span>:<span class="function"> =&gt;</span>
         <span class="property">@linkViews</span> = <span class="property">@parentView</span>.getLinkViewsForShape <span class="property">@model</span></pre></div>
         
       
@@ -694,7 +694,7 @@ on its <a href="shape.html">shape model</a>.</p>
 the model&#39;s background value.</p>
 
         
-          <div class='highlight'><pre>    setBackground: (item, forceValue) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setBackground</span>: <span class="function"><span class="params">(item, forceValue)</span> =&gt;</span>
         <span class="keyword">if</span> forceValue?
             <span class="property">@svg</span>.attr {<span class="string">"fill"</span>: forceValue}
         <span class="keyword">else</span>
@@ -706,7 +706,7 @@ the model&#39;s background value.</p>
 the model&#39;s stroke value.</p>
 
         
-          <div class='highlight'><pre>    setStroke: (item, forceValue) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setStroke</span>: <span class="function"><span class="params">(item, forceValue)</span> =&gt;</span>
         <span class="keyword">if</span> forceValue?
             <span class="property">@svg</span>.attr {<span class="string">"stroke"</span>: forceValue}
             <span class="property">@svgIcon</span>.attr {<span class="string">"fill"</span>: forceValue}
@@ -720,7 +720,7 @@ the model&#39;s stroke value.</p>
         <p>Update the border width of the shape.</p>
 
         
-          <div class='highlight'><pre>    setStrokeWidth: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setStrokeWidth</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.attr {<span class="string">"stroke-width"</span>: <span class="property">@model</span>.strokeWidthComputed()}
         <span class="property">@svgLinker</span>.attr <span class="property">@getLinkerPositionAtt</span>(<span class="property">@x</span>(), <span class="property">@y</span>())
         <span class="property">@labelsView</span>.setPosition()
@@ -731,7 +731,7 @@ the model&#39;s stroke value.</p>
         <p>Update the font size of the shape labels.</p>
 
         
-          <div class='highlight'><pre>    setFontSize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setFontSize</span>:<span class="function"> =&gt;</span>
         zoom = <span class="number">1</span>
         zoom = <span class="property">@parentView</span>.currentZoom <span class="keyword">if</span> <span class="property">@parentView</span>.currentZoom &gt; <span class="number">1</span>
 
@@ -743,7 +743,7 @@ the model&#39;s stroke value.</p>
         <p>Update the font size of the shape labels.</p>
 
         
-          <div class='highlight'><pre>    setOpacity: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setOpacity</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.attr {<span class="string">"fill-opacity"</span>: <span class="property">@model</span>.opacity()}</pre></div>
         
       
@@ -751,7 +751,7 @@ the model&#39;s stroke value.</p>
         <p>Update the zIndex the shape by changing its position under the DOM tree.</p>
 
         
-          <div class='highlight'><pre>    setZIndex: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setZIndex</span>:<span class="function"> =&gt;</span>
         <span class="property">@parentView</span>.regroupElement <span class="keyword">this</span></pre></div>
         
       
@@ -759,7 +759,7 @@ the model&#39;s stroke value.</p>
         <p>Set the shape&#39;s icon, shown on the top left of the shape.</p>
 
         
-          <div class='highlight'><pre>    setIcon: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setIcon</span>:<span class="function"> =&gt;</span>
         icon = <span class="property">@model</span>.icon()
 
         <span class="keyword">if</span> icon? <span class="keyword">and</span> icon <span class="keyword">isnt</span> <span class="string">""</span> <span class="keyword">and</span> icon <span class="keyword">isnt</span> <span class="string">"0"</span>
@@ -774,7 +774,7 @@ the model&#39;s stroke value.</p>
 and its icon (if there&#39;s one) will be resized to the full size.</p>
 
         
-          <div class='highlight'><pre>    setIconFull: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setIconFull</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>.hasFullIcon()
             <span class="property">@svg</span>.attr {<span class="string">"fill-opacity"</span>: <span class="number">0</span>}
         <span class="keyword">else</span>
@@ -788,7 +788,7 @@ and its icon (if there&#39;s one) will be resized to the full size.</p>
         <p>Set the shape&#39;s corner style (squared if false, rounded if true).</p>
 
         
-          <div class='highlight'><pre>    setRoundedCorners: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setRoundedCorners</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>.roundedCorners()
             radius = SystemApp.Settings.map.cornerRadius
         <span class="keyword">else</span>
@@ -805,13 +805,13 @@ shape is still selected, then set its border back to the &quot;selected&quot; st
 by calling the <code>highlight</code> method.</p>
 
         
-          <div class='highlight'><pre>    strokeUpdatedBackToSelected: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">strokeUpdatedBackToSelected</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@parentView</span>.currentShape?.model.id <span class="keyword">is</span> <span class="property">@model</span>.id
             <span class="property">@highlight</span>()</pre></div>
         
       
         
-        <h2>MOUSE EVENTS</h2>
+        <h2 id="mouse-events">MOUSE EVENTS</h2>
 
         
       
@@ -819,7 +819,7 @@ by calling the <code>highlight</code> method.</p>
         <p>When mouse is over the element, set it as the current hovered shape on the map.</p>
 
         
-          <div class='highlight'><pre>    mouseOver: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">mouseOver</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@parentView</span>?
             <span class="property">@parentView</span>.setHoverShape <span class="keyword">this</span></pre></div>
         
@@ -828,13 +828,13 @@ by calling the <code>highlight</code> method.</p>
         <p>Cancel the current hovered element on the map when mouse leaves the shape.</p>
 
         
-          <div class='highlight'><pre>    mouseOut: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">mouseOut</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@parentView</span>?
             <span class="property">@parentView</span>.setHoverShape <span class="literal">null</span> <span class="keyword">if</span> <span class="property">@parentView</span>.hoverShape <span class="keyword">is</span> <span class="keyword">this</span></pre></div>
         
       
         
-        <h2>SHAPE DRAG EVENTS</h2>
+        <h2 id="shape-drag-events">SHAPE DRAG EVENTS</h2>
 
         
       
@@ -842,7 +842,7 @@ by calling the <code>highlight</code> method.</p>
         <p>Set the temporary X and Y variables.</p>
 
         
-          <div class='highlight'><pre>    setTempPosition: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setTempPosition</span>:<span class="function"> =&gt;</span>
         <span class="property">@ox</span> = <span class="property">@x</span>()
         <span class="property">@oy</span> = <span class="property">@y</span>()</pre></div>
         
@@ -851,7 +851,7 @@ by calling the <code>highlight</code> method.</p>
         <p>User has started dragging, only proceed if editEnabled is true.</p>
 
         
-          <div class='highlight'><pre>    dragStart: (x, y, e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dragStart</span>: <span class="function"><span class="params">(x, y, e)</span> =&gt;</span>
         <span class="property">@ix</span> = <span class="property">@x</span>()
         <span class="property">@iy</span> = <span class="property">@y</span>()
 
@@ -893,7 +893,7 @@ by calling the <code>highlight</code> method.</p>
 if not, reset link positions.</p>
 
         
-          <div class='highlight'><pre>    dragMove: (dx, dy) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dragMove</span>: <span class="function"><span class="params">(dx, dy)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.editEnabled <span class="keyword">or</span> <span class="keyword">not</span> <span class="property">@dragging</span>
             <span class="keyword">return</span>
 
@@ -908,7 +908,7 @@ then proceed to <code>linkCreatorEnd()</code>. The optional <code>shadowColor</c
 can be passed to set a custom shadow color of the shape after dragging.</p>
 
         
-          <div class='highlight'><pre>    dragEnd: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dragEnd</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@svg</span>?</pre></div>
         
       
@@ -956,7 +956,7 @@ can be passed to set a custom shadow color of the shape after dragging.</p>
 a position object with an <code>x</code> and <code>y</code> value.</p>
 
         
-          <div class='highlight'><pre>    getSnap: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getSnap</span>:<span class="function"> =&gt;</span>
         x = <span class="property">@x</span>()
         y = <span class="property">@y</span>()
 
@@ -976,11 +976,11 @@ a position object with an <code>x</code> and <code>y</code> value.</p>
         <span class="keyword">else</span>
             snapY = snapY * -<span class="number">1</span>
 
-        <span class="keyword">return</span> {x: x + snapX, y: y + snapY}</pre></div>
+        <span class="keyword">return</span> {<span class="attribute">x</span>: x + snapX, <span class="attribute">y</span>: y + snapY}</pre></div>
         
       
         
-        <h2>SHAPE RESIZE EVENTS</h2>
+        <h2 id="shape-resize-events">SHAPE RESIZE EVENTS</h2>
 
         
       
@@ -988,7 +988,7 @@ a position object with an <code>x</code> and <code>y</code> value.</p>
         <p>User has started resizing the shape, only proceed if editEnabled is true.</p>
 
         
-          <div class='highlight'><pre>    resizeStart: (x, y, e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resizeStart</span>: <span class="function"><span class="params">(x, y, e)</span> =&gt;</span>
         <span class="property">@parentView</span>.addToSelected <span class="keyword">this</span>, e.ctrlKey <span class="keyword">or</span> e.metaKey
 
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.editEnabled
@@ -1018,7 +1018,7 @@ a position object with an <code>x</code> and <code>y</code> value.</p>
 if not, reset link positions.</p>
 
         
-          <div class='highlight'><pre>    resizeMove: (dx, dy) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resizeMove</span>: <span class="function"><span class="params">(dx, dy)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.editEnabled
             <span class="keyword">return</span>
 
@@ -1042,7 +1042,7 @@ and snaps the shape to the grid. If user was creating a new link (Shift
 pressed) then proceed to <code>linkCreatorEnd()</code>.</p>
 
         
-          <div class='highlight'><pre>    resizeEnd: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resizeEnd</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.editEnabled
             <span class="keyword">return</span>
 
@@ -1082,7 +1082,7 @@ pressed) then proceed to <code>linkCreatorEnd()</code>.</p>
         
       
         
-        <h2>LINKS AND CONNECTIONS</h2>
+        <h2 id="links-and-connections">LINKS AND CONNECTIONS</h2>
 
         
       
@@ -1090,7 +1090,7 @@ pressed) then proceed to <code>linkCreatorEnd()</code>.</p>
         <p>Starts linking two elements when user is holding the &quot;Create&quot; key / mouse combination.</p>
 
         
-          <div class='highlight'><pre>    linkCreatorStart: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">linkCreatorStart</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.editEnabled
             <span class="keyword">return</span></pre></div>
         
@@ -1103,7 +1103,7 @@ pressed) then proceed to <code>linkCreatorEnd()</code>.</p>
 
         <span class="property">@setTempPosition</span>()
 
-        <span class="property">@linkCreatorView</span> = <span class="keyword">new</span> SystemApp.MapLinkCreatorView {model: <span class="keyword">new</span> SystemApp.Link {sourceId: <span class="property">@model</span>.id}}
+        <span class="property">@linkCreatorView</span> = <span class="keyword">new</span> SystemApp.MapLinkCreatorView {<span class="attribute">model</span>: <span class="keyword">new</span> SystemApp.Link {<span class="attribute">sourceId</span>: <span class="property">@model</span>.id}}
         <span class="property">@linkCreatorView</span>.render <span class="keyword">this</span></pre></div>
         
       
@@ -1113,7 +1113,7 @@ If the mouse goes over another shape, it will call
 <code>highlight()</code> to temporary highlight it.</p>
 
         
-          <div class='highlight'><pre>    linkCreatorMove: (dx, dy) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">linkCreatorMove</span>: <span class="function"><span class="params">(dx, dy)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.editEnabled
             <span class="keyword">return</span>
 
@@ -1137,7 +1137,7 @@ If the mouse goes over another shape, it will call
 is highlighted, create and save the new link.</p>
 
         
-          <div class='highlight'><pre>    linkCreatorEnd: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">linkCreatorEnd</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.editEnabled
             <span class="keyword">return</span></pre></div>
         
@@ -1163,7 +1163,7 @@ is highlighted, create and save the new link.</p>
         <p>Saves the new link to the map.</p>
 
         
-          <div class='highlight'><pre>    linkCreatorSave: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">linkCreatorSave</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@parentView</span>.editEnabled
             <span class="keyword">return</span>
 
@@ -1178,7 +1178,7 @@ is highlighted, create and save the new link.</p>
 and if so, return the link view.</p>
 
         
-          <div class='highlight'><pre>    hasLink: (shape) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hasLink</span>: <span class="function"><span class="params">(shape)</span> =&gt;</span>
         result = <span class="literal">false</span>
 
         <span class="keyword">if</span> <span class="keyword">not</span> shape?
@@ -1186,7 +1186,7 @@ and if so, return the link view.</p>
 
         <span class="property">@setLinkViews</span>()
 
-        _.each <span class="property">@linkViews</span>, (view) =&gt;
+        _.each <span class="property">@linkViews</span>, <span class="function"><span class="params">(view)</span> =&gt;</span>
             <span class="keyword">if</span> view.model.sourceId() <span class="keyword">is</span> shape.model.id <span class="keyword">or</span> view.model.targetId() <span class="keyword">is</span> shape.model.id
                 result = view
 
@@ -1201,17 +1201,17 @@ dragging and moving shapes <code>forceVisible</code> will be true, but after dra
 it will be false.</p>
 
         
-          <div class='highlight'><pre>    resetLinks: (forceVisible) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resetLinks</span>: <span class="function"><span class="params">(forceVisible)</span> =&gt;</span>
         forceVisible = <span class="literal">true</span> <span class="keyword">if</span> <span class="keyword">not</span> forceVisible?
 
         <span class="keyword">if</span> <span class="property">@linkViews</span>?.length &gt; <span class="number">0</span>
-            _.each <span class="property">@linkViews</span>, (link) =&gt;
+            _.each <span class="property">@linkViews</span>, <span class="function"><span class="params">(link)</span> =&gt;</span>
                 link.drag()
                 link.semiHide() <span class="keyword">if</span> <span class="keyword">not</span> forceVisible <span class="keyword">and</span> <span class="keyword">not</span> <span class="property">@parentView</span>.isLinksVisible</pre></div>
         
       
         
-        <h2>RENDER AND POSITIONING</h2>
+        <h2 id="render-and-positioning">RENDER AND POSITIONING</h2>
 
         
       
@@ -1219,7 +1219,7 @@ it will be false.</p>
         <p>Render the svg on the <a href="mapView.html">Map View</a>.</p>
 
         
-          <div class='highlight'><pre>    render: (mapView) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">render</span>: <span class="function"><span class="params">(mapView)</span> =&gt;</span>
         iconSize = SystemApp.Settings.map.icoActionsSize
         iconOpacity = SystemApp.Settings.map.icoActionsOpacity
 
@@ -1251,7 +1251,7 @@ it will be false.</p>
             <span class="property">@bindSvgDefaults</span> <span class="property">@svgResizer</span>
 
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@labelsView</span>?
-            <span class="property">@labelsView</span> = <span class="keyword">new</span> SystemApp.MapShapeLabelsView(model: <span class="property">@model</span>)
+            <span class="property">@labelsView</span> = <span class="keyword">new</span> SystemApp.MapShapeLabelsView(<span class="attribute">model</span>: <span class="property">@model</span>)
 
         <span class="property">@svg</span>.attr {<span class="string">"fill"</span>: <span class="property">@model</span>.background(), <span class="string">"stroke"</span>: <span class="property">@model</span>.stroke(), <span class="string">"stroke-width"</span>: <span class="property">@model</span>.strokeWidthComputed()}
         <span class="property">@svg</span>.attr {<span class="string">"fill-opacity"</span>: <span class="property">@model</span>.opacity(), <span class="string">"cursor"</span>: <span class="string">"move"</span>}
@@ -1272,7 +1272,7 @@ it will be false.</p>
         <p>Remove the shape from the map and dispose its contents.</p>
 
         
-          <div class='highlight'><pre>    removeFromMap: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">removeFromMap</span>:<span class="function"> =&gt;</span>
         <span class="property">@setLinkViews</span>()
         <span class="property">@model</span>.destroy()
         <span class="property">@dispose</span>()</pre></div>
@@ -1282,7 +1282,7 @@ it will be false.</p>
         <p>Blink and remove the shape (so the user gets the attention of what&#39;s being removed).</p>
 
         
-          <div class='highlight'><pre>    blinkAndRemove: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">blinkAndRemove</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.undrag()
         <span class="property">@blink</span> <span class="number">2</span>, <span class="property">@removeFromMap</span></pre></div>
         
@@ -1291,7 +1291,7 @@ it will be false.</p>
         <p>Bind defaults (data and events) to the shape&#39;s SVG element(s).</p>
 
         
-          <div class='highlight'><pre>    bindSvgDefaults: (svg) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindSvgDefaults</span>: <span class="function"><span class="params">(svg)</span> =&gt;</span>
         svg.data <span class="string">"viewRef"</span>, <span class="keyword">this</span>
         svg.mouseover <span class="property">@mouseOver</span>
         svg.mouseout <span class="property">@mouseOut</span></pre></div>
@@ -1301,7 +1301,7 @@ it will be false.</p>
         <p>Show the shape on the map (set opacity to the model&#39;s defined opacity).</p>
 
         
-          <div class='highlight'><pre>    show: (interval) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">show</span>: <span class="function"><span class="params">(interval)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@svg</span>?
             <span class="keyword">return</span>
 
@@ -1321,7 +1321,7 @@ it will be false.</p>
 and repaint the label text shadows.</p>
 
         
-          <div class='highlight'><pre>    showAfterDragging: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showAfterDragging</span>:<span class="function"> =&gt;</span>
         <span class="property">@svgLinker</span>.show()
         <span class="property">@labelsView</span>.show()</pre></div>
         
@@ -1331,7 +1331,7 @@ and repaint the label text shadows.</p>
 the default blinkInterval from the <a href="settings.html">Settings</a>.</p>
 
         
-          <div class='highlight'><pre>    hide: (interval) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hide</span>: <span class="function"><span class="params">(interval)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@svg</span>?
             <span class="keyword">return</span>
 
@@ -1349,7 +1349,7 @@ the default blinkInterval from the <a href="settings.html">Settings</a>.</p>
 and remove the label shadows.</p>
 
         
-          <div class='highlight'><pre>    hideWhileDragging: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hideWhileDragging</span>:<span class="function"> =&gt;</span>
         <span class="property">@svgLinker</span>.hide()
         <span class="property">@labelsView</span>.hideIcons()</pre></div>
         
@@ -1360,8 +1360,8 @@ dimensions based on the current <a href="map.html">Map</a> <code>gridSizeX</code
 If <code>save</code> is true, it will save the new shape dimensions to the current map.</p>
 
         
-          <div class='highlight'><pre>    setDimensions: (w, h, save) =&gt;
-        <span class="property">@svg</span>.attr { width: w, height: h }
+          <div class='highlight'><pre>    <span class="attribute">setDimensions</span>: <span class="function"><span class="params">(w, h, save)</span> =&gt;</span>
+        <span class="property">@svg</span>.attr { <span class="attribute">width</span>: w, <span class="attribute">height</span>: h }
 
         <span class="property">@model</span>.sizeX Math.round(w / <span class="property">@parentView</span>.model.gridSizeX())
         <span class="property">@model</span>.sizeY Math.round(h / <span class="property">@parentView</span>.model.gridSizeY())
@@ -1378,7 +1378,7 @@ If <code>save</code> is true, it will save the new shape dimensions to the curre
 called when the user changes the current <a href="map.html">Map</a> <code>gridSizeX</code> or <code>gridSizeY</code>.</p>
 
         
-          <div class='highlight'><pre>    resetDimensions: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">resetDimensions</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>.attr <span class="string">"x"</span>, <span class="property">@model</span>.x() * <span class="property">@parentView</span>.model.gridSizeX()
         <span class="property">@svg</span>.attr <span class="string">"y"</span>, <span class="property">@model</span>.y() * <span class="property">@parentView</span>.model.gridSizeY()
 
@@ -1395,7 +1395,7 @@ If no parameters are passed (for example, the call inside <code>setDimensions</c
 it will use the current <code>x</code> and <code>y</code> values.</p>
 
         
-          <div class='highlight'><pre>    setPosition: (posX, posY, save) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setPosition</span>: <span class="function"><span class="params">(posX, posY, save)</span> =&gt;</span>
         posX = <span class="property">@x</span>() <span class="keyword">if</span> <span class="keyword">not</span> posX?
         posY = <span class="property">@y</span>() <span class="keyword">if</span> <span class="keyword">not</span> posY?
 
@@ -1435,7 +1435,7 @@ it will use the current <code>x</code> and <code>y</code> values.</p>
 if shape is in <code>fullSizeIcon</code>.</p>
 
         
-          <div class='highlight'><pre>    setIconGeometry: (posX, posY) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setIconGeometry</span>: <span class="function"><span class="params">(posX, posY)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>.hasFullIcon()
             posX = <span class="property">@x</span>() <span class="keyword">if</span> <span class="keyword">not</span> posX?
             posY = <span class="property">@y</span>() <span class="keyword">if</span> <span class="keyword">not</span> posY?
@@ -1458,11 +1458,11 @@ if shape is in <code>fullSizeIcon</code>.</p>
         <p>Get the box position attribute based on the X and Y values.</p>
 
         
-          <div class='highlight'><pre>    getBoxPositionAtt: (posX, posY) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getBoxPositionAtt</span>: <span class="function"><span class="params">(posX, posY)</span> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@model</span>.format() <span class="keyword">is</span> <span class="string">"circle"</span>
-            <span class="keyword">return</span> { cx: posX, cy: posY }
+            <span class="keyword">return</span> { <span class="attribute">cx</span>: posX, <span class="attribute">cy</span>: posY }
         <span class="keyword">else</span>
-            <span class="keyword">return</span> { x: posX, y: posY }</pre></div>
+            <span class="keyword">return</span> { <span class="attribute">x</span>: posX, <span class="attribute">y</span>: posY }</pre></div>
         
       
         
@@ -1470,10 +1470,10 @@ if shape is in <code>fullSizeIcon</code>.</p>
 Should be at the very top of the shape.</p>
 
         
-          <div class='highlight'><pre>    getTitlePositionAtt: (posX, posY) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getTitlePositionAtt</span>: <span class="function"><span class="params">(posX, posY)</span> =&gt;</span>
         posX += <span class="property">@width</span>() / <span class="number">2</span> - <span class="number">1</span>
         posY -= SystemApp.Settings.map.titleOffsetY
-        <span class="keyword">return</span> { x: posX, y: posY }</pre></div>
+        <span class="keyword">return</span> { <span class="attribute">x</span>: posX, <span class="attribute">y</span>: posY }</pre></div>
         
       
         
@@ -1481,10 +1481,10 @@ Should be at the very top of the shape.</p>
 Should be around the right-middle center of the shape.</p>
 
         
-          <div class='highlight'><pre>    getLinkerPositionAtt: (posX, posY) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getLinkerPositionAtt</span>: <span class="function"><span class="params">(posX, posY)</span> =&gt;</span>
         posX += <span class="property">@width</span>() - <span class="property">@model</span>.strokeWidthComputed() - SystemApp.Settings.map.icoActionsSize
         posY += <span class="property">@model</span>.strokeWidthComputed()
-        <span class="keyword">return</span> { x: posX, y: posY }</pre></div>
+        <span class="keyword">return</span> { <span class="attribute">x</span>: posX, <span class="attribute">y</span>: posY }</pre></div>
         
       
         
@@ -1492,10 +1492,10 @@ Should be around the right-middle center of the shape.</p>
 when user clicks the &quot;Identify z-index&quot; button on the <a href="mapOptionsView.html">map options</a>.</p>
 
         
-          <div class='highlight'><pre>    getZIndexLabelPositionAtt: (posX, posY) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getZIndexLabelPositionAtt</span>: <span class="function"><span class="params">(posX, posY)</span> =&gt;</span>
         posX += <span class="property">@width</span>() / <span class="number">2</span>
         posY += <span class="property">@height</span>() / <span class="number">2</span>
-        <span class="keyword">return</span> { x: posX, y: posY }</pre></div>
+        <span class="keyword">return</span> { <span class="attribute">x</span>: posX, <span class="attribute">y</span>: posY }</pre></div>
         
       
         
@@ -1503,10 +1503,10 @@ when user clicks the &quot;Identify z-index&quot; button on the <a href="mapOpti
 Should be the bottom right corner of the shape.</p>
 
         
-          <div class='highlight'><pre>    getResizerPositionAtt: (posX, posY) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getResizerPositionAtt</span>: <span class="function"><span class="params">(posX, posY)</span> =&gt;</span>
         posX += <span class="property">@width</span>() - SystemApp.Settings.map.icoActionsSize
         posY += <span class="property">@height</span>() - SystemApp.Settings.map.icoActionsSize
-        <span class="keyword">return</span> { x: posX, y: posY }</pre></div>
+        <span class="keyword">return</span> { <span class="attribute">x</span>: posX, <span class="attribute">y</span>: posY }</pre></div>
         
       
         
@@ -1514,7 +1514,7 @@ Should be the bottom right corner of the shape.</p>
 If <code>saveZIndex</code> is true, it will reorder and save the current <a href="map.html">Map</a> shape collection.</p>
 
         
-          <div class='highlight'><pre>    toFront: (saveZIndex) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toFront</span>: <span class="function"><span class="params">(saveZIndex)</span> =&gt;</span>
         <span class="property">@svg</span>.toFront()
         <span class="property">@svgIcon</span>.toFront()
         <span class="property">@svgLinker</span>.toFront()
@@ -1522,8 +1522,8 @@ If <code>saveZIndex</code> is true, it will reorder and save the current <a href
         <span class="property">@labelsView</span>.toFront()
 
         <span class="keyword">if</span> saveZIndex? <span class="keyword">and</span> saveZIndex
-            <span class="property">@parentView</span>.model.shapes().remove(<span class="property">@parentView</span>.model.shapes().get(<span class="property">@model</span>.id), {silent: <span class="literal">true</span>})
-            <span class="property">@parentView</span>.model.shapes().push(<span class="property">@model</span>, {silent: <span class="literal">true</span>})
+            <span class="property">@parentView</span>.model.shapes().remove(<span class="property">@parentView</span>.model.shapes().get(<span class="property">@model</span>.id), {<span class="attribute">silent</span>: <span class="literal">true</span>})
+            <span class="property">@parentView</span>.model.shapes().push(<span class="property">@model</span>, {<span class="attribute">silent</span>: <span class="literal">true</span>})
             <span class="property">@parentView</span>.model.save()</pre></div>
         
       
@@ -1532,7 +1532,7 @@ If <code>saveZIndex</code> is true, it will reorder and save the current <a href
 If <code>saveZIndex</code> is true, it will reorder and save the current <a href="map.html">Map</a> shape collection.</p>
 
         
-          <div class='highlight'><pre>    toBack: (saveZIndex) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toBack</span>: <span class="function"><span class="params">(saveZIndex)</span> =&gt;</span>
         <span class="property">@labelsView</span>.toBack()
         <span class="property">@svgResizer</span>.toBack()
         <span class="property">@svgLinker</span>.toBack()
@@ -1542,8 +1542,8 @@ If <code>saveZIndex</code> is true, it will reorder and save the current <a href
         <span class="property">@parentView</span>.toBack()
 
         <span class="keyword">if</span> saveZIndex? <span class="keyword">and</span> saveZIndex
-            <span class="property">@parentView</span>.model.shapes().remove(<span class="property">@parentView</span>.model.shapes().get(<span class="property">@model</span>.id), {silent: <span class="literal">true</span>})
-            <span class="property">@parentView</span>.model.shapes().unshift(<span class="property">@model</span>, {silent: <span class="literal">true</span>})
+            <span class="property">@parentView</span>.model.shapes().remove(<span class="property">@parentView</span>.model.shapes().get(<span class="property">@model</span>.id), {<span class="attribute">silent</span>: <span class="literal">true</span>})
+            <span class="property">@parentView</span>.model.shapes().unshift(<span class="property">@model</span>, {<span class="attribute">silent</span>: <span class="literal">true</span>})
             <span class="property">@parentView</span>.model.save()</pre></div>
         
       
@@ -1552,7 +1552,7 @@ If <code>saveZIndex</code> is true, it will reorder and save the current <a href
 If in locked mode, hide them.</p>
 
         
-          <div class='highlight'><pre>    toggleEdit: (enabled) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleEdit</span>: <span class="function"><span class="params">(enabled)</span> =&gt;</span>
         <span class="keyword">if</span> enabled
             <span class="property">@svgLinker</span>.show()
             <span class="property">@svgResizer</span>.show()
@@ -1565,7 +1565,7 @@ If in locked mode, hide them.</p>
         <p>When user zooms in or out, resize the shape title accordingly.</p>
 
         
-          <div class='highlight'><pre>    onZoom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">onZoom</span>:<span class="function"> =&gt;</span>
         <span class="property">@setFontSize</span>()</pre></div>
         
       
@@ -1575,7 +1575,7 @@ by the element <code>svgZIndex</code>. If the parameter <code>visible</code> is 
 assume it is &quot;true&quot;.</p>
 
         
-          <div class='highlight'><pre>    toggleZIndexDisplay: (visible) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">toggleZIndexDisplay</span>: <span class="function"><span class="params">(visible)</span> =&gt;</span>
         visible = <span class="literal">true</span> <span class="keyword">if</span> <span class="keyword">not</span> visible?
 
         <span class="keyword">if</span> visible
@@ -1588,7 +1588,7 @@ assume it is &quot;true&quot;.</p>
         <p>Show the z-index (stack level) of the shape.</p>
 
         
-          <div class='highlight'><pre>    zIndexShow: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zIndexShow</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@svgZIndex</span>?
             <span class="property">@svgZIndex</span> = <span class="property">@parentView</span>.paper.text <span class="number">0</span>, <span class="number">0</span>, <span class="property">@model</span>.zIndex()
             <span class="property">@svgZIndex</span>.insertAfter <span class="property">@svgResizer</span>
@@ -1607,7 +1607,7 @@ assume it is &quot;true&quot;.</p>
         <p>Hide the z-index (stack level) of the shape.</p>
 
         
-          <div class='highlight'><pre>    zIndexHide: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zIndexHide</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@svgZIndex</span>?
             <span class="keyword">return</span>
 
@@ -1616,7 +1616,7 @@ assume it is &quot;true&quot;.</p>
         
       
         
-        <h2>HIGHLIGHT AND SHADOW</h2>
+        <h2 id="highlight-and-shadow">HIGHLIGHT AND SHADOW</h2>
 
         
       
@@ -1624,7 +1624,7 @@ assume it is &quot;true&quot;.</p>
         <p>When user hovers the mouse over an &quot;linker&quot; icon, set its opacity to 1.</p>
 
         
-          <div class='highlight'><pre>    linkerMouseOver: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">linkerMouseOver</span>:<span class="function"> =&gt;</span>
         <span class="property">@svgLinker</span>?.attr {<span class="string">"opacity"</span>: <span class="number">1</span>}</pre></div>
         
       
@@ -1632,7 +1632,7 @@ assume it is &quot;true&quot;.</p>
         <p>When mouse leaves an &quot;linker&quot; icon, set its opacity to the value set on the <a href="settings.html">Settings</a>.</p>
 
         
-          <div class='highlight'><pre>    linkerMouseOut: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">linkerMouseOut</span>:<span class="function"> =&gt;</span>
         <span class="property">@svgLinker</span>?.attr {<span class="string">"opacity"</span>: SystemApp.Settings.map.icoActionsOpacity}</pre></div>
         
       
@@ -1640,7 +1640,7 @@ assume it is &quot;true&quot;.</p>
         <p>Create a shadow behind the shape, with optional color and strength.</p>
 
         
-          <div class='highlight'><pre>    highlight: (color, strength) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">highlight</span>: <span class="function"><span class="params">(color, strength)</span> =&gt;</span>
         color = SystemApp.Settings.map.shadowColor <span class="keyword">if</span> <span class="keyword">not</span> color?
         strength = SystemApp.Settings.map.shadowStrength <span class="keyword">if</span> <span class="keyword">not</span> strength?
 
@@ -1651,7 +1651,7 @@ assume it is &quot;true&quot;.</p>
         <p>Remove the shadow from the shape (if there&#39;s one present).</p>
 
         
-          <div class='highlight'><pre>    unhighlight: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">unhighlight</span>:<span class="function"> =&gt;</span>
         <span class="property">@svg</span>?.attr {<span class="string">"stroke"</span>: <span class="property">@model</span>.stroke(), <span class="string">"stroke-width"</span>: <span class="property">@model</span>.strokeWidthComputed()}</pre></div>
         
       
@@ -1660,7 +1660,7 @@ assume it is &quot;true&quot;.</p>
 If times is 1 and the <code>callback</code> is specified, call it when it has finished blinking.</p>
 
         
-          <div class='highlight'><pre>    blink: (times, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">blink</span>: <span class="function"><span class="params">(times, callback)</span> =&gt;</span>
         times = <span class="number">2</span> <span class="keyword">if</span> <span class="keyword">not</span> times? <span class="keyword">or</span> times <span class="keyword">is</span> <span class="string">""</span>
         extraMs = <span class="number">15</span>
 
@@ -1675,7 +1675,7 @@ If times is 1 and the <code>callback</code> is specified, call it when it has fi
 If times is 1 and the <code>callback</code> is specified, call it when it has finished blinking.</p>
 
         
-          <div class='highlight'><pre>    slowBlink: (times, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">slowBlink</span>: <span class="function"><span class="params">(times, callback)</span> =&gt;</span>
         times = <span class="number">2</span> <span class="keyword">if</span> <span class="keyword">not</span> times? <span class="keyword">or</span> times <span class="keyword">is</span> <span class="string">""</span>
 
         <span class="property">@hide</span>(SystemApp.Settings.map.blinkSlowInterval)

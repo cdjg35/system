@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>System DATA</h2>
+        <h2 id="system-data">System DATA</h2>
 
         
       
@@ -500,8 +500,8 @@ file, and its main ID is <code>#tutorial</code>.</p>
         <p>Holds the joyride object and the &quot;cancelbg&quot; full size div.</p>
 
         
-          <div class='highlight'><pre>    $tour: <span class="literal">null</span>
-    $cancelbg: <span class="literal">null</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">$tour</span>: <span class="literal">null</span>
+    <span class="attribute">$cancelbg</span>: <span class="literal">null</span></pre></div>
         
       
         
@@ -510,14 +510,14 @@ in sync with the corresponding index for each step. If you add a new step, the
 subsequent callbacks should have their index updated as well!</p>
 
         
-          <div class='highlight'><pre>    callbacks:</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">callbacks</span>:</pre></div>
         
       
         
         <p>Step: Entities. Show entities manager.</p>
 
         
-          <div class='highlight'><pre>        <span class="number">0</span>: () -&gt;
+          <div class='highlight'><pre>        <span class="number">0</span>: <span class="function"><span class="params">()</span> -&gt;</span>
             SystemApp.routes.openEntities()</pre></div>
         
       
@@ -525,10 +525,10 @@ subsequent callbacks should have their index updated as well!</p>
         <p>Step: Sample Entity Definitions. Create fake &quot;MyEntity&quot;.</p>
 
         
-          <div class='highlight'><pre>        <span class="number">2</span>: () -&gt;
-            afterMachine = () -&gt;
+          <div class='highlight'><pre>        <span class="number">2</span>: <span class="function"><span class="params">()</span> -&gt;</span>
+            <span class="function"><span class="title">afterMachine</span> = <span class="params">()</span> -&gt;</span>
                 $(<span class="string">"#entitymanager-but-create"</span>).click()
-            addMachine = () -&gt;
+            <span class="function"><span class="title">addMachine</span> = <span class="params">()</span> -&gt;</span>
                 SystemApp.Tutorial.simulateTyping $(<span class="string">"#entitymanager-txt-create"</span>), <span class="string">"MyEntity"</span>, afterMachine
 
             addMachine()</pre></div>
@@ -538,7 +538,7 @@ subsequent callbacks should have their index updated as well!</p>
         <p>Step: Entity - Shape Templates. Show the shape template form.</p>
 
         
-          <div class='highlight'><pre>        <span class="number">4</span>: () -&gt;
+          <div class='highlight'><pre>        <span class="number">4</span>: <span class="function"><span class="params">()</span> -&gt;</span>
             $(<span class="string">"#entitymanager-tabheader-shape"</span>).click()</pre></div>
         
       
@@ -546,7 +546,7 @@ subsequent callbacks should have their index updated as well!</p>
         <p>Step: Audit Data. Show audit data manager.</p>
 
         
-          <div class='highlight'><pre>        <span class="number">5</span>: () -&gt;
+          <div class='highlight'><pre>        <span class="number">5</span>: <span class="function"><span class="params">()</span> -&gt;</span>
             SystemApp.routes.openAuditData()</pre></div>
         
       
@@ -554,7 +554,7 @@ subsequent callbacks should have their index updated as well!</p>
         <p>Step: Audit Events. Show audit events manager.</p>
 
         
-          <div class='highlight'><pre>        <span class="number">7</span>: () -&gt;
+          <div class='highlight'><pre>        <span class="number">7</span>: <span class="function"><span class="params">()</span> -&gt;</span>
             SystemApp.routes.openAuditEvents()</pre></div>
         
       
@@ -562,21 +562,21 @@ subsequent callbacks should have their index updated as well!</p>
         <p>Step: Maps. Hide overlays and create a &quot;My Test System&quot; map but only if it doesn&#39;t exist.</p>
 
         
-          <div class='highlight'><pre>        <span class="number">9</span>: () -&gt;
-            map = SystemApp.Data.maps.where {name: <span class="string">"My Test System"</span>}
+          <div class='highlight'><pre>        <span class="number">9</span>: <span class="function"><span class="params">()</span> -&gt;</span>
+            map = SystemApp.Data.maps.where {<span class="attribute">name</span>: <span class="string">"My Test System"</span>}
 
             <span class="keyword">if</span> <span class="keyword">not</span> map? <span class="keyword">or</span> map.length &lt; <span class="number">1</span>
-                map = SystemApp.Data.maps.create {dateCreated: <span class="keyword">new</span> Date(), name: <span class="string">"My Test System"</span>}
+                map = SystemApp.Data.maps.create {<span class="attribute">dateCreated</span>: <span class="keyword">new</span> Date(), <span class="attribute">name</span>: <span class="string">"My Test System"</span>}
 
             SystemApp.routes.showOverlay <span class="literal">false</span>
-            SystemApp.routes.navigate <span class="string">"map/"</span> + map.urlKey(), {trigger: <span class="literal">true</span>}</pre></div>
+            SystemApp.routes.navigate <span class="string">"map/"</span> + map.urlKey(), {<span class="attribute">trigger</span>: <span class="literal">true</span>}</pre></div>
         
       
         
         <p>Step: Adding Shapes to the Map.</p>
 
         
-          <div class='highlight'><pre>        <span class="number">10</span>: () -&gt;
+          <div class='highlight'><pre>        <span class="number">10</span>: <span class="function"><span class="params">()</span> -&gt;</span>
             $(<span class="string">"map-ctl-tab-header-entities"</span>).click()</pre></div>
         
       
@@ -584,19 +584,19 @@ subsequent callbacks should have their index updated as well!</p>
         <p>Starts the tutorial by showing the &quot;Create entities...&quot; tip.</p>
 
         
-          <div class='highlight'><pre>    start: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">start</span>:<span class="function"> -&gt;</span>
         SystemApp.consoleLog <span class="string">"Tutorial"</span>, <span class="string">"Start at "</span> + <span class="keyword">new</span> Date()
 
         <span class="property">@$cancelbg</span> = $(<span class="string">"#tutorial-cancelbg"</span>)
         <span class="property">@$cancelbg</span>.show()
-        <span class="property">@$tour</span> = $(<span class="string">"#tutorial"</span>).joyride {postStepCallback: <span class="property">@postStepCallback</span>, postRideCallback: <span class="property">@postRideCallback</span>}</pre></div>
+        <span class="property">@$tour</span> = $(<span class="string">"#tutorial"</span>).joyride {<span class="attribute">postStepCallback</span>: <span class="property">@postStepCallback</span>, <span class="attribute">postRideCallback</span>: <span class="property">@postRideCallback</span>}</pre></div>
         
       
         
         <p>Called each time the user clicks the &quot;next step&quot; button.</p>
 
         
-          <div class='highlight'><pre>    postStepCallback: (index) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">postStepCallback</span>: <span class="function"><span class="params">(index)</span> -&gt;</span>
         callback = SystemApp.Tutorial.callbacks[index]
 
         <span class="keyword">if</span> callback?
@@ -610,7 +610,7 @@ subsequent callbacks should have their index updated as well!</p>
         <p>Called when tour has finished. This will effectively hide the <code>cancelbg</code>.</p>
 
         
-          <div class='highlight'><pre>    postRideCallback: -&gt;
+          <div class='highlight'><pre>    <span class="attribute">postRideCallback</span>:<span class="function"> -&gt;</span>
         SystemApp.consoleLog <span class="string">"Tutorial"</span>, <span class="string">"End at "</span> + <span class="keyword">new</span> Date()
         SystemApp.Tutorial.$cancelbg.hide()</pre></div>
         
@@ -623,7 +623,7 @@ subsequent callbacks should have their index updated as well!</p>
         
       
         
-        <h2>HELPER METHODS</h2>
+        <h2 id="helper-methods">HELPER METHODS</h2>
 
         
       
@@ -631,17 +631,18 @@ subsequent callbacks should have their index updated as well!</p>
         <p>Simulate typing on a field, and when finished call the passed callback.</p>
 
         
-          <div class='highlight'><pre>    simulateTyping: (field, value, callback) -&gt;
+          <div class='highlight'><pre>    <span class="attribute">simulateTyping</span>: <span class="function"><span class="params">(field, value, callback)</span> -&gt;</span>
         field.val <span class="string">""</span>
         arr = value.split <span class="string">""</span>
         i = <span class="number">0</span>
         delay = <span class="number">180</span>
 
         <span class="keyword">while</span> i &lt; arr.length
-            setTimeout (() -&gt; field.val(field.val() + <span class="string">""</span> + arr.shift())), delay * (i + <span class="number">1</span>)
-            i++
+            setTimeout <span class="function"><span class="params">(() -&gt; field.val(field.val() + <span class="string">""</span> + arr.shift()))</span>, <span class="title">delay</span> * <span class="params">(i + <span class="number">1</span>)</span>
+            <span class="title">i</span>++
 
-        setTimeout callback, delay * (arr.length + <span class="number">1</span>)</pre></div>
+        <span class="title">setTimeout</span> <span class="title">callback</span>, <span class="title">delay</span> * <span class="params">(arr.length + <span class="number">1</span>)</span>
+</span></pre></div>
         
       
       <div class="fleur">h</div>

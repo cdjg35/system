@@ -70,7 +70,7 @@
 
       
         
-        <h2>SERVER DATABASE</h2>
+        <h2 id="server-database">SERVER DATABASE</h2>
 
         
       
@@ -85,12 +85,12 @@
         <p>Require Expresser.</p>
 
         
-          <div class='highlight'><pre>    expresser = require <span class="string">"expresser"</span>
+          <div class='highlight'><pre>    expresser = <span class="built_in">require</span> <span class="string">"expresser"</span>
     settings = expresser.settings</pre></div>
         
       
         
-        <h2>ENTITY DEFINITIONS AND OBJECTS</h2>
+        <h2 id="entity-definitions-and-objects">ENTITY DEFINITIONS AND OBJECTS</h2>
 
         
       
@@ -98,7 +98,7 @@
         <p>Get <a href="entityDefinition.html">Entity Definitions</a>.</p>
 
         
-          <div class='highlight'><pre>    getEntityDefinition: (filter, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getEntityDefinition</span>: <span class="function"><span class="params">(filter, callback)</span> =&gt;</span>
         expresser.database.get <span class="string">"entity"</span>, filter, callback</pre></div>
         
       
@@ -106,7 +106,7 @@
         <p>Insert or update an <a href="entityDefinition.html">Entity Definition</a>.</p>
 
         
-          <div class='highlight'><pre>    setEntityDefinition: (obj, options, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEntityDefinition</span>: <span class="function"><span class="params">(obj, options, callback)</span> =&gt;</span>
         expresser.database.set <span class="string">"entity"</span>, obj, options, callback</pre></div>
         
       
@@ -114,12 +114,12 @@
         <p>Delete the specified <a href="entityDefinition.html">Entity Definition</a>.</p>
 
         
-          <div class='highlight'><pre>    deleteEntityDefinition: (id, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteEntityDefinition</span>: <span class="function"><span class="params">(id, callback)</span> =&gt;</span>
         expresser.database.del <span class="string">"entity"</span>, id, callback</pre></div>
         
       
         
-        <h2>MAPS</h2>
+        <h2 id="maps">MAPS</h2>
 
         
       
@@ -127,7 +127,7 @@
         <p>Get <a href="map.html">Maps</a>.</p>
 
         
-          <div class='highlight'><pre>    getMap: (filter, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getMap</span>: <span class="function"><span class="params">(filter, callback)</span> =&gt;</span>
         expresser.database.get <span class="string">"map"</span>, filter, callback</pre></div>
         
       
@@ -135,7 +135,7 @@
         <p>Insert or update a <a href="map.html">Map</a></p>
 
         
-          <div class='highlight'><pre>    setMap: (obj, options, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setMap</span>: <span class="function"><span class="params">(obj, options, callback)</span> =&gt;</span>
         expresser.database.set <span class="string">"map"</span>, obj, options, callback</pre></div>
         
       
@@ -143,12 +143,12 @@
         <p>Delete the specified <a href="map.html">Map</a>.</p>
 
         
-          <div class='highlight'><pre>    deleteMap: (id, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteMap</span>: <span class="function"><span class="params">(id, callback)</span> =&gt;</span>
         expresser.database.del <span class="string">"map"</span>, id, callback</pre></div>
         
       
         
-        <h2>AUDIT DATA</h2>
+        <h2 id="audit-data">AUDIT DATA</h2>
 
         
       
@@ -156,7 +156,7 @@
         <p>Get <a href="auditData.html">Audit Data records</a>.</p>
 
         
-          <div class='highlight'><pre>    getAuditData: (filter, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getAuditData</span>: <span class="function"><span class="params">(filter, callback)</span> =&gt;</span>
         expresser.database.get <span class="string">"auditdata"</span>, filter, callback</pre></div>
         
       
@@ -164,7 +164,7 @@
         <p>Insert or update an <a href="auditData.html">AuditData</a>.</p>
 
         
-          <div class='highlight'><pre>    setAuditData: (obj, options, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setAuditData</span>: <span class="function"><span class="params">(obj, options, callback)</span> =&gt;</span>
         expresser.database.set <span class="string">"auditdata"</span>, obj, options, callback</pre></div>
         
       
@@ -172,12 +172,12 @@
         <p>Delete the specified <a href="auditData.html">AuditData</a>.</p>
 
         
-          <div class='highlight'><pre>    deleteAuditData: (id, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteAuditData</span>: <span class="function"><span class="params">(id, callback)</span> =&gt;</span>
         expresser.database.del <span class="string">"auditdata"</span>, id, callback</pre></div>
         
       
         
-        <h2>AUDIT EVENTS</h2>
+        <h2 id="audit-events">AUDIT EVENTS</h2>
 
         
       
@@ -185,7 +185,7 @@
         <p>Get <a href="auditEvent.html">Audit Events</a>.</p>
 
         
-          <div class='highlight'><pre>    getAuditEvent: (filter, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getAuditEvent</span>: <span class="function"><span class="params">(filter, callback)</span> =&gt;</span>
         expresser.database.get <span class="string">"auditevent"</span>, filter, callback</pre></div>
         
       
@@ -193,7 +193,7 @@
         <p>Insert or update an <a href="auditEvent.html">AuditEvent</a>.</p>
 
         
-          <div class='highlight'><pre>    setAuditEvent: (obj, options, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setAuditEvent</span>: <span class="function"><span class="params">(obj, options, callback)</span> =&gt;</span>
         expresser.database.set <span class="string">"auditevent"</span>, obj, options, callback</pre></div>
         
       
@@ -201,12 +201,12 @@
         <p>Delete the specified <a href="auditEvent.html">AuditEvent</a>.</p>
 
         
-          <div class='highlight'><pre>    deleteAuditEvent: (id, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteAuditEvent</span>: <span class="function"><span class="params">(id, callback)</span> =&gt;</span>
         expresser.database.del <span class="string">"auditevent"</span>, id, callback</pre></div>
         
       
         
-        <h2>VARIABLES</h2>
+        <h2 id="variables">VARIABLES</h2>
 
         
       
@@ -214,7 +214,7 @@
         <p>Get <a href="variable.html">Variables</a>.</p>
 
         
-          <div class='highlight'><pre>    getVariable: (filter, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getVariable</span>: <span class="function"><span class="params">(filter, callback)</span> =&gt;</span>
         expresser.database.get <span class="string">"variable"</span>, filter, callback</pre></div>
         
       
@@ -222,7 +222,7 @@
         <p>Insert or update a <a href="variable.html">Variable</a>.</p>
 
         
-          <div class='highlight'><pre>    setVariable: (obj, options, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setVariable</span>: <span class="function"><span class="params">(obj, options, callback)</span> =&gt;</span>
         expresser.database.set <span class="string">"variable"</span>, obj, options, callback</pre></div>
         
       
@@ -230,12 +230,12 @@
         <p>Delete the specified <a href="variable.html">Variable</a>.</p>
 
         
-          <div class='highlight'><pre>    deleteVariable: (id, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteVariable</span>: <span class="function"><span class="params">(id, callback)</span> =&gt;</span>
         expresser.database.del <span class="string">"variable"</span>, id, callback</pre></div>
         
       
         
-        <h2>USERS</h2>
+        <h2 id="users">USERS</h2>
 
         
       
@@ -243,7 +243,7 @@
         <p>Get <a href="user.html">User</a>.</p>
 
         
-          <div class='highlight'><pre>    getUser: (filter, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getUser</span>: <span class="function"><span class="params">(filter, callback)</span> =&gt;</span>
         expresser.database.get <span class="string">"user"</span>, filter, callback</pre></div>
         
       
@@ -251,7 +251,7 @@
         <p>Insert or update a <a href="user.html">User</a>.</p>
 
         
-          <div class='highlight'><pre>    setUser: (obj, options, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setUser</span>: <span class="function"><span class="params">(obj, options, callback)</span> =&gt;</span>
         expresser.database.set <span class="string">"user"</span>, obj, options, callback</pre></div>
         
       
@@ -259,12 +259,12 @@
         <p>Delete the specified <a href="user.html">User</a>.</p>
 
         
-          <div class='highlight'><pre>    deleteUser: (id, callback) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">deleteUser</span>: <span class="function"><span class="params">(id, callback)</span> =&gt;</span>
         expresser.database.del <span class="string">"user"</span>, id, callback</pre></div>
         
       
         
-        <h2>HISTORY LOGS</h2>
+        <h2 id="history-logs">HISTORY LOGS</h2>
 
         
       
@@ -274,7 +274,7 @@ and kept saved for a few hours. This is NOT related to general logging, for
 this please check the <a href="logger.html">Logger</a> class.</p>
 
         
-          <div class='highlight'><pre>    log: (obj, options) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">log</span>: <span class="function"><span class="params">(obj, options)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> obj?</pre></div>
         
       
@@ -293,7 +293,7 @@ this please check the <a href="logger.html">Logger</a> class.</p>
 Default interval is every 2 hours.</p>
 
         
-          <div class='highlight'><pre>    cleanLogs: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">cleanLogs</span>:<span class="function"> =&gt;</span>
         minDate = <span class="keyword">new</span> Date()
         minDate.setHours(minDate.getHours() - settings.database.logExpires)
 
@@ -302,7 +302,7 @@ Default interval is every 2 hours.</p>
         
       
         
-        <h2>HELPER METHODS</h2>
+        <h2 id="helper-methods">HELPER METHODS</h2>
 
         
       
@@ -310,7 +310,7 @@ Default interval is every 2 hours.</p>
         <p>Clean a specific object and make it valid for MongoDB insertion.</p>
 
         
-          <div class='highlight'><pre>    cleanObjectForInsertion: (obj) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">cleanObjectForInsertion</span>: <span class="function"><span class="params">(obj)</span> =&gt;</span>
         <span class="keyword">for</span> k <span class="keyword">of</span> obj
             <span class="keyword">if</span> obj.hasOwnProperty k
                 <span class="keyword">if</span> k.indexOf(<span class="string">"."</span>) &gt;= <span class="number">0</span> <span class="keyword">or</span> k.indexOf(<span class="string">"$"</span>) &gt;= <span class="number">0</span>
@@ -321,18 +321,18 @@ Default interval is every 2 hours.</p>
         
       
         
-        <h2>Singleton implementation.</h2>
+        <h2 id="singleton-implementation-">Singleton implementation.</h2>
 
         
       
         
         
         
-          <div class='highlight'><pre>Database.<span class="function"><span class="title">getInstance</span></span> = -&gt;
+          <div class='highlight'><pre>Database.<span class="function"><span class="title">getInstance</span> = -&gt;</span>
     <span class="property">@instance</span> = <span class="keyword">new</span> Database() <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@instance</span>?
     <span class="keyword">return</span> <span class="property">@instance</span>
 
-module.exports = exports = Database.getInstance()</pre></div>
+module.<span class="built_in">exports</span> = <span class="built_in">exports</span> = Database.getInstance()</pre></div>
         
       
       <div class="fleur">h</div>

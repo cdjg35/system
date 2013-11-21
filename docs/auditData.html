@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>AUDIT DATA MODEL</h2>
+        <h2 id="audit-data-model">AUDIT DATA MODEL</h2>
 
         
       
@@ -492,9 +492,9 @@
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AuditData</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"AuditData"</span>
-    defaults:
-        refreshInterval: SystemApp.Settings.auditData.refreshInterval</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"AuditData"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">refreshInterval</span>: SystemApp.Settings.auditData.refreshInterval</pre></div>
         
       
         
@@ -502,19 +502,19 @@
 couldn&#39;t be refreshed for more than X times - defined at the <a href="settings.html">Settings</a>.</p>
 
         
-          <div class='highlight'><pre>    refreshErrorCount: <span class="number">0</span></pre></div>
+          <div class='highlight'><pre>    <span class="attribute">refreshErrorCount</span>: <span class="number">0</span></pre></div>
         
       
         
         <p>Holds the time when the property <code>data</code> has been last refreshed and saved to the DB server.</p>
 
         
-          <div class='highlight'><pre>    lastDataRefresh: <span class="keyword">new</span> Date()
-    lastDataSave: <span class="keyword">new</span> Date(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>)</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">lastDataRefresh</span>: <span class="keyword">new</span> Date()
+    <span class="attribute">lastDataSave</span>: <span class="keyword">new</span> Date(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>)</pre></div>
         
       
         
-        <h2>PROPERTIES</h2>
+        <h2 id="properties">PROPERTIES</h2>
 
         
       
@@ -522,7 +522,7 @@ couldn&#39;t be refreshed for more than X times - defined at the <a href="settin
         <p>Helper to get / set the audit data values.</p>
 
         
-          <div class='highlight'><pre>    data: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">data</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"data"</span>, value
         <span class="property">@get</span> <span class="string">"data"</span></pre></div>
@@ -532,7 +532,7 @@ couldn&#39;t be refreshed for more than X times - defined at the <a href="settin
         <p>Helper to get / set the audit data description.</p>
 
         
-          <div class='highlight'><pre>    description: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">description</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"description"</span>, value
         <span class="property">@get</span> <span class="string">"description"</span></pre></div>
@@ -542,7 +542,7 @@ couldn&#39;t be refreshed for more than X times - defined at the <a href="settin
         <p>Helper to get / set the audit data notes.</p>
 
         
-          <div class='highlight'><pre>    notes: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">notes</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"notes"</span>, value
         <span class="property">@get</span> <span class="string">"notes"</span></pre></div>
@@ -552,7 +552,7 @@ couldn&#39;t be refreshed for more than X times - defined at the <a href="settin
         <p>Helper to get / set the audit data refresh interval.</p>
 
         
-          <div class='highlight'><pre>    refreshInterval: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">refreshInterval</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"refreshInterval"</span>, value
         <span class="property">@get</span> <span class="string">"refreshInterval"</span></pre></div>
@@ -562,14 +562,14 @@ couldn&#39;t be refreshed for more than X times - defined at the <a href="settin
         <p>Helper to get / set the original source URL.</p>
 
         
-          <div class='highlight'><pre>    sourceUrl: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">sourceUrl</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"sourceUrl"</span>, value
         <span class="property">@get</span> <span class="string">"sourceUrl"</span></pre></div>
         
       
         
-        <h2>VALIDATE</h2>
+        <h2 id="validate">VALIDATE</h2>
 
         
       
@@ -577,15 +577,7 @@ couldn&#39;t be refreshed for more than X times - defined at the <a href="settin
         <p>All validation rules should be put inside this method.</p>
 
         
-          <div class='highlight'><pre>    validate: (attrs) =&gt;</pre></div>
-        
-      
-        
-        <p>Data source URL must be a valid URL.</p>
-
-        
-          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> <span class="regexp">/((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&amp;%@!\-\/]))?/</span>.test attrs.sourceUrl
-            <span class="keyword">return</span> SystemApp.Messages.valInvalidUrl</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">validate</span>: <span class="function"><span class="params">(attrs)</span> =&gt;</span></pre></div>
         
       
         
@@ -597,7 +589,7 @@ couldn&#39;t be refreshed for more than X times - defined at the <a href="settin
         
       
         
-        <h2>METHODS</h2>
+        <h2 id="methods">METHODS</h2>
 
         
       
@@ -607,22 +599,22 @@ server&#39;s proxy downloader (see the <a href="server/routes.html">Server Route
 to avoid cross-domain issues.</p>
 
         
-          <div class='highlight'><pre>    refreshData: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">refreshData</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@fetching</span>
             <span class="keyword">return</span>
 
         <span class="property">@fetching</span> = <span class="literal">true</span>
 
         $.ajax
-            url: SystemApp.Settings.general.remoteDownloaderUrl + <span class="string">"auditdata-"</span> + <span class="property">@id</span>
-            timeout: <span class="property">@refreshInterval</span>() * <span class="number">3</span>
-            cache: <span class="literal">false</span>
-            dataType: <span class="string">"json"</span>
-            type: <span class="string">"POST"</span>
-            success: <span class="property">@dataRefreshSuccess</span>
-            error: <span class="property">@dataRefreshError</span>
-            data:
-                url: <span class="property">@sourceUrl</span>()</pre></div>
+            <span class="attribute">url</span>: SystemApp.Settings.general.remoteDownloaderUrl + <span class="string">"auditdata-"</span> + <span class="property">@id</span>
+            <span class="attribute">timeout</span>: <span class="property">@refreshInterval</span>() * <span class="number">3</span>
+            <span class="attribute">cache</span>: <span class="literal">false</span>
+            <span class="attribute">dataType</span>: <span class="string">"json"</span>
+            <span class="attribute">type</span>: <span class="string">"POST"</span>
+            <span class="attribute">success</span>: <span class="property">@dataRefreshSuccess</span>
+            <span class="attribute">error</span>: <span class="property">@dataRefreshError</span>
+            <span class="attribute">data</span>:
+                <span class="attribute">url</span>: <span class="property">@sourceUrl</span>()</pre></div>
         
       
         
@@ -631,7 +623,7 @@ which will trigger a change event across the app. If the <code>dataSaveInterval<
 has passed, it will update the data on the local MongoDB server as well.</p>
 
         
-          <div class='highlight'><pre>    dataRefreshSuccess: (resp) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dataRefreshSuccess</span>: <span class="function"><span class="params">(resp)</span> =&gt;</span>
         <span class="property">@fetching</span> = <span class="literal">false</span>
         <span class="property">@refreshErrorCount</span> = <span class="number">0</span></pre></div>
         
@@ -667,7 +659,7 @@ to refresh updates on all views.</p>
 will display the error info to the user.</p>
 
         
-          <div class='highlight'><pre>    dataRefreshError: (resp, status, error) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dataRefreshError</span>: <span class="function"><span class="params">(resp, status, error)</span> =&gt;</span>
         console.log <span class="string">"Audit Data: REFRESH ERROR"</span>, <span class="keyword">this</span>, error, resp
 
         <span class="property">@fetching</span> = <span class="literal">false</span>
@@ -697,7 +689,7 @@ to refresh errors and alert the user.</p>
         <p>Parse the given path and return its result (if path is valid).</p>
 
         
-          <div class='highlight'><pre>    getPathValue: (path) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">getPathValue</span>: <span class="function"><span class="params">(path)</span> =&gt;</span>
         <span class="keyword">return</span> <span class="string">""</span> <span class="keyword">if</span> <span class="keyword">not</span> path? <span class="keyword">or</span> path <span class="keyword">is</span> <span class="string">""</span></pre></div>
         
       
@@ -727,7 +719,7 @@ to refresh errors and alert the user.</p>
         
       
         
-        <h2>AUDIT DATA COLLECTION</h2>
+        <h2 id="audit-data-collection">AUDIT DATA COLLECTION</h2>
 
         
       
@@ -737,8 +729,8 @@ to refresh errors and alert the user.</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">AuditDataCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
 
-    model: SystemApp.AuditData
-    url: SystemApp.Settings.auditData.url</pre></div>
+    <span class="attribute">model</span>: SystemApp.AuditData
+    <span class="attribute">url</span>: SystemApp.Settings.auditData.url</pre></div>
         
       
       <div class="fleur">h</div>

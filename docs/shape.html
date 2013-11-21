@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>SHAPE MODEL</h2>
+        <h2 id="shape-model">SHAPE MODEL</h2>
 
         
       
@@ -493,24 +493,24 @@ properties defined depending on its related entity type.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">Shape</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseModel</span></span>
-    typeName: <span class="string">"Shape"</span>
-    defaults:
-        background: SystemApp.Settings.shape.background
-        format: SystemApp.Settings.shape.format
-        fontSize: SystemApp.Settings.shape.fontSize
-        foreground: SystemApp.Settings.shape.foreground
-        opacity: SystemApp.Settings.map.opacityStatic
-        roundedCorners: SystemApp.Settings.shape.roundedCorners
-        sizeX: SystemApp.Settings.shape.gridViewSizeX
-        sizeY: SystemApp.Settings.shape.gridViewSizeY
-        stroke: SystemApp.Settings.shape.stroke
-        strokeWidth: SystemApp.Settings.shape.strokeWidth
-        titleForeground: SystemApp.Settings.shape.titleForeground
-        zIndex: SystemApp.Settings.shape.zIndex</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"Shape"</span>
+    <span class="attribute">defaults</span>:
+        <span class="attribute">background</span>: SystemApp.Settings.shape.background
+        <span class="attribute">format</span>: SystemApp.Settings.shape.format
+        <span class="attribute">fontSize</span>: SystemApp.Settings.shape.fontSize
+        <span class="attribute">foreground</span>: SystemApp.Settings.shape.foreground
+        <span class="attribute">opacity</span>: SystemApp.Settings.map.opacityStatic
+        <span class="attribute">roundedCorners</span>: SystemApp.Settings.shape.roundedCorners
+        <span class="attribute">sizeX</span>: SystemApp.Settings.shape.gridViewSizeX
+        <span class="attribute">sizeY</span>: SystemApp.Settings.shape.gridViewSizeY
+        <span class="attribute">stroke</span>: SystemApp.Settings.shape.stroke
+        <span class="attribute">strokeWidth</span>: SystemApp.Settings.shape.strokeWidth
+        <span class="attribute">titleForeground</span>: SystemApp.Settings.shape.titleForeground
+        <span class="attribute">zIndex</span>: SystemApp.Settings.shape.zIndex</pre></div>
         
       
         
-        <h2>SYNC</h2>
+        <h2 id="sync">SYNC</h2>
 
         
       
@@ -518,18 +518,18 @@ properties defined depending on its related entity type.</p>
         <p>Override the &quot;save&quot; method as we don&#39;t need to sync individual links with the server.</p>
 
         
-          <div class='highlight'><pre>    save: (key, value, options) =&gt; <span class="property">@noSyncSave</span> key, value, options</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">save</span>: <span class="function"><span class="params">(key, value, options)</span> =&gt;</span> <span class="property">@noSyncSave</span> key, value, options</pre></div>
         
       
         
         <p>Override the &quot;destroy&quot; method as we don&#39;t need to sync individual links with the server.</p>
 
         
-          <div class='highlight'><pre>    destroy: (options) =&gt; <span class="property">@noSyncDestroy</span> options</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">destroy</span>: <span class="function"><span class="params">(options)</span> =&gt;</span> <span class="property">@noSyncDestroy</span> options</pre></div>
         
       
         
-        <h2>MAIN PROPERTIES</h2>
+        <h2 id="main-properties">MAIN PROPERTIES</h2>
 
         
       
@@ -537,7 +537,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the array of <a href="auditEvent.html">AuditEvent</a> IDs.</p>
 
         
-          <div class='highlight'><pre>    auditEventIds: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">auditEventIds</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"auditEventIds"</span>, value
         <span class="property">@get</span> <span class="string">"auditEventIds"</span></pre></div>
@@ -547,7 +547,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to set / set the shape background color.</p>
 
         
-          <div class='highlight'><pre>    background: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">background</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"background"</span>, value
         <span class="property">@get</span> <span class="string">"background"</span></pre></div>
@@ -557,7 +557,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to set / set the shape font size.</p>
 
         
-          <div class='highlight'><pre>    fontSize: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">fontSize</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"fontSize"</span>, value
         <span class="property">@get</span> <span class="string">"fontSize"</span></pre></div>
@@ -567,7 +567,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to set / set the shape foreground (text) color.</p>
 
         
-          <div class='highlight'><pre>    foreground: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">foreground</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"foreground"</span>, value
         <span class="property">@get</span> <span class="string">"foreground"</span></pre></div>
@@ -577,7 +577,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to set / set the shape format, possible values are <strong>rect</strong> and <strong>circle</strong>.</p>
 
         
-          <div class='highlight'><pre>    format: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">format</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"format"</span>, value
         <span class="property">@get</span> <span class="string">"format"</span></pre></div>
@@ -587,7 +587,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape&#39;s icon.</p>
 
         
-          <div class='highlight'><pre>    icon: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">icon</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"icon"</span>, value
         <span class="property">@get</span> <span class="string">"icon"</span></pre></div>
@@ -597,7 +597,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape&#39;s icon full size (true or false).</p>
 
         
-          <div class='highlight'><pre>    iconFull: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">iconFull</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"iconFull"</span>, value
         <span class="property">@get</span> <span class="string">"iconFull"</span></pre></div>
@@ -607,7 +607,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape opacity level, from 0.5 to 1;</p>
 
         
-          <div class='highlight'><pre>    opacity: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">opacity</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"opacity"</span>, value
         <span class="property">@get</span> <span class="string">"opacity"</span></pre></div>
@@ -617,7 +617,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to set / set the shape font size.</p>
 
         
-          <div class='highlight'><pre>    roundedCorners: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">roundedCorners</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"roundedCorners"</span>, value
         <span class="property">@get</span> <span class="string">"roundedCorners"</span></pre></div>
@@ -627,7 +627,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape grid X size (for example 2 means it will be 2 blocks long).</p>
 
         
-          <div class='highlight'><pre>    sizeX: (value)  =&gt;
+          <div class='highlight'><pre>    <span class="attribute">sizeX</span>: <span class="function"><span class="params">(value)</span>  =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"sizeX"</span>, value
         <span class="property">@get</span> <span class="string">"sizeX"</span></pre></div>
@@ -637,7 +637,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape grid Y size (for example 3 means it will be 3 blocks high).</p>
 
         
-          <div class='highlight'><pre>    sizeY: (value)  =&gt;
+          <div class='highlight'><pre>    <span class="attribute">sizeY</span>: <span class="function"><span class="params">(value)</span>  =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"sizeY"</span>, value
         <span class="property">@get</span> <span class="string">"sizeY"</span></pre></div>
@@ -647,7 +647,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to set / set the shape stroke / border color.</p>
 
         
-          <div class='highlight'><pre>    stroke: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">stroke</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"stroke"</span>, value
         <span class="property">@get</span> <span class="string">"stroke"</span></pre></div>
@@ -657,7 +657,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to set / set the shape stroke / border width.</p>
 
         
-          <div class='highlight'><pre>    strokeWidth: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">strokeWidth</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"strokeWidth"</span>, value
         parseInt <span class="property">@get</span> <span class="string">"strokeWidth"</span></pre></div>
@@ -667,7 +667,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape title.</p>
 
         
-          <div class='highlight'><pre>    title: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">title</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"title"</span>, value
         <span class="property">@get</span> <span class="string">"title"</span></pre></div>
@@ -677,7 +677,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to set / set the shape title foreground color.</p>
 
         
-          <div class='highlight'><pre>    titleForeground: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">titleForeground</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"titleForeground"</span>, value
         <span class="property">@get</span> <span class="string">"titleForeground"</span></pre></div>
@@ -687,14 +687,14 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape z-index, from 1 to 9.</p>
 
         
-          <div class='highlight'><pre>    zIndex: (value)  =&gt;
+          <div class='highlight'><pre>    <span class="attribute">zIndex</span>: <span class="function"><span class="params">(value)</span>  =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"zIndex"</span>, value
         <span class="property">@get</span> <span class="string">"zIndex"</span></pre></div>
         
       
         
-        <h2>POSITION PROPERTIES</h2>
+        <h2 id="position-properties">POSITION PROPERTIES</h2>
 
         
       
@@ -702,7 +702,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the X coordinate.</p>
 
         
-          <div class='highlight'><pre>    x: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">x</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"x"</span>, value
 
@@ -716,7 +716,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the Y coordinate.</p>
 
         
-          <div class='highlight'><pre>    y: (value)  =&gt;
+          <div class='highlight'><pre>    <span class="attribute">y</span>: <span class="function"><span class="params">(value)</span>  =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"y"</span>, value
 
@@ -727,7 +727,7 @@ properties defined depending on its related entity type.</p>
         
       
         
-        <h2>LABEL PROPERTIES</h2>
+        <h2 id="label-properties">LABEL PROPERTIES</h2>
 
         
       
@@ -735,7 +735,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get the shape&#39;s default text.</p>
 
         
-          <div class='highlight'><pre>    defaultText: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">defaultText</span>:<span class="function"> =&gt;</span>
         <span class="property">@textTitle</span>()</pre></div>
         
       
@@ -743,7 +743,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape title text.</p>
 
         
-          <div class='highlight'><pre>    textTitle: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">textTitle</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"textTitle"</span>, value
         <span class="property">@get</span> <span class="string">"textTitle"</span></pre></div>
@@ -753,7 +753,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape central text.</p>
 
         
-          <div class='highlight'><pre>    textCenter: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">textCenter</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"textCenter"</span>, value
         <span class="property">@get</span> <span class="string">"textCenter"</span></pre></div>
@@ -763,7 +763,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape left dynamic text.</p>
 
         
-          <div class='highlight'><pre>    textLeft: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">textLeft</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"textLeft"</span>, value
         <span class="property">@get</span> <span class="string">"textLeft"</span></pre></div>
@@ -773,7 +773,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape top dynamic text.</p>
 
         
-          <div class='highlight'><pre>    textTop: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">textTop</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"textTop"</span>, value
         <span class="property">@get</span> <span class="string">"textTop"</span></pre></div>
@@ -783,7 +783,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape right dynamic text.</p>
 
         
-          <div class='highlight'><pre>    textRight: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">textRight</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"textRight"</span>, value
         <span class="property">@get</span> <span class="string">"textRight"</span></pre></div>
@@ -793,14 +793,14 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the shape bottom dynamic text.</p>
 
         
-          <div class='highlight'><pre>    textBottom: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">textBottom</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"textBottom"</span>, value
         <span class="property">@get</span> <span class="string">"textBottom"</span></pre></div>
         
       
         
-        <h2>ENTITY PROPERTIES</h2>
+        <h2 id="entity-properties">ENTITY PROPERTIES</h2>
 
         
       
@@ -808,7 +808,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the entity type (DataCenter, Machine, Host, Service, etc).</p>
 
         
-          <div class='highlight'><pre>    entityDefinitionId: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">entityDefinitionId</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"entityDefinitionId"</span>, value
         <span class="property">@get</span> <span class="string">"entityDefinitionId"</span></pre></div>
@@ -818,14 +818,14 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get / set the entity ID.</p>
 
         
-          <div class='highlight'><pre>    entityObjectId: (value) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">entityObjectId</span>: <span class="function"><span class="params">(value)</span> =&gt;</span>
         <span class="keyword">if</span> value?
             <span class="property">@set</span> <span class="string">"entityObjectId"</span>, value
         <span class="property">@get</span> <span class="string">"entityObjectId"</span></pre></div>
         
       
         
-        <h2>EXTRA PROPERTIES</h2>
+        <h2 id="extra-properties">EXTRA PROPERTIES</h2>
 
         
       
@@ -833,7 +833,7 @@ properties defined depending on its related entity type.</p>
         <p>Helper to check if shape has a full size icon.</p>
 
         
-          <div class='highlight'><pre>    hasFullIcon: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">hasFullIcon</span>:<span class="function"> =&gt;</span>
         icon = <span class="property">@icon</span>()
         <span class="keyword">return</span> icon? <span class="keyword">and</span> icon <span class="keyword">isnt</span> <span class="string">""</span> <span class="keyword">and</span> icon <span class="keyword">isnt</span> <span class="number">0</span> <span class="keyword">and</span> <span class="property">@iconFull</span>()</pre></div>
         
@@ -842,14 +842,14 @@ properties defined depending on its related entity type.</p>
         <p>Helper to get the computed stroke width (will always be 0 if shape has a full icon).</p>
 
         
-          <div class='highlight'><pre>    strokeWidthComputed: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">strokeWidthComputed</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> <span class="property">@hasFullIcon</span>()
             <span class="keyword">return</span> <span class="number">0</span>
         <span class="keyword">return</span> <span class="property">@strokeWidth</span>()</pre></div>
         
       
         
-        <h2>SHAPE COLLECTION</h2>
+        <h2 id="shape-collection">SHAPE COLLECTION</h2>
 
         
       
@@ -858,8 +858,8 @@ properties defined depending on its related entity type.</p>
 
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">ShapeCollection</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">BaseCollection</span></span>
-    typeName: <span class="string">"ShapeCollection"</span>
-    model: SystemApp.Shape</pre></div>
+    <span class="attribute">typeName</span>: <span class="string">"ShapeCollection"</span>
+    <span class="attribute">model</span>: SystemApp.Shape</pre></div>
         
       
         
@@ -867,14 +867,14 @@ properties defined depending on its related entity type.</p>
 Shape models directly with the server.</p>
 
         
-          <div class='highlight'><pre>    create: (model, options) =&gt; <span class="property">@noSyncCreate</span> model, options</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">create</span>: <span class="function"><span class="params">(model, options)</span> =&gt;</span> <span class="property">@noSyncCreate</span> model, options</pre></div>
         
       
         
         <p>Set the comparator function to order the shapes collection by z-index.</p>
 
         
-          <div class='highlight'><pre>    comparator: (shape) -&gt; <span class="keyword">return</span> shape.zIndex()</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">comparator</span>: <span class="function"><span class="params">(shape)</span> -&gt;</span> <span class="keyword">return</span> shape.zIndex()</pre></div>
         
       
       <div class="fleur">h</div>

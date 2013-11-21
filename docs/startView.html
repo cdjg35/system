@@ -86,15 +86,15 @@
               
                 
                 <li>
-                  <a class="source" href="app.html">
-                    app.coffee
+                  <a class="source" href="app.instance.html">
+                    app.instance.coffee
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="app.instance.html">
-                    app.instance.coffee
+                  <a class="source" href="appjs.html">
+                    appjs.coffee
                   </a>
                 </li>
               
@@ -483,7 +483,7 @@
 
       
         
-        <h2>START VIEW</h2>
+        <h2 id="start-view">START VIEW</h2>
 
         
       
@@ -494,12 +494,12 @@ opens the app for the first time.</p>
         
           <div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">SystemApp</span>.<span class="title">StartView</span> <span class="keyword">extends</span> <span class="title">SystemApp</span>.<span class="title">OverlayView</span></span>
 
-    $mapList: <span class="literal">null</span>          <span class="comment"># the UL containing all available maps</span>
-    $imgPreview: <span class="literal">null</span>       <span class="comment"># the map image preview</span></pre></div>
+    <span class="attribute">$mapList</span>: <span class="literal">null</span>          <span class="comment"># the UL containing all available maps</span>
+    <span class="attribute">$imgPreview</span>: <span class="literal">null</span>       <span class="comment"># the map image preview</span></pre></div>
         
       
         
-        <h2>INIT AND DISPOSE</h2>
+        <h2 id="init-and-dispose">INIT AND DISPOSE</h2>
 
         
       
@@ -507,7 +507,7 @@ opens the app for the first time.</p>
         <p>Init the Start overlay view.</p>
 
         
-          <div class='highlight'><pre>    initialize: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">initialize</span>:<span class="function"> =&gt;</span>
         <span class="property">@overlayInit</span> <span class="string">"#start"</span>
         <span class="property">@setDom</span>()
         <span class="property">@setEvents</span>()
@@ -518,7 +518,7 @@ opens the app for the first time.</p>
         <p>Dispose the Start overlay view.</p>
 
         
-          <div class='highlight'><pre>    dispose: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">dispose</span>:<span class="function"> =&gt;</span>
         <span class="property">@baseDispose</span>()</pre></div>
         
       
@@ -526,7 +526,7 @@ opens the app for the first time.</p>
         <p>Set the DOM elements cache.</p>
 
         
-          <div class='highlight'><pre>    setDom: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setDom</span>:<span class="function"> =&gt;</span>
         <span class="property">@$menuItem</span> = $ <span class="string">"#menu-maps"</span>
         <span class="property">@$mapList</span> = $ <span class="string">"#start-maps"</span>
         <span class="property">@$imgPreview</span> = $ <span class="string">"#start-map-preview"</span></pre></div>
@@ -536,7 +536,7 @@ opens the app for the first time.</p>
         <p>Bind events to the DOM.</p>
 
         
-          <div class='highlight'><pre>    setEvents: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">setEvents</span>:<span class="function"> =&gt;</span>
         contents = <span class="property">@$el</span>.children <span class="string">".full-overlay-contents"</span>
         contents.mousemove <span class="property">@wrapperMouseMove</span></pre></div>
         
@@ -545,7 +545,7 @@ opens the app for the first time.</p>
         <p>Bind the map list.</p>
 
         
-          <div class='highlight'><pre>    bindMaps: =&gt;
+          <div class='highlight'><pre>    <span class="attribute">bindMaps</span>:<span class="function"> =&gt;</span>
         <span class="keyword">if</span> SystemApp.Data.maps.fetching <span class="keyword">or</span> SystemApp.Data.maps.models.length &lt; <span class="number">1</span>
             _.delay <span class="property">@bindMaps</span>, SystemApp.Settings.general.refetchDelay
             <span class="keyword">return</span>
@@ -562,7 +562,7 @@ opens the app for the first time.</p>
         <p>Add a single <a href="map.html">Map</a> to the <code>$mapList</code> element.</p>
 
         
-          <div class='highlight'><pre>    addMapToList: (map) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">addMapToList</span>: <span class="function"><span class="params">(map)</span> =&gt;</span>
         name = $(document.createElement <span class="string">"div"</span>)
         name.addClass <span class="string">"name"</span>
         name.html map.name()
@@ -583,7 +583,7 @@ opens the app for the first time.</p>
         <p>When mouse moves around any part of the view BUT the individual map divs, hide the preview image.</p>
 
         
-          <div class='highlight'><pre>    wrapperMouseMove: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">wrapperMouseMove</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         src = $ e.target
         testCurrent = src.attr(<span class="string">"id"</span>) <span class="keyword">isnt</span> <span class="string">"start-map-preview"</span>
         testParent = src.parent().attr(<span class="string">"id"</span>) <span class="keyword">isnt</span> <span class="string">"start-maps"</span> <span class="keyword">and</span> src.parent().parent().attr(<span class="string">"id"</span>) <span class="keyword">isnt</span> <span class="string">"start-maps"</span>
@@ -595,15 +595,15 @@ opens the app for the first time.</p>
         <p>When user clicks on a map name, open the map by changing the current URL.</p>
 
         
-          <div class='highlight'><pre>    mapClick: (e) =&gt;
-        SystemApp.routes.navigate <span class="string">"#map/"</span> + e.data, {trigger: <span class="literal">true</span>}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">mapClick</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
+        SystemApp.routes.navigate <span class="string">"#map/"</span> + e.data, {<span class="attribute">trigger</span>: <span class="literal">true</span>}</pre></div>
         
       
         
         <p>Update the right image to show a preview of the current map under the mouse pointer.</p>
 
         
-          <div class='highlight'><pre>    showMapPreview: (e) =&gt;
+          <div class='highlight'><pre>    <span class="attribute">showMapPreview</span>: <span class="function"><span class="params">(e)</span> =&gt;</span>
         <span class="property">@$imgPreview</span>.attr <span class="string">"src"</span>, SystemApp.Settings.map.thumbnailBaseUrl + e.data + <span class="string">".png"</span>
         <span class="property">@$imgPreview</span>.css <span class="string">"display"</span>, <span class="string">""</span>
         e.preventDefault()
