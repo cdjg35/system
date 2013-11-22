@@ -90,8 +90,8 @@
     "passport": {
         // Parameters to be passed to the passport module.
         "params": {
-            "failureRedirect": "/login",
-            "failureFlash": false,
+            "failureRedirect": "/login?abc",
+            "failureFlash": true,
             "session": true
         },
         // By default the System App will use basic HTTP authentication.
@@ -105,7 +105,13 @@
             "adminDn": null,
             "adminPassword": null,
             "searchBase": null,
-            "searchFilter": null
+            "searchFilter": null,
+            "tlsOptions": {
+                // By default it won't reject unknown CAs. If you need to use your own CA certificate
+                // please set it on the "ca" variable above and change "rejectUnauthorized" to true.
+                "rejectUnauthorized": false,
+                "ca": null
+            }
         }
     },
 

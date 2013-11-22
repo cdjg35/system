@@ -11,6 +11,8 @@
         "systemapp": "./bin/systemapp"
     },
     "scripts": {
+        "prepublish":"./prepublish.sh",
+        "start": "node index.js",
         "test": "./node_modules/.bin/mocha --reporter spec"
     },
     "domains": [
@@ -23,8 +25,8 @@
     "dependencies":{
         "async":">= 0.1.23",
         "coffee-script":">= 1.6.2",
+        "connect-flash": ">= 0.1.1",
         "expresser":">= 0.7.0",
-        "ldapauth": ">= 2.2.2",
         "lodash":">= 1.2.1",
         "moment":">= 2.0.0",
         "passport":">= 0.1.16",

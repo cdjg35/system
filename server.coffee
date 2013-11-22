@@ -11,7 +11,9 @@ path = require "path"
 security = require "./server/security.coffee"
 sockets = require "./server/sockets.coffee"
 
-# Init passport.
+# Use passport and enable `flash`.
+flash = require "connect-flash"
+expresser.app.extraMiddlewares.push flash()
 expresser.app.extraMiddlewares.push security.passport.initialize()
 expresser.app.extraMiddlewares.push security.passport.session()
 

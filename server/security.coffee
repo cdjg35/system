@@ -42,9 +42,10 @@ class Security
             else
                 @validateUser {id: user}, false, callback
 
+
+
         # Enable LDAP authentication?
         if settings.passport.ldap.enabled
-            ldapAuth = require "ldapauth"
             ldapStrategy = (require "passport-ldapauth").Strategy
             ldapOptions =
                 server:
@@ -53,18 +54,20 @@ class Security
                     adminPassword: settings.passport.ldap.adminPassword
                     searchBase: settings.passport.ldap.searchBase
                     searchFilter: settings.passport.ldap.searchFilter
+                    tlsOptions: settings.passport.ldap.tlsOptions
 
-            strategy = new ldapStrategy ldapOptions, (profile, callback) => @validateUser profile, callback
+            # Use `ldapauth` strategy.
+            strategy = new ldapStrategy ldapOptions, (profile, callback) => @validateUser profile, null, callback
             @passport.use strategy
-            expresser.app.server.use @passport.session()
             expresser.logger.debug "Security", "Passport: using LDAP authentication."
 
         # Enable basic HTTP authentication?
         else if settings.passport.basic.enabled
             httpStrategy = (require "passport-http").BasicStrategy
+
+            # Use `basic` strategy.
             strategy = new httpStrategy (username, password, callback) => @validateUser username, password, callback
             @passport.use strategy
-            expresser.app.server.use @passport.session()
             expresser.logger.debug "Security", "Passport: using basic HTTP authentication."
 
         # Make sure we have the admin user created.
@@ -73,13 +76,13 @@ class Security
     # Helper to validate user login. If no user was specified and [settings](settings.html)
     # allow guest access, then log as guest.
     validateUser: (user, password, callback) =>
-        expresser.logger.debug "Security", "validateUser", user, password.replace(/./gi, "*")
+        expresser.logger.debug "Security", "validateUser", user
 
         if not user? or user is "" or user is "guest" or user.id is "guest"
             if settings.security.guestEnabled
                 return callback null, @guestUser
             else
-                return callback null, false, {message: "Username was not specified."}
+                return callback null, false, {message: "Invalid user!"}
 
         # Check if user should be fetched by ID or username.
         if not user.id?

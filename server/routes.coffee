@@ -22,29 +22,13 @@ module.exports = (app) ->
     lastModified = null
 
 
-    # AUTH HELPERS
-    # ----------------------------------------------------------------------
-
-    # Ensure authentication by checking request. Return 403 if not.
-    auth = (req, res, next) ->
-        return next() if not security.getPassportStrategy()?
-        return next() if req.isAuthenticated()
-        res.statusCode = 403
-        res.send "Unauthorized"
-
-    # Ensure authentication by checking request. Redirect to /login if not.
-    toLogin = (req, res, next) ->
-        return next() if not security.getPassportStrategy()?
-        return next() if req.isAuthenticated()
-        res.render "Continue"
-        
-
     # MAIN AND ADMIN ROUTES
     # ----------------------------------------------------------------------
 
     # The login page and form.
     getLogin = (req, res) ->
         options = getResponseOptions req
+        options.flash = req.flash()
 
         # Render the index page.
         res.render "login", options
