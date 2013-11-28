@@ -90,7 +90,7 @@
     "passport": {
         // Parameters to be passed to the passport module.
         "params": {
-            "failureRedirect": "/login?abc",
+            "failureRedirect": "/login",
             "failureFlash": true,
             "session": true
         },
@@ -101,11 +101,14 @@
         // If you want to use LDAP, set the information below.
         "ldap": {
             "enabled": false,
+            // The properties below set the path and behaviour of LDAP connections.
             "server": null,
             "adminDn": null,
             "adminPassword": null,
             "searchBase": null,
             "searchFilter": null,
+            // Users created automatically from LDAP must have a password, so use this value as a prefix.
+            "userPasswordPrefix": "ldap-",
             "tlsOptions": {
                 // By default it won't reject unknown CAs. If you need to use your own CA certificate
                 // please set it on the "ca" variable above and change "rejectUnauthorized" to true.

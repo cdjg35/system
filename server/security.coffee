@@ -12,6 +12,7 @@ class Security
     # Required modules.
     crypto = require "crypto"
     database = require "./database.coffee"
+    lodash = require "lodash"
     moment = require "moment"
 
     # Passport is accessible from outside.
@@ -41,8 +42,6 @@ class Security
                 @validateUser "guest", null, callback
             else
                 @validateUser {id: user}, false, callback
-
-
 
         # Enable LDAP authentication?
         if settings.passport.ldap.enabled
@@ -78,6 +77,8 @@ class Security
     validateUser: (user, password, callback) =>
         expresser.logger.debug "Security", "validateUser", user
 
+        currentStrategy = @getPassportStrategy()
+
         if not user? or user is "" or user is "guest" or user.id is "guest"
             if settings.security.guestEnabled
                 return callback null, @guestUser
@@ -85,14 +86,17 @@ class Security
                 return callback null, false, {message: "Invalid user!"}
 
         # Check if user should be fetched by ID or username.
-        if not user.id?
+        if lodash.isString user
             filter = {username: user}
+        else if currentStrategy is "ldapauth"
+            fromCache = @cachedUsers[user.uid]
+            filter = {username: user.uid}
         else
             fromCache = @cachedUsers[user.id]
-            filter = user
+            filter = {username: user.username}
 
         # Add password hash to filter.
-        if password isnt false
+        if password? and password isnt false and password isnt ""
             filter.passwordHash = @getPasswordHash user, password
 
         # Check if user was previously cached. If not valid, delete from cache.
@@ -105,8 +109,14 @@ class Security
         database.getUser filter, (err, result) =>
             if err?
                 return callback err
-            else if not result? or result.length < 1
-                return callback null, false, {message: "User and password combination not found."}
+
+            # Check if user was found. If using LDAP, create the user if nothing was found,
+            # otherwise just return a "user not found" error.
+            if not result? or result.length < 1
+                if currentStrategy is "ldapauth"
+                    return @ldapCreateUser user, callback
+                else
+                    return callback null, false, {message: "User and password combination not found."}
 
             result = result[0] if result.length > 0
 
@@ -114,7 +124,7 @@ class Security
             result.cacheExpiryDate = moment().add "s", settings.security.userCacheExpires
             @cachedUsers[result.id] = result
 
-            # Return the login callback.
+            # Callback with user result.
             return callback null, result
 
     # Ensure that there's at least one admin user registered. The default
@@ -122,15 +132,31 @@ class Security
     ensureAdminUser: =>
         database.getUser null, (err, result) =>
             if err?
-                expresser.logger.error "Security.ensureAdminUser", err
-                return
+                return expresser.logger.error "Security.ensureAdminUser", err
 
             # If no users were found, create the default admin user.
             if not result? or result.length < 1
                 passwordHash = @getPasswordHash "admin", "system"
-                user = {displayName: "Administrator", username: "admin", roles:["admin"], passwordHash: passwordHash}
+                user = {displayName: "Administrator", username: "admin", roles: ["admin"], passwordHash: passwordHash}
                 database.setUser user
                 expresser.logger.info "Security.ensureAdminUser", "Default admin user was created."
+
+    # Create user from LDAP if it's not yet registered on the MongoDB database.
+    # LDAP users will have their password randomized.
+    ldapCreateUser: (profile, callback) =>
+        expresser.logger.info "Security.ldapCreateUser", profile
+
+        # Create static password and user object.
+        passwordHash = @getPasswordHash profile.uid, settings.passport.ldap.userPasswordPrefix + profile.uid
+        user = {displayName: profile.cn, username: profile.uid, roles: ["ldap"], passwordHash: passwordHash}
+
+        # Add user from LDAP to the database.
+        database.setUser user, (err, result) ->
+            if err?
+                expresser.logger.error "Security.ldapCreateUser", err
+            callback err, result
+
+
 
 
     # AUTHENTICATION METHODS

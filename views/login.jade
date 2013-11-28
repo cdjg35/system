@@ -20,8 +20,8 @@ html
             div
                 a#forgot Forgot credentials?
                 button.identify Validate
-            if flash && flash.error
-                div.error #{flash.error}
+            if errorMsg
+                div.error #{errorMsg}
 
         div.about
             p This software is based on the System App by Zalando, a free and open source tool.

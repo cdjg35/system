@@ -10,15 +10,13 @@ manager = require "./server/manager.coffee"
 path = require "path"
 security = require "./server/security.coffee"
 sockets = require "./server/sockets.coffee"
-
-# Use passport and enable `flash`.
 flash = require "connect-flash"
-expresser.app.extraMiddlewares.push flash()
-expresser.app.extraMiddlewares.push security.passport.initialize()
-expresser.app.extraMiddlewares.push security.passport.session()
+
+# Set init options.
+initOptions = {app: [flash(), security.passport.initialize(), security.passport.session()]}
 
 # Init modules.
-expresser.init()
+expresser.init initOptions
 security.init()
 manager.init()
 sockets.init()

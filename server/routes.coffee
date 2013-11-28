@@ -28,7 +28,10 @@ module.exports = (app) ->
     # The login page and form.
     getLogin = (req, res) ->
         options = getResponseOptions req
-        options.flash = req.flash()
+        flash = req.flash?()
+        msg = flash.error[0] if flash?.error?
+        msg = null if msg is "Missing credentials"
+        options.errorMsg = msg
 
         # Render the index page.
         res.render "login", options
