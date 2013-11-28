@@ -4,6 +4,7 @@
 
 class SystemApp.AdminUsersTabView extends SystemApp.BaseView
 
+    $formTitle: null            # the h4 element, form title
     $txtDisplayName: null       # the "display name" text field
     $txtUsername: null          # the "username" text field
     $txtPassword: null          # the "password" tet field
@@ -35,14 +36,16 @@ class SystemApp.AdminUsersTabView extends SystemApp.BaseView
     setDom: =>
         @setElement $ "#tab-users"
 
+        @$formTitle = @$el.find ".form-title"
         @$txtDisplayName = $ "#user-txt-display-name"
         @$txtUsername = $ "#user-txt-username"
         @$txtPassword = $ "#user-txt-password"
         @$txtPasswordConfirm = $ "#user-txt-password-confirm"
         @$chkRoles = @$el.find ".edit .roles input"
         @$butSave = $ "#user-but-save"
-
         @$userGrid = $ "#user-grid"
+
+        @$formTitle.html SystemApp.Messages.createNewUser
 
     # Bind events to DOM.
     setEvents: =>
@@ -58,14 +61,17 @@ class SystemApp.AdminUsersTabView extends SystemApp.BaseView
     # ----------------------------------------------------------------------
 
     # Bind the current selected [user](user.html) to the editing form.
+    # If no user is selected, reset the form to create a new user.
     bindUserForm: =>
         if not @selectedUser?
+            @$formTitle.html SystemApp.Messages.createNewUser
             @$txtDisplayName.val ""
             @$txtUsername.val ""
             @$txtPassword.val ""
             @$txtPasswordConfirm.val ""
             return
 
+        @$formTitle.html SystemApp.Messages.editUser
         @$txtDisplayName.val @selectedUser.displayName()
         @$txtUsername.val @selectedUser.username()
 
@@ -86,14 +92,11 @@ class SystemApp.AdminUsersTabView extends SystemApp.BaseView
 
         # Validate the form fields.
         if username is ""
-            @warnField @$txtUsername
-            return
+            return @warnField @$txtUsername
         else if password is ""
-            @warnField @$txtPassword
-            return
+            return @warnField @$txtPassword
         else if password isnt @$txtPasswordConfirm.val()
-            @warnField @$txtPasswordConfirm
-            return
+            return @warnField @$txtPasswordConfirm
 
         # Make sure display name is set.
         if displayName is ""

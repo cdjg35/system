@@ -86,8 +86,7 @@ SystemApp.Sockets =
     # clients to refresh the window in X seconds.
     sendClientsRefresh: (seconds) ->
         if not SystemApp.Data.loggedUser.hasRole("admin")
-            SystemApp.consoleLog "Sockets.sendClientRefresh", "You don't have the necessary permissions!"
-            return
+            return SystemApp.consoleLog "Sockets.sendClientRefresh", "You don't have the necessary permissions!"
 
         # Default seconds is 10.
         seconds = SystemApp.Settings.sockets.clientRefreshSeconds if not seconds?

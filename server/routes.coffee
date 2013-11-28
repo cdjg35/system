@@ -426,12 +426,14 @@ module.exports = (app) ->
 
                     # Check user permissions.
                     if not roles.admin and result.id isnt req.user.id
-                        sendForbiddenResponse res, "User GET"
-                        return
+                        return sendForbiddenResponse res, "User GET"
 
                     # Make sure password fields are removed.
                     delete result["passwordHash"]
                     delete result["password"]
+
+                    # Check if user should be a forced admin.
+                    security.checkForcedAdmin result
 
                     res.send minifyJson result
                 else

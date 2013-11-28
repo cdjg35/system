@@ -164,9 +164,7 @@ class SystemApp.AppRoutes extends Backbone.Router
 
             # Set timeout and handler to cancel using ESC.
             refreshTimer = setTimeout refreshCallback, delay
-            clickAction = (e) ->
-                if e.keyCode is 27
-                    clearTimeout refreshTimer
+            clickAction = (e) -> clearTimeout refreshTimer
 
             # Trigger the tooltip alert.
             SystemApp.alertEvents.trigger "tooltip", {title: title, message: message, delay: delay, clickAction: clickAction}

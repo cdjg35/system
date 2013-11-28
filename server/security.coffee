@@ -119,10 +119,8 @@ class Security
 
             result = result[0] if result.length > 0
 
-            # Check if user is on the "forced admin" user list.
-            forcedAdmins = settings.security.forcedAdmins
-            if forcedAdmins?.length > 0 and lodash.indexOf(forcedAdmins, result.username) >= 0
-                result.roles.push "admin"
+            # Check if user should be a forced admin.
+            @checkForcedAdmin result
 
             # Set expiry date for the user cache.
             result.cacheExpiryDate = moment().add "s", settings.security.userCacheExpires
@@ -159,6 +157,13 @@ class Security
             if err?
                 expresser.logger.error "Security.ldapCreateUser", err
             callback err, result
+
+    # Check if the specified user is on the forced admin list, and if so add the "admin" role.
+    checkForcedAdmin: (user) =>
+        forcedAdmins = settings.security.forcedAdmins
+
+        if forcedAdmins?.length > 0 and lodash.indexOf(forcedAdmins, user.username) >= 0
+            user.roles.push "admin"
 
 
     # HELPER METHODS

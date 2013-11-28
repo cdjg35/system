@@ -256,7 +256,7 @@ class SystemApp.AlertView extends SystemApp.BaseView
 
         # If `hideOnClick` is not false, bind hide to click event.
         if alertObj isnt false
-            @$wrapperTooltip.click @hideTooltip()
+            @$wrapperTooltip.click @hideTooltip
 
         # Bind the click action to the tooltip container, if there's one specified.
         if alertObj.clickAction?
