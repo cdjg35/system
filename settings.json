@@ -90,6 +90,7 @@
     "passport": {
         // Parameters to be passed to the passport module.
         "params": {
+            "successRedirect": "/",
             "failureRedirect": "/login",
             "failureFlash": true,
             "session": true

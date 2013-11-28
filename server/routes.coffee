@@ -22,7 +22,7 @@ module.exports = (app) ->
     lastModified = null
 
 
-    # MAIN AND ADMIN ROUTES
+    # LOGIN AND LOGOUT ROUTES
     # ----------------------------------------------------------------------
 
     # The login page and form.
@@ -40,11 +40,19 @@ module.exports = (app) ->
     postLogin = (req, res) ->
         res.redirect "/"
 
+    # The logout page.
+    getLogout = (req, res) ->
+        req.logout()
+        res.redirect "/login"
+
+
+    # MAIN AND ADMIN ROUTES
+    # ----------------------------------------------------------------------
+
     # The main index page.
     getIndex = (req, res) ->
         if not req.user?
-            res.redirect "/login"
-            return
+            return res.redirect "/login"
 
         options = getResponseOptions req
 
@@ -55,15 +63,13 @@ module.exports = (app) ->
     # access this page.
     getAdmin = (req, res) ->
         if not req.user?
-            res.redirect "/login"
-            return
+            return res.redirect "/login"
 
         options = getResponseOptions req
 
         # Make sure user has admin role.
         if options.roles.admin isnt true
-            res.redirect "/401"
-            return
+            return res.redirect "/401"
 
         # Render the admin page.
         res.render "admin", options
@@ -95,8 +101,7 @@ module.exports = (app) ->
     postEntityDefinition = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.entities
-            sendForbiddenResponse res, "Entity POST"
-            return
+            return sendForbiddenResponse res, "Entity POST"
 
         database.setEntityDefinition getDocumentFromBody(req), null, (err, result) ->
             if result? and not err?
@@ -109,8 +114,7 @@ module.exports = (app) ->
     patchEntityDefinition = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.entities
-            sendForbiddenResponse res, "Entity PATCH"
-            return
+            return sendForbiddenResponse res, "Entity PATCH"
 
         database.setEntityDefinition getDocumentFromBody(req), {patch: true}, (err, result) ->
             if result? and not err?
@@ -124,8 +128,7 @@ module.exports = (app) ->
     deleteEntityDefinition = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.entities
-            sendForbiddenResponse res, "Entity DELETE"
-            return
+            return sendForbiddenResponse res, "Entity DELETE"
 
         database.deleteEntityDefinition getIdFromRequest(req), (err, result) ->
             if not err?
@@ -185,8 +188,7 @@ module.exports = (app) ->
     postAuditData = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.auditdata
-            sendForbiddenResponse res, "Audit Data POST"
-            return
+            return sendForbiddenResponse res, "Audit Data POST"
 
         database.setAuditData getDocumentFromBody(req), null, (err, result) ->
             if result? and not err?
@@ -199,8 +201,7 @@ module.exports = (app) ->
     patchAuditData = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.auditdata
-            sendForbiddenResponse res, "Audit Data PATCH"
-            return
+            return sendForbiddenResponse res, "Audit Data PATCH"
 
         database.setAuditData getDocumentFromBody(req), {patch: true}, (err, result) ->
             if result? and not err?
@@ -213,8 +214,7 @@ module.exports = (app) ->
     deleteAuditData = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.auditdata
-            sendForbiddenResponse res, "Audit Data DELETE"
-            return
+            return sendForbiddenResponse res, "Audit Data DELETE"
 
         database.deleteAuditData getIdFromRequest(req), (err, result) ->
             if not err?
@@ -239,8 +239,7 @@ module.exports = (app) ->
     postAuditEvent = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.auditevents
-            sendForbiddenResponse res, "Audit Event POST"
-            return
+            return sendForbiddenResponse res, "Audit Event POST"
 
         database.setAuditEvent getDocumentFromBody(req), null, (err, result) ->
             if result? and not err?
@@ -252,8 +251,7 @@ module.exports = (app) ->
     patchAuditEvent = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.auditevents
-            sendForbiddenResponse res, "Audit Event PATCH"
-            return
+            return sendForbiddenResponse res, "Audit Event PATCH"
 
         database.setAuditEvent getDocumentFromBody(req), {patch: true}, (err, result) ->
             if result? and not err?
@@ -265,8 +263,7 @@ module.exports = (app) ->
     deleteAuditEvent = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.auditevents
-            sendForbiddenResponse res, "Audit Event DELETE"
-            return
+            return sendForbiddenResponse res, "Audit Event DELETE"
 
         database.deleteAuditEvent getIdFromRequest(req), (err, result) ->
             if not err?
@@ -290,8 +287,7 @@ module.exports = (app) ->
     postVariable = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.variables
-            sendForbiddenResponse res, "Variable POST"
-            return
+            return sendForbiddenResponse res, "Variable POST"
 
         database.setVariable getDocumentFromBody(req), null, (err, result) ->
             if result? and not err?
@@ -303,8 +299,7 @@ module.exports = (app) ->
     patchVariable = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.variables
-            sendForbiddenResponse res, "Variable PATCH"
-            return
+            return sendForbiddenResponse res, "Variable PATCH"
 
         database.setVariable getDocumentFromBody(req), {patch: true}, (err, result) ->
             if result? and not err?
@@ -316,8 +311,7 @@ module.exports = (app) ->
     deleteVariable = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.variables
-            sendForbiddenResponse res, "Variable DELETE"
-            return
+            return sendForbiddenResponse res, "Variable DELETE"
 
         database.deleteVariable getIdFromRequest(req), (err, result) ->
             if not err?
@@ -341,16 +335,14 @@ module.exports = (app) ->
     postMap = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.mapcreate and not roles.mapedit
-            sendForbiddenResponse res, "Map POST"
-            return
+            return sendForbiddenResponse res, "Map POST"
 
         # Get map from request body.
         map = getDocumentFromBody req
 
         # Check if map is read only.
         if map.isReadOnly
-            sendForbiddenResponse res, "Map POST (read-only)"
-            return
+            return sendForbiddenResponse res, "Map POST (read-only)"
 
         # If map is new, set the `createdByUserId` to the current logged user's ID.
         if not map.id? or map.id is ""
@@ -370,8 +362,7 @@ module.exports = (app) ->
     patchMap = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.mapedit
-            sendForbiddenResponse res, "Map PATCH"
-            return
+            return sendForbiddenResponse res, "Map PATCH"
 
         database.setMap getDocumentFromBody(req), {patch: true}, (err, result) ->
             if result? and not err?
@@ -383,8 +374,7 @@ module.exports = (app) ->
     deleteMap = (req, res) ->
         roles = getUserRoles req
         if not roles.admin and not roles.mapedit
-            sendForbiddenResponse res, "Map DELETE"
-            return
+            return sendForbiddenResponse res, "Map DELETE"
 
         database.deleteMap getIdFromRequest(req), (err, result) ->
             if not err?
@@ -419,8 +409,7 @@ module.exports = (app) ->
     # Get a single or a collection of [Users](user.html).
     getUser = (req, res) ->
         if not req.user?
-            sendForbiddenResponse res, "User GET"
-            return
+            return sendForbiddenResponse res, "User GET"
 
         roles = getUserRoles req
 
@@ -455,8 +444,7 @@ module.exports = (app) ->
 
         # Check user permissions.
         if not roles.admin and user.id isnt req.user.id
-            sendForbiddenResponse res, "User POST"
-            return
+            return sendForbiddenResponse res, "User POST"
 
         # Make sure password hash is set and remove clear text password.
         if user.password?
@@ -480,8 +468,7 @@ module.exports = (app) ->
 
         # Check user permissions.
         if not roles.admin and user.id isnt req.user.id
-            sendForbiddenResponse res, "User PATCH"
-            return
+            return sendForbiddenResponse res, "User PATCH"
 
         # Make sure user password hash is set.
         user = getDocumentFromBody req
@@ -505,8 +492,7 @@ module.exports = (app) ->
 
         # Check user permissions.
         if not roles.admin
-            sendForbiddenResponse res, "User DELETE"
-            return
+            return sendForbiddenResponse res, "User DELETE"
 
         database.deleteUser getIdFromRequest(req), (err, result) ->
             if not err?
@@ -645,19 +631,14 @@ module.exports = (app) ->
     passportOptions = settings.passport.params
     passportStrategy = security.getPassportStrategy()
 
-    # The login page.
+    # Login and logout routes.
     app.get "/login", getLogin
-
-    # The login page post validation.
     app.post "/login", security.passport.authenticate(passportStrategy, passportOptions), postLogin
+    app.get "/logout", getLogout
 
-    # Bind routes based on passport strategy.
-    if passportStrategy?
-        app.get "/", security.passport.authenticate(passportStrategy, passportOptions), getIndex
-        app.get "/admin", security.passport.authenticate(passportStrategy, passportOptions), getAdmin
-    else
-        app.get "/", getIndex
-        app.get "/admin", getAdmin
+    # Main app routes.
+    app.get "/", getIndex
+    app.get "/admin", getAdmin
 
     # Upgrader page.
     app.get "/upgrade", runUpgrade

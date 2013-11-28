@@ -85,15 +85,14 @@ class Security
             else
                 return callback null, false, {message: "Invalid user!"}
 
-        # Check if user should be fetched by ID or username.
+        # Check if user is the username string or the full user object.
         if lodash.isString user
             filter = {username: user}
-        else if currentStrategy is "ldapauth"
-            fromCache = @cachedUsers[user.uid]
-            filter = {username: user.uid}
-        else
+        else if user.id? and user.id isnt ""
             fromCache = @cachedUsers[user.id]
-            filter = {username: user.username}
+            filter = {id: user.id}
+        else
+            filter = {username: (if user.username? and user.username isnt "" then user.username else user.uid)}
 
         # Add password hash to filter.
         if password? and password isnt false and password isnt ""
