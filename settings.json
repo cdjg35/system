@@ -121,6 +121,10 @@
 
     // SECURITY SETTINGS
     "security": {
+        // If you want to give explicit admin permission to specific users, set their username
+        // on the list below. This is useful when you set LDAP and need to access the admin area
+        // to give initial permissions. Example: ["igor.ramadas","anotheruser"]
+        "forcedAdmins": [],
         // If true, users will be able to see the app in read-only mode when not authenticated.
         // In this case, to authenticate, they'll have to manually access the /login page.
         "guestEnabled": true,

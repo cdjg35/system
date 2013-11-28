@@ -119,6 +119,11 @@ class Security
 
             result = result[0] if result.length > 0
 
+            # Check if user is on the "forced admin" user list.
+            forcedAdmins = settings.security.forcedAdmins
+            if forcedAdmins?.length > 0 and lodash.indexOf(forcedAdmins, result.username) >= 0
+                result.roles.push "admin"
+
             # Set expiry date for the user cache.
             result.cacheExpiryDate = moment().add "s", settings.security.userCacheExpires
             @cachedUsers[result.id] = result
@@ -156,9 +161,7 @@ class Security
             callback err, result
 
 
-
-
-    # AUTHENTICATION METHODS
+    # HELPER METHODS
     # ----------------------------------------------------------------------
 
     # Generates a password hash based on the provided `username` and `password`,
@@ -169,10 +172,6 @@ class Security
         text = username + "|" + password + "|" + settings.security.userPasswordKey
         return crypto.createHash("sha256").update(text).digest "hex"
 
-
-    # HELPER METHODS
-    # ----------------------------------------------------------------------
-
     # Returns the current passport strategy by checking the `settings.passport` properties.
     getPassportStrategy: =>
         if settings.passport.ldap.enabled
@@ -181,6 +180,10 @@ class Security
             return "basic"
         return null
 
+    # Logout and remove the specified user from the cache.
+    logout: (req) =>
+        delete @cachedUsers[req.user.id] if req.user?
+        req.logout()
 
 
 # Singleton implementation

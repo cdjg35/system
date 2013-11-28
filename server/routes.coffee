@@ -42,7 +42,7 @@ module.exports = (app) ->
 
     # The logout page.
     getLogout = (req, res) ->
-        req.logout()
+        security.logout req
         res.redirect "/login"
 
 
