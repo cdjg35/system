@@ -96,6 +96,8 @@ SystemApp.Messages =
     errEvalFailed: "Eval failed!"
     errEvalReturn: "Eval must have a return statement!"
     errInvalidRoute: "The path you have entered does not exist."
+    errInvalidPassword: "Enter a valid password."
+    errInvalidUsername: "Enter a valid username."
     errMapDoesNotExist: "The specified map does not exist!"
     errMapIsReadOnly: "This map is read-only and cannot be updated."
     errMapNameExists: "There's already a map called #."

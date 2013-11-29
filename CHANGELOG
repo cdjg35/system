@@ -4,7 +4,17 @@ SYSTEM APP CHANGE LOG
 - = removed features
 
 # -----------------------------------------------------------------------------
-  0.6.8
+  0.7.0, 2013.12.02
++ LDAP integration is here! Available via the "settings.passport.ldap" setting.
+  When user is authenticated via LDAP but has no record on the MongoDB database
+  a new user will be created with "ldap" role.
++ It is now possible to force specific users to have admin role by changing
+  the "settings.security.forcedAdmins" key.
+* Client libraries were updated to their latest versions.
+* General bug fixes.
+
+# -----------------------------------------------------------------------------
+  0.6.8, unreleased
 * Improved support for secure external HTTPS requests.
 
 # -----------------------------------------------------------------------------
@@ -16,7 +26,7 @@ SYSTEM APP CHANGE LOG
 
 # -----------------------------------------------------------------------------
   0.6.6, 2013.06.07
-+ New "Manager" code on frontend will do health checks and data veritification
++ New "Manager" code on frontend will do health checks and data verification
   automatically and alert the user in case something's wrong.
 * Fixed Expresser related bugs.
 
