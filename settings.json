@@ -140,5 +140,14 @@
         // will be invalidated and they won't be able to login UNLESS you manually update the
         // database with the new password hashes!
         "userPasswordKey": "P4sssYs13!"
+    },
+
+    // MAIL SETTINGS
+    "mail": {
+        // Set the SMTP settings for email dispatching. Default is localhost, port 25.
+        "smtp": {
+            "host": "localhost",
+            "port": 25
+        }
     }
 }

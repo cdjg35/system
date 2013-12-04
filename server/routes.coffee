@@ -42,8 +42,11 @@ module.exports = (app) ->
 
     # The logout page.
     getLogout = (req, res) ->
-        security.logout req
-        res.redirect "/login"
+        security.logout req, res
+
+    # Login as guest (only if guest access is enabled on security settings).
+    getGuest = (req, res) ->
+        security.login req, res, security.guestUser
 
 
     # MAIN AND ADMIN ROUTES
@@ -637,6 +640,9 @@ module.exports = (app) ->
     app.get "/login", getLogin
     app.post "/login", security.passport.authenticate(passportStrategy, passportOptions), postLogin
     app.get "/logout", getLogout
+
+    # Guest access page.
+    app.get "/guest", getGuest
 
     # Main app routes.
     app.get "/", getIndex

@@ -185,10 +185,31 @@ class Security
             return "basic"
         return null
 
+    # Helper to login user, mainly user to login as guest. Normal login operations are
+    # handled automatically by the passport module (using basic and ldap auth).
+    login: (req, res, user) =>
+        if not user?
+            expresser.logger.warn "Security.login", "Invalid user (null or undefined)."
+            return res.redirect "/login?invalid_user"
+
+        # Check if guest is allowed.
+        if not settings.security.guestEnabled and user.username is "guest"
+            expresser.logger.warn "Security.login", "Guest access is not allowed."
+            return res.redirect "/login?guest_not_allowed"
+
+        # Log the user in.
+        req.login user, (err) ->
+            if err?
+                expresser.logger.error "Security.login", user, err
+                return res.redirect "/login?error"
+
+            return res.redirect "/"
+
     # Logout and remove the specified user from the cache.
-    logout: (req) =>
+    logout: (req, res) =>
         delete @cachedUsers[req.user.id] if req.user?
         req.logout()
+        res.redirect "/login"
 
 
 # Singleton implementation
