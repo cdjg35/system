@@ -23,7 +23,7 @@ class SystemApp.MapShapeLabelsView extends SystemApp.BaseView
     svgIconRight: null                  # the right svg label icon element
     svgIconBottom: null                 # the bottom svg label icon element
     currentTextTitle: null              # holds the current text of the title, used for performance opts
-    currentTextCenter: null              # holds the current text of the center label, used for performance opts
+    currentTextCenter: null             # holds the current text of the center label, used for performance opts
     currentTextLeft: null               # holds the current text of the left label, used for performance opts
     currentTextTop: null                # holds the current text of the top label, used for performance opts
     currentTextRight: null              # holds the current text of the right label, used for performance opts

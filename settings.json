@@ -24,6 +24,10 @@
 
     // EXPRESSER APP SETTINGS
     "app": {
+        // The secret key used to sign cookies.
+        "cookieSecret": "systemCookieKey",
+        // The secret key used to sign sessions.
+        "sessionSecret": "systemSessionKey",
         // Leave paas = true if you're deploying to a PaaS provider.
         "paas": true,
         // Port on which the server will run. If left blank, default 8080 will be used.
@@ -121,6 +125,8 @@
 
     // SECURITY SETTINGS
     "security": {
+        // The max age of auth cookies, in hours. Default is 120 (5 days).
+        "authCookieMaxAge": 120,
         // If you want to give explicit admin permission to specific users, set their username
         // on the list below. This is useful when you set LDAP and need to access the admin area
         // to give initial permissions. Example: ["igor.ramadas","anotheruser"]
@@ -128,6 +134,8 @@
         // If true, users will be able to see the app in read-only mode when not authenticated.
         // In this case, to authenticate, they'll have to manually access the /login page.
         "guestEnabled": true,
+        // The display name of guest users. Default is "Guest".
+        "guestDisplayName": "Guest",
         // Redirect user to 401 page after X failed logins.
         "maxFailedLogins": 3,
         // Key used for session encryption.

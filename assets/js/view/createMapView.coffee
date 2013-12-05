@@ -42,9 +42,9 @@ class SystemApp.CreateMapView extends SystemApp.OverlayView
         @$el.fadeOut SystemApp.Settings.general.fadeDelay
 
     # Show the view using a fade in effect and pass the entity type.
-    # If user has no "mapcreate" role, hide the view immediately.
+    # If user has no "mapedit" role, hide the view immediately.
     onShow: =>
-        if not SystemApp.Data.loggedUser.hasRole "mapcreate"
+        if not SystemApp.Data.loggedUser.hasRole "mapedit"
             errorMsg = SystemApp.Messages.errNoPermissionTo.replace "#", SystemApp.Messages.createMaps
             SystemApp.alertEvents.trigger "tooltip", {isError: true, title: SystemApp.Messages.accessDenied, message: errorMsg}
 

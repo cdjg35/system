@@ -22,8 +22,8 @@ class Security
     # The default expirty time is 1 minute.
     cachedUsers: null
 
-    # The default guest user.
-    guestUser: {id: "guest", displayName: "Guest", username: "guest", roles: ["guest"]}
+    # The default guest user. Will be set on init.
+    guestUser: null
 
     # Init all security related stuff. Set the passport strategy to
     # authenticate users using basic HTTP authentication.
@@ -69,8 +69,41 @@ class Security
             @passport.use strategy
             expresser.logger.debug "Security", "Passport: using basic HTTP authentication."
 
-        # Make sure we have the admin user created.
+        # Make sure we have the admin user created and set guest user.
         @ensureAdminUser()
+        @guestUser = {id: "guest", displayName: settings.security.guestDisplayName, username: "guest", roles: ["guest"]}
+
+    # Authenticate user by checking request and cookies. Will redirect to the login page if not authenticated,
+    # or send access denied if hasn't necessary roles. The `roles` is optional.
+    # Returns true if auth passes or false if it doesn't.
+    authenticate: (req, res, roles, callback) =>
+        if not callback? and roles?
+            callback = roles
+            roles = null
+
+        # Check if user is authenticated and has the specified roles.
+        # If not, redirect to the 401 access denied page.
+        if req.user?
+            if @checkUserRoles req.user, roles
+                return callback true
+            else
+                res.redirect "/401"
+                return callback false
+
+        # Check if user cookie is set. If so, validate it now and check roles.
+        if req.signedCookies?.user?
+            @validateUser req.signedCookies.user, null, (err, result) =>
+                if result? and result isnt false
+                    @login req, res, result, true
+
+                    if @checkUserRoles result, roles
+                        return callback true
+                    else
+                        res.redirect "/401"
+                        return callback false
+
+        # Not authenticated, return false.
+        return callback false
 
     # Helper to validate user login. If no user was specified and [settings](settings.html)
     # allow guest access, then log as guest.
@@ -158,6 +191,20 @@ class Security
                 expresser.logger.error "Security.ldapCreateUser", err
             callback err, result
 
+    # Check if the specified user has the necessary roles. Admin users always have permissions.
+    # Returns true or false.
+    checkUserRoles: (user, roles) =>
+        return true if not roles? or roles.length < 1
+        return true if lodash.indexOf(user.roles, "admin") >= 0
+
+        diff = lodash.difference roles, user.roles
+
+        # If roles difference is zero it means user has all roles.
+        if diff.length < 1
+            return true
+        else
+            return false
+
     # Check if the specified user is on the forced admin list, and if so add the "admin" role.
     checkForcedAdmin: (user) =>
         forcedAdmins = settings.security.forcedAdmins
@@ -187,7 +234,8 @@ class Security
 
     # Helper to login user, mainly user to login as guest. Normal login operations are
     # handled automatically by the passport module (using basic and ldap auth).
-    login: (req, res, user) =>
+    # If the optional `cookie` is true, it will save a cookie with auth details.
+    login: (req, res, user, cookie) =>
         if not user?
             expresser.logger.warn "Security.login", "Invalid user (null or undefined)."
             return res.redirect "/login?invalid_user"
@@ -203,11 +251,18 @@ class Security
                 expresser.logger.error "Security.login", user, err
                 return res.redirect "/login?error"
 
+            # Save to cookie?
+            if cookie
+                maxAge = settings.security.authCookieMaxAge * 60 * 60 * 1000
+                res.cookie "user", user.username, {maxAge: maxAge, signed: true}
+
             return res.redirect "/"
 
     # Logout and remove the specified user from the cache.
     logout: (req, res) =>
         delete @cachedUsers[req.user.id] if req.user?
+        res.clearCookie "user"
+
         req.logout()
         res.redirect "/login"
 

@@ -46,7 +46,7 @@ module.exports = (app) ->
 
     # Login as guest (only if guest access is enabled on security settings).
     getGuest = (req, res) ->
-        security.login req, res, security.guestUser
+        security.login req, res, security.guestUser, true
 
 
     # MAIN AND ADMIN ROUTES
@@ -54,28 +54,20 @@ module.exports = (app) ->
 
     # The main index page.
     getIndex = (req, res) ->
-        if not req.user?
-            return res.redirect "/login"
+        security.authenticate req, res, (authResult) ->
+            return if not authResult
 
-        options = getResponseOptions req
-
-        # Render the index page.
-        res.render "index", options
+            options = getResponseOptions req
+            res.render "index", options
 
     # The main index page. Only users with the "admin" role will be able to
     # access this page.
     getAdmin = (req, res) ->
-        if not req.user?
-            return res.redirect "/login"
+        security.authenticate req, res, ["admin"], (authResult) ->
+            return if not authResult
 
-        options = getResponseOptions req
-
-        # Make sure user has admin role.
-        if options.roles.admin isnt true
-            return res.redirect "/401"
-
-        # Render the admin page.
-        res.render "admin", options
+            options = getResponseOptions req
+            res.render "admin", options
 
     # Run the system upgrader.
     runUpgrade = (req, res) ->
@@ -85,7 +77,7 @@ module.exports = (app) ->
             if f.indexOf(".coffee") > 0
                 require "../upgrade/" + f
 
-        res.send "UPGRADED!!!"
+        res.send "UPGRADED!"
 
 
     # ENTITY ROUTES
@@ -102,43 +94,40 @@ module.exports = (app) ->
     # Add or update an [Entity Definition](entityDefinition.html).
     # This will also restart the entity timers on the server [manager](manager.html).
     postEntityDefinition = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.entities
-            return sendForbiddenResponse res, "Entity POST"
+        security.authenticate req, res, ["entities"], (authResult) ->
+            return if not authResult
 
-        database.setEntityDefinition getDocumentFromBody(req), null, (err, result) ->
-            if result? and not err?
-                manager.initEntityTimers()
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Entity POST", err
+            database.setEntityDefinition getDocumentFromBody(req), null, (err, result) ->
+                if result? and not err?
+                    manager.initEntityTimers()
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Entity POST", err
 
     # Patch only the specified properties of an [Entity Definition](entityDefinition.html).
     patchEntityDefinition = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.entities
-            return sendForbiddenResponse res, "Entity PATCH"
+        security.authenticate req, res, ["entities"], (authResult) ->
+            return if not authResult
 
-        database.setEntityDefinition getDocumentFromBody(req), {patch: true}, (err, result) ->
-            if result? and not err?
-                manager.initEntityTimers()
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Entity PATCH", err
+            database.setEntityDefinition getDocumentFromBody(req), {patch: true}, (err, result) ->
+                if result? and not err?
+                    manager.initEntityTimers()
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Entity PATCH", err
 
     # Delete an [Entity Definition](entityDefinition.html).
     # This will also restart the entity timers on the server [manager](manager.html).
     deleteEntityDefinition = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.entities
-            return sendForbiddenResponse res, "Entity DELETE"
+        security.authenticate req, res, ["entities"], (authResult) ->
+            return if not authResult
 
-        database.deleteEntityDefinition getIdFromRequest(req), (err, result) ->
-            if not err?
-                manager.initEntityTimers()
-                res.send ""
-            else
-                sendErrorResponse res, "Entity DELETE", err
+            database.deleteEntityDefinition getIdFromRequest(req), (err, result) ->
+                if not err?
+                    manager.initEntityTimers()
+                    res.send ""
+                else
+                    sendErrorResponse res, "Entity DELETE", err
 
     # Get the data for the specified [Entity Definition](entityDefinition.html).
     # This effectively returns the [Entity Objects Collection](entityObject.html)
@@ -189,42 +178,39 @@ module.exports = (app) ->
 
     # Add or update an [AuditData](auditData.html).
     postAuditData = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.auditdata
-            return sendForbiddenResponse res, "Audit Data POST"
+        security.authenticate req, res, ["auditdata"], (authResult) ->
+            return if not authResult
 
-        database.setAuditData getDocumentFromBody(req), null, (err, result) ->
-            if result? and not err?
-                manager.initAuditDataTimers()
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Audit Data POST", err
+            database.setAuditData getDocumentFromBody(req), null, (err, result) ->
+                if result? and not err?
+                    manager.initAuditDataTimers()
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Audit Data POST", err
 
     # Patch only the specified properties of an [AuditData](auditData.html).
     patchAuditData = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.auditdata
-            return sendForbiddenResponse res, "Audit Data PATCH"
+        security.authenticate req, res, ["auditdata"], (authResult) ->
+            return if not authResult
 
-        database.setAuditData getDocumentFromBody(req), {patch: true}, (err, result) ->
-            if result? and not err?
-                manager.initAuditDataTimers()
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Audit Data PATCH", err
+            database.setAuditData getDocumentFromBody(req), {patch: true}, (err, result) ->
+                if result? and not err?
+                    manager.initAuditDataTimers()
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Audit Data PATCH", err
 
     # Delete an [AuditData](auditData.html).
     deleteAuditData = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.auditdata
-            return sendForbiddenResponse res, "Audit Data DELETE"
+        security.authenticate req, res, ["auditdata"], (authResult) ->
+            return if not authResult
 
-        database.deleteAuditData getIdFromRequest(req), (err, result) ->
-            if not err?
-                manager.initAuditDataTimers()
-                res.send ""
-            else
-                sendErrorResponse res, "Audit Data DELETE", err
+            database.deleteAuditData getIdFromRequest(req), (err, result) ->
+                if not err?
+                    manager.initAuditDataTimers()
+                    res.send ""
+                else
+                    sendErrorResponse res, "Audit Data DELETE", err
 
 
     # AUDIT EVENT ROUTES
@@ -240,39 +226,36 @@ module.exports = (app) ->
 
     # Add or update an [AuditEvent](auditEvent.html).
     postAuditEvent = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.auditevents
-            return sendForbiddenResponse res, "Audit Event POST"
+        security.authenticate req, res, ["auditevents"], (authResult) ->
+            return if not authResult
 
-        database.setAuditEvent getDocumentFromBody(req), null, (err, result) ->
-            if result? and not err?
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Audit Event POST", err
+            database.setAuditEvent getDocumentFromBody(req), null, (err, result) ->
+                if result? and not err?
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Audit Event POST", err
 
     # Patch only the specified properties of an [AuditEvent](auditEvent.html).
     patchAuditEvent = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.auditevents
-            return sendForbiddenResponse res, "Audit Event PATCH"
+        security.authenticate req, res, ["auditevents"], (authResult) ->
+            return if not authResult
 
-        database.setAuditEvent getDocumentFromBody(req), {patch: true}, (err, result) ->
-            if result? and not err?
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Audit Event PATCH", err
+            database.setAuditEvent getDocumentFromBody(req), {patch: true}, (err, result) ->
+                if result? and not err?
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Audit Event PATCH", err
 
     # Delete an [AuditEvent](auditEvent.html).
     deleteAuditEvent = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.auditevents
-            return sendForbiddenResponse res, "Audit Event DELETE"
+        security.authenticate req, res, ["auditevents"], (authResult) ->
+            return if not authResult
 
-        database.deleteAuditEvent getIdFromRequest(req), (err, result) ->
-            if not err?
-                res.send ""
-            else
-                sendErrorResponse res, "Audit Event DELETE", err
+            database.deleteAuditEvent getIdFromRequest(req), (err, result) ->
+                if not err?
+                    res.send ""
+                else
+                    sendErrorResponse res, "Audit Event DELETE", err
 
 
     # VARIABLE ROUTES
@@ -288,39 +271,36 @@ module.exports = (app) ->
 
     # Add or update an [Variable](variable.html).
     postVariable = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.variables
-            return sendForbiddenResponse res, "Variable POST"
+        security.authenticate req, res, ["variables"], (authResult) ->
+            return if not authResult
 
-        database.setVariable getDocumentFromBody(req), null, (err, result) ->
-            if result? and not err?
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Variable POST", err
+            database.setVariable getDocumentFromBody(req), null, (err, result) ->
+                if result? and not err?
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Variable POST", err
 
     # Patch only the specified properties of a [Variable](variable.html).
     patchVariable = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.variables
-            return sendForbiddenResponse res, "Variable PATCH"
+        security.authenticate req, res, ["variables"], (authResult) ->
+            return if not authResult
 
-        database.setVariable getDocumentFromBody(req), {patch: true}, (err, result) ->
-            if result? and not err?
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Variable PATCH", err
+            database.setVariable getDocumentFromBody(req), {patch: true}, (err, result) ->
+                if result? and not err?
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Variable PATCH", err
 
     # Delete a [Variable](variable.html).
     deleteVariable = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.variables
-            return sendForbiddenResponse res, "Variable DELETE"
+        security.authenticate req, res, ["variables"], (authResult) ->
+            return if not authResult
 
-        database.deleteVariable getIdFromRequest(req), (err, result) ->
-            if not err?
-                res.send ""
-            else
-                sendErrorResponse res, "Variable DELETE", err
+            database.deleteVariable getIdFromRequest(req), (err, result) ->
+                if not err?
+                    res.send ""
+                else
+                    sendErrorResponse res, "Variable DELETE", err
 
 
     # MAP ROUTES
@@ -336,54 +316,51 @@ module.exports = (app) ->
 
     # Add or update a [Map](map.html).
     postMap = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.mapcreate and not roles.mapedit
-            return sendForbiddenResponse res, "Map POST"
+        security.authenticate req, res, ["mapedit"], (authResult) ->
+            return if not authResult
 
-        # Get map from request body.
-        map = getDocumentFromBody req
+            # Get map from request body.
+            map = getDocumentFromBody req
 
-        # Check if map is read only.
-        if map.isReadOnly
-            return sendForbiddenResponse res, "Map POST (read-only)"
+            # Check if map is read only.
+            if map.isReadOnly
+                return sendForbiddenResponse res, "Map POST (read-only)"
 
-        # If map is new, set the `createdByUserId` to the current logged user's ID.
-        if not map.id? or map.id is ""
-            map.createdByUserId = req.user.id
+            # If map is new, set the `createdByUserId` to the current logged user's ID.
+            if not map.id? or map.id is ""
+                map.createdByUserId = req.user.id
 
-        # Make sure creation date is set.
-        if not map.dateCreated? or map.dateCreated is ""
-            map.dateCreated = new Date()
+            # Make sure creation date is set.
+            if not map.dateCreated? or map.dateCreated is ""
+                map.dateCreated = new Date()
 
-        database.setMap map, null, (err, result) ->
-            if result? and not err?
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Map POST", err
+            database.setMap map, null, (err, result) ->
+                if result? and not err?
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Map POST", err
 
     # Patch only the specified properties of a [Map](map.html).
     patchMap = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.mapedit
-            return sendForbiddenResponse res, "Map PATCH"
+        security.authenticate req, res, ["mapedit"], (authResult) ->
+            return if not authResult
 
-        database.setMap getDocumentFromBody(req), {patch: true}, (err, result) ->
-            if result? and not err?
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "Map PATCH", err
+            database.setMap getDocumentFromBody(req), {patch: true}, (err, result) ->
+                if result? and not err?
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "Map PATCH", err
 
     # Delete a [Map](map.html).
     deleteMap = (req, res) ->
-        roles = getUserRoles req
-        if not roles.admin and not roles.mapedit
-            return sendForbiddenResponse res, "Map DELETE"
+        security.authenticate req, res, ["mapedit"], (authResult) ->
+            return if not authResult
 
-        database.deleteMap getIdFromRequest(req), (err, result) ->
-            if not err?
-                res.send ""
-            else
-                sendErrorResponse res, "Map DELETE", err
+            database.deleteMap getIdFromRequest(req), (err, result) ->
+                if not err?
+                    res.send ""
+                else
+                    sendErrorResponse res, "Map DELETE", err
 
 
     # MAP THUMBS
@@ -391,6 +368,7 @@ module.exports = (app) ->
 
     # Generates a thumbnail of the specified [Map](map.html), by passing
     # its ID and SVG representation.
+    # TODO! Rewrite image resizing / converting to support custom fonts.
     postMapThumb = (req, res) ->
         svg = req.body.svg
         svgPath = settings.path.imagesDir + "mapthumbs/" + req.params["id"] + ".svg"
@@ -411,99 +389,97 @@ module.exports = (app) ->
 
     # Get a single or a collection of [Users](user.html).
     getUser = (req, res) ->
-        if not req.user?
-            return sendForbiddenResponse res, "User GET"
+        security.authenticate req, res, (authResult) ->
+            return if not authResult
 
-        roles = getUserRoles req
+            # Check if should get the logged user's details.
+            id = getIdFromRequest req
+            id = req.user.id if id is "logged"
 
-        # Check if should get the logged user's details.
-        id = getIdFromRequest(req)
-        id = req.user.id if id is "logged"
+            # Return guest user if logged as "guest" and guest access is enabled on settings.
+            if settings.security.guestEnabled and req.user.id is "guest"
+                res.send minifyJson security.guestUser
+            else
+                database.getUser id, (err, result) ->
+                    if user? and not err?
 
-        # Return guest user if logged as "guest" and guest access is enabled on settings.
-        if settings.security.guestEnabled and req.user.id is "guest"
-            res.send minifyJson security.guestUser
-        else
-            database.getUser id, (err, result) ->
-                if result? and not err?
+                        # Check user permissions.
+                        if not security.checkUserRoles(req.user, "admin") and result.id isnt req.user.id
+                            return sendForbiddenResponse res, "User GET"
 
-                    # Check user permissions.
-                    if not roles.admin and result.id isnt req.user.id
-                        return sendForbiddenResponse res, "User GET"
+                        # Make sure password fields are removed.
+                        delete result["passwordHash"]
+                        delete result["password"]
 
-                    # Make sure password fields are removed.
-                    delete result["passwordHash"]
-                    delete result["password"]
+                        # Check if user should be a forced admin.
+                        security.checkForcedAdmin result
 
-                    # Check if user should be a forced admin.
-                    security.checkForcedAdmin result
-
-                    res.send minifyJson result
-                else
-                    sendErrorResponse res, "User GET", err
+                        res.send minifyJson result
+                    else
+                        sendErrorResponse res, "User GET", err
 
     # Add or update a [Users](user.html).
     postUser = (req, res) ->
-        roles = getUserRoles req
-        user = getDocumentFromBody req
+        security.authenticate req, res, (authResult) ->
+            return if not authResult
 
-        # Check user permissions.
-        if not roles.admin and user.id isnt req.user.id
-            return sendForbiddenResponse res, "User POST"
+            user = getDocumentFromBody req
 
-        # Make sure password hash is set and remove clear text password.
-        if user.password?
-            user["passwordHash"] = security.getPasswordHash user.username, user.password
-            delete user["password"]
+            # Check user permissions.
+            if not security.checkUserRoles(req.user, "admin") and user.id isnt req.user.id
+                return sendForbiddenResponse res, "User POST"
 
-        database.setUser user, null, (err, result) ->
-            if result? and not err?
-                # Make sure password fields are removed.
-                delete result["passwordHash"]
-                delete result["password"]
+            # Make sure password hash is set and remove clear text password.
+            if user.password?
+                user["passwordHash"] = security.getPasswordHash user.username, user.password
+                delete user["password"]
 
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "User POST", err
+            # Save to DB and make sure password fields are removed.
+            database.setUser user, null, (err, result) ->
+                if result? and not err?
+                    delete result["passwordHash"]
+                    delete result["password"]
+
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "User POST", err
 
     # Patch only the specified properties of a [Users](user.html).
     patchUser = (req, res) ->
-        roles = getUserRoles req
-        user = getDocumentFromBody req
+        security.authenticate req, res, (authResult) ->
+            return if not authResult
 
-        # Check user permissions.
-        if not roles.admin and user.id isnt req.user.id
-            return sendForbiddenResponse res, "User PATCH"
+            user = getDocumentFromBody req
 
-        # Make sure user password hash is set.
-        user = getDocumentFromBody req
-        if user.password?
-            user["passwordHash"] = security.getPasswordHash user.username, user.password
-            delete user["password"]
+            # Check user permissions.
+            if not security.checkUserRoles(req.user, "admin") and user.id isnt req.user.id
+                return sendForbiddenResponse res, "User PATCH"
 
-        database.setUser user, {patch: true}, (err, result) ->
-            if result? and not err?
-                # Make sure password fields are removed.
-                delete result["passwordHash"]
-                delete result["password"]
+            # Make sure user password hash is set.
+            if user.password?
+                user["passwordHash"] = security.getPasswordHash user.username, user.password
+                delete user["password"]
 
-                res.send minifyJson result
-            else
-                sendErrorResponse res, "User PATCH", err
+            # Save to DB and make sure password fields are removed.
+            database.setUser user, {patch: true}, (err, result) ->
+                if result? and not err?
+                    delete result["passwordHash"]
+                    delete result["password"]
+
+                    res.send minifyJson result
+                else
+                    sendErrorResponse res, "User PATCH", err
 
     # Delete a [Users](user.html).
     deleteUser = (req, res) ->
-        roles = getUserRoles req
+        security.authenticate req, res, ["admin"], (authResult) ->
+            return if not authResult
 
-        # Check user permissions.
-        if not roles.admin
-            return sendForbiddenResponse res, "User DELETE"
-
-        database.deleteUser getIdFromRequest(req), (err, result) ->
-            if not err?
-                res.send ""
-            else
-                sendErrorResponse res, "User DELETE", err
+            database.deleteUser getIdFromRequest(req), (err, result) ->
+                if not err?
+                    res.send ""
+                else
+                    sendErrorResponse res, "User DELETE", err
 
 
     # PROXY DOWNLOAD
@@ -607,8 +583,7 @@ module.exports = (app) ->
         return roles if not req.user?
 
         # Set roles object using role_name: true.
-        for r in req.user.roles
-            roles[r] = true
+        roles[r] = true for r in req.user.roles
 
         return roles
 
