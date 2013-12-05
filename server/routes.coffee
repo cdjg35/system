@@ -46,7 +46,7 @@ module.exports = (app) ->
 
     # Login as guest (only if guest access is enabled on security settings).
     getGuest = (req, res) ->
-        security.login req, res, security.guestUser, true
+        security.login req, res, {user: security.guestUser, cookie: true, redirect: true}
 
 
     # MAIN AND ADMIN ROUTES
@@ -54,8 +54,8 @@ module.exports = (app) ->
 
     # The main index page.
     getIndex = (req, res) ->
-        security.authenticate req, res, (authResult) ->
-            return if not authResult
+        security.authenticate req, res, true, (authResult) ->
+            return false if not authResult
 
             options = getResponseOptions req
             res.render "index", options
@@ -63,8 +63,8 @@ module.exports = (app) ->
     # The main index page. Only users with the "admin" role will be able to
     # access this page.
     getAdmin = (req, res) ->
-        security.authenticate req, res, ["admin"], (authResult) ->
-            return if not authResult
+        security.authenticate req, res, ["admin"], true, (authResult) ->
+            return false if not authResult
 
             options = getResponseOptions req
             res.render "admin", options
@@ -95,7 +95,7 @@ module.exports = (app) ->
     # This will also restart the entity timers on the server [manager](manager.html).
     postEntityDefinition = (req, res) ->
         security.authenticate req, res, ["entities"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setEntityDefinition getDocumentFromBody(req), null, (err, result) ->
                 if result? and not err?
@@ -107,7 +107,7 @@ module.exports = (app) ->
     # Patch only the specified properties of an [Entity Definition](entityDefinition.html).
     patchEntityDefinition = (req, res) ->
         security.authenticate req, res, ["entities"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setEntityDefinition getDocumentFromBody(req), {patch: true}, (err, result) ->
                 if result? and not err?
@@ -120,7 +120,7 @@ module.exports = (app) ->
     # This will also restart the entity timers on the server [manager](manager.html).
     deleteEntityDefinition = (req, res) ->
         security.authenticate req, res, ["entities"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.deleteEntityDefinition getIdFromRequest(req), (err, result) ->
                 if not err?
@@ -179,7 +179,7 @@ module.exports = (app) ->
     # Add or update an [AuditData](auditData.html).
     postAuditData = (req, res) ->
         security.authenticate req, res, ["auditdata"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setAuditData getDocumentFromBody(req), null, (err, result) ->
                 if result? and not err?
@@ -191,7 +191,7 @@ module.exports = (app) ->
     # Patch only the specified properties of an [AuditData](auditData.html).
     patchAuditData = (req, res) ->
         security.authenticate req, res, ["auditdata"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setAuditData getDocumentFromBody(req), {patch: true}, (err, result) ->
                 if result? and not err?
@@ -203,7 +203,7 @@ module.exports = (app) ->
     # Delete an [AuditData](auditData.html).
     deleteAuditData = (req, res) ->
         security.authenticate req, res, ["auditdata"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.deleteAuditData getIdFromRequest(req), (err, result) ->
                 if not err?
@@ -227,7 +227,7 @@ module.exports = (app) ->
     # Add or update an [AuditEvent](auditEvent.html).
     postAuditEvent = (req, res) ->
         security.authenticate req, res, ["auditevents"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setAuditEvent getDocumentFromBody(req), null, (err, result) ->
                 if result? and not err?
@@ -238,7 +238,7 @@ module.exports = (app) ->
     # Patch only the specified properties of an [AuditEvent](auditEvent.html).
     patchAuditEvent = (req, res) ->
         security.authenticate req, res, ["auditevents"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setAuditEvent getDocumentFromBody(req), {patch: true}, (err, result) ->
                 if result? and not err?
@@ -249,7 +249,7 @@ module.exports = (app) ->
     # Delete an [AuditEvent](auditEvent.html).
     deleteAuditEvent = (req, res) ->
         security.authenticate req, res, ["auditevents"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.deleteAuditEvent getIdFromRequest(req), (err, result) ->
                 if not err?
@@ -272,7 +272,7 @@ module.exports = (app) ->
     # Add or update an [Variable](variable.html).
     postVariable = (req, res) ->
         security.authenticate req, res, ["variables"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setVariable getDocumentFromBody(req), null, (err, result) ->
                 if result? and not err?
@@ -283,7 +283,7 @@ module.exports = (app) ->
     # Patch only the specified properties of a [Variable](variable.html).
     patchVariable = (req, res) ->
         security.authenticate req, res, ["variables"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setVariable getDocumentFromBody(req), {patch: true}, (err, result) ->
                 if result? and not err?
@@ -294,7 +294,7 @@ module.exports = (app) ->
     # Delete a [Variable](variable.html).
     deleteVariable = (req, res) ->
         security.authenticate req, res, ["variables"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.deleteVariable getIdFromRequest(req), (err, result) ->
                 if not err?
@@ -317,7 +317,7 @@ module.exports = (app) ->
     # Add or update a [Map](map.html).
     postMap = (req, res) ->
         security.authenticate req, res, ["mapedit"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             # Get map from request body.
             map = getDocumentFromBody req
@@ -343,7 +343,7 @@ module.exports = (app) ->
     # Patch only the specified properties of a [Map](map.html).
     patchMap = (req, res) ->
         security.authenticate req, res, ["mapedit"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.setMap getDocumentFromBody(req), {patch: true}, (err, result) ->
                 if result? and not err?
@@ -354,7 +354,7 @@ module.exports = (app) ->
     # Delete a [Map](map.html).
     deleteMap = (req, res) ->
         security.authenticate req, res, ["mapedit"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.deleteMap getIdFromRequest(req), (err, result) ->
                 if not err?
@@ -390,7 +390,7 @@ module.exports = (app) ->
     # Get a single or a collection of [Users](user.html).
     getUser = (req, res) ->
         security.authenticate req, res, (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             # Check if should get the logged user's details.
             id = getIdFromRequest req
@@ -421,7 +421,7 @@ module.exports = (app) ->
     # Add or update a [Users](user.html).
     postUser = (req, res) ->
         security.authenticate req, res, (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             user = getDocumentFromBody req
 
@@ -447,7 +447,7 @@ module.exports = (app) ->
     # Patch only the specified properties of a [Users](user.html).
     patchUser = (req, res) ->
         security.authenticate req, res, (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             user = getDocumentFromBody req
 
@@ -473,7 +473,7 @@ module.exports = (app) ->
     # Delete a [Users](user.html).
     deleteUser = (req, res) ->
         security.authenticate req, res, ["admin"], (authResult) ->
-            return if not authResult
+            return false if not authResult
 
             database.deleteUser getIdFromRequest(req), (err, result) ->
                 if not err?

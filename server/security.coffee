@@ -74,11 +74,18 @@ class Security
         @guestUser = {id: "guest", displayName: settings.security.guestDisplayName, username: "guest", roles: ["guest"]}
 
     # Authenticate user by checking request and cookies. Will redirect to the login page if not authenticated,
-    # or send access denied if hasn't necessary roles. The `roles` is optional.
+    # or send access denied if hasn't necessary roles. The `roles` and `redirect` are optional.
     # Returns true if auth passes or false if it doesn't.
-    authenticate: (req, res, roles, callback) =>
-        if not callback? and roles?
-            callback = roles
+    authenticate: (req, res, roles, redirect, callback) =>
+        if not callback?
+            if redirect?
+                callback = redirect
+                redirect = null
+            else if roles?
+                callback = roles
+                roles = null
+        if lodash.isBoolean roles
+            redirect = roles
             roles = null
 
         # Check if user is authenticated and has the specified roles.
@@ -87,23 +94,25 @@ class Security
             if @checkUserRoles req.user, roles
                 return callback true
             else
-                res.redirect "/401"
+                res.redirect("/401") if redirect
                 return callback false
 
         # Check if user cookie is set. If so, validate it now and check roles.
         if req.signedCookies?.user?
             @validateUser req.signedCookies.user, null, (err, result) =>
                 if result? and result isnt false
-                    @login req, res, result, true
+                    @login req, res, {user: result, cookie: true, redirect: false}
 
                     if @checkUserRoles result, roles
                         return callback true
                     else
-                        res.redirect "/401"
+                        res.redirect("/401") if redirect
                         return callback false
 
-        # Not authenticated, return false.
-        return callback false
+        # Not authenticated if req.user is still empty, return false.
+        if not req.user?
+            res.redirect("/login") if redirect
+            return callback false
 
     # Helper to validate user login. If no user was specified and [settings](settings.html)
     # allow guest access, then log as guest.
@@ -234,29 +243,35 @@ class Security
 
     # Helper to login user, mainly user to login as guest. Normal login operations are
     # handled automatically by the passport module (using basic and ldap auth).
-    # If the optional `cookie` is true, it will save a cookie with auth details.
-    login: (req, res, user, cookie) =>
+    # If the optional `cookie` option is true, it will save a cookie with auth details.
+    login: (req, res, options) =>
+        user = options?.user
+
+        # User must be defined.
         if not user?
             expresser.logger.warn "Security.login", "Invalid user (null or undefined)."
-            return res.redirect "/login?invalid_user"
+            res.redirect "/login?invalid_user" if options.redirect
+            return
 
         # Check if guest is allowed.
         if not settings.security.guestEnabled and user.username is "guest"
             expresser.logger.warn "Security.login", "Guest access is not allowed."
-            return res.redirect "/login?guest_not_allowed"
+            res.redirect "/login?guest_not_allowed" if options.redirect
+            return
 
         # Log the user in.
         req.login user, (err) ->
             if err?
                 expresser.logger.error "Security.login", user, err
-                return res.redirect "/login?error"
+                res.redirect "/login?error" if options.redirect
+                return
 
             # Save to cookie?
-            if cookie
+            if options.cookie
                 maxAge = settings.security.authCookieMaxAge * 60 * 60 * 1000
                 res.cookie "user", user.username, {maxAge: maxAge, signed: true}
 
-            return res.redirect "/"
+            res.redirect "/" if options.redirect
 
     # Logout and remove the specified user from the cache.
     logout: (req, res) =>

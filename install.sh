@@ -345,8 +345,9 @@ checkImageMagick(){
     if checkDependency "convert"; then
         echo "ImageMagick is installed!"
     else
-        aboutDependency "ImageMagick is necessary to generate map thumbnails." 1
+        aboutDependency "ImageMagick and Ghostscript are necessary to generate map thumbnails." 1
         confirmInstall "imagemagick" 0
+        confirmInstall "ghostscript" 0
     fi
 }
 
