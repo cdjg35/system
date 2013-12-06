@@ -92,13 +92,6 @@
 
     // PASSPORT AND AUTHENTICATION SETTINGS
     "passport": {
-        // Parameters to be passed to the passport module.
-        "params": {
-            "successRedirect": "/",
-            "failureRedirect": "/login",
-            "failureFlash": true,
-            "session": true
-        },
         // By default the System App will use basic HTTP authentication.
         "basic": {
             "enabled": true

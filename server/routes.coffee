@@ -608,8 +608,13 @@ module.exports = (app) ->
     # ----------------------------------------------------------------------
 
     # Set authentication options.
-    passportOptions = settings.passport.params
     passportStrategy = security.getPassportStrategy()
+    passportOptions = { failureFlash: true, session: true }
+
+    # If using LDAP auth, set failure and success redirects.
+    if settings.passport.ldap.enabled
+        passportOptions.successRedirect = "/"
+        passportOptions.failureRedirect = "/login"
 
     # Login and logout routes.
     app.get "/login", getLogin
@@ -620,8 +625,12 @@ module.exports = (app) ->
     app.get "/guest", getGuest
 
     # Main app routes.
-    app.get "/", getIndex
-    app.get "/admin", getAdmin
+    if passportStrategy is "basic"
+        app.get "/", security.passport.authenticate(passportStrategy, passportOptions), getIndex
+        app.get "/admin", security.passport.authenticate(passportStrategy, passportOptions), getAdmin
+    else
+        app.get "/", getIndex
+        app.get "/admin", getAdmin
 
     # Upgrader page.
     app.get "/upgrade", runUpgrade
