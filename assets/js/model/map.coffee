@@ -34,7 +34,6 @@ class SystemApp.Map extends SystemApp.BaseModel
     name: (value) =>
         if value?
             @set "name", value
-            console.warn "new name", value
         @get "name"
 
     # Helper to get / set the map creation date.
