@@ -195,8 +195,7 @@ timer for each entity definition and transmitting the refreshed data to users vi
 
         
           <div class='highlight'><pre>    <span class="attribute">initEntityTimers</span>:<span class="function"> =&gt;</span>
-        <span class="keyword">if</span> settings.general.debug
-            expresser.logger.info <span class="string">"Manager.initEntityTimers"</span>
+        expresser.logger.debug <span class="string">"Manager.initEntityTimers"</span>
 
         <span class="property">@stopEntityTimers</span>()
         database.getEntityDefinition <span class="literal">null</span>, <span class="property">@startEntityTimers</span></pre></div>
@@ -223,8 +222,7 @@ and error (if any) in result of the <code>getAuditData</code> database call.</p>
             sockets.sendServerError <span class="string">"Manager: could not load Entity Definition items."</span>, err
         <span class="keyword">else</span>
             <span class="property">@setEntityTimer</span> entityDef <span class="keyword">for</span> entityDef <span class="keyword">in</span> result
-            <span class="keyword">if</span> settings.general.debug
-                expresser.logger.info <span class="string">"Manager.startEntityTimers"</span>, <span class="string">"Started timers for <span class="subst">#{result.length}</span> entities."</span></pre></div>
+            expresser.logger.debug <span class="string">"Manager.startEntityTimers"</span>, <span class="string">"Started timers for <span class="subst">#{result.length}</span> entities."</span></pre></div>
         
       
         
@@ -260,8 +258,7 @@ and error (if any) in result of the <code>getAuditData</code> database call.</p>
 
         <span class="property">@timersEntityRefresh</span>.push timer
 
-        <span class="keyword">if</span> settings.general.debug
-            expresser.logger.info <span class="string">"Manager.setEntityTimer"</span>, entityDef.friendlyId, interval + <span class="string">"s"</span></pre></div>
+        expresser.logger.debug <span class="string">"Manager.setEntityTimer"</span>, entityDef.friendlyId, interval + <span class="string">"s"</span></pre></div>
         
       
         
@@ -281,7 +278,7 @@ if there are connected clients, to avoid bandwidth and processing waste.</p>
           <div class='highlight'><pre>        <span class="keyword">if</span> entityDef.sourceUrl? <span class="keyword">and</span> entityDef.sourceUrl <span class="keyword">isnt</span> <span class="string">""</span>
             sync.download entityDef.sourceUrl, settings.path.downloadsDir + <span class="string">"entityobjects."</span> + entityDef.friendlyId + <span class="string">".json"</span>, <span class="function"><span class="params">(err, localFile)</span> =&gt;</span>
                 <span class="property">@transmitDataToClients</span> err, localFile, entityDef, sockets.sendEntityRefresh, database.setEntityDefinition
-        <span class="keyword">else</span> <span class="keyword">if</span> settings.general.debug
+        <span class="keyword">else</span>
             expresser.logger.warn <span class="string">"Manager.refreshEntity"</span>, entityDef.friendlyId, <span class="string">"No sourceUrl set. Abort."</span></pre></div>
         
       
@@ -296,8 +293,7 @@ timer for each audit data and transmitting the refreshed data to users via socke
 
         
           <div class='highlight'><pre>    <span class="attribute">initAuditDataTimers</span>:<span class="function"> =&gt;</span>
-        <span class="keyword">if</span> settings.general.debug
-            expresser.logger.info <span class="string">"Manager.initAuditDataTimers"</span>
+        expresser.logger.debug <span class="string">"Manager.initAuditDataTimers"</span>
 
         <span class="property">@stopAuditDataTimers</span>()
         database.getAuditData <span class="literal">null</span>, <span class="property">@startAuditDataTimers</span></pre></div>
@@ -324,8 +320,7 @@ and error (if any) in result of the <code>getAuditData</code> database call.</p>
             sockets.sendServerError <span class="string">"Manager: could not load Audit Data items."</span>, err
         <span class="keyword">else</span>
             <span class="property">@setAuditDataTimer</span> auditData <span class="keyword">for</span> auditData <span class="keyword">in</span> result
-            <span class="keyword">if</span> settings.general.debug
-                expresser.logger.info <span class="string">"Manager.startAuditDataTimers"</span>, <span class="string">"Started timers for <span class="subst">#{result.length}</span> audit data."</span></pre></div>
+            expresser.logger.debug <span class="string">"Manager.startAuditDataTimers"</span>, <span class="string">"Started timers for <span class="subst">#{result.length}</span> audit data."</span></pre></div>
         
       
         
@@ -361,8 +356,7 @@ and error (if any) in result of the <code>getAuditData</code> database call.</p>
 
         <span class="property">@timersAuditDataRefresh</span>.push timer
 
-        <span class="keyword">if</span> settings.general.debug
-            expresser.logger.info <span class="string">"Manager.setAuditDataTimer"</span>, auditData.friendlyId, interval + <span class="string">"ms"</span></pre></div>
+        expresser.logger.debug <span class="string">"Manager.setAuditDataTimer"</span>, auditData.friendlyId, interval + <span class="string">"ms"</span></pre></div>
         
       
         
@@ -382,7 +376,7 @@ if there are connected clients, to avoid bandwidth and processing waste.</p>
           <div class='highlight'><pre>        <span class="keyword">if</span> auditData.sourceUrl? <span class="keyword">and</span> auditData.sourceUrl <span class="keyword">isnt</span> <span class="string">""</span>
             sync.download auditData.sourceUrl, settings.path.downloadsDir + <span class="string">"auditdata."</span> + auditData.friendlyId + <span class="string">".json"</span>, <span class="function"><span class="params">(err, localFile)</span> =&gt;</span>
                 <span class="property">@transmitDataToClients</span> err, localFile, auditData, sockets.sendAuditDataRefresh, database.setAuditData
-        <span class="keyword">else</span> <span class="keyword">if</span> settings.general.debug
+        <span class="keyword">else</span>
             expresser.logger.warn <span class="string">"Manager.refreshAuditData"</span>, auditData.friendlyId, <span class="string">"No sourceUrl set. Abort."</span></pre></div>
         
       
@@ -404,8 +398,7 @@ The <code>socketsCallback</code> and <code>dbCallback</code> are called against 
                 <span class="keyword">if</span> err1?
                     sockets.sendServerError <span class="string">"Manager: could not read <span class="subst">#{localFile}</span>."</span>, err1
                 <span class="keyword">else</span>
-                    <span class="keyword">if</span> settings.general.debug
-                        expresser.logger.info <span class="string">"Manager.transmitDataToClients"</span>, localFile</pre></div>
+                    expresser.logger.debug <span class="string">"Manager.transmitDataToClients"</span>, localFile</pre></div>
         
       
         

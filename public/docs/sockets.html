@@ -23,8 +23,8 @@
               
                 
                 <li>
-                  <a class="source" href="admin.html">
-                    admin.coffee
+                  <a class="source" href="adminjs.html">
+                    adminjs.coffee
                   </a>
                 </li>
               
@@ -95,6 +95,13 @@
                 <li>
                   <a class="source" href="appjs.html">
                     appjs.coffee
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="basejs.html">
+                    basejs.coffee
                   </a>
                 </li>
               
@@ -340,6 +347,13 @@
                 <li>
                   <a class="source" href="helpView.html">
                     helpView.coffee
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="loginView.html">
+                    loginView.coffee
                   </a>
                 </li>
               
@@ -622,8 +636,7 @@ clients to refresh the window in X seconds.</p>
         
           <div class='highlight'><pre>    <span class="attribute">sendClientsRefresh</span>: <span class="function"><span class="params">(seconds)</span> -&gt;</span>
         <span class="keyword">if</span> <span class="keyword">not</span> SystemApp.Data.loggedUser.hasRole(<span class="string">"admin"</span>)
-            SystemApp.consoleLog <span class="string">"Sockets.sendClientRefresh"</span>, <span class="string">"You don't have the necessary permissions!"</span>
-            <span class="keyword">return</span></pre></div>
+            <span class="keyword">return</span> SystemApp.consoleLog <span class="string">"Sockets.sendClientRefresh"</span>, <span class="string">"You don't have the necessary permissions!"</span></pre></div>
         
       
         
