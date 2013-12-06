@@ -16,17 +16,12 @@ The final 1.0.0 version is expected to be ready by Summer 2013.
 #### What's still not ready for prime time?
 
 ##### Sooner than later
-- Users and roles. Basic HTTP authentication is done and ready, LDAP to follow.
-- Enforce roles validation also on the server side.
-- Admin area to manage server, settings and users directly on the browser.
 - Better and smarter auto completion when editing shape labels.
 - Auto completion when editing Audit Event rules (just like on shape labels).
-- Performance improvements on complex maps. SVG is slow, so we'll tweak our implementation to
-  minimze DOM queries and whenever possible use hardware accelerated features on rendering.
+- Self-healing features - app will self diagnose in case too many errors are triggered.
 
 ##### Not so soon
 - Better and more stable sync of data using Socket.IO instead of AJAX calls.
-- Self-healing features - app will self diagnose in case too many errors are triggered.
 - External API with HTTP webhooks. The current API is for internal use only.
 - Undo and redo of actions especially when editing maps.
 - Support for multiple users editing a map at the same time, or at least map locking when there's
