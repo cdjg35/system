@@ -115,7 +115,7 @@
         
       
         
-        <h2 id="main-and-admin-routes">MAIN AND ADMIN ROUTES</h2>
+        <h2 id="login-and-logout-routes">LOGIN AND LOGOUT ROUTES</h2>
 
         
       
@@ -124,7 +124,11 @@
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">getLogin</span> = <span class="params">(req, res)</span> -&gt;</span>
-        options =  getResponseOptions req</pre></div>
+        options = getResponseOptions req
+        flash = req.flash?()
+        msg = flash.error[<span class="number">0</span>] <span class="keyword">if</span> flash?.error?
+        msg = <span class="literal">null</span> <span class="keyword">if</span> msg <span class="keyword">is</span> <span class="string">"Missing credentials"</span>
+        options.errorMsg = msg</pre></div>
         
       
         
@@ -139,17 +143,28 @@
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">postLogin</span> = <span class="params">(req, res)</span> -&gt;</span>
-        username = req.body.username
-        password = req.body.password
+        res.redirect <span class="string">"/"</span></pre></div>
+        
+      
+        
+        <p>The logout page.</p>
 
-        <span class="keyword">if</span> <span class="keyword">not</span> username? <span class="keyword">or</span> username <span class="keyword">is</span> <span class="string">""</span> <span class="keyword">or</span> <span class="keyword">not</span> password? <span class="keyword">or</span> password <span class="keyword">is</span> <span class="string">""</span>
-            res.redirect <span class="string">"/login"</span>
-        <span class="keyword">else</span>
-            security.validateUser username, password, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
-                <span class="keyword">if</span> err?
-                    res.send <span class="string">"Error: <span class="subst">#{JSON.stringify(err)}</span>"</span>
-                <span class="keyword">else</span>
-                    res.send <span class="string">"Login validated! <span class="subst">#{JSON.stringify(result)}</span>"</span></pre></div>
+        
+          <div class='highlight'><pre>    <span class="function"><span class="title">getLogout</span> = <span class="params">(req, res)</span> -&gt;</span>
+        security.logout req, res</pre></div>
+        
+      
+        
+        <p>Login as guest (only if guest access is enabled on security settings).</p>
+
+        
+          <div class='highlight'><pre>    <span class="function"><span class="title">getGuest</span> = <span class="params">(req, res)</span> -&gt;</span>
+        security.login req, res, {<span class="attribute">user</span>: security.guestUser, <span class="attribute">cookie</span>: <span class="literal">true</span>, <span class="attribute">redirect</span>: <span class="literal">true</span>}</pre></div>
+        
+      
+        
+        <h2 id="main-and-admin-routes">MAIN AND ADMIN ROUTES</h2>
+
         
       
         
@@ -157,18 +172,11 @@
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">getIndex</span> = <span class="params">(req, res)</span> -&gt;</span>
-        <span class="keyword">if</span> <span class="keyword">not</span> req.user?
-            res.redirect <span class="string">"/login"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, <span class="literal">true</span>, <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        options =  getResponseOptions req</pre></div>
-        
-      
-        
-        <p>Render the index page.</p>
-
-        
-          <div class='highlight'><pre>        res.render <span class="string">"index"</span>, options</pre></div>
+            options = getResponseOptions req
+            res.render <span class="string">"index"</span>, options</pre></div>
         
       
         
@@ -177,27 +185,11 @@ access this page.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">getAdmin</span> = <span class="params">(req, res)</span> -&gt;</span>
-        <span class="keyword">if</span> <span class="keyword">not</span> req.user?
-            res.redirect <span class="string">"/login"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"admin"</span>], <span class="literal">true</span>, <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        options =  getResponseOptions req</pre></div>
-        
-      
-        
-        <p>Make sure user has admin role.</p>
-
-        
-          <div class='highlight'><pre>        <span class="keyword">if</span> options.roles.admin <span class="keyword">isnt</span> <span class="literal">true</span>
-            res.redirect <span class="string">"/401"</span>
-            <span class="keyword">return</span></pre></div>
-        
-      
-        
-        <p>Render the admin page.</p>
-
-        
-          <div class='highlight'><pre>        res.render <span class="string">"admin"</span>, options</pre></div>
+            options = getResponseOptions req
+            res.render <span class="string">"admin"</span>, options</pre></div>
         
       
         
@@ -211,7 +203,7 @@ access this page.</p>
             <span class="keyword">if</span> f.indexOf(<span class="string">".coffee"</span>) &gt; <span class="number">0</span>
                 <span class="built_in">require</span> <span class="string">"../upgrade/"</span> + f
 
-        res.send <span class="string">"UPGRADED!!!"</span></pre></div>
+        res.send <span class="string">"UPGRADED!"</span></pre></div>
         
       
         
@@ -237,17 +229,15 @@ This will also restart the entity timers on the server <a href="manager.html">ma
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">postEntityDefinition</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.entities
-            sendForbiddenResponse res, <span class="string">"Entity POST"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"entities"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setEntityDefinition getDocumentFromBody<span class="function"><span class="params">(req)</span>, <span class="title">null</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                manager.initEntityTimers()
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Entity POST"</span>, err</pre></div>
+            database.setEntityDefinition getDocumentFromBody<span class="function"><span class="params">(req)</span>, <span class="title">null</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    manager.initEntityTimers()
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Entity POST"</span>, err</pre></div>
         
       
         
@@ -255,17 +245,15 @@ This will also restart the entity timers on the server <a href="manager.html">ma
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">patchEntityDefinition</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.entities
-            sendForbiddenResponse res, <span class="string">"Entity PATCH"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"entities"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setEntityDefinition getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                manager.initEntityTimers()
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Entity PATCH"</span>, err</pre></div>
+            database.setEntityDefinition getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    manager.initEntityTimers()
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Entity PATCH"</span>, err</pre></div>
         
       
         
@@ -274,17 +262,15 @@ This will also restart the entity timers on the server <a href="manager.html">ma
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">deleteEntityDefinition</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.entities
-            sendForbiddenResponse res, <span class="string">"Entity DELETE"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"entities"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.deleteEntityDefinition getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> <span class="keyword">not</span> err?
-                manager.initEntityTimers()
-                res.send <span class="string">""</span>
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Entity DELETE"</span>, err</pre></div>
+            database.deleteEntityDefinition getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> <span class="keyword">not</span> err?
+                    manager.initEntityTimers()
+                    res.send <span class="string">""</span>
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Entity DELETE"</span>, err</pre></div>
         
       
         
@@ -360,17 +346,15 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">postAuditData</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.auditdata
-            sendForbiddenResponse res, <span class="string">"Audit Data POST"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"auditdata"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setAuditData getDocumentFromBody<span class="function"><span class="params">(req)</span>, <span class="title">null</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                manager.initAuditDataTimers()
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Audit Data POST"</span>, err</pre></div>
+            database.setAuditData getDocumentFromBody<span class="function"><span class="params">(req)</span>, <span class="title">null</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    manager.initAuditDataTimers()
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Audit Data POST"</span>, err</pre></div>
         
       
         
@@ -378,17 +362,15 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">patchAuditData</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.auditdata
-            sendForbiddenResponse res, <span class="string">"Audit Data PATCH"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"auditdata"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setAuditData getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                manager.initAuditDataTimers()
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Audit Data PATCH"</span>, err</pre></div>
+            database.setAuditData getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    manager.initAuditDataTimers()
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Audit Data PATCH"</span>, err</pre></div>
         
       
         
@@ -396,17 +378,15 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">deleteAuditData</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.auditdata
-            sendForbiddenResponse res, <span class="string">"Audit Data DELETE"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"auditdata"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.deleteAuditData getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> <span class="keyword">not</span> err?
-                manager.initAuditDataTimers()
-                res.send <span class="string">""</span>
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Audit Data DELETE"</span>, err</pre></div>
+            database.deleteAuditData getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> <span class="keyword">not</span> err?
+                    manager.initAuditDataTimers()
+                    res.send <span class="string">""</span>
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Audit Data DELETE"</span>, err</pre></div>
         
       
         
@@ -431,16 +411,14 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">postAuditEvent</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.auditevents
-            sendForbiddenResponse res, <span class="string">"Audit Event POST"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"auditevents"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setAuditEvent getDocumentFromBody<span class="function"><span class="params">(req)</span>, <span class="title">null</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Audit Event POST"</span>, err</pre></div>
+            database.setAuditEvent getDocumentFromBody<span class="function"><span class="params">(req)</span>, <span class="title">null</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Audit Event POST"</span>, err</pre></div>
         
       
         
@@ -448,16 +426,14 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">patchAuditEvent</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.auditevents
-            sendForbiddenResponse res, <span class="string">"Audit Event PATCH"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"auditevents"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setAuditEvent getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Audit Event PATCH"</span>, err</pre></div>
+            database.setAuditEvent getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Audit Event PATCH"</span>, err</pre></div>
         
       
         
@@ -465,16 +441,14 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">deleteAuditEvent</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.auditevents
-            sendForbiddenResponse res, <span class="string">"Audit Event DELETE"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"auditevents"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.deleteAuditEvent getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> <span class="keyword">not</span> err?
-                res.send <span class="string">""</span>
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Audit Event DELETE"</span>, err</pre></div>
+            database.deleteAuditEvent getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> <span class="keyword">not</span> err?
+                    res.send <span class="string">""</span>
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Audit Event DELETE"</span>, err</pre></div>
         
       
         
@@ -499,16 +473,14 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">postVariable</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.variables
-            sendForbiddenResponse res, <span class="string">"Variable POST"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"variables"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setVariable getDocumentFromBody<span class="function"><span class="params">(req)</span>, <span class="title">null</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Variable POST"</span>, err</pre></div>
+            database.setVariable getDocumentFromBody<span class="function"><span class="params">(req)</span>, <span class="title">null</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Variable POST"</span>, err</pre></div>
         
       
         
@@ -516,16 +488,14 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">patchVariable</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.variables
-            sendForbiddenResponse res, <span class="string">"Variable PATCH"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"variables"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setVariable getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Variable PATCH"</span>, err</pre></div>
+            database.setVariable getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Variable PATCH"</span>, err</pre></div>
         
       
         
@@ -533,16 +503,14 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">deleteVariable</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.variables
-            sendForbiddenResponse res, <span class="string">"Variable DELETE"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"variables"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.deleteVariable getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> <span class="keyword">not</span> err?
-                res.send <span class="string">""</span>
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Variable DELETE"</span>, err</pre></div>
+            database.deleteVariable getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> <span class="keyword">not</span> err?
+                    res.send <span class="string">""</span>
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Variable DELETE"</span>, err</pre></div>
         
       
         
@@ -567,48 +535,45 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">postMap</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.mapcreate <span class="keyword">and</span> <span class="keyword">not</span> roles.mapedit
-            sendForbiddenResponse res, <span class="string">"Map POST"</span>
-            <span class="keyword">return</span></pre></div>
+        security.authenticate req, res, [<span class="string">"mapedit"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult</pre></div>
         
       
         
         <p>Get map from request body.</p>
 
         
-          <div class='highlight'><pre>        map = getDocumentFromBody req</pre></div>
+          <div class='highlight'><pre>            map = getDocumentFromBody req</pre></div>
         
       
         
         <p>Check if map is read only.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> map.isReadOnly
-            sendForbiddenResponse res, <span class="string">"Map POST (read-only)"</span>
-            <span class="keyword">return</span></pre></div>
+          <div class='highlight'><pre>            <span class="keyword">if</span> map.isReadOnly
+                <span class="keyword">return</span> sendForbiddenResponse res, <span class="string">"Map POST (read-only)"</span></pre></div>
         
       
         
         <p>If map is new, set the <code>createdByUserId</code> to the current logged user&#39;s ID.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> map.id? <span class="keyword">or</span> map.id <span class="keyword">is</span> <span class="string">""</span>
-            map.createdByUserId = req.user.id</pre></div>
+          <div class='highlight'><pre>            <span class="keyword">if</span> <span class="keyword">not</span> map.id? <span class="keyword">or</span> map.id <span class="keyword">is</span> <span class="string">""</span>
+                map.createdByUserId = req.user.id</pre></div>
         
       
         
         <p>Make sure creation date is set.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> map.dateCreated? <span class="keyword">or</span> map.dateCreated <span class="keyword">is</span> <span class="string">""</span>
-            map.dateCreated = <span class="keyword">new</span> Date()
+          <div class='highlight'><pre>            <span class="keyword">if</span> <span class="keyword">not</span> map.dateCreated? <span class="keyword">or</span> map.dateCreated <span class="keyword">is</span> <span class="string">""</span>
+                map.dateCreated = <span class="keyword">new</span> Date()
 
-        database.setMap map, <span class="literal">null</span>, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Map POST"</span>, err</pre></div>
+            database.setMap map, <span class="literal">null</span>, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Map POST"</span>, err</pre></div>
         
       
         
@@ -616,16 +581,14 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">patchMap</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.mapedit
-            sendForbiddenResponse res, <span class="string">"Map PATCH"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"mapedit"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.setMap getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Map PATCH"</span>, err</pre></div>
+            database.setMap getDocumentFromBody<span class="function"><span class="params">(req)</span>, {<span class="title">patch</span>: <span class="title">true</span>}, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Map PATCH"</span>, err</pre></div>
         
       
         
@@ -633,16 +596,14 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">deleteMap</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> <span class="keyword">not</span> roles.mapedit
-            sendForbiddenResponse res, <span class="string">"Map DELETE"</span>
-            <span class="keyword">return</span>
+        security.authenticate req, res, [<span class="string">"mapedit"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        database.deleteMap getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> <span class="keyword">not</span> err?
-                res.send <span class="string">""</span>
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"Map DELETE"</span>, err</pre></div>
+            database.deleteMap getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> <span class="keyword">not</span> err?
+                    res.send <span class="string">""</span>
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"Map DELETE"</span>, err</pre></div>
         
       
         
@@ -652,7 +613,8 @@ specified <code>friendlyId</code> wasn&#39;t found in the database.</p>
       
         
         <p>Generates a thumbnail of the specified <a href="map.html">Map</a>, by passing
-its ID and SVG representation.</p>
+its ID and SVG representation.
+TODO! Rewrite image resizing / converting to support custom fonts.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">postMapThumb</span> = <span class="params">(req, res)</span> -&gt;</span>
@@ -680,51 +642,54 @@ its ID and SVG representation.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">getUser</span> = <span class="params">(req, res)</span> -&gt;</span>
-        <span class="keyword">if</span> <span class="keyword">not</span> req.user?
-            sendForbiddenResponse res, <span class="string">"User GET"</span>
-            <span class="keyword">return</span>
-
-        roles = getUserRoles req</pre></div>
+        security.authenticate req, res, <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult</pre></div>
         
       
         
         <p>Check if should get the logged user&#39;s details.</p>
 
         
-          <div class='highlight'><pre>        id = getIdFromRequest(req)
-        id = req.user.id <span class="keyword">if</span> id <span class="keyword">is</span> <span class="string">"logged"</span></pre></div>
+          <div class='highlight'><pre>            id = getIdFromRequest req
+            id = req.user.id <span class="keyword">if</span> id <span class="keyword">is</span> <span class="string">"logged"</span></pre></div>
         
       
         
         <p>Return guest user if logged as &quot;guest&quot; and guest access is enabled on settings.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> settings.security.guestEnabled <span class="keyword">and</span> req.user.id <span class="keyword">is</span> <span class="string">"guest"</span>
-            res.send minifyJson security.guestUser
-        <span class="keyword">else</span>
-            database.getUser id, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
-                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?</pre></div>
+          <div class='highlight'><pre>            <span class="keyword">if</span> settings.security.guestEnabled <span class="keyword">and</span> req.user.id <span class="keyword">is</span> <span class="string">"guest"</span>
+                res.send minifyJson security.guestUser
+            <span class="keyword">else</span>
+                database.getUser id, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
+                    <span class="keyword">if</span> user? <span class="keyword">and</span> <span class="keyword">not</span> err?</pre></div>
         
       
         
         <p>Check user permissions.</p>
 
         
-          <div class='highlight'><pre>                    <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> result.id <span class="keyword">isnt</span> req.user.id
-                        sendForbiddenResponse res, <span class="string">"User GET"</span>
-                        <span class="keyword">return</span></pre></div>
+          <div class='highlight'><pre>                        <span class="keyword">if</span> <span class="keyword">not</span> security.checkUserRoles(req.user, <span class="string">"admin"</span>) <span class="keyword">and</span> result.id <span class="keyword">isnt</span> req.user.id
+                            <span class="keyword">return</span> sendForbiddenResponse res, <span class="string">"User GET"</span></pre></div>
         
       
         
         <p>Make sure password fields are removed.</p>
 
         
-          <div class='highlight'><pre>                    <span class="keyword">delete</span> result[<span class="string">"passwordHash"</span>]
-                    <span class="keyword">delete</span> result[<span class="string">"password"</span>]
+          <div class='highlight'><pre>                        <span class="keyword">delete</span> result[<span class="string">"passwordHash"</span>]
+                        <span class="keyword">delete</span> result[<span class="string">"password"</span>]</pre></div>
+        
+      
+        
+        <p>Check if user should be a forced admin.</p>
 
-                    res.send minifyJson result
-                <span class="keyword">else</span>
-                    sendErrorResponse res, <span class="string">"User GET"</span>, err</pre></div>
+        
+          <div class='highlight'><pre>                        security.checkForcedAdmin result
+
+                        res.send minifyJson result
+                    <span class="keyword">else</span>
+                        sendErrorResponse res, <span class="string">"User GET"</span>, err</pre></div>
         
       
         
@@ -732,41 +697,41 @@ its ID and SVG representation.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">postUser</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        user = getDocumentFromBody req</pre></div>
+        security.authenticate req, res, <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
+
+            user = getDocumentFromBody req</pre></div>
         
       
         
         <p>Check user permissions.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> user.id <span class="keyword">isnt</span> req.user.id
-            sendForbiddenResponse res, <span class="string">"User POST"</span>
-            <span class="keyword">return</span></pre></div>
+          <div class='highlight'><pre>            <span class="keyword">if</span> <span class="keyword">not</span> security.checkUserRoles(req.user, <span class="string">"admin"</span>) <span class="keyword">and</span> user.id <span class="keyword">isnt</span> req.user.id
+                <span class="keyword">return</span> sendForbiddenResponse res, <span class="string">"User POST"</span></pre></div>
         
       
         
         <p>Make sure password hash is set and remove clear text password.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> user.password?
-            user[<span class="string">"passwordHash"</span>] = security.getPasswordHash user.username, user.password
-            <span class="keyword">delete</span> user[<span class="string">"password"</span>]
-
-        database.setUser user, <span class="literal">null</span>, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?</pre></div>
+          <div class='highlight'><pre>            <span class="keyword">if</span> user.password?
+                user[<span class="string">"passwordHash"</span>] = security.getPasswordHash user.username, user.password
+                <span class="keyword">delete</span> user[<span class="string">"password"</span>]</pre></div>
         
       
         
-        <p>Make sure password fields are removed.</p>
+        <p>Save to DB and make sure password fields are removed.</p>
 
         
-          <div class='highlight'><pre>                <span class="keyword">delete</span> result[<span class="string">"passwordHash"</span>]
-                <span class="keyword">delete</span> result[<span class="string">"password"</span>]
+          <div class='highlight'><pre>            database.setUser user, <span class="literal">null</span>, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    <span class="keyword">delete</span> result[<span class="string">"passwordHash"</span>]
+                    <span class="keyword">delete</span> result[<span class="string">"password"</span>]
 
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"User POST"</span>, err</pre></div>
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"User POST"</span>, err</pre></div>
         
       
         
@@ -774,42 +739,41 @@ its ID and SVG representation.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">patchUser</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req
-        user = getDocumentFromBody req</pre></div>
+        security.authenticate req, res, <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
+
+            user = getDocumentFromBody req</pre></div>
         
       
         
         <p>Check user permissions.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin <span class="keyword">and</span> user.id <span class="keyword">isnt</span> req.user.id
-            sendForbiddenResponse res, <span class="string">"User PATCH"</span>
-            <span class="keyword">return</span></pre></div>
+          <div class='highlight'><pre>            <span class="keyword">if</span> <span class="keyword">not</span> security.checkUserRoles(req.user, <span class="string">"admin"</span>) <span class="keyword">and</span> user.id <span class="keyword">isnt</span> req.user.id
+                <span class="keyword">return</span> sendForbiddenResponse res, <span class="string">"User PATCH"</span></pre></div>
         
       
         
         <p>Make sure user password hash is set.</p>
 
         
-          <div class='highlight'><pre>        user = getDocumentFromBody req
-        <span class="keyword">if</span> user.password?
-            user[<span class="string">"passwordHash"</span>] = security.getPasswordHash user.username, user.password
-            <span class="keyword">delete</span> user[<span class="string">"password"</span>]
-
-        database.setUser user, {<span class="attribute">patch</span>: <span class="literal">true</span>}, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?</pre></div>
+          <div class='highlight'><pre>            <span class="keyword">if</span> user.password?
+                user[<span class="string">"passwordHash"</span>] = security.getPasswordHash user.username, user.password
+                <span class="keyword">delete</span> user[<span class="string">"password"</span>]</pre></div>
         
       
         
-        <p>Make sure password fields are removed.</p>
+        <p>Save to DB and make sure password fields are removed.</p>
 
         
-          <div class='highlight'><pre>                <span class="keyword">delete</span> result[<span class="string">"passwordHash"</span>]
-                <span class="keyword">delete</span> result[<span class="string">"password"</span>]
+          <div class='highlight'><pre>            database.setUser user, {<span class="attribute">patch</span>: <span class="literal">true</span>}, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> <span class="keyword">not</span> err?
+                    <span class="keyword">delete</span> result[<span class="string">"passwordHash"</span>]
+                    <span class="keyword">delete</span> result[<span class="string">"password"</span>]
 
-                res.send minifyJson result
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"User PATCH"</span>, err</pre></div>
+                    res.send minifyJson result
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"User PATCH"</span>, err</pre></div>
         
       
         
@@ -817,22 +781,14 @@ its ID and SVG representation.</p>
 
         
           <div class='highlight'><pre>    <span class="function"><span class="title">deleteUser</span> = <span class="params">(req, res)</span> -&gt;</span>
-        roles = getUserRoles req</pre></div>
-        
-      
-        
-        <p>Check user permissions.</p>
+        security.authenticate req, res, [<span class="string">"admin"</span>], <span class="function"><span class="params">(authResult)</span> -&gt;</span>
+            <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> <span class="keyword">not</span> authResult
 
-        
-          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> roles.admin
-            sendForbiddenResponse res, <span class="string">"User DELETE"</span>
-            <span class="keyword">return</span>
-
-        database.deleteUser getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
-            <span class="keyword">if</span> <span class="keyword">not</span> err?
-                res.send <span class="string">""</span>
-            <span class="keyword">else</span>
-                sendErrorResponse res, <span class="string">"User DELETE"</span>, err</pre></div>
+            database.deleteUser getIdFromRequest<span class="function"><span class="params">(req)</span>, <span class="params">(err, result)</span> -&gt;</span>
+                <span class="keyword">if</span> <span class="keyword">not</span> err?
+                    res.send <span class="string">""</span>
+                <span class="keyword">else</span>
+                    sendErrorResponse res, <span class="string">"User DELETE"</span>, err</pre></div>
         
       
         
@@ -991,8 +947,7 @@ Please note that the &quot;admin&quot; role will be returned always for the onli
         <p>Set roles object using role_name: true.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">for</span> r <span class="keyword">in</span> req.user.roles
-            roles[r] = <span class="literal">true</span>
+          <div class='highlight'><pre>        roles[r] = <span class="literal">true</span> <span class="keyword">for</span> r <span class="keyword">in</span> req.user.roles
 
         <span class="keyword">return</span> roles</pre></div>
         
@@ -1030,42 +985,32 @@ with an &quot;access denied&quot; message.</p>
         <p>Set authentication options.</p>
 
         
-          <div class='highlight'><pre>    passportOptions = {<span class="attribute">session</span>: <span class="literal">true</span>}
-    passportStrategy = <span class="keyword">if</span> expresser.settings.passport.ldap.enabled <span class="keyword">then</span> <span class="string">"ldapauth"</span> <span class="keyword">else</span> <span class="string">"basic"</span></pre></div>
+          <div class='highlight'><pre>    passportOptions = settings.passport.params
+    passportStrategy = security.getPassportStrategy()</pre></div>
         
       
         
-        <p>The login page.</p>
+        <p>Login and logout routes.</p>
 
         
-          <div class='highlight'><pre>    app.get <span class="string">"/login"</span>, getLogin</pre></div>
+          <div class='highlight'><pre>    app.get <span class="string">"/login"</span>, getLogin
+    app.post <span class="string">"/login"</span>, security.passport.authenticate(passportStrategy, passportOptions), postLogin
+    app.get <span class="string">"/logout"</span>, getLogout</pre></div>
         
       
         
-        <p>The login page post validation.</p>
+        <p>Guest access page.</p>
 
         
-          <div class='highlight'><pre>    app.post <span class="string">"/login"</span>, postLogin</pre></div>
+          <div class='highlight'><pre>    app.get <span class="string">"/guest"</span>, getGuest</pre></div>
         
       
         
-        <p>Main index.</p>
+        <p>Main app routes.</p>
 
         
-          <div class='highlight'><pre>    <span class="keyword">if</span> expresser.settings.passport.enabled
-        app.get <span class="string">"/"</span>, security.passport.authenticate(passportStrategy, passportOptions), getIndex
-    <span class="keyword">else</span>
-        app.get <span class="string">"/"</span>, getIndex</pre></div>
-        
-      
-        
-        <p>Admin area.</p>
-
-        
-          <div class='highlight'><pre>    <span class="keyword">if</span> expresser.settings.passport.enabled
-        app.get <span class="string">"/admin"</span>, security.passport.authenticate(passportStrategy, passportOptions), getAdmin
-    <span class="keyword">else</span>
-        app.get <span class="string">"/admin"</span>, getAdmin</pre></div>
+          <div class='highlight'><pre>    app.get <span class="string">"/"</span>, getIndex
+    app.get <span class="string">"/admin"</span>, getAdmin</pre></div>
         
       
         

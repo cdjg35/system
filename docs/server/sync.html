@@ -150,8 +150,7 @@ only after some time (defined by the <code>connRestartInterval</code> web settin
         <span class="keyword">if</span> errorCount?
             <span class="keyword">if</span> errorCount &gt; settings.web.connRestartInterval
                 <span class="keyword">if</span> moment().valueOf() &lt; errorCount
-                    <span class="keyword">if</span> settings.general.debug
-                        expresser.logger.warn <span class="string">"Sync.download"</span>, <span class="string">"Abort because failed too many times before."</span>, remoteUrl
+                    expresser.logger.warn <span class="string">"Sync.download"</span>, <span class="string">"Abort because failed too many times before."</span>, remoteUrl
                     <span class="keyword">return</span>
                 <span class="keyword">else</span>
                     <span class="keyword">delete</span> <span class="property">@errorCounters</span>[remoteUrl]</pre></div>
@@ -350,8 +349,7 @@ download has finished and the file is totally written.</p>
           <div class='highlight'><pre>                        <span class="keyword">delete</span> <span class="property">@currentDownloads</span>[localFile]
                         <span class="keyword">delete</span> <span class="property">@errorCounters</span>[remoteUrl]
 
-                        <span class="keyword">if</span> settings.general.debug
-                            expresser.logger.info <span class="string">"Sync.download"</span>, remoteUrl, localFile
+                        expresser.logger.debug <span class="string">"Sync.download"</span>, remoteUrl, localFile
 
                     fileWriter.end()
                     fileWriter.destroySoon()</pre></div>

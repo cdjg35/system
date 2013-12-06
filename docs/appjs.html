@@ -23,8 +23,8 @@
               
                 
                 <li>
-                  <a class="source" href="admin.html">
-                    admin.coffee
+                  <a class="source" href="adminjs.html">
+                    adminjs.coffee
                   </a>
                 </li>
               
@@ -95,6 +95,13 @@
                 <li>
                   <a class="source" href="appjs.html">
                     appjs.coffee
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="basejs.html">
+                    basejs.coffee
                   </a>
                 </li>
               
@@ -345,6 +352,13 @@
               
                 
                 <li>
+                  <a class="source" href="loginView.html">
+                    loginView.coffee
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="entitiesTabView.html">
                     entitiesTabView.coffee
                   </a>
@@ -483,48 +497,24 @@
 
       
         
-        <h2 id="system-app">System APP</h2>
+        <h2 id="system-app-app-js">System App - App JS</h2>
 
         
       
         
         <p>This is the base app controller.</p>
-<p>= require app.instance.coffee</p>
-<h2 id="libs">LIBS</h2>
+<h2 id="routes">ROUTES</h2>
 
         
       
         
-        <p>= require lib/jquery.js
-= require lib/jquery.localdata.js
-= require lib/jquery.cookie.js
-= require lib/jquery.joyride.js
-= require lib/jquery.tinycolourpicker.js
-= require lib/jsonpath.js
-= require lib/lodash.js
-= require lib/backbone.js
-= require lib/async.js
-= require lib/raphael.js
-= require lib/raphael.link.js
-= require lib/raphael.group.js
-= require lib/moment.js</p>
-<h2 id="app-modules">APP MODULES</h2>
+        <p>= require routes/appRoutes.coffee</p>
+<h2 id="models">MODELS</h2>
 
         
       
         
-        <p>= require settings.coffee
-= require messages.coffee
-= require vectors.coffee
-= require dataUtil.coffee
-= require routes/appRoutes.coffee</p>
-<h2 id="app-models">APP MODELS</h2>
-
-        
-      
-        
-        <p>= require model/base.coffee
-= require model/entityObject.coffee
+        <p>= require model/entityObject.coffee
 = require model/entityDefinition.coffee
 = require model/shape.coffee
 = require model/link.coffee
@@ -536,7 +526,7 @@
 = require model/variable.coffee
 = require model/user.coffee
 = require model/userSettings.coffee</p>
-<h2 id="app-data-sockets-tutorial">APP DATA, SOCKETS, TUTORIAL</h2>
+<h2 id="data-sockets-tutorial">DATA, SOCKETS, TUTORIAL</h2>
 
         
       
@@ -549,9 +539,7 @@
         
       
         
-        <p>= require view/baseView.coffee
-= require view/overlayView.coffee
-= require view/menuView.coffee
+        <p>= require view/menuView.coffee
 = require view/footerView.coffee
 = require view/alertView.coffee</p>
 <h2 id="overlay-and-managers-views">OVERLAY AND MANAGERS VIEWS</h2>
@@ -606,31 +594,7 @@
       
         
         <p>= require manager.coffee</p>
-<h2 id="app-variables">APP VARIABLES</h2>
-
-        
-      
-        
-        <p>The <code>startDate</code> tells when the app was started (page loaded).</p>
-
-        
-          <div class='highlight'><pre>SystemApp.startDate = <span class="keyword">new</span> Date()</pre></div>
-        
-      
-        
-        <h2 id="routes">ROUTES</h2>
-
-        
-      
-        
-        <p>All routes should be defined inside the <a href="routes.html">Routes</a> file.</p>
-
-        
-          <div class='highlight'><pre>SystemApp.routes = <span class="literal">null</span></pre></div>
-        
-      
-        
-        <h2 id="event-dispatchers">EVENT DISPATCHERS</h2>
+<h2 id="event-dispatchers">EVENT DISPATCHERS</h2>
 
         
       
@@ -684,20 +648,6 @@ SystemApp.settingsView = <span class="literal">null</span>
 SystemApp.scriptEditorView = <span class="literal">null</span>
 SystemApp.startView = <span class="literal">null</span>
 SystemApp.variableManagerView = <span class="literal">null</span></pre></div>
-        
-      
-        
-        <h2 id="dom-cache">DOM CACHE</h2>
-
-        
-      
-        
-        <p>The &quot;loading&quot; image (DOM) which gets visible whenever the app
-has any major view state change, and the &quot;debug&quot; notice element.</p>
-
-        
-          <div class='highlight'><pre>SystemApp.$loading = <span class="literal">null</span>
-SystemApp.$debug = <span class="literal">null</span></pre></div>
         
       
         
@@ -945,16 +895,14 @@ value on the <a href="settings.html">Settings</a>.</p>
 
         
           <div class='highlight'><pre>    idleMinutes = SystemApp.idleTime / <span class="number">60000</span>
-    <span class="keyword">if</span> idleMinutes &gt;= SystemApp.Settings.idleRefreshMinutes
-        SystemApp.routes.refresh()</pre></div>
+    SystemApp.routes.refresh() <span class="keyword">if</span> idleMinutes &gt;= SystemApp.Settings.idleRefreshMinutes</pre></div>
         
       
         
         <p>Reset the idle time counter by setting the variable <code>idleTime</code> to 0.</p>
 
         
-          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">resetIdleTime</span> = -&gt;</span>
-    SystemApp.idleTime = <span class="number">0</span></pre></div>
+          <div class='highlight'><pre>SystemApp.<span class="function"><span class="title">resetIdleTime</span> = -&gt;</span> SystemApp.idleTime = <span class="number">0</span></pre></div>
         
       
         
@@ -1044,14 +992,7 @@ on the footer - <a href="alertView.html">Alert View</a>.</p>
         
         
         
-          <div class='highlight'><pre>$(<span class="built_in">document</span>).ready<span class="function"> -&gt;</span></pre></div>
-        
-      
-        
-        <p>Init the app.</p>
-
-        
-          <div class='highlight'><pre>    SystemApp.init()</pre></div>
+          <div class='highlight'><pre>$(<span class="built_in">document</span>).ready<span class="function"> -&gt;</span> SystemApp.init()</pre></div>
         
       
       <div class="fleur">h</div>

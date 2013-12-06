@@ -23,8 +23,8 @@
               
                 
                 <li>
-                  <a class="source" href="admin.html">
-                    admin.coffee
+                  <a class="source" href="adminjs.html">
+                    adminjs.coffee
                   </a>
                 </li>
               
@@ -95,6 +95,13 @@
                 <li>
                   <a class="source" href="appjs.html">
                     appjs.coffee
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="basejs.html">
+                    basejs.coffee
                   </a>
                 </li>
               
@@ -345,6 +352,13 @@
               
                 
                 <li>
+                  <a class="source" href="loginView.html">
+                    loginView.coffee
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="entitiesTabView.html">
                     entitiesTabView.coffee
                   </a>
@@ -555,11 +569,11 @@ clicks a &quot;Create new...&quot; option on the top menu.</p>
       
         
         <p>Show the view using a fade in effect and pass the entity type.
-If user has no &quot;mapcreate&quot; role, hide the view immediately.</p>
+If user has no &quot;mapedit&quot; role, hide the view immediately.</p>
 
         
           <div class='highlight'><pre>    <span class="attribute">onShow</span>:<span class="function"> =&gt;</span>
-        <span class="keyword">if</span> <span class="keyword">not</span> SystemApp.Data.loggedUser.hasRole <span class="string">"mapcreate"</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> SystemApp.Data.loggedUser.hasRole <span class="string">"mapedit"</span>
             errorMsg = SystemApp.Messages.errNoPermissionTo.replace <span class="string">"#"</span>, SystemApp.Messages.createMaps
             SystemApp.alertEvents.trigger <span class="string">"tooltip"</span>, {<span class="attribute">isError</span>: <span class="literal">true</span>, <span class="attribute">title</span>: SystemApp.Messages.accessDenied, <span class="attribute">message</span>: errorMsg}</pre></div>
         

@@ -96,6 +96,7 @@ procedures of the app. The <code>init</code> method is called when the app start
         
           <div class='highlight'><pre>    crypto = <span class="built_in">require</span> <span class="string">"crypto"</span>
     database = <span class="built_in">require</span> <span class="string">"./database.coffee"</span>
+    lodash = <span class="built_in">require</span> <span class="string">"lodash"</span>
     moment = <span class="built_in">require</span> <span class="string">"moment"</span></pre></div>
         
       
@@ -115,10 +116,10 @@ The default expirty time is 1 minute.</p>
         
       
         
-        <p>The default guest user.</p>
+        <p>The default guest user. Will be set on init.</p>
 
         
-          <div class='highlight'><pre>    <span class="attribute">guestUser</span>: {<span class="attribute">id</span>: <span class="string">"guest"</span>, <span class="attribute">displayName</span>: <span class="string">"Guest"</span>, <span class="attribute">username</span>: <span class="string">"guest"</span>, <span class="attribute">roles</span>: [<span class="string">"guest"</span>]}</pre></div>
+          <div class='highlight'><pre>    <span class="attribute">guestUser</span>: <span class="literal">null</span></pre></div>
         
       
         
@@ -134,15 +135,14 @@ authenticate users using basic HTTP authentication.</p>
         <p>Only add passowrd protection if enabled on settings.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> expresser.settings.passport.enabled</pre></div>
+          <div class='highlight'><pre>        <span class="keyword">return</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="property">@getPassportStrategy</span>()?</pre></div>
         
       
         
         <p>User serializer will user the user ID only.</p>
 
         
-          <div class='highlight'><pre>        <span class="property">@passport</span>.serializeUser <span class="function"><span class="params">(user, callback)</span> =&gt;</span>
-            callback <span class="literal">null</span>, user.id</pre></div>
+          <div class='highlight'><pre>        <span class="property">@passport</span>.serializeUser <span class="function"><span class="params">(user, callback)</span> =&gt;</span> callback <span class="literal">null</span>, user.id</pre></div>
         
       
         
@@ -162,7 +162,6 @@ authenticate users using basic HTTP authentication.</p>
         
           <div class='highlight'><pre>        <span class="keyword">if</span> settings.passport.ldap.enabled
             ldapStrategy = (<span class="built_in">require</span> <span class="string">"passport-ldapauth"</span>).Strategy
-
             ldapOptions =
                 <span class="attribute">server</span>:
                     <span class="attribute">url</span>: settings.passport.ldap.server
@@ -170,38 +169,98 @@ authenticate users using basic HTTP authentication.</p>
                     <span class="attribute">adminPassword</span>: settings.passport.ldap.adminPassword
                     <span class="attribute">searchBase</span>: settings.passport.ldap.searchBase
                     <span class="attribute">searchFilter</span>: settings.passport.ldap.searchFilter
-                    url           : <span class="string">''</span>
-                    adminDn       : <span class="string">'uid=cube,ou=robots,ou=users,dc=zalando,dc=net'</span>
-                    adminPassword : <span class="string">'Sohcae6bieh2gigh7yaeh8ji'</span>
-                    searchBase    : <span class="string">'ou=users,dc=zalando,dc=net'</span>
-                    searchFilter  : <span class="string">'(uid={{username}})'</span>
+                    <span class="attribute">tlsOptions</span>: settings.passport.ldap.tlsOptions</pre></div>
+        
+      
+        
+        <p>Use <code>ldapauth</code> strategy.</p>
 
-            <span class="property">@passport</span>.use <span class="keyword">new</span> ldapStrategy ldapOptions, <span class="function"><span class="params">(profile, callback)</span> =&gt;</span>
-                <span class="property">@validateUser</span> profile, callback
-
-            <span class="keyword">if</span> settings.general.debug
-                expresser.logger.info <span class="string">"Security"</span>, <span class="string">"Passport: using LDAP authentication."</span></pre></div>
+        
+          <div class='highlight'><pre>            strategy = <span class="keyword">new</span> ldapStrategy ldapOptions, <span class="function"><span class="params">(profile, callback)</span> =&gt;</span> <span class="property">@validateUser</span> profile, <span class="literal">null</span>, callback
+            <span class="property">@passport</span>.use strategy
+            expresser.logger.debug <span class="string">"Security"</span>, <span class="string">"Passport: using LDAP authentication."</span></pre></div>
         
       
         
         <p>Enable basic HTTP authentication?</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> settings.passport.basic.enabled
-            httpStrategy = (<span class="built_in">require</span> <span class="string">"passport-http"</span>).BasicStrategy
-
-            <span class="property">@passport</span>.use <span class="keyword">new</span> httpStrategy <span class="function"><span class="params">(username, password, callback)</span> =&gt;</span>
-                <span class="property">@validateUser</span> username, password, callback
-
-            <span class="keyword">if</span> settings.general.debug
-                expresser.logger.info <span class="string">"Security"</span>, <span class="string">"Passport: using basic HTTP authentication."</span></pre></div>
+          <div class='highlight'><pre>        <span class="keyword">else</span> <span class="keyword">if</span> settings.passport.basic.enabled
+            httpStrategy = (<span class="built_in">require</span> <span class="string">"passport-http"</span>).BasicStrategy</pre></div>
         
       
         
-        <p>Make sure we have the admin user created.</p>
+        <p>Use <code>basic</code> strategy.</p>
 
         
-          <div class='highlight'><pre>        <span class="property">@ensureAdminUser</span>()</pre></div>
+          <div class='highlight'><pre>            strategy = <span class="keyword">new</span> httpStrategy <span class="function"><span class="params">(username, password, callback)</span> =&gt;</span> <span class="property">@validateUser</span> username, password, callback
+            <span class="property">@passport</span>.use strategy
+            expresser.logger.debug <span class="string">"Security"</span>, <span class="string">"Passport: using basic HTTP authentication."</span></pre></div>
+        
+      
+        
+        <p>Make sure we have the admin user created and set guest user.</p>
+
+        
+          <div class='highlight'><pre>        <span class="property">@ensureAdminUser</span>()
+        <span class="property">@guestUser</span> = {<span class="attribute">id</span>: <span class="string">"guest"</span>, <span class="attribute">displayName</span>: settings.security.guestDisplayName, <span class="attribute">username</span>: <span class="string">"guest"</span>, <span class="attribute">roles</span>: [<span class="string">"guest"</span>]}</pre></div>
+        
+      
+        
+        <p>Authenticate user by checking request and cookies. Will redirect to the login page if not authenticated,
+or send access denied if hasn&#39;t necessary roles. The <code>roles</code> and <code>redirect</code> are optional.
+Returns true if auth passes or false if it doesn&#39;t.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">authenticate</span>: <span class="function"><span class="params">(req, res, roles, redirect, callback)</span> =&gt;</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> callback?
+            <span class="keyword">if</span> redirect?
+                callback = redirect
+                redirect = <span class="literal">null</span>
+            <span class="keyword">else</span> <span class="keyword">if</span> roles?
+                callback = roles
+                roles = <span class="literal">null</span>
+        <span class="keyword">if</span> lodash.isBoolean roles
+            redirect = roles
+            roles = <span class="literal">null</span></pre></div>
+        
+      
+        
+        <p>Check if user is authenticated and has the specified roles.
+If not, redirect to the 401 access denied page.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> req.user?
+            <span class="keyword">if</span> <span class="property">@checkUserRoles</span> req.user, roles
+                <span class="keyword">return</span> callback <span class="literal">true</span>
+            <span class="keyword">else</span>
+                res.redirect(<span class="string">"/401"</span>) <span class="keyword">if</span> redirect
+                <span class="keyword">return</span> callback <span class="literal">false</span></pre></div>
+        
+      
+        
+        <p>Check if user cookie is set. If so, validate it now and check roles.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> req.signedCookies?.user?
+            <span class="property">@validateUser</span> req.signedCookies.user, <span class="literal">null</span>, <span class="function"><span class="params">(err, result)</span> =&gt;</span>
+                <span class="keyword">if</span> result? <span class="keyword">and</span> result <span class="keyword">isnt</span> <span class="literal">false</span>
+                    <span class="property">@login</span> req, res, {<span class="attribute">user</span>: result, <span class="attribute">cookie</span>: <span class="literal">true</span>, <span class="attribute">redirect</span>: <span class="literal">false</span>}
+
+                    <span class="keyword">if</span> <span class="property">@checkUserRoles</span> result, roles
+                        <span class="keyword">return</span> callback <span class="literal">true</span>
+                    <span class="keyword">else</span>
+                        res.redirect(<span class="string">"/401"</span>) <span class="keyword">if</span> redirect
+                        <span class="keyword">return</span> callback <span class="literal">false</span></pre></div>
+        
+      
+        
+        <p>Not authenticated if req.user is still empty, return false.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> req.user?
+            res.redirect(<span class="string">"/login"</span>) <span class="keyword">if</span> redirect
+            <span class="keyword">return</span> callback <span class="literal">false</span></pre></div>
         
       
         
@@ -210,29 +269,35 @@ allow guest access, then log as guest.</p>
 
         
           <div class='highlight'><pre>    <span class="attribute">validateUser</span>: <span class="function"><span class="params">(user, password, callback)</span> =&gt;</span>
+        expresser.logger.debug <span class="string">"Security"</span>, <span class="string">"validateUser"</span>, user
+
+        currentStrategy = <span class="property">@getPassportStrategy</span>()
+
         <span class="keyword">if</span> <span class="keyword">not</span> user? <span class="keyword">or</span> user <span class="keyword">is</span> <span class="string">""</span> <span class="keyword">or</span> user <span class="keyword">is</span> <span class="string">"guest"</span> <span class="keyword">or</span> user.id <span class="keyword">is</span> <span class="string">"guest"</span>
             <span class="keyword">if</span> settings.security.guestEnabled
                 <span class="keyword">return</span> callback <span class="literal">null</span>, <span class="property">@guestUser</span>
             <span class="keyword">else</span>
-                <span class="keyword">return</span> callback <span class="literal">null</span>, <span class="literal">false</span>, {<span class="attribute">message</span>: <span class="string">"Username was not specified."</span>}</pre></div>
+                <span class="keyword">return</span> callback <span class="literal">null</span>, <span class="literal">false</span>, {<span class="attribute">message</span>: <span class="string">"Invalid user!"</span>}</pre></div>
         
       
         
-        <p>Check if user should be fetched by ID or username.</p>
+        <p>Check if user is the username string or the full user object.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> user.id?
+          <div class='highlight'><pre>        <span class="keyword">if</span> lodash.isString user
             filter = {<span class="attribute">username</span>: user}
-        <span class="keyword">else</span>
+        <span class="keyword">else</span> <span class="keyword">if</span> user.id? <span class="keyword">and</span> user.id <span class="keyword">isnt</span> <span class="string">""</span>
             fromCache = <span class="property">@cachedUsers</span>[user.id]
-            filter = user</pre></div>
+            filter = {<span class="attribute">id</span>: user.id}
+        <span class="keyword">else</span>
+            filter = {<span class="attribute">username</span>: (<span class="keyword">if</span> user.username? <span class="keyword">and</span> user.username <span class="keyword">isnt</span> <span class="string">""</span> <span class="keyword">then</span> user.username <span class="keyword">else</span> user.uid)}</pre></div>
         
       
         
         <p>Add password hash to filter.</p>
 
         
-          <div class='highlight'><pre>        <span class="keyword">if</span> password <span class="keyword">isnt</span> <span class="literal">false</span>
+          <div class='highlight'><pre>        <span class="keyword">if</span> password? <span class="keyword">and</span> password <span class="keyword">isnt</span> <span class="literal">false</span> <span class="keyword">and</span> password <span class="keyword">isnt</span> <span class="string">""</span>
             filter.passwordHash = <span class="property">@getPasswordHash</span> user, password</pre></div>
         
       
@@ -243,10 +308,7 @@ allow guest access, then log as guest.</p>
           <div class='highlight'><pre>        <span class="keyword">if</span> fromCache?.cacheExpiryDate?
             <span class="keyword">if</span> fromCache.cacheExpiryDate.isAfter(moment())
                 <span class="keyword">return</span> callback <span class="literal">null</span>, fromCache
-            <span class="keyword">delete</span> <span class="property">@cachedUsers</span>[user.id]
-
-        <span class="keyword">if</span> settings.general.debug
-            expresser.logger.info <span class="string">"Security"</span>, <span class="string">"validateUser"</span>, filter</pre></div>
+            <span class="keyword">delete</span> <span class="property">@cachedUsers</span>[user.id]</pre></div>
         
       
         
@@ -255,11 +317,28 @@ allow guest access, then log as guest.</p>
         
           <div class='highlight'><pre>        database.getUser filter, <span class="function"><span class="params">(err, result)</span> =&gt;</span>
             <span class="keyword">if</span> err?
-                <span class="keyword">return</span> callback err
-            <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">not</span> result? <span class="keyword">or</span> result.length &lt; <span class="number">1</span>
-                <span class="keyword">return</span> callback <span class="literal">null</span>, <span class="literal">false</span>, {<span class="attribute">message</span>: <span class="string">"User and password combination not found."</span>}
+                <span class="keyword">return</span> callback err</pre></div>
+        
+      
+        
+        <p>Check if user was found. If using LDAP, create the user if nothing was found,
+otherwise just return a &quot;user not found&quot; error.</p>
+
+        
+          <div class='highlight'><pre>            <span class="keyword">if</span> <span class="keyword">not</span> result? <span class="keyword">or</span> result.length &lt; <span class="number">1</span>
+                <span class="keyword">if</span> currentStrategy <span class="keyword">is</span> <span class="string">"ldapauth"</span>
+                    <span class="keyword">return</span> <span class="property">@ldapCreateUser</span> user, callback
+                <span class="keyword">else</span>
+                    <span class="keyword">return</span> callback <span class="literal">null</span>, <span class="literal">false</span>, {<span class="attribute">message</span>: <span class="string">"User and password combination not found."</span>}
 
             result = result[<span class="number">0</span>] <span class="keyword">if</span> result.length &gt; <span class="number">0</span></pre></div>
+        
+      
+        
+        <p>Check if user should be a forced admin.</p>
+
+        
+          <div class='highlight'><pre>            <span class="property">@checkForcedAdmin</span> result</pre></div>
         
       
         
@@ -271,7 +350,7 @@ allow guest access, then log as guest.</p>
         
       
         
-        <p>Return the login callback.</p>
+        <p>Callback with user result.</p>
 
         
           <div class='highlight'><pre>            <span class="keyword">return</span> callback <span class="literal">null</span>, result</pre></div>
@@ -285,8 +364,7 @@ admin user will have username &quot;admin&quot;, password &quot;system&quot;.</p
           <div class='highlight'><pre>    <span class="attribute">ensureAdminUser</span>:<span class="function"> =&gt;</span>
         database.getUser <span class="literal">null</span>, <span class="function"><span class="params">(err, result)</span> =&gt;</span>
             <span class="keyword">if</span> err?
-                expresser.logger.error <span class="string">"Security.ensureAdminUser"</span>, err
-                <span class="keyword">return</span></pre></div>
+                <span class="keyword">return</span> expresser.logger.error <span class="string">"Security.ensureAdminUser"</span>, err</pre></div>
         
       
         
@@ -295,13 +373,73 @@ admin user will have username &quot;admin&quot;, password &quot;system&quot;.</p
         
           <div class='highlight'><pre>            <span class="keyword">if</span> <span class="keyword">not</span> result? <span class="keyword">or</span> result.length &lt; <span class="number">1</span>
                 passwordHash = <span class="property">@getPasswordHash</span> <span class="string">"admin"</span>, <span class="string">"system"</span>
-                user = {<span class="attribute">displayName</span>: <span class="string">"Administrator"</span>, <span class="attribute">username</span>: <span class="string">"admin"</span>, <span class="attribute">roles</span>:[<span class="string">"admin"</span>], <span class="attribute">passwordHash</span>: passwordHash}
+                user = {<span class="attribute">displayName</span>: <span class="string">"Administrator"</span>, <span class="attribute">username</span>: <span class="string">"admin"</span>, <span class="attribute">roles</span>: [<span class="string">"admin"</span>], <span class="attribute">passwordHash</span>: passwordHash}
                 database.setUser user
                 expresser.logger.info <span class="string">"Security.ensureAdminUser"</span>, <span class="string">"Default admin user was created."</span></pre></div>
         
       
         
-        <h2 id="authentication-methods">AUTHENTICATION METHODS</h2>
+        <p>Create user from LDAP if it&#39;s not yet registered on the MongoDB database.
+LDAP users will have their password randomized.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">ldapCreateUser</span>: <span class="function"><span class="params">(profile, callback)</span> =&gt;</span>
+        expresser.logger.info <span class="string">"Security.ldapCreateUser"</span>, profile</pre></div>
+        
+      
+        
+        <p>Create static password and user object.</p>
+
+        
+          <div class='highlight'><pre>        passwordHash = <span class="property">@getPasswordHash</span> profile.uid, settings.passport.ldap.userPasswordPrefix + profile.uid
+        user = {<span class="attribute">displayName</span>: profile.cn, <span class="attribute">username</span>: profile.uid, <span class="attribute">roles</span>: [<span class="string">"ldap"</span>], <span class="attribute">passwordHash</span>: passwordHash}</pre></div>
+        
+      
+        
+        <p>Add user from LDAP to the database.</p>
+
+        
+          <div class='highlight'><pre>        database.setUser user, <span class="function"><span class="params">(err, result)</span> -&gt;</span>
+            <span class="keyword">if</span> err?
+                expresser.logger.error <span class="string">"Security.ldapCreateUser"</span>, err
+            callback err, result</pre></div>
+        
+      
+        
+        <p>Check if the specified user has the necessary roles. Admin users always have permissions.
+Returns true or false.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">checkUserRoles</span>: <span class="function"><span class="params">(user, roles)</span> =&gt;</span>
+        <span class="keyword">return</span> <span class="literal">true</span> <span class="keyword">if</span> <span class="keyword">not</span> roles? <span class="keyword">or</span> roles.length &lt; <span class="number">1</span>
+        <span class="keyword">return</span> <span class="literal">true</span> <span class="keyword">if</span> lodash.indexOf(user.roles, <span class="string">"admin"</span>) &gt;= <span class="number">0</span>
+
+        diff = lodash.difference roles, user.roles</pre></div>
+        
+      
+        
+        <p>If roles difference is zero it means user has all roles.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> diff.length &lt; <span class="number">1</span>
+            <span class="keyword">return</span> <span class="literal">true</span>
+        <span class="keyword">else</span>
+            <span class="keyword">return</span> <span class="literal">false</span></pre></div>
+        
+      
+        
+        <p>Check if the specified user is on the forced admin list, and if so add the &quot;admin&quot; role.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">checkForcedAdmin</span>: <span class="function"><span class="params">(user)</span> =&gt;</span>
+        forcedAdmins = settings.security.forcedAdmins
+
+        <span class="keyword">if</span> forcedAdmins?.length &gt; <span class="number">0</span> <span class="keyword">and</span> lodash.indexOf(forcedAdmins, user.username) &gt;= <span class="number">0</span>
+            user.roles.push <span class="string">"admin"</span></pre></div>
+        
+      
+        
+        <h2 id="helper-methods">HELPER METHODS</h2>
 
         
       
@@ -315,6 +453,82 @@ by the HTTP authentication module. If password is empty, return an empty string.
         <span class="keyword">return</span> <span class="string">""</span> <span class="keyword">if</span> <span class="keyword">not</span> password? <span class="keyword">or</span> password <span class="keyword">is</span> <span class="string">""</span>
         text = username + <span class="string">"|"</span> + password + <span class="string">"|"</span> + settings.security.userPasswordKey
         <span class="keyword">return</span> crypto.createHash(<span class="string">"sha256"</span>).update(text).digest <span class="string">"hex"</span></pre></div>
+        
+      
+        
+        <p>Returns the current passport strategy by checking the <code>settings.passport</code> properties.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">getPassportStrategy</span>:<span class="function"> =&gt;</span>
+        <span class="keyword">if</span> settings.passport.ldap.enabled
+            <span class="keyword">return</span> <span class="string">"ldapauth"</span>
+        <span class="keyword">else</span> <span class="keyword">if</span> settings.passport.basic.enabled
+            <span class="keyword">return</span> <span class="string">"basic"</span>
+        <span class="keyword">return</span> <span class="literal">null</span></pre></div>
+        
+      
+        
+        <p>Helper to login user, mainly user to login as guest. Normal login operations are
+handled automatically by the passport module (using basic and ldap auth).
+If the optional <code>cookie</code> option is true, it will save a cookie with auth details.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">login</span>: <span class="function"><span class="params">(req, res, options)</span> =&gt;</span>
+        user = options?.user</pre></div>
+        
+      
+        
+        <p>User must be defined.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> user?
+            expresser.logger.warn <span class="string">"Security.login"</span>, <span class="string">"Invalid user (null or undefined)."</span>
+            res.redirect <span class="string">"/login?invalid_user"</span> <span class="keyword">if</span> options.redirect
+            <span class="keyword">return</span></pre></div>
+        
+      
+        
+        <p>Check if guest is allowed.</p>
+
+        
+          <div class='highlight'><pre>        <span class="keyword">if</span> <span class="keyword">not</span> settings.security.guestEnabled <span class="keyword">and</span> user.username <span class="keyword">is</span> <span class="string">"guest"</span>
+            expresser.logger.warn <span class="string">"Security.login"</span>, <span class="string">"Guest access is not allowed."</span>
+            res.redirect <span class="string">"/login?guest_not_allowed"</span> <span class="keyword">if</span> options.redirect
+            <span class="keyword">return</span></pre></div>
+        
+      
+        
+        <p>Log the user in.</p>
+
+        
+          <div class='highlight'><pre>        req.login user, <span class="function"><span class="params">(err)</span> -&gt;</span>
+            <span class="keyword">if</span> err?
+                expresser.logger.error <span class="string">"Security.login"</span>, user, err
+                res.redirect <span class="string">"/login?error"</span> <span class="keyword">if</span> options.redirect
+                <span class="keyword">return</span></pre></div>
+        
+      
+        
+        <p>Save to cookie?</p>
+
+        
+          <div class='highlight'><pre>            <span class="keyword">if</span> options.cookie
+                maxAge = settings.security.authCookieMaxAge * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>
+                res.cookie <span class="string">"user"</span>, user.username, {<span class="attribute">maxAge</span>: maxAge, <span class="attribute">signed</span>: <span class="literal">true</span>}
+
+            res.redirect <span class="string">"/"</span> <span class="keyword">if</span> options.redirect</pre></div>
+        
+      
+        
+        <p>Logout and remove the specified user from the cache.</p>
+
+        
+          <div class='highlight'><pre>    <span class="attribute">logout</span>: <span class="function"><span class="params">(req, res)</span> =&gt;</span>
+        <span class="keyword">delete</span> <span class="property">@cachedUsers</span>[req.user.id] <span class="keyword">if</span> req.user?
+        res.clearCookie <span class="string">"user"</span>
+
+        req.logout()
+        res.redirect <span class="string">"/login"</span></pre></div>
         
       
         
