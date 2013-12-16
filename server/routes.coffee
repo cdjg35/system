@@ -611,7 +611,7 @@ module.exports = (app) ->
     passportStrategy = security.getPassportStrategy()
     passportOptions = { failureFlash: true, session: true }
 
-    # If using LDAP auth, set failure and success redirects.
+    # If using LDAP auth, s0et failure and success redirects.
     if settings.passport.ldap.enabled
         passportOptions.successRedirect = "/"
         passportOptions.failureRedirect = "/login"
