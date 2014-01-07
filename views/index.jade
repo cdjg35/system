@@ -1,12 +1,12 @@
-!!! 5
-!= js("basejs")
-!= js("appjs")
-!= css("appcss")
+doctype html
 html
     head
         title #{title}
         link(type="image/x-icon", href="images/favico.png", rel="icon")
         meta(name="apple-mobile-web-app-capable", content="yes")
+        != js("basejs")
+        != js("appjs")
+        != css("appcss")
         script(src="/socket.io/socket.io.js")
     body
         #wrapper
