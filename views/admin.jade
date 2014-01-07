@@ -1,13 +1,13 @@
-!!! 5
-!= js("basejs")
-!= js("adminjs")
-!= css("admincss")
+doctype html
 html
     head
         title #{title} - Admin
-        script(src="/socket.io/socket.io.js")
         link(type="image/x-icon", href="images/favico-admin.png", rel="icon")
         meta(name="apple-mobile-web-app-capable", content="yes")
+        script(src="/socket.io/socket.io.js")
+        != js("basejs")
+        != js("adminjs")
+        != css("admincss")
     body
         #wrapper
             #header

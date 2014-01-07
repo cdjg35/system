@@ -4,10 +4,10 @@ html
         title #{title}
         link(type="image/x-icon", href="images/favico.png", rel="icon")
         meta(name="apple-mobile-web-app-capable", content="yes")
+        script(src="/socket.io/socket.io.js")
         != js("basejs")
         != js("appjs")
         != css("appcss")
-        script(src="/socket.io/socket.io.js")
     body
         #wrapper
             include header

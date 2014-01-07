@@ -1,12 +1,12 @@
-!!! 5
-!= js("basejs")
-!= js("view/loginView")
-!= css("appcss")
+doctype html
 html
     head
         title #{title}
         link(type="image/x-icon", href="images/favico.png", rel="icon")
         meta(name="apple-mobile-web-app-capable", content="yes")
+        != js("basejs")
+        != js("view/loginView")
+        != css("appcss")
     body#login
         div.header
             h1 #{title} Login
