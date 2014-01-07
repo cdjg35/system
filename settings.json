@@ -52,7 +52,7 @@
     "database": {
         // The database connection string is DB "systemapp" running under "localhost" by default.
         // Do not forget to include "mongodb://" before the hostname.
-        "connString": "mongodb://localhost/systemapp",
+        "connString": "mongodb://localhost/systemapp?auto_reconnect",
         // For how many hours should the DB keep insert/update/delete logs? Default is 2 hours.
         "logExpires": 2
     },
