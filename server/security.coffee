@@ -84,6 +84,7 @@ class Security
             else if roles?
                 callback = roles
                 roles = null
+
         if lodash.isBoolean roles
             redirect = roles
             roles = null
@@ -237,7 +238,7 @@ class Security
     getPassportStrategy: =>
         if settings.passport.ldap.enabled
             return "ldapauth"
-        else if settings.passport.basic.enabled
+        if settings.passport.basic.enabled
             return "basic"
         return null
 

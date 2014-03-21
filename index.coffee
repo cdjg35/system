@@ -11,15 +11,14 @@ path = require "path"
 security = require "./server/security.coffee"
 sockets = require "./server/sockets.coffee"
 flash = require "connect-flash"
-
-# Set init options.
+# Init Expresser.
 initOptions = {app: [flash(), security.passport.initialize(), security.passport.session()]}
-
-# Init modules.
 expresser.init initOptions
+
+# Init other modules.
 security.init()
 manager.init()
 sockets.init()
 
-# Configure the app and set the routes.
+# Add app routes.
 require("./server/routes.coffee")(expresser.app.server)

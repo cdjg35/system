@@ -34,6 +34,12 @@
         "port": 3003
     },
 
+    // BUILT-IN FIREWALL
+    "firewall": {
+        // Set to true if you plan to deploy the System App to a public host.
+        "enabled": false
+    },
+
     // SPECIAL PATHS
     "path": {
         // Path where downloads will be stored.

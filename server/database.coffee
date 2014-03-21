@@ -8,7 +8,6 @@ class Database
     expresser = require "expresser"
     settings = expresser.settings
 
-
     # ENTITY DEFINITIONS AND OBJECTS
     # ----------------------------------------------------------------------
 
@@ -18,7 +17,7 @@ class Database
 
     # Insert or update an [Entity Definition](entityDefinition.html).
     setEntityDefinition: (obj, options, callback) =>
-        expresser.database.set "entity", obj, options, callback
+        expresser.database.upsert "entity", obj, options, callback
 
     # Delete the specified [Entity Definition](entityDefinition.html).
     deleteEntityDefinition: (id, callback) =>
@@ -33,12 +32,11 @@ class Database
 
     # Insert or update a [Map](map.html)
     setMap: (obj, options, callback) =>
-        expresser.database.set "map", obj, options, callback
+        expresser.database.upsert "map", obj, options, callback
 
     # Delete the specified [Map](map.html).
     deleteMap: (id, callback) =>
         expresser.database.del "map", id, callback
-
 
     # AUDIT DATA
     # ----------------------------------------------------------------------
@@ -49,12 +47,11 @@ class Database
 
     # Insert or update an [AuditData](auditData.html).
     setAuditData: (obj, options, callback) =>
-        expresser.database.set "auditdata", obj, options, callback
+        expresser.database.upsert "auditdata", obj, options, callback
 
     # Delete the specified [AuditData](auditData.html).
     deleteAuditData: (id, callback) =>
         expresser.database.del "auditdata", id, callback
-
 
     # AUDIT EVENTS
     # ----------------------------------------------------------------------
@@ -65,12 +62,11 @@ class Database
 
     # Insert or update an [AuditEvent](auditEvent.html).
     setAuditEvent: (obj, options, callback) =>
-        expresser.database.set "auditevent", obj, options, callback
+        expresser.database.upsert "auditevent", obj, options, callback
 
     # Delete the specified [AuditEvent](auditEvent.html).
     deleteAuditEvent: (id, callback) =>
         expresser.database.del "auditevent", id, callback
-
 
     # VARIABLES
     # ----------------------------------------------------------------------
@@ -81,12 +77,11 @@ class Database
 
     # Insert or update a [Variable](variable.html).
     setVariable: (obj, options, callback) =>
-        expresser.database.set "variable", obj, options, callback
+        expresser.database.upsert "variable", obj, options, callback
 
     # Delete the specified [Variable](variable.html).
     deleteVariable: (id, callback) =>
         expresser.database.del "variable", id, callback
-
 
     # USERS
     # ----------------------------------------------------------------------
@@ -97,12 +92,11 @@ class Database
 
     # Insert or update a [User](user.html).
     setUser: (obj, options, callback) =>
-        expresser.database.set "user", obj, options, callback
+        expresser.database.upsert "user", obj, options, callback
 
     # Delete the specified [User](user.html).
     deleteUser: (id, callback) =>
         expresser.database.del "user", id, callback
-
 
     # HISTORY LOGS
     # ----------------------------------------------------------------------
@@ -127,7 +121,6 @@ class Database
 
         expresser.database.db.collection("log").remove {"timestamp": {"$lt":minDate}}
         expresser.logger.info "Deleted DB logs older than #{minDate}."
-
 
     # HELPER METHODS
     # ----------------------------------------------------------------------
