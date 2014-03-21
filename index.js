@@ -5,4 +5,6 @@
 // please run the `server.coffee` directly.
 
 require("coffee-script");
+require("coffee-script/register");
+
 require("./server.coffee");

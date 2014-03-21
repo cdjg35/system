@@ -12,7 +12,7 @@ class Sync
     fs = require "fs"
     http = require "http"
     https = require "https"
-    moment = require "moment"
+    moment = expresser.libs.moment
     sockets = require "./sockets.coffee"
     url = require "url"
 

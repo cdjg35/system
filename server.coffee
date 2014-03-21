@@ -5,7 +5,7 @@
 expresser = require "expresser"
 
 # Required modules.
-lodash = require "lodash"
+lodash = expresser.libs.lodash
 manager = require "./server/manager.coffee"
 path = require "path"
 security = require "./server/security.coffee"

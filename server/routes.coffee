@@ -555,7 +555,7 @@ module.exports = (app) ->
     # Get default app and server variables to be sent with responses.
     getResponseOptions = (req) ->
         os = require "os"
-        moment = require "moment"
+        moment = expresser.libs.moment
         host = req.headers["host"]
 
         # Check the last modified date.

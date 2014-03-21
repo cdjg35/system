@@ -12,8 +12,8 @@ class Security
     # Required modules.
     crypto = require "crypto"
     database = require "./database.coffee"
-    lodash = require "lodash"
-    moment = require "moment"
+    lodash = expresser.libs.lodash
+    moment = expresser.libs.moment
 
     # Passport is accessible from outside.
     passport: require "passport"
