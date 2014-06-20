@@ -13,7 +13,6 @@ class Sockets
         expresser.sockets.listenTo "disconnect", @onDisconnect
         expresser.sockets.listenTo "clients:refresh", @onClientsRefresh
 
-
     # TRIGGER: ENTITIES AND AUDIT DATA
     # ----------------------------------------------------------------------
 
@@ -25,7 +24,6 @@ class Sockets
     sendAuditDataRefresh: (auditData) =>
         expresser.sockets.emit "auditdata:refresh", auditData
 
-
     # TRIGGER: SERVER LOGS AND ERRORS
     # ----------------------------------------------------------------------
 
@@ -33,7 +31,6 @@ class Sockets
     sendServerError: (title, errorMessage) =>
         errorMessage = "Unknown error" if not errorMessage?
         expresser.sockets.emit "server:error", {title: title, message: errorMessage.toString().replace(":", " ")}
-
 
     # LISTEN: CLIENT COMMANDS
     # ----------------------------------------------------------------------
